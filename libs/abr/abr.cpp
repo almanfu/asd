@@ -266,6 +266,21 @@ class Tree{
     }
     cout << endl;
   }
+  friend void bfs(Tree* t){
+    std::queue<Tree*> q;
+    if(t != nullptr)
+      q.push(t);
+    while(!q.empty()){
+      t = q.front();
+      q.pop();
+      cout << t << " ";
+      if(t->left != nullptr)
+        q.push(t->left);
+      if(t->right != nullptr)
+        q.push(t->right);
+    }
+    cout << endl;
+  }
   friend void print_visual(Tree* t, int p=0){
     // Rotate visually by 90° right
     if (t != nullptr)
@@ -369,6 +384,8 @@ int main()
       inorder(t);
       cout << "postorder: " << endl;
       postorder(t);
+      cout << "bfs: " << endl;
+      bfs(t);
       break;
     case 'c':
       deleteTree(t);
