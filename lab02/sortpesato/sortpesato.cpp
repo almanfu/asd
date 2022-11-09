@@ -34,6 +34,14 @@ int main(int argc, char *argv[]){
     in >> v[i];
 
   int minMoves=0;
+
+  int minCost=0;
+  int startCycle=0;
+  int minCycle;
+  int sumCycle;
+  int lenCycle;
+
+
   int i=1;
   while(i<=n){
     if(v[i] == i){
@@ -42,16 +50,40 @@ int main(int argc, char *argv[]){
     }
     else if(v[i] != 0){
       int next = v[i];
-      v[i]=0;
-      if(v[next] != 0)
+      if(startCycle == 0){
+        //Init cycle parameters
+        startCycle = i;
+        minCycle = v[i];
+        sumCycle = lenCycle = 0;
+      }
+
+      minCycle = v[i]<minCycle?v[i]:minCycle;
+      sumCycle += v[i];
+      lenCycle++;
+
+      if(v[next] != 0){
         minMoves++;
+      }else{
+        // Formula costo del ciclo
+        if(lenCycle == 2){
+          minCost += sumCycle;
+        }else if(lenCycle == 3){
+          minCost += sumCycle-minCycle + (lenCycle-1)*minCycle;
+        }else if(minCycle > (lenCycle+1)/(lenCycle-3)){
+          minCost += sumCycle-minCycle + (lenCycle-1)+2*(minCycle+1);
+        }else{
+          minCost += sumCycle-minCycle + (lenCycle-1)*minCycle;
+        }
+        //cout << minCycle << ' ' << minCost << ' ' << lenCycle << endl;
+        startCycle = 0;
+      }
+      v[i]=0;
       i=next;
     }else{
       i++;
     }
   }
-  int minCost=0;
-  
+
 
 
   out << minMoves << ' ' << minCost;
