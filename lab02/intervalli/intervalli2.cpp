@@ -78,16 +78,16 @@ class Range{
     return !(r1 == r2);    
   }
   friend bool operator<=(Range r1, Range r2){
-    return r1.len <= r2.len;    
+    return r1.s <= r2.s;    
   }
   friend bool operator>=(Range r1, Range r2){
-    return r1.len >= r2.len;    
+    return r1.s >= r2.s;    
   }
   friend bool operator<(Range r1, Range r2){
-    return r1.len < r2.len;    
+    return r1.s < r2.s;    
   }
   friend bool operator>(Range r1, Range r2){
-    return r1.len > r2.len;
+    return r1.s > r2.s;
   }
   friend ostream& operator<<(ostream& os, Range r){
     if(!r.empty())
@@ -110,69 +110,34 @@ int main(int argc, char *argv[]){
   int n;
   in >> n;
 
-  Range I;
+  Range maxGap = Range();
   list<Range>* S = new list<Range>;
 
   for(int i=0; i < n; i++){
     Range r;
     in >> r;
-    if(r.contains(I) || I.empty()){
-      I = r;
-      S->clear();
-    }
-    else if(!I.disjoint(r)){
-      //#Update all s in S
-      list<Range>* S1 = new list<Range>;
-      for(Range s: *S){
-        if(r.contains(s)){
-          // delete from S
-        }else if(s.contains(r)){
-          //split in two
-          S1->push_front(Range(s.s, r.s));
-          S1->push_front(Range(r.e, s.e));
-        }else{
-          //remove overlap from s
-          s.subtract(r);
-          S1->push_front(s);
+    S->push_front(r);
+  }
+
+  S->sort();
+  if(S->size() >= 1){
+    Range r1 = S->front();S->pop_front();
+    Range r2 = Range();
+    while(!S->empty()){
+      r1 = r1.contains(r2)?r1:r2;
+      r2 = S->front();S->pop_front();
+      if(r1.disjoint(r2)){
+        Range newGap(r1.e, r2.s);
+        if(newGap.len > maxGap.len){
+          maxGap = newGap;
+        }else if(newGap.len == maxGap.len && newGap.s < maxGap.s){
+          maxGap = newGap;
         }
-      }
-      delete S;
-      S = S1;
-      //#Update I
-      if(!I.contains(r)){
-        if(I.e < r.e){
-        // I ---|
-        // r   ----|
-          I.e = r.e;
-        }else{
-        // I   |---
-        // r |---
-          I.s = r.s;
-        }
-      }
-    }
-    else{
-      //#Update I, add s
-      if(I.e < r.e){
-      // I ---|
-      // r       |----|
-        S->push_front(Range(I.e, r.s));
-        I.e = r.e;
-      }else{
-      // I       |---
-      // r |---| 
-        S->push_front(Range(r.e, I.s));
-        I.s = r.s;
       }
     }
   }
 
-  S->push_front(Range());
-
-  Range maxRange = *max_element(S->begin(), S->end());
-
-  out << maxRange;
-
+  out << maxGap;
   delete S;
   in.close();
   out.close();
