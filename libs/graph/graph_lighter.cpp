@@ -4,13 +4,11 @@
 #include <list>
 #include <queue>
 #include <stack>
-#include <set>
 
 using namespace std;
 
 /*
-Beware!
-Some functions operate on sets, and are O(n*log(n))
+
 */
 
 class Graph{
@@ -18,20 +16,27 @@ class Graph{
   typedef int Node;
   enum GraphType {DIRECTED=false, UNDIRECTED=true};
   private:
-  vector<set<Node>*> _adj;
-  set<Node> _V;
+  vector<list<Node>*> _adj;
+  vector<Node> _V;
   int _n;
   GraphType _graphType;
   public:
-  Graph(GraphType gType=UNDIRECTED){
+  Graph(int nodes, GraphType gType){
     _graphType = gType;
-    _n = 0;
+    _n = nodes;
+    _adj = vector<list<Node>*>(_n);
+    _V = vector<Node>(_n);
+    for(Node v=0; v < _n; v++){
+      _V[v] = v;
+      _adj[v] = new list<Node>;
+    }
   }
   ~Graph(){
-    for(Node u=0; u < _n; u++){
-      if(_adj[u] != nullptr)
+    for(Node u=0; u < _n; u++)
         delete _adj[u];
-    }
+  }
+  bool has(Node u){
+    return 0<=u && u < _n;
   }
   const GraphType graphType(){
     return _graphType;
@@ -42,54 +47,21 @@ class Graph{
   const int n(){
     return _n;
   }
-  const set<Node> V(){
+  const vector<Node> V(){
     return _V;
-  }
-  bool has(Node u){
-    return _V.find(u) != _V.end();
-  }
-  bool insertNode(Node u){
-    if(u < 0){
-      return false;      
-    }else if(_n <= u){
-      for(Node v=_n; v <= u; v++)
-        _adj.push_back(nullptr);
-      _n = u+1;
-      _V.insert(u);
-      _adj[u] = new set<Node>;
-      return true;
-    }else{
-      _V.insert(u);
-      _adj[u] = new set<Node>;
-      return true;
-    }
   }
   void insertEdge(Node u, Node v){
     if(has(u) && has(v) && u != v){
-      _adj[u]->insert(v);
+      _adj[u]->push_front(v);
       if(undirected())
-        _adj[v]->insert(u);
+        _adj[v]->push_front(u);
     }
   }
-  void deleteNode(Node u){
-    delete _adj[u];
-    _adj[u] = nullptr;
-    for(Node v: _V)
-      deleteEdge(v, u);
-    _V.erase(u);
-  }
-  void deleteEdge(Node u, Node v){
-    if(has(u) && has(v) && u != v){
-      _adj[u]->erase(v);
-      if(undirected())
-        _adj[v]->erase(u);
-    }
-  }
-  const set<Node> adj(Node u){
+  const list<Node> adj(Node u){
     if(has(u))
       return *_adj[u];
     else
-      return set<Node>();
+      return list<Node>();
   }
   void print_V();
   void print_adj();
@@ -100,8 +72,8 @@ class Graph{
   void dfs();
   bool hasCycle();
   Graph transposed();
-  list<set<Node>*> ccs();
-  set<Node> cc(Node r);
+  list<list<Node>*> ccs();
+  list<Node> cc(Node r);
   void print_cc(Node r);
   void print_ccs();
 };
@@ -263,23 +235,22 @@ bool Graph::hasCycle(){
 }
 
 Graph Graph::transposed(){
-  Graph thisTransposed(_graphType);
+  Graph thisTransposed(_n, _graphType);
   for(Node u: V()){
     for(Node v: adj(u)){
-      thisTransposed.deleteEdge(u, v);
       thisTransposed.insertEdge(v, u);
     }
   }
   return thisTransposed;
 }
-set<Graph::Node> Graph::cc(Node r){
+list<Graph::Node> Graph::cc(Node r){
   queue<Node> q;
-  set<Node> _cc;
+  list<Node> _cc;
   bool *visited = new bool[n()]{};
   if(has(r)){
     q.push(r);
     visited[r] = true;
-    _cc.insert(r);
+    _cc.push_front(r);
   }
   while(!q.empty()){
     Node u = q.front(); q.pop();
@@ -287,31 +258,31 @@ set<Graph::Node> Graph::cc(Node r){
       if(!visited[v]){
         q.push(v);
         visited[v] = true;
-        _cc.insert(v);
+        _cc.push_front(v);
       }
     }
   }
   delete[] visited;
   return _cc;
 }
-list<set<Graph::Node>*> Graph::ccs(){
-  list<set<Node>*> _ccs;
+list<list<Graph::Node>*> Graph::ccs(){
+  list<list<Node>*> _ccs;
   bool* visited = new bool[n()]{};
   for(Node r: V()){
     if(!visited[r]){
-      set<Node>* mycc = new set<Node>();
+      list<Node>* mycc = new list<Node>();
       //BFS
       queue<Node> q;
       q.push(r);
       visited[r] = true;
-      mycc->insert(r);
+      mycc->push_front(r);
       while(!q.empty()){
         Node u = q.front(); q.pop();
         for(Node v: adj(u)){
           if(!visited[v]){
             q.push(v);
             visited[v] = true;
-            mycc->insert(v);
+            mycc->push_front(v);
           }
         }
       }      
@@ -328,7 +299,7 @@ void Graph::print_cc(Node r){
   cout << endl;
 }
 void Graph::print_ccs(){
-  for(set<Node>* _cc: ccs()){
+  for(list<Node>* _cc: ccs()){
     cout << "CC:";
     for(Node u: *_cc)
       cout << u << ' ';
@@ -336,21 +307,18 @@ void Graph::print_ccs(){
     delete _cc;    
   }
 }
-/*
+
 int main(int argc, char *argv[]){
-  Graph g(Graph::UNDIRECTED);
+  Graph g(10, Graph::DIRECTED);
   // Building a graph
-  for(Graph::Node u=0; u < 10; u++){
-    g.insertNode(u);
-  }
+  g.insertEdge(0,1);
   g.insertEdge(1,2);
   g.insertEdge(2,3);
-  g.insertEdge(1,3);
-  g.insertEdge(1,6);
-  g.insertEdge(5,8);
+  g.insertEdge(3,4);
+  g.insertEdge(4,0);
 
   g.print_adj();
-  g.print_cc(1);
+  g.print_ccs();
   return 0;
-}*/
+}
 

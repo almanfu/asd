@@ -1,5 +1,4 @@
 #include <iostream>
-#include <fstream>
 
 #include <vector>
 #include <list>
@@ -128,29 +127,6 @@ class Graph{
     return _distance;  
   }
 
-  int maxDistance(Node r){
-    queue<Node> q;
-    int _maxDistance=0;
-    vector<int> _distance(n);
-    for(Node u=0; u < n; u++)
-      _distance[u] = -1;
-    if(has(r)){
-      q.push(r);
-      _distance[r] = 0;
-    }
-    while(!q.empty()){
-      Node u = q.front(); q.pop();
-      for(Node v: adj[u]){
-        if(_distance[v] == -1){
-          _distance[v] = 1+_distance[u];
-          _maxDistance = _distance[v]>_maxDistance?_distance[v]:_maxDistance;
-          q.push(v);
-        }
-      }
-    }
-    return _maxDistance;  
-  }
-
   bool hasCycle(){
     if(undirected()){
       bool _hasCycle = false;
@@ -249,7 +225,6 @@ class Graph{
     delete[] visited;
     return _cc;
   }
-
   list<list<Node>*> ccs(){
     list<list<Node>*> _ccs;
     bool* visited = new bool[n]{};
@@ -277,14 +252,12 @@ class Graph{
     delete[] visited;
     return _ccs;
   }
-
   void print_cc(Node r){
     cout << r << ':';
     for(Node u: cc(r))
       cout << u << ' ';
     cout << endl;
   }
-
   void print_ccs(){
     for(list<Node>* _cc: ccs()){
       cout << "CC:";
@@ -295,37 +268,19 @@ class Graph{
     }
   }
 
-  int diametro(){
-    int _diametro=0;
-    for(Node u: V){
-      int new_diametro = maxDistance(u);
-      _diametro = new_diametro > _diametro ? new_diametro : _diametro;
-    }
-    return _diametro;
-  }
 };
 
-
-
 int main(int argc, char *argv[]){
-  ifstream in("input.txt");
-  ofstream out("output.txt");
+  Graph g(10, Graph::DIRECTED);
+  // Building a graph
+  g.insertEdge(0,1);
+  g.insertEdge(1,2);
+  g.insertEdge(2,3);
+  g.insertEdge(3,4);
+  g.insertEdge(4,0);
 
-
-  int n, m;
-  in >> n >> m;
-
-  Graph g(n, Graph::UNDIRECTED);
-
-  for(int i=0; i < m; i++){
-    Graph::Node u, v;
-    in >> u >> v;
-    g.insertEdge(u, v);
-  }
-
-  out << g.diametro();
-
-  in.close();
-  out.close();
+  g.print_adj();
+  g.print_ccs();
   return 0;
 }
+
