@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 
 #include <vector>
 #include <list>
@@ -9,8 +10,7 @@
 using namespace std;
 
 /*
-Beware!
-Some functions operate on sets, and are O(n*log(n))
+
 */
 
 class Graph{
@@ -338,19 +338,27 @@ void Graph::print_ccs(){
 }
 
 int main(int argc, char *argv[]){
-  Graph g(Graph::UNDIRECTED);
-  // Building a graph
-  for(Graph::Node u=0; u <= 10; u++){
-    g.insertNode(u);
-  }
-  g.insertEdge(1,2);
-  g.insertEdge(2,3);
-  g.insertEdge(1,3);
-  g.insertEdge(1,6);
-  g.insertEdge(5,8);
+  ifstream in("input.txt");
+  ofstream out("output.txt");
 
-  g.print_adj();
-  g.print_cc(1);
+  int n, m;
+  Graph::Node r;
+  in >> n >> m >> r;
+
+  Graph g(Graph::DIRECTED);
+
+  for(Graph::Node u=n-1; u >= 0; u--)
+    g.insertNode(u);
+
+  for(int i=0; i < m; i++){
+    Graph::Node u, v;
+    in >> u >> v;
+    g.insertEdge(u, v);
+  }
+  out << g.cc(r).size();
+
+  in.close();
+  out.close();
   return 0;
 }
 

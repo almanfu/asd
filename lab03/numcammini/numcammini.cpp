@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 
 #include <vector>
 #include <list>
@@ -104,6 +105,7 @@ class Graph{
   set<Node> cc(Node r);
   void print_cc(Node r);
   void print_ccs();
+  pair<int, int> numcammini(Node s, Node t);
 };
 
 void Graph::print_V(){
@@ -337,20 +339,65 @@ void Graph::print_ccs(){
   }
 }
 
-int main(int argc, char *argv[]){
-  Graph g(Graph::UNDIRECTED);
-  // Building a graph
-  for(Graph::Node u=0; u <= 10; u++){
-    g.insertNode(u);
+pair<int, int> Graph::numcammini(Node s, Node t){
+  queue<Node> q;
+  vector<int> _distance(n()+1);
+  int _numcammini=0;
+  for(Node u=0; u <=n(); u++)
+    _distance[u] = -1;
+  if(has(s) && has(t)){
+    q.push(s);
+    _distance[s] = 0;
+    if(s==t)
+      return pair<int, int>(0, 1);
   }
-  g.insertEdge(1,2);
-  g.insertEdge(2,3);
-  g.insertEdge(1,3);
-  g.insertEdge(1,6);
-  g.insertEdge(5,8);
+  while(!q.empty()){
+    Node u = q.front(); q.pop();
+    for(Node v: adj(u)){
 
-  g.print_adj();
-  g.print_cc(1);
+      if(_distance[v] == -1){
+        _distance[v] = 1+_distance[u];
+        q.push(v);
+      }else if(1+_distance[u]<=_distance[v] && v!=t)
+        q.push(v);
+
+      if(v == t && 1+_distance[u] == _distance[v])
+          _numcammini++;
+    }
+  }
+  return pair<int, int>(_distance[t], _numcammini);  
+}
+
+/*
+
+*/
+
+
+int main(int argc, char *argv[]){
+  ifstream in("input.txt");
+  ofstream out("output.txt");
+
+  Graph g(Graph::DIRECTED);
+
+  Graph::Node s, t;
+  int n, m;
+  in >> n >> m >> s >> t;
+
+  for(Graph::Node u=n-1; u>=0; u--)
+    g.insertNode(u);
+
+  for(int i=0; i < m; i++){
+    Graph::Node u, v;
+    in >> u >> v;
+    g.insertEdge(u, v);
+  }
+
+  auto res = g.numcammini(s, t);
+
+  out << res.first << ' ' << res.second;
+
+  in.close();
+  out.close();
   return 0;
 }
 
