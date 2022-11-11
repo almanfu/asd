@@ -4,12 +4,14 @@
 #include <vector>
 #include <list>
 #include <queue>
+#include <stack>
 
 #include <algorithm>
 
 using namespace std;
 
 const bool LOCAL = true;
+const bool ONEPATH = true;
 ofstream plt;
 ofstream out("output.txt");
 
@@ -145,6 +147,66 @@ class Graph{
     }
     if(LOCAL)
       plt << "0 0";
+
+    if(ONEPATH && !LOCAL){
+      stack<Node> s;
+      s.push(r);
+      bool *visited = new bool[n]{};
+      int *numChildren = new int[n]{};
+      Node bestAttack;
+      int maxChildren=0;
+      while(!s.empty()){
+        Node u = s.top();
+        if(visited[u] && u != r){
+          for(Edge e: G.adj[u])
+            numChildren[u] += 1+numChildren[e.node];
+          if(numChildren[u] > maxChildren){
+            bestAttack = u;
+            maxChildren = numChildren[u];
+          }
+          s.pop();
+        }else if(!visited[u]){
+          auto iter = G.adj[u].begin();
+          auto iterEnd = G.adj[u].end();
+          while(iter!=iterEnd){
+            Edge e = *iter;
+            if(!visited[e.node]){
+              s.push(e.node);
+              iter++;
+            }else{
+              iter = G.adj[u].erase(iter);
+            }
+          }
+          visited[u] = true;
+        }else{
+          s.pop();
+        }
+      }
+      delete[] numChildren;
+      delete[] visited;
+      visited = new bool[n]{};
+
+      list<Node> disabled;
+      disabled.push_front(bestAttack);
+      s.push(bestAttack);
+      while(!s.empty()){
+        Node u = s.top(); s.pop();
+        for(Edge e: G.adj[u]){
+          if(!visited[e.node]){
+            s.push(e.node);
+            disabled.push_front(e.node);
+            visited[e.node] = true;
+          }
+        }
+      }
+      out << (maxChildren+1) << '\n';
+      for(Node u: disabled)
+        out << u << '\n';
+      
+      delete[] visited;
+      return;
+    }
+    
 
     //Rimuovo ogni nodo e vedo la grandezza della cc di r in G 
     int minPowarts = n;
