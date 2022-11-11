@@ -1,0 +1,4 @@
+#!/bin/bash
+/bin/python3 /mnt/50A65EC5A65EAB6C/lab/asd1/lab03/powarts/generate_graph.py &&\
+crun powarts.cpp &&\
+/bin/python3 /mnt/50A65EC5A65EAB6C/lab/asd1/lab03/powarts/print_graph.py

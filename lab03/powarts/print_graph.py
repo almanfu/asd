@@ -1,5 +1,11 @@
 import matplotlib.pyplot as plt
 import networkx as nx
+import os
+
+num_file = open("/mnt/50A65EC5A65EAB6C/lab/asd1/lab03/powarts/.graphs/num", "r")
+num = int(num_file.readline())
+num_file.close()
+
 
 input_file = open("/mnt/50A65EC5A65EAB6C/lab/asd1/lab03/powarts/input.txt")
 output_file = open("/mnt/50A65EC5A65EAB6C/lab/asd1/lab03/powarts/output.txt")
@@ -37,7 +43,15 @@ nx.draw(G, pos=a_pos, with_labels=True, node_color=list(map(colors, node_colors)
 nx.draw_networkx_edges(G1, pos=a_pos, edge_color=colors("GREEN"), width=2)
 #Per grafi orientati
 
-plt.show()
+plt.savefig(".graphs/randgraph"+str(num))
+os.system("code .graphs/randgraph"+str(num)+".png")
+plt.close()
 input_file.close()
 output_file.close()
 plt_file.close()
+
+for u in nx.topological_sort(G1):
+  print(u, end=" ")
+print()
+
+print("===================")

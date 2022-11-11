@@ -9,7 +9,8 @@
 
 using namespace std;
 
-ofstream plt("plt.txt");
+const bool LOCAL = true;
+ofstream plt;
 ofstream out("output.txt");
 
 /*
@@ -49,10 +50,10 @@ class Graph{
   bool has(Node u){
     return 0<=u && u < n;
   }
-  const bool undirected(){
+  bool undirected(){
     return edgeDirection == UNDIRECTED;
   }
-  const bool unweighted(){
+  bool unweighted(){
     return edgeWeight == UNWEIGHTED;
   }
   void insertEdge(Node u, Node v, int weight=1){
@@ -101,6 +102,8 @@ class Graph{
   }
 
   void powarts(Node r){
+    if(LOCAL)
+      plt = ofstream("plt.txt");
     queue<Node> q;
     vector<int> distance(n);
     vector<list<Node>> predecessor(n);
@@ -135,15 +138,19 @@ class Graph{
     Graph G(n, Graph::DIRECTED, Graph::UNWEIGHTED);
     for(Node v: G.V){
       for(Node u: predecessor[v]){
-        //plt << u << ' ' << v << endl;
+        if(LOCAL)
+          plt << u << ' ' << v << endl;
         G.insertEdge(u, v);
       }
     }
-    //plt << "0 0";
+    if(LOCAL)
+      plt << "0 0";
 
     //Rimuovo ogni nodo e vedo la grandezza della cc di r in G 
     int minPowarts = n;
-    //list<Node> attacked;
+
+    list<Node> attacked;
+
     list<Node> disabled;
     
     bool *visited = new bool[n]{};
@@ -173,20 +180,26 @@ class Graph{
             if(visited[u] == false)
               disabled.push_front(u);
           }
-          //attacked.clear();
-          //attacked.push_front(removed);
+          if(LOCAL){
+            attacked.clear();
+            attacked.push_front(removed);
+          }
         }else if(numPowarts == minPowarts){
-          //attacked.push_front(removed);
+          if(LOCAL)
+            attacked.push_front(removed);
         }
       }
     }
-
-    out << (n-minPowarts) << '\n';
-    for(Node u: disabled)
-      out << u << '\n';
-
-    //for(Node u: attacked)
-    //  out << u << ' ';
+    if(!LOCAL){
+      out << (n-minPowarts) << '\n';
+      for(Node u: disabled)
+        out << u << '\n';
+    }else{
+      cout << (n-minPowarts) << '\n';
+      for(Node u: attacked)
+        out << u << ' ';
+      plt.close();
+    }
 
     delete[] visited;
   }
@@ -215,8 +228,9 @@ int main(int argc, char *argv[]){
 
   g.powarts(r);
 
+  if(LOCAL)
+    cout << "===================" << '\n';
   in.close();
   out.close();
-  plt.close();
   return 0;
 }
