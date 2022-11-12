@@ -39,6 +39,6 @@ input_file.write(str(n)+" "+str(m)+" "+str(r)+"\n")
 for (u, v, data) in G.edges(data=True):
   input_file.write(str(u)+" "+str(v)+" "+str(random.randint(1, 9))+"\n")
 input_file.close()
-os.system("cp input.txt .graphs/input"+str(num)+".txt")
+os.system("cp input.txt .graphs/randgraph"+str(num)+".txt")
 
 print("===================")
