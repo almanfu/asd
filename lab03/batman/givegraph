@@ -1,0 +1,4 @@
+#!/bin/bash
+/bin/python3 /mnt/50A65EC5A65EAB6C/lab/asd1/lab03/batman/generate_graph.py &&\
+crun batman.cpp &&\
+/bin/python3 /mnt/50A65EC5A65EAB6C/lab/asd1/lab03/batman/print_graph.py

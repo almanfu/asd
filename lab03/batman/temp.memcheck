@@ -1,0 +1,181 @@
+==45429== Memcheck, a memory error detector
+==45429== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==45429== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==45429== Command: ./temp.out
+==45429== Parent PID: 45408
+==45429== 
+==45429== Invalid read of size 8
+==45429==    at 0x10BF1E: begin (stl_list.h:942)
+==45429==    by 0x10BF1E: Graph::batman(int, int) (batman.cpp:108)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429==  Address 0x4dbe2a0 is 0 bytes after a block of size 240 alloc'd
+==45429==    at 0x483BE63: operator new(unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==45429==    by 0x10BB80: allocate (new_allocator.h:114)
+==45429==    by 0x10BB80: allocate (alloc_traits.h:443)
+==45429==    by 0x10BB80: _M_allocate (stl_vector.h:343)
+==45429==    by 0x10BB80: _M_create_storage (stl_vector.h:358)
+==45429==    by 0x10BB80: _Vector_base (stl_vector.h:302)
+==45429==    by 0x10BB80: vector (stl_vector.h:508)
+==45429==    by 0x10BB80: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (batman.cpp:46)
+==45429==    by 0x10A730: main (batman.cpp:274)
+==45429== 
+==45429== Invalid read of size 4
+==45429==    at 0x10C130: Graph::batman(int, int) (batman.cpp:117)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429==  Address 0x4dbf098 is 0 bytes after a block of size 40 alloc'd
+==45429==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==45429==    by 0x10C012: Graph::batman(int, int) (batman.cpp:111)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429== 
+==45429== Invalid read of size 4
+==45429==    at 0x10C141: Graph::batman(int, int) (batman.cpp:140)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429==  Address 0x4dbefb8 is 0 bytes after a block of size 40 alloc'd
+==45429==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==45429==    by 0x10BF81: Graph::batman(int, int) (batman.cpp:109)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429== 
+==45429== Invalid write of size 4
+==45429==    at 0x10C14A: Graph::batman(int, int) (batman.cpp:142)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429==  Address 0x4dbefb8 is 0 bytes after a block of size 40 alloc'd
+==45429==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==45429==    by 0x10BF81: Graph::batman(int, int) (batman.cpp:109)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429== 
+==45429== Invalid read of size 4
+==45429==    at 0x10C150: Graph::batman(int, int) (batman.cpp:143)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429==  Address 0x4dbefb8 is 0 bytes after a block of size 40 alloc'd
+==45429==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==45429==    by 0x10BF81: Graph::batman(int, int) (batman.cpp:109)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429== 
+==45429== Invalid write of size 4
+==45429==    at 0x10C154: Graph::batman(int, int) (batman.cpp:143)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429==  Address 0x4dbf028 is 0 bytes after a block of size 40 alloc'd
+==45429==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==45429==    by 0x10BFD1: Graph::batman(int, int) (batman.cpp:110)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429== 
+==45429== Invalid read of size 8
+==45429==    at 0x10C395: Graph::batman(int, int) (batman.cpp:148)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429==  Address 0x10 is not stack'd, malloc'd or (recently) free'd
+==45429== 
+==45429== 
+==45429== Process terminating with default action of signal 11 (SIGSEGV)
+==45429==  Access not within mapped region at address 0x10
+==45429==    at 0x10C395: Graph::batman(int, int) (batman.cpp:148)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429==  If you believe this happened as a result of a stack
+==45429==  overflow in your program's main thread (unlikely but
+==45429==  possible), you can try to increase the size of the
+==45429==  main thread stack using the --main-stacksize= flag.
+==45429==  The main thread stack size used in this run was 8388608.
+==45429== 
+==45429== HEAP SUMMARY:
+==45429==     in use at exit: 19,512 bytes in 30 blocks
+==45429==   total heap usage: 31 allocs, 1 frees, 92,216 bytes allocated
+==45429== 
+==45429== 40 bytes in 1 blocks are definitely lost in loss record 4 of 17
+==45429==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==45429==    by 0x10BF81: Graph::batman(int, int) (batman.cpp:109)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429== 
+==45429== 40 bytes in 1 blocks are definitely lost in loss record 5 of 17
+==45429==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==45429==    by 0x10BFD1: Graph::batman(int, int) (batman.cpp:110)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429== 
+==45429== 40 bytes in 1 blocks are definitely lost in loss record 6 of 17
+==45429==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==45429==    by 0x10C012: Graph::batman(int, int) (batman.cpp:111)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429== 
+==45429== LEAK SUMMARY:
+==45429==    definitely lost: 120 bytes in 3 blocks
+==45429==    indirectly lost: 0 bytes in 0 blocks
+==45429==      possibly lost: 0 bytes in 0 blocks
+==45429==    still reachable: 19,392 bytes in 27 blocks
+==45429==         suppressed: 0 bytes in 0 blocks
+==45429== Reachable blocks (those to which a pointer was found) are not shown.
+==45429== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==45429== 
+==45429== ERROR SUMMARY: 10 errors from 10 contexts (suppressed: 0 from 0)
+==45429== 
+==45429== 1 errors in context 1 of 10:
+==45429== Invalid read of size 8
+==45429==    at 0x10C395: Graph::batman(int, int) (batman.cpp:148)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429==  Address 0x10 is not stack'd, malloc'd or (recently) free'd
+==45429== 
+==45429== 
+==45429== 1 errors in context 2 of 10:
+==45429== Invalid write of size 4
+==45429==    at 0x10C154: Graph::batman(int, int) (batman.cpp:143)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429==  Address 0x4dbf028 is 0 bytes after a block of size 40 alloc'd
+==45429==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==45429==    by 0x10BFD1: Graph::batman(int, int) (batman.cpp:110)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429== 
+==45429== 
+==45429== 1 errors in context 3 of 10:
+==45429== Invalid read of size 4
+==45429==    at 0x10C150: Graph::batman(int, int) (batman.cpp:143)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429==  Address 0x4dbefb8 is 0 bytes after a block of size 40 alloc'd
+==45429==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==45429==    by 0x10BF81: Graph::batman(int, int) (batman.cpp:109)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429== 
+==45429== 
+==45429== 1 errors in context 4 of 10:
+==45429== Invalid write of size 4
+==45429==    at 0x10C14A: Graph::batman(int, int) (batman.cpp:142)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429==  Address 0x4dbefb8 is 0 bytes after a block of size 40 alloc'd
+==45429==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==45429==    by 0x10BF81: Graph::batman(int, int) (batman.cpp:109)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429== 
+==45429== 
+==45429== 1 errors in context 5 of 10:
+==45429== Invalid read of size 4
+==45429==    at 0x10C141: Graph::batman(int, int) (batman.cpp:140)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429==  Address 0x4dbefb8 is 0 bytes after a block of size 40 alloc'd
+==45429==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==45429==    by 0x10BF81: Graph::batman(int, int) (batman.cpp:109)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429== 
+==45429== 
+==45429== 1 errors in context 6 of 10:
+==45429== Invalid read of size 4
+==45429==    at 0x10C130: Graph::batman(int, int) (batman.cpp:117)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429==  Address 0x4dbf098 is 0 bytes after a block of size 40 alloc'd
+==45429==    at 0x483C583: operator new[](unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==45429==    by 0x10C012: Graph::batman(int, int) (batman.cpp:111)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429== 
+==45429== 
+==45429== 1 errors in context 7 of 10:
+==45429== Invalid read of size 8
+==45429==    at 0x10BF1E: begin (stl_list.h:942)
+==45429==    by 0x10BF1E: Graph::batman(int, int) (batman.cpp:108)
+==45429==    by 0x10A822: main (batman.cpp:282)
+==45429==  Address 0x4dbe2a0 is 0 bytes after a block of size 240 alloc'd
+==45429==    at 0x483BE63: operator new(unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==45429==    by 0x10BB80: allocate (new_allocator.h:114)
+==45429==    by 0x10BB80: allocate (alloc_traits.h:443)
+==45429==    by 0x10BB80: _M_allocate (stl_vector.h:343)
+==45429==    by 0x10BB80: _M_create_storage (stl_vector.h:358)
+==45429==    by 0x10BB80: _Vector_base (stl_vector.h:302)
+==45429==    by 0x10BB80: vector (stl_vector.h:508)
+==45429==    by 0x10BB80: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (batman.cpp:46)
+==45429==    by 0x10A730: main (batman.cpp:274)
+==45429== 
+==45429== ERROR SUMMARY: 10 errors from 10 contexts (suppressed: 0 from 0)
