@@ -5,13 +5,14 @@
 #include <list>
 #include <queue>
 #include <stack>
+#include <set>
 
 #include <algorithm>
 
 using namespace std;
 
-const bool LOCAL = true;
-const bool OLD_GRAPH = true?LOCAL:false;
+const bool LOCAL = false;
+const bool OLD_GRAPH = false?LOCAL:false;
 ofstream plt;
 ofstream out("output.txt");
 
@@ -28,6 +29,9 @@ class Graph{
     Edge(Node n, int w){
       node = n;
       weight = w;
+    }
+    friend bool operator<(const Edge e1, const Edge e2){
+      return e1.weight < e2.weight;
     }
   };
   enum EdgeDirection {DIRECTED, UNDIRECTED};
@@ -106,40 +110,34 @@ class Graph{
   void powarts(Node r){
     if(LOCAL)
       plt = ofstream("plt.txt");
-    queue<Node> q;
+    typedef pair<int, Node> Li;
+    priority_queue<Li, vector<Li>, greater<Li>> q;
     vector<int> distance(n);
-
     vector<Node> pred(n);
     vector<list<Node>> preds(n);
-
-    for(Node u=0; u < n; u++){
-      distance[u] = -1;
+    const int INF = INT32_MAX;
+    for(Node u: V){
+      distance[u] = INF;
       pred[u] = -1;
     }
-    if(has(r)){
-      distance[r] = 0;
-      q.push(r);
-    }
-
-    //Diijstra 
+    distance[r] = 0;
+    q.push(Li(0, r));
+    //Dijkstra 
     while(!q.empty()){
-      Node u = q.front(); q.pop();
+      Li li = q.top(); q.pop();
+      Node u = li.second;
       for(Edge e: adj[u]){
-        if(distance[e.node] == -1){
-          if(OLD_GRAPH)
-            preds[e.node].push_front(u);
-          pred[e.node]=u;
-          distance[e.node] = e.weight+distance[u];
-          q.push(e.node);
-        }else if(distance[e.node] > e.weight+distance[u]){
+        int altDistance = e.weight+distance[u];
+        if(distance[e.node] > altDistance){
           //Rimuovo vecchi lati
           if(OLD_GRAPH){
             preds[e.node].clear();
             preds[e.node].push_front(u);
           }
           pred[e.node] = u;
-          distance[e.node] = e.weight+distance[u];
-        }else if (distance[e.node] == e.weight+distance[u]){
+          distance[e.node] = altDistance;
+          q.push(Li(distance[e.node], e.node));
+        }else if (distance[e.node] == altDistance){
           //Aggiungo nuovo lato
           if(OLD_GRAPH)
             preds[e.node].push_front(u);
@@ -183,16 +181,14 @@ class Graph{
     {//NEW
     struct sNode{
       Node child;
-      Node parent;
       list<Graph::Edge>::iterator iter; 
-      sNode(Node c, Node p, list<Graph::Edge>::iterator i){
+      sNode(Node c, list<Graph::Edge>::iterator i){
         child = c;
-        parent = p;
         iter = i;
       }
     };
     stack<sNode*> s;
-    s.push(new sNode(r, r, G.adj[r].begin()));
+    s.push(new sNode(r, G.adj[r].begin()));
     int *dt = new int[n]{};
     int *ft = new int[n]{};
     int *damage = new int[n]{};
@@ -202,7 +198,6 @@ class Graph{
     while(!s.empty()){
       sNode* snode = s.top(); 
       Node& u = snode->child;
-      Node& parent = snode->parent;
       time++;
       if(ft[u] != 0 && u != r){
         damage[u]=1;
@@ -223,13 +218,13 @@ class Graph{
           Edge e = *iter;
           if(dt[e.node] == 0){//Tree Edge
             iter++;
-            s.push(new sNode(e.node, u, G.adj[e.node].begin()));
+            s.push(new sNode(e.node, G.adj[e.node].begin()));
             break;
-          }else if(dt[e.node] > dt[u]){//Forward Edge => u != r
+          }/*else if(dt[e.node] > dt[u]){//Forward Edge => u != r
             iter = G.adj[u].erase(iter);
           }else{//Cross Edge => There's a common ancestor != r
             iter = G.adj[u].erase(iter);
-          }
+          }*/
         }
         if(iter == iterEnd){
           ft[u] = dt[u]==time?time+1:time;
@@ -337,7 +332,7 @@ class Graph{
 */
 
 int main(int argc, char *argv[]){
-  ifstream in("./dataset_powarts/powarts/input/input13.txt");
+  ifstream in("input.txt");
 
   Graph::Node r;
   int n, m;
