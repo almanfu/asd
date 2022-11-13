@@ -106,17 +106,17 @@ class Graph{
     };
     vector<bool> on_scc_stack(n, false);
     stack<Node> scc_stack;
-    stack<sNode*> exs;
+    stack<sNode> exs;
     scc_stack.push(s);
     on_scc_stack[s] = true;
-    exs.push(new sNode(s, adj[s].begin()));
-    int *dt = new int[n]{};
-    int *ll = new int[n]{};
-    int *ft = new int[n]{};
+    exs.push(sNode(s, adj[s].begin()));
+    vector<int> dt(n, 0);
+    vector<int> ll(n, 0);
+    vector<int> ft(n, 0);
     int time=0;
     while(!exs.empty()){
-      sNode* snode = exs.top(); 
-      Node& u = snode->node;
+      sNode& snode = exs.top(); 
+      Node& u = snode.node;
       time++;
       if(ft[u] != 0){
         //Post-order visit
@@ -142,14 +142,13 @@ class Graph{
           n_scc++;
         }
         exs.pop();
-        delete snode;
       }else if(ft[u] == 0){
         if(dt[u] == 0){
           //Pre-order visit
           dt[u] = time;
           ll[u] = dt[u];
         }
-        auto& iter = snode->iter;
+        auto& iter = snode.iter;
         auto iterEnd = adj[u].end();
         while(iter!=iterEnd){
           Edge e = *iter;
@@ -157,20 +156,16 @@ class Graph{
             iter++;
             scc_stack.push(e.node);
             on_scc_stack[e.node] = true;
-            exs.push(new sNode(e.node, adj[e.node].begin()));
+            exs.push(sNode(e.node, adj[e.node].begin()));
             break;
           }else if(ft[e.node] != 0 && dt[e.node] > dt[u]){
             //Forward Edge
             iter++;
           }else if(ft[e.node] == 0 && dt[e.node] < dt[u]){
             //Back Edge
-            if(on_scc_stack[e.node]){}
-              //ll[u] = min(dt[e.node], ll[u]);
             iter++;
           }else{
             //Cross Edge
-            if(on_scc_stack[u]){}
-              //ll[u] = min(dt[e.node], ll[u]);
             iter++;
           }
         }
@@ -179,9 +174,6 @@ class Graph{
         }
       }
     }
-    delete[] dt;
-    delete[] ll;
-    delete[] ft;
     }
     //Build scc graph
     Graph G(n_scc, Graph::DIRECTED, Graph::WEIGHTED);
@@ -225,20 +217,19 @@ class Graph{
         iter = i;
       }
     };
-    stack<sNode*> exs;
-    exs.push(new sNode(s_scc, G.adj[s_scc].begin()));
-    int *dt = new int[n_scc]{};
-    int *ft = new int[n_scc]{};
+    stack<sNode> exs;
+    exs.push(sNode(s_scc, G.adj[s_scc].begin()));
+    vector<int> dt(n_scc, 0);
+    vector<int> ft(n_scc, 0);
     int time=0;
     while(!exs.empty()){
-      sNode* snode = exs.top(); 
-      Node& u = snode->node;
+      sNode& snode = exs.top(); 
+      Node& u = snode.node;
       time++;
       if(ft[u] != 0){
         //Post-order visit
         for(Edge e: G.adj[u])
           numPaths[u] += numPaths[e.node]*e.weight;
-        delete snode;
         exs.pop();
       }else if(ft[u] == 0){
         if(dt[u] == 0){
@@ -246,13 +237,13 @@ class Graph{
           dt[u] = time;
           numPaths[u] = u!=d_scc?0:1;
         }
-        auto& iter = snode->iter;
+        auto& iter = snode.iter;
         auto iterEnd = G.adj[u].end();
         while(iter!=iterEnd){
           Edge e = *iter;
           if(dt[e.node] == 0){//Tree Edge
             iter++;
-            exs.push(new sNode(e.node, G.adj[e.node].begin()));
+            exs.push(sNode(e.node, G.adj[e.node].begin()));
             break;
           }else if(ft[e.node] != 0 && dt[e.node] > dt[u]){
             iter++;
@@ -270,8 +261,6 @@ class Graph{
         }
       }
     }
-    delete[] dt;
-    delete[] ft;
     }
     return numPaths[s_scc];
   }

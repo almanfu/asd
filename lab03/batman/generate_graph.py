@@ -14,10 +14,6 @@ def colors(name):
     return "#f08080"
   elif name == "GRAY":
     return "#212121"
-  elif str.isnumeric(name):
-    return rand_col(int(name))
-  elif int(name) == -1:
-    return rand_col()
 
 num_file = open("/mnt/50A65EC5A65EAB6C/lab/asd1/"+spath+".graphs/num", "r")
 num = int(num_file.readline())+1
