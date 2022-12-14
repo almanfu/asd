@@ -1,4 +1,4 @@
 #!/bin/bash
-/bin/python3 /mnt/50A65EC5A65EAB6C/lab/asd1/lab03/powarts/generate_graph.py &&\
-crun prog.cpp &&\
-/bin/python3 /mnt/50A65EC5A65EAB6C/lab/asd1/lab03/powarts/print_graph.py
+/bin/python3 ./generate_graph.py &&\
+crun <project>.cpp &&\
+/bin/python3 ./print_graph.py
