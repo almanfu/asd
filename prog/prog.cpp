@@ -260,25 +260,22 @@ class Graph{
     bool maxPar = (distance2[i] == distance2[s]);
     bool impCambia = (distance1[i] != distance2[i]);
 
-    cout << "minVince=" << minVince << endl;
-    cout << "maxVince=" << maxVince << endl;
-    cout << "minPar=" << minPar << endl;
-    cout << "maxPar=" << maxPar << endl;
-    cout << "impCambia=" << impCambia << endl;
-
     if(minVince || maxVince){
       if(maxVince){
         distance = distance2;
         preds = preds2;  
+        set_weight = wmax;
       }
     }else if(minPar || maxPar){
       if(maxPar){
         distance = distance2;
-        preds = preds2;   
+        preds = preds2;
+        set_weight = wmax;   
       }
     }else if(!impCambia){
       distance = distance2;
-      preds = preds2;            
+      preds = preds2;
+      set_weight = wmax;            
     }
 
     // First output line
