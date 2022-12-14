@@ -1,0 +1,29 @@
+==529704== Memcheck, a memory error detector
+==529704== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==529704== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==529704== Command: ./temp.out
+==529704== Parent PID: 529697
+==529704== 
+==529704== 
+==529704== Process terminating with default action of signal 2 (SIGINT)
+==529704==    at 0x1097BE: operator+ (stl_iterator.h:857)
+==529704==    by 0x1097BE: void std::__push_heap<__gnu_cxx::__normal_iterator<std::pair<int, int>*, std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > > >, long, std::pair<int, int>, __gnu_cxx::__ops::_Iter_comp_val<std::greater<std::pair<int, int> > > >(__gnu_cxx::__normal_iterator<std::pair<int, int>*, std::vector<std::pair<int, int>, std::allocator<std::pair<int, int> > > >, long, long, std::pair<int, int>, __gnu_cxx::__ops::_Iter_comp_val<std::greater<std::pair<int, int> > >&) (stl_heap.h:135)
+==529704==    by 0x109DB0: push_heap<__gnu_cxx::__normal_iterator<std::pair<int, int>*, std::vector<std::pair<int, int> > >, std::greater<std::pair<int, int> > > (stl_heap.h:207)
+==529704==    by 0x109DB0: push (stl_queue.h:638)
+==529704==    by 0x109DB0: Graph::dijkstra(int) (prog.cpp:134)
+==529704==    by 0x109692: main (prog.cpp:193)
+==529704== 
+==529704== HEAP SUMMARY:
+==529704==     in use at exit: 542,504 bytes in 25 blocks
+==529704==   total heap usage: 115,008 allocs, 114,983 frees, 3,899,672 bytes allocated
+==529704== 
+==529704== LEAK SUMMARY:
+==529704==    definitely lost: 0 bytes in 0 blocks
+==529704==    indirectly lost: 0 bytes in 0 blocks
+==529704==      possibly lost: 0 bytes in 0 blocks
+==529704==    still reachable: 542,504 bytes in 25 blocks
+==529704==         suppressed: 0 bytes in 0 blocks
+==529704== Reachable blocks (those to which a pointer was found) are not shown.
+==529704== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==529704== 
+==529704== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
