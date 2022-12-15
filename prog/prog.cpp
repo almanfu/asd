@@ -158,7 +158,7 @@ class Graph{
       vector<Node> preds(n); 
       predsEdge.clear();
 
-      ///MST FROM FABLAB
+      ///SHORTEST-PATH-TREE FROM FABLAB
       for(Node u: V)
         distance[u] = INF;
       distance[f] = 0;
