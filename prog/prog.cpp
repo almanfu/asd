@@ -13,7 +13,7 @@ using namespace std;
 
 const bool LOCAL = false;
 ofstream out("output.txt");
-
+//ofstream plt("plt.txt");
 
 /*
 
@@ -25,6 +25,7 @@ class Graph{
   Node i, s, f;
 
   struct Edge{
+    Node me;
     Node node;
     int weight;
     bool isVent;
@@ -92,6 +93,7 @@ class Graph{
       throw exception();
     if(has(u) && has(v) && u != v && minWeight >= 1 && maxWeight >= 1){
       Edge *e = new Edge(v, minWeight, maxWeight);
+      e->me = u;
       adj[u].push_front(e);
       vents.push_front(e);
     }
@@ -178,27 +180,39 @@ class Graph{
 
         //cursor is a node in the least cost path s->f
         Node cursor = f;
+        Node succ;
+        // possiamo assumere che f != s !!
+        stack<Node> succStack;
         while(cursor != s){
           //(cursorPred, cursor) is an edge in the least cost path
           // s->f
-          Node cursorPred = *predsStud[cursor].begin();
+          succStack.push(cursor);
+          cursor = *predsStud[cursor].begin();
+          
+        }//=> alla fine cursor = s
 
+        while(!succStack.empty()){
+          succ = succStack.top();
           //Finding Edge object
-          auto iter = adj[cursorPred].begin();
-          auto iterend = adj[cursorPred].end();
+          auto iter = adj[cursor].begin();
+          auto iterend = adj[cursor].end();
           auto e = *iter;
-          while(iter != iterend && e->node != cursor){
+          
+          while(iter != iterend && e->node != succ){
             iter++;
             e = *iter;
           }
           //Found Edge (There must be one)
           if((*iter)->isVent && (*iter)->weight != (*iter)->maxWeight){
-            //cout << "found " << cursorPred << ", " << e->node << endl;
+            //cout << "found " << succ << ", " << e->node << endl;
             allMaxed = false;
             (*iter)->weight = (*iter)->maxWeight;
+            break;
           }
-          cursor = cursorPred;
+          cursor = succ;
+          succStack.pop();          
         }
+
       }
 
 
@@ -318,6 +332,16 @@ class Graph{
       out << n << ' ';
     out << endl;
 
+
+    /*for(Edge *e: vents){
+      if(e->weight == e->minWeight){
+        plt << e->me << ' ' << e->node << " min" << endl;
+      }else{
+        plt << e->me << ' ' << e->node << " max" << endl;
+      }
+    }*/
+
+
     return;
   }
 
@@ -355,5 +379,6 @@ int main(int argc, char *argv[]){
 
   in.close();
   out.close();
+  //plt.close();
   return 0;
 }

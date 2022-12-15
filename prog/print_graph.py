@@ -35,6 +35,7 @@ num = int(num_file.readline())
 num_file.close()
 
 input_file = open("/mnt/50A65EC5A65EAB6C/lab/asd1/"+spath+"input.txt")
+plt_file = open("/mnt/50A65EC5A65EAB6C/lab/asd1/"+spath+"plt.txt")
 
 n, m, k = [int(x) for x in input_file.readline().split()]
 
@@ -57,26 +58,35 @@ for _ in range(0, k):
   labels[u, v] = '('+str(minw)+','+str(maxw)+')'
   vents.append((u, v))
 
+
+
 node_color_name = ["BLUE" for _ in list(G)]
 node_color_name[i] = "RED"
 node_color_name[f] = "GRAY"
 node_color_name[s] = "GREEN"
 
 edge_color_name = [ "BLACK" if e in vents else "GRAY" for e in G.edges()]
+finalWeights = {}
+for line in plt_file.readlines():
+  u, v, finalWeight = line.split()
+  u, v = [int(u), int(v)]
+  finalWeights[u, v] = finalWeight
+
+edge_color_name = [ ("BLACK" if finalWeights[e] == 'min' else "RED") if e in vents else "GRAY" for e in G.edges()]
 
 a_pos = nx.kamada_kawai_layout(G)
-plt.figure(figsize=(5, 5), dpi=800)
+plt.figure(figsize=(10, 4), dpi=700)
 nx.draw(G, pos=a_pos, with_labels=True,
   node_color=[colors(x) for x in node_color_name],
   arrows=True,
   edge_color=[colors(x) for x in edge_color_name],
-  font_size=10,#1
+  font_size=1,#10
   width=0.5,
-  arrowsize=5,#1
-  node_size=200)#10
+  arrowsize=1,#5
+  node_size=10)#200
 nx.draw_networkx_edge_labels(G, pos=a_pos, 
   edge_labels=labels,
-  font_size=10)#1
+  font_size=1)#10
 
 plt.savefig(".graphs/randgraph"+str(num))
 os.system("code .graphs/randgraph"+str(num)+".png")
