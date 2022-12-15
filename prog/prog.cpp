@@ -14,7 +14,9 @@ using namespace std;
 ofstream out("output.txt");
 
 /*
-
+si usa algoritmo di dijkstra con code di priorità
+come dallo pseudocodice https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#Using_a_priority_queue
+-- sviluppato durante il laboratorio 'Lettere da Powarts'
 */
 
 class Graph{
