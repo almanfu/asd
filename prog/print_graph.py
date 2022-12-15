@@ -7,7 +7,7 @@ import colorsys
 h,s,l = random.random(), 0.5 + random.random()/2.0, 0.4 + random.random()/5.0
 r,g,b = [int(256*i) for i in colorsys.hls_to_rgb(h,l,s)]
 """
-spath="<where?>"
+spath="prog/"
 
 def colors(name):
   if name == "BLUE":
@@ -17,7 +17,9 @@ def colors(name):
   elif name == "RED":
     return "#f08080"
   elif name == "GRAY":
-    return "#212121"
+    return "#CCCCCC"
+  elif name == "BLACK":
+    return "#000000"
   elif name == "RAND":
     return rand_col()
   elif str.isdigit(name):
@@ -33,37 +35,48 @@ num = int(num_file.readline())
 num_file.close()
 
 input_file = open("/mnt/50A65EC5A65EAB6C/lab/asd1/"+spath+"input.txt")
-plt_file = open("/mnt/50A65EC5A65EAB6C/lab/asd1/"+spath+"plt.txt")
 
-n, m = [int(x) for x in input_file.readline().split()]
+n, m, k = [int(x) for x in input_file.readline().split()]
 
-G = nx.Graph()
+i, s, f = [int(x) for x in input_file.readline().split()]
+
+G = nx.DiGraph()
 G.add_nodes_from(range(0, n))
 
+labels = {}
+
 for _ in range(0, m):
-  u, v = [int(x) for x in input_file.readline().split()]
+  u, v, w = [int(x) for x in input_file.readline().split()]
   G.add_edge(u, v)
+  labels[u, v] = str(w)
 
-node_color_name = ["BLUE" for n in list(G)]
+vents = []
+for _ in range(0, k):
+  u, v, minw, maxw = [int(x) for x in input_file.readline().split()]
+  G.add_edge(u, v)
+  labels[u, v] = '('+str(minw)+','+str(maxw)+')'
+  vents.append((u, v))
 
-G1 = nx.Graph()
-G1.add_nodes_from(range(0, n))
-u, v = [int(n) for n in plt_file.readline().split()]
-while u != v:
-  G1.add_edge(u, v)
-  u, v = [int(n) for n in plt_file.readline().split()]
+node_color_name = ["BLUE" for _ in list(G)]
+node_color_name[i] = "RED"
+node_color_name[f] = "GRAY"
+node_color_name[s] = "GREEN"
+
+edge_color_name = [ "BLACK" if e in vents else "GRAY" for e in G.edges()]
 
 a_pos = nx.kamada_kawai_layout(G)
-plt.figure(figsize=(5, 5), dpi=300)
+plt.figure(figsize=(5, 5), dpi=800)
 nx.draw(G, pos=a_pos, with_labels=True,
   node_color=[colors(x) for x in node_color_name],
   arrows=True,
-  width=1,
-  edge_color=colors("GRAY"),
-  font_size=10,
+  edge_color=[colors(x) for x in edge_color_name],
+  font_size=10,#1
   width=0.5,
-  arrowsize=5,
-  node_size=200)
+  arrowsize=5,#1
+  node_size=200)#10
+nx.draw_networkx_edge_labels(G, pos=a_pos, 
+  edge_labels=labels,
+  font_size=10)#1
 
 plt.savefig(".graphs/randgraph"+str(num))
 os.system("code .graphs/randgraph"+str(num)+".png")
@@ -73,5 +86,4 @@ plt.close()
 #nx.all_topological_sorts(G)
 
 input_file.close()
-plt_file.close()
 print("===================")

@@ -178,6 +178,7 @@ class Graph{
           //Rimuovo vecchi lati
           preds[e.node].clear();
           preds[e.node].push_front(u);
+          distance[e.node] = altDistance;
           q.push(Li(distance[e.node], e.node));
         }else if (distance[e.node] == altDistance){
           //Aggiungo nuovo lato

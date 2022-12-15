@@ -22,42 +22,53 @@ ofstream out("output.txt");
 class Graph{
   public:
   typedef int Node;
-  bool hasVentola;
-  const Node NULLNODE = -1;
-  Node vs, ve;
   Node i, s, f;
-  int wmin, wmax;
 
   struct Edge{
     Node node;
     int weight;
+    bool isVent;
+    int minWeight, maxWeight;
     Edge(Node n, int w){
       node = n;
       weight = w;
+      isVent = false;
+    }
+    Edge(Node n, int minW, int maxW){
+      node = n;
+      weight = minWeight = minW;
+      maxWeight = maxW;
+      isVent = true;
     }
     friend bool operator<(const Edge e1, const Edge e2){
       return e1.weight < e2.weight;
     }
   };
+  list<Edge*> vents;
   enum EdgeDirection {DIRECTED, UNDIRECTED};
   enum EdgeWeight {WEIGHTED, UNWEIGHTED};
   EdgeDirection edgeDirection;
   EdgeWeight edgeWeight;
   private:
   vector<Node> V;
-  vector<list<Edge>> adj;
+  vector<list<Edge*>> adj;
   int n;
   public:
   Graph(int nodes, EdgeDirection eDir, EdgeWeight eWeight){
     edgeDirection = eDir;
     edgeWeight = eWeight;
     n = nodes;
-    adj = vector<list<Edge>>(n);
+    adj = vector<list<Edge*>>(n);
     V = vector<Node>(n);
     for(Node u=0; u < n; u++)
       V[u] = u;
   }
-  ~Graph(){}
+  ~Graph(){
+    for(Node u=0; u < n; u++){
+      for(Edge *e: adj[u])
+        delete e;
+    }
+  }
   bool has(Node u){
     return 0<=u && u < n;
   }
@@ -71,9 +82,18 @@ class Graph{
     if(unweighted())
       weight  = 1;
     if(has(u) && has(v) && u != v && weight >= 1){
-      adj[u].push_front(Edge(v, weight));
+      adj[u].push_front(new Edge(v, weight));
       if(undirected())
-        adj[v].push_front(Edge(u, weight));
+        adj[v].push_front(new Edge(u, weight));
+    }
+  }
+  void insertEdge(Node u, Node v, int minWeight, int maxWeight){
+    if(unweighted() || undirected())
+      throw exception();
+    if(has(u) && has(v) && u != v && minWeight >= 1 && maxWeight >= 1){
+      Edge *e = new Edge(v, minWeight, maxWeight);
+      adj[u].push_front(e);
+      vents.push_front(e);
     }
   }
   // Utility Functions
@@ -81,11 +101,11 @@ class Graph{
     for(Node u=0; u < n; u++){
       cout << u << ':';
       if(unweighted()){
-        for(Edge e: adj[u])
-          cout << e.node << ' ';
+        for(Edge *e: adj[u])
+          cout << e->node << ' ';
       }else{
-        for(Edge e: adj[u])
-          cout << '(' << e.node << ',' << e.weight << ')' << ' ';
+        for(Edge *e: adj[u])
+          cout << '(' << e->node << ',' << e->weight << ')' << ' ';
       }
       cout << endl;
     }
@@ -101,10 +121,10 @@ class Graph{
     while(!q.empty()){
       Node u = q.front(); q.pop();
       cout << u << ' ';
-      for(Edge e: adj[u]){
-        if(!visited[e.node]){
-          q.push(e.node);
-          visited[e.node] = true;
+      for(Edge *e: adj[u]){
+        if(!visited[e->node]){
+          q.push(e->node);
+          visited[e->node] = true;
         }
       }
     }
@@ -112,205 +132,191 @@ class Graph{
     delete[] visited;
   }
 
-  void dijkstra(Node r){
-    typedef pair<int, Node> Li;
-    priority_queue<Li, vector<Li>, greater<Li>> q;
-    vector<int> distance(n);
-    vector<list<Node>> preds(n);
-    const int INF = INT32_MAX;
-    for(Node u: V)
-      distance[u] = INF;
-    distance[r] = 0;
-    q.push(Li(0, r));
-    //Dijkstra 
-    while(!q.empty()){
-      Li li = q.top(); q.pop();
-      Node u = li.second;
-      for(Edge e: adj[u]){
-        int altDistance = e.weight+distance[u];
-        if(distance[e.node] > altDistance){
-          //Rimuovo vecchi lati
-          preds[e.node].clear();
-          preds[e.node].push_front(u);
-          distance[e.node] = altDistance;
-          q.push(Li(distance[e.node], e.node));
-        }else if (distance[e.node] == altDistance){
-          //Aggiungo nuovo lato
-          preds[e.node].push_front(u);
-        }
-      }
-    }
-    /*Creo grafo cammini costo minimi
-    Graph G(n, Graph::DIRECTED, Graph::UNWEIGHTED);
-    for(Node v: G.V){
-      for(Node u: preds[v])
-        G.insertEdge(u, v);
-    }*/
-
-    // First output line
-    if(distance[i] == distance[s]){
-      out << '0' << endl;
-    }else if(distance[i] < distance[s]){
-      out << '1' << endl;
-    }else if(distance[i] > distance[s]){
-      out << '2' << endl;
-    }
-
-    //Second output line
-    out << distance[i] << ' ' << distance[s] << endl;
-
-
-    //Third output line
-    out << endl;
-
-    int R=1;
-    Node cursor = i;
-    while(cursor != f){
-      R++;
-      cursor = *preds[cursor].begin();
-    }
-
-    //Fourth output line
-    out << R << endl;
-
-    //Fifth output line
-    cursor = i;
-    while(cursor != f){
-      out << cursor << ' ';
-      cursor = *preds[cursor].begin();
-    }
-    out << f;
-
-    return;
+  //Strictly better
+  bool isBetter(int res1, int res2){
+    if(res1==1 && res2!=1)
+      return true;
+    else if(res1==0 && res2==2)
+      return true;
+    else
+      return false;
   }
 
-  void dijkstra1(Node r){
+  int getRes(int dimp, int dstud){
+    if(dimp < dstud)
+      return 1;
+    else if(dimp==dstud)
+      return 0;
+    else
+      return 2;
+  }
+
+  void dijkstra1(){
     typedef pair<int, Node> Li;
     priority_queue<Li, vector<Li>, greater<Li>> q;
     const int INF = INT32_MAX;
 
-    vector<int> distance1(n);
-    vector<list<Node>> preds1(n);
-    
-    for(Node u: V)
-      distance1[u] = INF;
-    distance1[r] = 0;
-    q.push(Li(0, r));
-    //Dijkstra 
-    while(!q.empty()){
-      Li li = q.top(); q.pop();
-      Node u = li.second;
-      for(Edge e: adj[u]){
-        int e_weight = e.weight;
-        if(u == vs && e.node == ve)
-          e_weight = wmin;
+    int bestRes;
+    vector<int> bestDistanceImp(n);
+    vector<int> bestDistanceStud(n);
+    list<int> bestVentsWeights;
+    vector<list<Node>> bestPredsImp(n);
 
-        int altdistance1 = e_weight+distance1[u];
-        if(distance1[e.node] > altdistance1){
-          //Rimuovo vecchi lati
-          preds1[e.node].clear();
-          preds1[e.node].push_front(u);
-          distance1[e.node] = altdistance1;
-          q.push(Li(distance1[e.node], e.node));
-        }else if (distance1[e.node] == altdistance1){
-          //Aggiungo nuovo lato
-          preds1[e.node].push_front(u);
+    bool allMaxed=false;
+    bool firstRun=true;
+
+
+    vector<list<Node>> predsStud(n);
+
+    while(!allMaxed){
+
+      
+      //set max weights to Student path
+      if(!firstRun){
+        allMaxed=true;
+        //cout << "one check done" << endl;
+
+        //cursor is a node in the least cost path s->f
+        Node cursor = f;
+        while(cursor != s){
+          //(cursorPred, cursor) is an edge in the least cost path
+          // s->f
+          Node cursorPred = *predsStud[cursor].begin();
+
+          //Finding Edge object
+          auto iter = adj[cursorPred].begin();
+          auto iterend = adj[cursorPred].end();
+          auto e = *iter;
+          while(iter != iterend && e->node != cursor){
+            iter++;
+            e = *iter;
+          }
+          //Found Edge (There must be one)
+          if((*iter)->isVent && (*iter)->weight != (*iter)->maxWeight){
+            //cout << "found " << cursorPred << ", " << e->node << endl;
+            allMaxed = false;
+            (*iter)->weight = (*iter)->maxWeight;
+          }
+          cursor = cursorPred;
         }
       }
-    }
 
 
-    vector<int> distance2(n);
-    vector<list<Node>> preds2(n);
-    
-    for(Node u: V)
-      distance2[u] = INF;
-    distance2[r] = 0;
-    q.push(Li(0, r));
-    //Dijkstra 
-    while(!q.empty()){
-      Li li = q.top(); q.pop();
-      Node u = li.second;
-      for(Edge e: adj[u]){
-        int e_weight = e.weight;
-        if(u == vs && e.node == ve)
-          e_weight = wmax;
+      vector<int> distanceImp(n);
+      vector<list<Node>> predsImp(n);
+      vector<int> distanceStud(n);
+      predsStud.clear(); 
 
-        int altdistance2 = e_weight+distance2[u];
-        if(distance2[e.node] > altdistance2){
-          //Rimuovo vecchi lati
-          preds2[e.node].clear();
-          preds2[e.node].push_front(u);
-          distance2[e.node] = altdistance2;
-          q.push(Li(distance2[e.node], e.node));
-        }else if (distance2[e.node] == altdistance2){
-          //Aggiungo nuovo lato
-          preds2[e.node].push_front(u);
+      ///MST FROM IMPOSTOR
+      for(Node u: V)
+        distanceImp[u] = INF;
+      distanceImp[i] = 0;
+      q.push(Li(0, i));
+      //Dijkstra 
+      while(!q.empty()){
+        Li li = q.top(); q.pop();
+        Node u = li.second;
+        for(Edge *e: adj[u]){
+          int altdistance = e->weight+distanceImp[u];
+          if(distanceImp[e->node] > altdistance){
+            //Rimuovo vecchi lati
+            predsImp[e->node].clear();
+            predsImp[e->node].push_front(u);
+            distanceImp[e->node] = altdistance;
+            q.push(Li(distanceImp[e->node], e->node));
+          }else if (distanceImp[e->node] == altdistance){
+            //Aggiungo nuovo lato
+            predsImp[e->node].push_front(u);
+          }
         }
       }
-    }
-    //1 => wmin, 2=>wmax
-    int set_weight = wmin;
-    auto& distance = distance1;
-    auto& preds = preds1;
 
-    bool minVince = (distance1[i] < distance1[s]);
-    bool maxVince = (distance2[i] < distance2[s]);
-    bool minPar = (distance1[i] == distance1[s]);
-    bool maxPar = (distance2[i] == distance2[s]);
-    bool impCambia = (distance1[i] != distance2[i]);
+      ///MST FROM STUDENT
+      for(Node u: V)
+        distanceStud[u] = INF;
+      distanceStud[s] = 0;
+      q.push(Li(0, s));
+      //Dijkstra 
+      while(!q.empty()){
+        Li li = q.top(); q.pop();
+        Node u = li.second;
+        for(Edge *e: adj[u]){
+          int altdistance = e->weight+distanceStud[u];
+          if(distanceStud[e->node] > altdistance){
+            //Rimuovo vecchi lati
+            predsStud[e->node].clear();
+            predsStud[e->node].push_front(u);
+            distanceStud[e->node] = altdistance;
+            q.push(Li(distanceStud[e->node], e->node));
+          }else if (distanceStud[e->node] == altdistance){
+            //Aggiungo nuovo lato
+            predsStud[e->node].push_front(u);
+          }
+        }
+      }
 
-    if(minVince || maxVince){
-      if(maxVince){
-        distance = distance2;
-        preds = preds2;  
-        set_weight = wmax;
+      
+      if(firstRun){
+        bestRes = getRes(distanceImp[f], distanceStud[f]);
+        bestDistanceImp = distanceImp;
+        bestDistanceStud = distanceStud;
+        for(Edge *e : vents)
+          bestVentsWeights.push_front(e->weight);
+        bestPredsImp = predsImp;
+        //cout << "first run!" << endl;
+        firstRun=false;
       }
-    }else if(minPar || maxPar){
-      if(maxPar){
-        distance = distance2;
-        preds = preds2;
-        set_weight = wmax;   
+      else{
+        int currRes = getRes(distanceImp[f], distanceStud[f]);
+        if(isBetter(currRes, bestRes)){
+          //change bestRes
+          bestRes = currRes;
+          bestDistanceImp = distanceImp;
+          bestDistanceStud = distanceStud;
+          bestVentsWeights.clear();
+          for(Edge *e : vents)
+            bestVentsWeights.push_front(e->weight);
+          bestPredsImp = predsImp;
+        }
       }
-    }else if(!impCambia){
-      distance = distance2;
-      preds = preds2;
-      set_weight = wmax;            
-    }
+
+    };
+    //Best settings FOUND
+
 
     // First output line
-    if(distance[i] == distance[s]){
-      out << '0' << endl;
-    }else if(distance[i] < distance[s]){
-      out << '1' << endl;
-    }else if(distance[i] > distance[s]){
-      out << '2' << endl;
-    }
+    out << bestRes << endl;
 
     //Second output line
-    out << distance[i] << ' ' << distance[s] << endl;
-
+    out << bestDistanceImp[f] << ' ' << bestDistanceStud[f] << endl;
 
     //Third output line
-    out << set_weight << endl;
-
-    int R=1;
-    Node cursor = i;
-    while(cursor != f){
-      R++;
-      cursor = *preds[cursor].begin();
+    for(int weight : bestVentsWeights){
+      out << weight << ' ';
     }
-
+    out << endl;
+    
     //Fourth output line
+    int R=1;
+    Node cursor = f;
+    while(cursor != i){
+      R++;
+      cursor = *bestPredsImp[cursor].begin();
+    }
     out << R << endl;
 
     //Fifth output line
-    cursor = i;
-    while(cursor != f){
-      out << cursor << ' ';
-      cursor = *preds[cursor].begin();
+    cursor = f;
+    list<Node> pathTofab;
+    while(cursor != i){
+      pathTofab.push_front(cursor);
+      cursor = *bestPredsImp[cursor].begin();
     }
-    out << f;
+    pathTofab.push_front(i);
+
+    for(Node n: pathTofab)
+      out << n << ' ';
+    out << endl;
 
     return;
   }
@@ -331,33 +337,21 @@ int main(int argc, char *argv[]){
   g.s = s;
   g.f = f;
 
-  //Inserisco direttamente il grafo trasposto
   for(int i=0; i < m; i++){
     Graph::Node u, v;
     int weight;
     in >> u >> v >> weight;
-    g.insertEdge(v, u, weight);
+    g.insertEdge(u, v, weight);
   }
 
-  if(k==0){
-    g.hasVentola = false;
-    g.vs=0;
-    g.ve=0;
-    //Mi serve dijkstra per f->i ed f->s
-    g.dijkstra(f);
+  for(int i=0; i < k; i++){
+    Graph::Node u, v;
+    int minWeight, maxWeight;
+    in >> u >> v >> minWeight >> maxWeight;
+    g.insertEdge(u, v, minWeight, maxWeight);
   }
-  else if(k==1){
-    g.hasVentola = true;
-    //e' tutto trasposto
-    in >> g.ve >> g.vs >> g.wmin >> g.wmax;
-    g.insertEdge(g.vs, g.ve, 1);
-    g.dijkstra1(f);
-  }
-  else{
-    g.hasVentola = true;
-    //e' tutto trasposto
-    //
-  }
+
+  g.dijkstra1();
 
   in.close();
   out.close();
