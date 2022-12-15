@@ -30,13 +30,15 @@ class Graph{
     int weight;
     bool isVent;
     int minWeight, maxWeight;
-    Edge(Node n, int w){
-      node = n;
+    Edge(Node u, Node v, int w){
+      me = u;
+      node = v;
       weight = w;
       isVent = false;
     }
-    Edge(Node n, int minW, int maxW){
-      node = n;
+    Edge(Node u, Node v, int minW, int maxW){
+      me = u;
+      node = v;
       weight = minWeight = minW;
       maxWeight = maxW;
       isVent = true;
@@ -83,17 +85,16 @@ class Graph{
     if(unweighted())
       weight  = 1;
     if(has(u) && has(v) && u != v && weight >= 1){
-      adj[u].push_front(new Edge(v, weight));
+      adj[u].push_front(new Edge(u, v, weight));
       if(undirected())
-        adj[v].push_front(new Edge(u, weight));
+        adj[v].push_front(new Edge(v, u, weight));
     }
   }
   void insertEdge(Node u, Node v, int minWeight, int maxWeight){
     if(unweighted() || undirected())
       throw exception();
     if(has(u) && has(v) && u != v && minWeight >= 1 && maxWeight >= 1){
-      Edge *e = new Edge(v, minWeight, maxWeight);
-      e->me = u;
+      Edge *e = new Edge(u, v, minWeight, maxWeight);
       adj[u].push_front(e);
       vents.push_front(e);
     }
@@ -111,27 +112,6 @@ class Graph{
       }
       cout << endl;
     }
-  }
-
-  void bfs(Node r){
-    queue<Node> q;
-    bool *visited = new bool[n]{};
-    if(has(r)){
-      q.push(r);
-      visited[r] = true;
-    }
-    while(!q.empty()){
-      Node u = q.front(); q.pop();
-      cout << u << ' ';
-      for(Edge *e: adj[u]){
-        if(!visited[e->node]){
-          q.push(e->node);
-          visited[e->node] = true;
-        }
-      }
-    }
-    cout << endl;
-    delete[] visited;
   }
 
   //Strictly better
@@ -162,14 +142,15 @@ class Graph{
     vector<int> bestDistanceImp(n);
     vector<int> bestDistanceStud(n);
     list<int> bestVentsWeights;
-    vector<list<Node>> bestPredsImp(n);
+    vector<Node> bestPredsImp(n);
 
     bool allMaxed=false;
     bool firstRun=true;
 
 
-    vector<list<Node>> predsStud(n);
-
+    vector<Node> predsStud(n);
+    vector<Edge*> predsEdgeStud(n);
+    stack<Node> succStack;
     while(!allMaxed){
 
       
@@ -179,47 +160,35 @@ class Graph{
         //cout << "one check done" << endl;
 
         //cursor is a node in the least cost path s->f
-        Node cursor = f;
-        Node succ;
+        Edge* succ = predsEdgeStud[f];
         // possiamo assumere che f != s !!
-        stack<Node> succStack;
-        while(cursor != s){
-          //(cursorPred, cursor) is an edge in the least cost path
-          // s->f
-          succStack.push(cursor);
-          cursor = *predsStud[cursor].begin();
+        stack<Edge*> succStack;
+        while(succ->me != s){
+          //succ is an edge in the least cost path s->f
+          succStack.push(succ);
+          succ = predsEdgeStud[succ->me];
           
-        }//=> alla fine cursor = s
+        }//=> alla fine succ->me = s
+        succStack.push(succ);
 
         while(!succStack.empty()){
           succ = succStack.top();
           //Finding Edge object
-          auto iter = adj[cursor].begin();
-          auto iterend = adj[cursor].end();
-          auto e = *iter;
-          
-          while(iter != iterend && e->node != succ){
-            iter++;
-            e = *iter;
-          }
+
           //Found Edge (There must be one)
-          if((*iter)->isVent && (*iter)->weight != (*iter)->maxWeight){
+          if(succ->isVent && succ->weight != succ->maxWeight){
             //cout << "found " << succ << ", " << e->node << endl;
             allMaxed = false;
-            (*iter)->weight = (*iter)->maxWeight;
+            succ->weight = succ->maxWeight;
             break;
           }
-          cursor = succ;
           succStack.pop();          
         }
-
       }
 
-
       vector<int> distanceImp(n);
-      vector<list<Node>> predsImp(n);
-      vector<int> distanceStud(n);
-      predsStud.clear(); 
+      vector<Node> predsImp(n);
+
 
       ///MST FROM IMPOSTOR
       for(Node u: V)
@@ -234,16 +203,19 @@ class Graph{
           int altdistance = e->weight+distanceImp[u];
           if(distanceImp[e->node] > altdistance){
             //Rimuovo vecchi lati
-            predsImp[e->node].clear();
-            predsImp[e->node].push_front(u);
+            predsImp[e->node]=u;
             distanceImp[e->node] = altdistance;
             q.push(Li(distanceImp[e->node], e->node));
           }else if (distanceImp[e->node] == altdistance){
             //Aggiungo nuovo lato
-            predsImp[e->node].push_front(u);
+            predsImp[e->node]=u;
           }
         }
       }
+
+      vector<int> distanceStud(n);
+      predsStud.clear();
+      predsEdgeStud.clear();
 
       ///MST FROM STUDENT
       for(Node u: V)
@@ -258,13 +230,13 @@ class Graph{
           int altdistance = e->weight+distanceStud[u];
           if(distanceStud[e->node] > altdistance){
             //Rimuovo vecchi lati
-            predsStud[e->node].clear();
-            predsStud[e->node].push_front(u);
+            predsStud[e->node]=u;
+            predsEdgeStud[e->node] = e;
             distanceStud[e->node] = altdistance;
             q.push(Li(distanceStud[e->node], e->node));
           }else if (distanceStud[e->node] == altdistance){
             //Aggiungo nuovo lato
-            predsStud[e->node].push_front(u);
+            predsStud[e->node]=u;
           }
         }
       }
@@ -299,38 +271,38 @@ class Graph{
 
 
     // First output line
-    out << bestRes << endl;
+    out << bestRes << '\n';
 
     //Second output line
-    out << bestDistanceImp[f] << ' ' << bestDistanceStud[f] << endl;
+    out << bestDistanceImp[f] << ' ' << bestDistanceStud[f] << '\n';
 
     //Third output line
     for(int weight : bestVentsWeights){
       out << weight << ' ';
     }
-    out << endl;
+    out << '\n';
     
     //Fourth output line
     int R=1;
     Node cursor = f;
     while(cursor != i){
       R++;
-      cursor = *bestPredsImp[cursor].begin();
+      cursor = bestPredsImp[cursor];
     }
-    out << R << endl;
+    out << R << '\n';
 
     //Fifth output line
     cursor = f;
     list<Node> pathTofab;
     while(cursor != i){
       pathTofab.push_front(cursor);
-      cursor = *bestPredsImp[cursor].begin();
+      cursor = bestPredsImp[cursor];
     }
     pathTofab.push_front(i);
 
     for(Node n: pathTofab)
       out << n << ' ';
-    out << endl;
+    out << '\n';
 
 
     /*for(Edge *e: vents){
