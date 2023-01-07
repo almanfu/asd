@@ -144,10 +144,13 @@ class Graph{
             s.push(sNode(e.node, adj[e.node].begin()));
             break;
           }else if(ft[e.node] != 0 && dt[e.node] > dt[u]){
+            iter++;
             //Forward Edge
           }else if(ft[e.node] == 0 && dt[e.node] < dt[u]){
+            iter++;
             //Back Edge
           }else{
+            iter++;
             //Cross Edge
           }
         }

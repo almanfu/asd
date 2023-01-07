@@ -18,19 +18,14 @@ class Graph{
   enum EdgeDirection {DIRECTED, UNDIRECTED};
   EdgeDirection edgeDirection;
 
-  private:
-    int n;
-  vector<Node> V;
+  int n;
   vector<list<Node>> adj;
 
   public:
   Graph(int nodes, EdgeDirection eDir){
     edgeDirection = eDir;
     n = nodes;
-    V = vector<Node>(n);
     adj = vector<list<Node>>(n);
-    for(Node u=0; u < n; u++)
-      V[u] = u;
   }
   ~Graph(){}
   bool has(Node u){
@@ -58,7 +53,7 @@ class Graph{
 
   void bfs(Node r){
     queue<Node> q;
-    vector<bool> visited(n, false);
+    vector<bool> visited = vector<bool>(n, false);
     if(has(r)){
       q.push(r);
       visited[r] = true;
@@ -78,7 +73,7 @@ class Graph{
 
   void dfs(Node r){
     stack<Node> s;
-    vector<bool> visited(n, false);
+    vector<bool> visited = vector<bool>(n, false);
     if(has(r)){
       s.push(r);
       visited[r] = true;
@@ -116,124 +111,30 @@ class Graph{
     return _distance;  
   }
 
-  bool hasCycle(){
-    if(undirected()){
-      bool _hasCycle = false;
-      stack<Node> s;
-      vector<bool> visited(n);
-      for(Node r: V){
-        for(Node u: V)
-          visited[u] = false;
-        s = stack<Node>();
-        s.push(r);
-        visited[r] = true;
-        while(!_hasCycle && !s.empty()){
-          Node u = s.top(); s.pop();
-          for(Node v: adj[u]){
-            if(!visited[v]){
-              s.push(v);
-              visited[v] = true;
-            }else{
-              _hasCycle = true;
-              break;
-            }
-          }
-        }
-        if(_hasCycle)
-          break;
-      }
-      return _hasCycle;
-    }else{
-      bool _hasCycle = false;
-      stack<Node> s;
-      vector<int> dt(n,0);
-      vector<int> ft(n,0);
-      int time;
-      for(Node r: V){
-        time = 0;
-        for(Node u: V)
-          dt[u] = ft[u] = 0;        
-        s = stack<Node>();
-        s.push(r);
-        while(!_hasCycle && !s.empty()){
-          Node u = s.top();
-          time++;
-          if(dt[u] != 0){
-            ft[u] = time;
-            s.pop();
-          }
-          else{
-            dt[u] = time;
-            for(Node v: adj[u]){
-              if(dt[v] == 0){
-                s.push(v);
-              }else if(ft[v] == 0 && dt[v]<dt[u]){
-                _hasCycle = true;
-                break;
-              }
-            }
-          }
-        }
-        if(_hasCycle)
-          break;
-      }
-      return _hasCycle;    
-    }
-  }
+  vector<int> ccs(){
+    if(!undirected())
+      return vector<int>();
 
-  Graph transposed(){
-    Graph _transposed(n, edgeDirection);
-    for(Node u: V){
-      for(Node v: adj[u])
-        _transposed.insertEdge(v, u);
-    }
-    return _transposed;
-  }
-  list<Node> cc(Node r){
-    queue<Node> q;
-    list<Node> _cc;
-    vector<bool> visited(n, false);
-    if(has(r)){
-      q.push(r);
-      visited[r] = true;
-      _cc.push_front(r);
-    }
-    while(!q.empty()){
-      Node u = q.front(); q.pop();
-      for(Node v: adj[u]){
-        if(!visited[v]){
-          q.push(v);
-          visited[v] = true;
-          _cc.push_front(v);
-        }
-      }
-    }
-    return _cc;
-  }
-  list<list<Node>> ccs(){
-    list<list<Node>> _ccs;
-    vector<bool> visited(n, false);
-    for(Node r: V){
-      if(!visited[r]){
-        list<Node> cc;
+    vector<int> cc = vector<int>(n, -1);
+    int i = 0;
+    for(Node r=0; r < n; r++){
+      if(cc[r] == -1){
         //BFS
         queue<Node> q;
         q.push(r);
-        visited[r] = true;
-        cc.push_front(r);
+        cc[r] = i;
         while(!q.empty()){
           Node u = q.front(); q.pop();
           for(Node v: adj[u]){
-            if(!visited[v]){
+            if(cc[v] == -1){
               q.push(v);
-              visited[v] = true;
-              cc.push_front(v);
+              cc[v] = i;
             }
           }
-        }      
-        _ccs.push_front(cc);
+        }
+        i++;
       }
     }
-    return _ccs;
+    return cc;
   }
 };

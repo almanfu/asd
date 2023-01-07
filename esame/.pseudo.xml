@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd">
+
+<language name="pseudo" section="Scripts" extensions="*.pseudo" mimetype="text" casesensitive="0">
+  <highlighting>
+   <contexts>
+      <context name="Normal Context" attribute="Normal" lineEndContext="#stay">
+        <DetectChar attribute="Comment" context="Comment Context" char="%"/>
+      </context>
+      <context name="Comment Context" attribute="Comment" lineEndContext="#pop">
+      </context>
+    </contexts>
+
+    <itemDatas>
+      <itemData name="Normal"             defStyleNum="dsVariable"/>
+      <itemData name="Comment"            defStyleNum="dsString"/>
+    </itemDatas>
+
+  </highlighting>
+  <general>
+    <keywords casesensitive="0"/>
+  </general>
+</language>
