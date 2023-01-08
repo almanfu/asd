@@ -5,6 +5,7 @@
 #include <list>
 #include <queue>
 #include <stack>
+#include <unordered_set>
 
 using namespace std;
 
@@ -21,8 +22,7 @@ class Graph{
   Node root;
   vector<Node> parent;
   vector<Node> level;
-  vector<Node> cricca;
-  vector<Node> parentd;
+  vector<unordered_set<Node>> cricca;
   int n;
   GraphType _graphType;
   bool _hasCycle;
@@ -35,8 +35,7 @@ class Graph{
     adj = vector<list<Node>>(n);
     parent = vector<Node>(n, -1);
     level = vector<Node>(n, -1);
-    cricca = vector<Node>(n, -1);
-    parentd = vector<Node>(n, -1);
+    cricca = vector<unordered_set<Node>>(n, unordered_set<Node>());
     _hasCycle = false;
   }
   ~Graph(){}
@@ -84,14 +83,18 @@ class Graph{
     while(!q.empty()){
       Node u = q.front(); q.pop();
       //cout << u << ' ';
+      Node criccaSuperNode = -1;
       for(Node v: adj[u]){
-        if(visited[v] && v != parent[u] && cricca[v] == -1){
+        if(visited[v] && v != parent[u] && cricca[v].empty()){
           _hasCycle = true;
-          if(cricca[parent[u]] != parent[u] && cricca[parent[u]] != -1){}
-            //cout << "conflict " << parent[u] << " " << cricca[parent[u]] << endl;
-          cricca[parent[u]] = parent[u];
-          cricca[u] = parent[u];
-          cricca[v] = parent[u];
+          if(!cricca[parent[u]].empty()){}
+            //cout << "conflict: node " << parent[u] << " has already a cricca but is also in cricca containing " << v << endl;
+          if(criccaSuperNode == -1){
+            criccaSuperNode = parent[u];
+            cricca[parent[u]].insert(parent[u]);
+          }
+          cricca[u].insert(criccaSuperNode);
+          cricca[v].insert(criccaSuperNode);
         }
 
         if(!visited[v]){
@@ -107,8 +110,12 @@ class Graph{
 
   void printCricche(){
     cout << "cricche[]:" << endl << endl;
-    for(Node u=0; u < n; u++)
-      cout << "cricca[" << u << "]=" << cricca[u] << endl;
+    for(Node u=0; u < n; u++){
+      cout << "cricca[" << u << "]=";
+      for(int c: cricca[u])
+        cout << c << ' ';
+      cout << endl;
+    }
     cout << "======" << endl;
   }
 
@@ -142,11 +149,16 @@ class Graph{
       i++;
     }
 
-    while(sanc != danc && !(cricca[sanc] == cricca[danc] && cricca[sanc] != -1)){
+    while(sanc != danc){
+      for(Node c: cricca[sanc]){
+        if(cricca[danc].count(c) > 0)
+          goto out;
+      }
       sanc = parent[sanc];
       danc = parent[danc];
     }
-    if(s == 79 && d == 527){
+    out:
+    if(s == 6 && d == 5){
       //cout << sanc << ' ' << danc << endl;
     }
     if(sanc == danc)

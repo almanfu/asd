@@ -3,11 +3,7 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import random
 import os
-"""
-import colorsys
-h,s,l = random.random(), 0.5 + random.random()/2.0, 0.4 + random.random()/5.0
-r,g,b = [int(256*i) for i in colorsys.hls_to_rgb(h,l,s)]
-"""
+
 spath="lab04/cicli/"
 
 def colors(name):
@@ -50,21 +46,34 @@ for _ in range(0, m):
 
 node_color_name = ["BLUE" for _ in list(G)]
 node_color_name[int((n-1)/2)] = "GRAY"
-node_color_name[79] = "GREEN"
-node_color_name[527] = "RED"
 
 a_pos = nx.kamada_kawai_layout(G)
 plt.figure(figsize=(7, 7), dpi=500)
+
+DENSEC = {
+  'font_size':1,
+  'width':0.5,
+  'arrowsize':1,
+  'node_size':10
+}
+
+SPARSEC = {
+  'font_size':10,
+  'width':0.5,
+  'arrowsize':5,
+  'node_size':200
+}
+
+THISC = DENSEC if n >= 50 else SPARSEC
+
 nx.draw(G, pos=a_pos, with_labels=True,
   node_color=[colors(x) for x in node_color_name],
   arrows=True,
-  font_size=1,#10
-  width=0.5,
-  arrowsize=1,#5
-  node_size=10)#200
+  **THISC
+  )
 
-plt.savefig(".graphs/randgraph"+str(num))
-os.system("code -r .graphs/randgraph"+str(num)+".png")
+plt.savefig(".graphs/"+str(num))
+os.system("code -r .graphs/"+str(num)+".png")
 plt.close()
 
 #nx.strongly_connected_components(G)
