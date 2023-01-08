@@ -239,13 +239,17 @@ int main(int argc, char *argv[]){
   
   Graph g(n, Graph::UNDIRECTED, Graph::WEIGHTED);
 
+  int museless = 0;
   for(int i=0; i < m; i++){
     Graph::Node u, v;
-    int w, blackoutTime, onDelta, offDelta;
-    in >> u >> v >> w >> blackoutTime >> onDelta >> offDelta;
-    g.insertEdge(u, v, w);
+    int w, f, y, n;
+    in >> u >> v >> w >> f >> y >> n;
+    if(y < w)
+      museless++;
+    else
+      g.insertEdge(u, v, w);
   }
-
+  cout << "museful=" << (m-museless) << " museless=" << museless << " ratio=" << ((float)museless/(float)m) << endl;
 
   int cost;
   list<Graph::Node> path;
@@ -259,7 +263,7 @@ int main(int argc, char *argv[]){
     for(Graph::Node u: path)
       out << u << endl;
   }else{
-    out << -1;
+    out << -1 << endl;
   }
 
   in.close();
