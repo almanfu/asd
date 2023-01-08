@@ -17,20 +17,28 @@ class Graph{
   typedef int Node;
   struct Edge{
     Node node;
-    int weight;
-    Edge(Node n, int w){
-      node = n;
-      weight = w;
+    int w;
+    int f;
+    int y;
+    int n;
+    int c;
+    Edge(Node u, int weight, int first, int yes, int no){
+      node = u;
+      w = weight;
+      f = first;
+      y = yes;
+      n = no;
+      c = yes+no;
     }
     friend bool operator<(const Edge e1, const Edge e2){
-      return e1.weight < e2.weight;
+      return e1.w < e2.w;
     }
   };
   enum EdgeDirection {DIRECTED, UNDIRECTED};
   enum EdgeWeight {WEIGHTED, UNWEIGHTED};
   EdgeDirection edgeDirection;
   EdgeWeight edgeWeight;
-
+  static const int TMAX = 1000000;
   int n;
   vector<list<Edge>> adj;
   vector<int> color;
@@ -53,131 +61,33 @@ class Graph{
   bool unweighted(){
     return edgeWeight == UNWEIGHTED;
   }
-  void insertEdge(Node u, Node v, int weight=1){
+  void insertEdge(Node u, Node v, int w=1, int f=0, int y=TMAX, int n=1){
     if(unweighted())
-      weight  = 1;
-    if(has(u) && has(v) && u != v && weight >= 1){
-      adj[u].push_front(Edge(v, weight));
+      w = 1;
+    if(has(u) && has(v) && u != v && w >= 1){
+      adj[u].push_front(Edge(v, w, f, y, n));
       if(undirected())
-        adj[v].push_front(Edge(u, weight));
-    }
-  }
-  // Functions
-  void print_adj(){
-    for(Node u=0; u < n; u++){
-      cout << u << ':';
-      if(unweighted()){
-        for(Edge e: adj[u])
-          cout << e.node << ' ';
-      }else{
-        for(Edge e: adj[u])
-          cout << '(' << e.node << ',' << e.weight << ')' << ' ';
-      }
-      cout << endl;
+        adj[v].push_front(Edge(u, w, f, y, n));
     }
   }
 
-  void bfs(Node r){
-    queue<Node> q;
-    vector<bool> visited(n, false);
-    if(has(r)){
-      q.push(r);
-      visited[r] = true;
-    }
-    while(!q.empty()){
-      Node u = q.front(); q.pop();
-      //Visit
-      for(Edge e: adj[u]){
-        if(!visited[e.node]){
-          q.push(e.node);
-          visited[e.node] = true;
-        }
-      }
-    }
+  // isGreen
+  bool isGreen(Edge e, int x){
+    if(x < e.f)
+      return false;
+    else
+      return 0 <= (x-e.f)%e.c && (x-e.f)%e.c < e.y;
   }
 
-  void dfs(Node r){
-    struct sNode{
-      Node node;
-      list<Graph::Edge>::iterator iter; 
-      sNode(Node u, list<Graph::Edge>::iterator i){
-        node = u;
-        iter = i;
-      }
-      ~sNode(){}
-    };
-    stack<sNode> s;
-    s.push(sNode(r, adj[r].begin()));
-    vector<int> dt(n, 0);
-    vector<int> ft(n, 0);
-    int time=0;
-    while(!s.empty()){
-      sNode& snode = s.top(); 
-      Node& u = snode.node;
-      time++;
-      if(ft[u] != 0){
-        //Post-order visit
-        s.pop();
-      }else if(ft[u] == 0){
-        if(dt[u] == 0){
-          //Pre-order visit
-          dt[u] = time;
-        }
-        auto& iter = snode.iter;
-        auto iterEnd = adj[u].end();
-        while(iter!=iterEnd){
-          Edge e = *iter;
-          if(dt[e.node] == 0){//Tree Edge
-            iter++;
-            s.push(sNode(e.node, adj[e.node].begin()));
-            break;
-          }else if(ft[e.node] != 0 && dt[e.node] > dt[u]){
-            iter++;
-            //Forward Edge
-          }else if(ft[e.node] == 0 && dt[e.node] < dt[u]){
-            iter++;
-            //Back Edge
-          }else{
-            iter++;
-            //Cross Edge
-          }
-        }
-        if(iter == iterEnd){
-          ft[u] = dt[u]==time?time+1:time;
-        }
-      }
-    }
-  }
-
-  Graph dijkstra(Node r){
-    typedef pair<int, Node> Li;
-    const int INF = INT32_MAX;
-    priority_queue<Li, vector<Li>, greater<Li>> q;
-    vector<int> distance(n, INF);
-    vector<Node> pred(n, -1);
-    distance[r] = 0;
-    q.push(Li(0, r));
-    //Dijkstra 
-    while(!q.empty()){
-      Li li = q.top(); q.pop();
-      Node u = li.second;
-      for(Edge e: adj[u]){
-        int altDistance = e.weight+distance[u];
-        if(distance[e.node] > altDistance){
-          //Rimuovo vecchi lati
-          pred[e.node]=u;
-          distance[e.node] = altDistance;
-          q.push(Li(distance[e.node], e.node));
-        }
-      }
-    }
-    //Creo grafo cammino costo minimi
-    Graph G(n, Graph::DIRECTED, Graph::UNWEIGHTED);
-    for(Node v=0; v < n; v++){
-      if(pred[v] != -1)
-        G.insertEdge(pred[v], v);
-    }
-    return G;
+  // time-dependent Weight
+  /// assuming y >= w for all edges and y >= 1
+  int W(Edge e, int x){
+    if(x <= e.f)
+      return (e.f-x)+e.w;
+    else if(!isGreen(e, x) || (isGreen(e, x) && e.w > (e.y-((x-e.f)%e.c)) ))
+      return e.c-((x-e.f)%e.c)+e.w;
+    else
+      return e.w;
   }
 
   pair<int, list<Node>> laser(){
@@ -185,31 +95,29 @@ class Graph{
     const int INF = INT32_MAX;
     typedef pair<int, Node> Li;
     priority_queue<Li, vector<Li>, greater<Li>> q;
-    vector<int> distance(n, INF);
+    vector<int> time(n, INF);
     vector<Node> pred(n, -1);
-    distance[r] = 0;
+    time[r] = 0;
     q.push(Li(0, r));
     //Dijkstra 
     while(!q.empty()){
       Li li = q.top(); q.pop();
+      int x = li.first;
       Node u = li.second;
       for(Edge e: adj[u]){
-        int altDistance = e.weight+distance[u];
-        if(distance[e.node] > altDistance){
-          //Rimuovo vecchi lati
+        int altTime = W(e, x)+x;
+        if(time[e.node] > altTime){
+          //Rimuovo vecchio lato
           pred[e.node]=u;
-          distance[e.node] = altDistance;
-          q.push(Li(distance[e.node], e.node));
+          time[e.node] = altTime;
+          q.push(Li(time[e.node], e.node));
         }
       }
     }
     
     //Creo cammino costo minimo da 0 a n-1
     list<Node> path = list<Node>();
-
-    Graph G(n, Graph::DIRECTED, Graph::UNWEIGHTED);
     Node d = n-1;
-
     do{
       if(pred[d] == -1)
         break;
@@ -220,7 +128,7 @@ class Graph{
     }while(d != r);
     if(d == r)
       path.push_front(r);
-    return pair<int, list<int>>(distance[n-1], path);
+    return pair<int, list<int>>(time[n-1], path);
   }
 };
 
@@ -246,20 +154,31 @@ int main(int argc, char *argv[]){
     in >> u >> v >> w >> f >> y >> n;
     if(y < w)
       museless++;
-    else
-      g.insertEdge(u, v, w);
+    else// => y >= 1
+      g.insertEdge(u, v, w, f, y, n);
   }
-  cout << "museful=" << (m-museless) << " museless=" << museless << " ratio=" << ((float)museless/(float)m) << endl;
+  //cout << "museful=" << (m-museless) << " museless=" << museless << " ratio=" << ((float)museless/(float)m) << endl;
 
-  int cost;
+  int time;
   list<Graph::Node> path;
 
+  //test W() and isGreen
+  /*            v  w  f  y  n
+  Graph::Edge e(0, 1, 1, 1, 0);
+  int x;
+  for(x = 5; x < 10000; x++){
+    if(g.W(e, x) != 1){
+      cout << (g.isGreen(e, x) ? "yes" : "no")
+           << " error; x=" << x << " -> " << g.W(e, x) << endl;
+    }
+  }*/
+
   auto res = g.laser();
-  cost = res.first;
+  time = res.first;
   path = res.second;
 
-  if(path.size()> 0){
-    out << cost << endl;
+  if(path.size()> 0 && time <= g.TMAX){
+    out << time << endl;
     for(Graph::Node u: path)
       out << u << endl;
   }else{

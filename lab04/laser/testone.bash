@@ -1,6 +1,6 @@
 #!/bin/bash
 cp "dataset_laser/laser/input/input$1.txt" "input.txt";
-crun "laser.cpp";
+crunt "laser.cpp";
 head -n1 "output.txt" > "output1.txt";
 if diff "output1.txt" "dataset_laser/laser/output/output$1.txt";
   then
