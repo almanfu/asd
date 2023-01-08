@@ -21,16 +21,22 @@ class Graph{
   Node root;
   vector<Node> parent;
   vector<Node> level;
+  vector<Node> cricca;
+  vector<Node> parentd;
   int n;
   GraphType _graphType;
   bool _hasCycle;
 
-  Graph(int nodes, GraphType gType){
-    _graphType = gType;
+  Graph(int nodes, GraphType gType, Node r){
     n = nodes;
+    _graphType = gType;
+    root = r;
+
     adj = vector<list<Node>>(n);
-    parent = vector<Node>(n);
-    level = vector<Node>(n);
+    parent = vector<Node>(n, -1);
+    level = vector<Node>(n, -1);
+    cricca = vector<Node>(n, -1);
+    parentd = vector<Node>(n, -1);
     _hasCycle = false;
   }
   ~Graph(){}
@@ -54,14 +60,6 @@ class Graph{
     }
   }
   // Utility Functions
-  void print_adj(Node u){
-    if(has(u)){
-      cout << u << ':';
-      for(Node v: adj[u])
-        cout << v << ' ';
-      cout << endl;
-    }
-  }
   void print_adj(){
     for(Node u=0; u < n; u++){
       cout << u << ':';
@@ -71,7 +69,9 @@ class Graph{
     }
   }
 
-  void bfs(Node r){
+  void bfs(){
+    //setup level[], parent[]
+    Node r = root;
     queue<Node> q;
     vector<bool> visited = vector<bool>(n, false);
     if(has(r)){
@@ -85,8 +85,14 @@ class Graph{
       Node u = q.front(); q.pop();
       //cout << u << ' ';
       for(Node v: adj[u]){
-        if(visited[v] && v != parent[u])
+        if(visited[v] && v != parent[u] && cricca[v] == -1){
           _hasCycle = true;
+          if(cricca[parent[u]] != parent[u] && cricca[parent[u]] != -1){}
+            //cout << "conflict " << parent[u] << " " << cricca[parent[u]] << endl;
+          cricca[parent[u]] = parent[u];
+          cricca[u] = parent[u];
+          cricca[v] = parent[u];
+        }
 
         if(!visited[v]){
           q.push(v);
@@ -99,54 +105,33 @@ class Graph{
     //cout << endl;
   }
 
-  void dfs(Node r){
-    stack<Node> s;
-    vector<bool> visited = vector<bool>(n, false);
-    if(has(r)){
-      s.push(r);
-      visited[r] = true;
-    }
-    while(!s.empty()){
-      Node u = s.top(); s.pop();
-      cout << u << ' ';
-      for(Node v: adj[u]){
-        if(!visited[v]){
-          s.push(v);
-          visited[v] = true;
-        }
-      }
-    }
-    cout << endl;
+  void printCricche(){
+    cout << "cricche[]:" << endl << endl;
+    for(Node u=0; u < n; u++)
+      cout << "cricca[" << u << "]=" << cricca[u] << endl;
+    cout << "======" << endl;
   }
 
-  int distance(Node r, Node d){
-    queue<Node> q = queue<Node>();
-    vector<int> _distance(n, -1);
-    if(has(r)){
-      q.push(r);
-      _distance[r] = 0;
+  void printTree(){
+    cout << "level[]:" << endl << endl;
+    for(Node u=0; u < n; u++){
+      cout << "level[" << u <<"]=" << level[u] << endl;
     }
-    while(!q.empty()){
-      Node u = q.front(); q.pop();
-      for(Node v: adj[u]){
-        if(_distance[v] == -1){
-          _distance[v] = 1+_distance[u];
-          q.push(v);
-          if(v == d){
-            q = queue<Node>();
-            break;
-          }
-        }
-      }
+    cout << "======" << endl;
+
+    cout << "parent[]:" << endl << endl;
+    for(Node u=0; u < n; u++){
+      cout << "parent[" << u <<"]=" << parent[u] << endl;
     }
-    return _distance[d];  
+    cout << "======" << endl;
   }
 
-  int distance_tree(Node s, Node d){
+  int cicli(Node s, Node d){
     queue<Node> q = queue<Node>();
     int i=0;
     Node sanc = s;
     Node danc = d;
+    
     while(level[s]-i > level[d]){
       sanc = parent[sanc];
       i++;
@@ -157,20 +142,17 @@ class Graph{
       i++;
     }
 
-    while(sanc != danc){
+    while(sanc != danc && !(cricca[sanc] == cricca[danc] && cricca[sanc] != -1)){
       sanc = parent[sanc];
       danc = parent[danc];
     }
-
-    return level[s]+level[d]-2*level[sanc];      
-  }
-
-  int cicli(Node s, Node d){
-    if(hasCycle()){
-      return distance(s, d);
-    }else{
-      return distance_tree(s, d);
+    if(s == 79 && d == 527){
+      //cout << sanc << ' ' << danc << endl;
     }
+    if(sanc == danc)
+      return level[s]+level[d]-2*level[sanc];
+    else
+      return level[s]+level[d]-2*level[sanc]+1;
   }
 };
 
@@ -187,7 +169,7 @@ int main(int argc, char *argv[]){
   int n, m, q;
   in >> n >> m >> q;
   
-  Graph g(n, Graph::UNDIRECTED);
+  Graph g(n, Graph::UNDIRECTED, (n-1)/2);
 
   for(int i=0; i < m; i++){
     Graph::Node u, v;
@@ -196,9 +178,13 @@ int main(int argc, char *argv[]){
   }
 
   // setup
-  g.bfs((n-1)/2);
+  g.bfs();
+  //g.dfs();
 
-  //cout << g.hasCycle() ;
+  //g.printCricche();
+  //g.printTree();
+  //cout << (g.hasCycle() ? "si ciclo" : "no ciclo") << endl;
+
 
   for(int i=0; i<q; i++){
     Graph::Node r, d;

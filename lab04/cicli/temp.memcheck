@@ -1,0 +1,26 @@
+==330293== Memcheck, a memory error detector
+==330293== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==330293== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==330293== Command: ./temp.out
+==330293== Parent PID: 330285
+==330293== 
+==330293== 
+==330293== Process terminating with default action of signal 2 (SIGINT)
+==330293==    at 0x10B30E: operator!= (stl_list.h:252)
+==330293==    by 0x10B30E: Graph::dfs() (cicli.cpp:141)
+==330293==    by 0x109647: main (cicli.cpp:244)
+==330293== 
+==330293== HEAP SUMMARY:
+==330293==     in use at exit: 19,352 bytes in 39 blocks
+==330293==   total heap usage: 43 allocs, 4 frees, 92,640 bytes allocated
+==330293== 
+==330293== LEAK SUMMARY:
+==330293==    definitely lost: 0 bytes in 0 blocks
+==330293==    indirectly lost: 0 bytes in 0 blocks
+==330293==      possibly lost: 0 bytes in 0 blocks
+==330293==    still reachable: 19,352 bytes in 39 blocks
+==330293==         suppressed: 0 bytes in 0 blocks
+==330293== Reachable blocks (those to which a pointer was found) are not shown.
+==330293== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==330293== 
+==330293== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
