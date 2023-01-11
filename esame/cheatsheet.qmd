@@ -1,0 +1,1191 @@
+---
+title: ASD Cheatsheet
+author: alessandro.manfucci@studenti.unitn.it
+date: "10/01/2023"
+lang: it
+format:
+  pdf:
+    documentclass: article
+    toc: true
+    papersize: a4
+    number-sections: true
+    geometry:
+    - top=1in
+    - bottom=1in
+    - right=1in
+    - left=1in
+syntax-definitions: 
+  - .pseudo.xml
+syntax-highlight: github
+---
+
+\pagebreak
+## Pseudo Linguaggio
+
+- a = b
+- a $\leftrightarrow$ b $\equiv$ tmp = a; a = b; b = tmp
+- T [ ] A = new T [1...n]
+- T [ ][ ] B = new T [1...n][1...m]
+- int, float, boolean
+- and, or, not
+- ==, $\neq$, $\leq$, $\geq$
+- +, -, ·, /, $\left\lfloor x \right\rfloor$, $\left\lceil x \right\rceil$, log, $x^2$, mod, ...
+- iif(condizione, v_1, v_2)
+- if condizione then istruzione
+- if condizione then istruzione1 else istruzione2
+- while condizione do istruzione
+- foreach elemento $\in$ insieme do istruzione
+- return
+- % commento
+- for indice = estremoInf to estremoSup do istruzione  
+- int indice = estremoInf  
+while indice $\leq$ estremoSup do  
+ | istruzione  
+ | indice = indice + 1  
+ \-  
+- for indice = estremoSup downto estremoInf do istruzione  
+- int indice = estremoSup  
+while indice $\geq$ estremoInf do  
+ | istruzione  
+ | indice = indice - 1  
+ \-  
+
+:::{layout-ncol="2"}
+|RETTANGOLO|  
+|---|  
+|int lunghezza|  
+|int altezza|
+
+- rettangolo r = new rettangolo
+- r.altezza = 10
+- delete r
+- r = nil
+:::
+
+## Strutture dati elementari
+
+### Pila
+
+||
+|:--|
+|`STACK`                                                                |
+```pseudo
+STACK STACK()
+% Restituisce true se la pila è vuota
+boolean isEmpty()
+% Inserisce v in cima alla pila
+push(ITEM v)
+% Rimuove l'elemento in cima alla pila e lo restituisce
+ITEM pop()
+% Legge l'elemento in cima alla pila
+ITEM top()
+```
+
+
+### Coda
+
+||
+|:--|
+|`QUEUE`                                                                  |
+```pseudo
+QUEUE QUEUE()
+% Restituisce true se la coda è vuota
+boolean isEmpty()
+% Inserisce v in fondo alla coda
+enqueue(ITEM v)
+% Estrae l'elemento in testa alla coda e lo restituisce al chiamante
+ITEM dequeue()
+% Legge l'elemento in testa alla coda
+ITEM top()
+```
+
+## Strutture dati astratte
+
+### Sequenza
+
+||
+|:--|
+|`SEQUENCE`                                                                  |
+```pseudo
+SEQUENCE SEQUENCE()
+% Restituisce true se la sequenza è vuota
+boolean isEmpty()
+% Restituisce true se p = pos0 o se p = posn+1
+boolean finished(POS p)
+% Restituisce la posizione del primo elemento
+POS head()
+% Restituisce la posizione dell'ultimo elemento
+POS tail()
+% Restituisce la posizione dell'elemento che segue p
+POS next(POS p)
+% Restituisce la posizione dell'elemento che precede p
+POS prev(POS p)
+% Inserisce l'elemento v di tipo ITEM nella posizione p e restituisce
+% la posizione del nuovo elemento, che diviene il predecessore di p
+POS insert(POS p, ITEM v)
+% Rimuove l'elemento contenuto nella posizione p e restituisce la posizione
+% del successore di p, che diviene il successore del predecessore di p
+POS remove(POS p)
+% Legge l'elemento di tipo ITEM contenuto nella posizione p
+ITEM read(POS p)
+% Scrive l'elemento v di tipo ITEM nella posizione p
+write(POS p, ITEM v)
+```
+
+### Insieme
+
+||
+|:--|
+|`SET`                                                                  |
+```pseudo
+SET SET()
+% Restituisce la cardinalità dell'insieme
+int size()
+% Restituisce true se x è contenuto nell'insieme
+boolean contains(ITEM x)
+% Inserisce x nell'insieme, se non è giù presente
+insert(ITEM x)
+% Rimuove x dall'insieme, se è presente
+remove(ITEM x)
+% Restituisce un nuovo insieme che è l'unione di A e B
+Set union(Set A, Set B)
+% Restituisce un nuovo insieme che è l'intersezione di A e B
+Set intersection(Set A, Set B)
+% Restituisce un nuovo insieme che è la differenza di A e B
+Set difference(Set A, Set B)
+```
+Sia n il numero di elementi nell'insieme e m la capacità dell'insieme.
+
+|Implementazione|contains()|insert()|remove()|min()|foreach()|
+|----|---|---|---|---|---|
+|Array booleano|O(1)|O(1)|O(1)|O(m)|O(m)|
+|Lista non ordinata|O(n)|O(n)|O(n)|O(n)|O(n)|
+|Lista ordinata|O(n)|O(n)|O(n)|O(1)|O(n)|
+|Array ordinato|O(log n)|O(n)|O(n)|O(1)|O(n)|
+|RB TREE|O(log n)|O(log n)|O(log n)|O(log n)|O(n)|
+|Hash Table|O(1)|O(1)|O(1)|O(m)|O(m)|
+
+### Dizionario
+
+||
+|:--|
+|`DICTIONARY`                                                                 |
+```pseudo
+DICTIONARY DICTIONARY()
+% Restituisce il valore associato alla chiave k se presente, nil altrimenti
+ITEM lookup(ITEM k)
+% Associa il valore v alla chiave k
+insert(ITEM k, ITEM v)
+% Rimuove l'associazione della chiave k
+remove(ITEM k)
+```
+
+|Implementazione|lookup()|insert()|remove()|foreach()|
+|-----|---|---|---|---|
+|Array non ordinato|O(n)|O(1),O(n)|O(1)|O(n)|
+|Array ordinato|O(log n)|O(n)|O(n)|O(n)|
+|Lista non ordinata|O(n)|O(1),O(n)|O(n)|O(n)|
+|RB TREE|O(log n)|O(log n)|O(log n)|O(n)|
+|Hash Table|O(1)|O(1)|O(1)|O(n)|
+
+### Priority Queue
+
+||
+|:--|
+|`MIN-PRIORITYQUEUE`                                                          |
+```pseudo
+MIN-PRIORITYQUEUE MIN-PRIORITYQUEUE()
+% Crea una coda a priorità con capacità n
+PRIORITYQUEUE PriorityQueue(int n)
+% Restituisce true se la coda a priorità è vuota
+boolean isEmpty()
+% Restituisce l'elemento minimo di una coda a priorità non vuota
+ITEM min()
+% Rimuove e restituisce l'elemento minimo di una coda a priorità non vuota
+deleteMin()
+% Inserisce l'elemento x con priorità p nella coda a priorità e restituisce
+% un oggetto PRIORITYITEM che identifica x all'interno della coda
+PRIORITYITEM insert(ITEM x, int p)
+% Diminuisce la priorità dell'oggetto identificato da y portandola a p
+decrease(PRIORITYITEM y, int p)
+```
+
+|Implementazione|min()|deleteMin()|insert()|decrease()|
+|-----|---|---|---|---|
+|Array/Lista non ordinato|O(n)|O(n)|O(n)|O(n)|
+|Array ordinato|O(1)|O(n)|O(n)|O(log n)|
+|Lista ordinata|O(1)|O(1)|O(n)|O(n)|
+|RB TREE|O(log n)|O(log n)|O(log n)|O(log n)|
+|Heap TREE|O(1)|O(log n)|O(log n)|O(log n)|
+
+### Albero binario
+
+||
+|:--|
+|`TREE`                                                                 |
+```pseudo
+TREE TREE()
+% Costituisce un nuovo nodo, contenente v, senza figli o genitori
+TREE(ITEM v)
+% Legge il valore memorizzato nel nodo
+ITEM read()
+% Modifica il valore memorizzato nel nodo
+write(ITEM v)
+% Restituisce il padre, oppure nil se questo è il nodo radice
+TREE parent()
+% Restituisce il figlio sinistro di questo nodo, oppure nil se è assente
+TREE left()
+% Restituisce il figlio destro di questo nodo, oppure nil se è assente
+TREE right()
+% Inserisce il sottoalbero radicato t come figlio sinistro di questo nodo
+insertLeft(TREE t)
+% Inserisce il sottoalbero radicato t come figlio destro di questo nodo
+insertRight(TREE t)
+% Distrugge ricorsivamente il figlio sinistro di questo nodo (in O(n) con punt.)
+deleteLeft()
+% Distrugge ricorsivamente il figlio destro di questo nodo (in O(n) con punt.)
+deleteRight()
+```
+
+### Albero generico
+
+||
+|:--|
+|`TREE`                                                                  |
+```pseudo
+TREE TREE()
+% Costituisce un nuovo nodo, contenente v, senza figli o genitori
+TREE(ITEM v)
+% Legge il valore memorizzato nel nodo
+ITEM read()
+% Modifica il valore memorizzato nel nodo
+write(ITEM v)
+% Restituisce il padre, oppure nil se questo è il nodo radice
+TREE parent()
+% Restituisce il primo figlio da sinistra, oppure nil se questo nodo
+% è una foglia
+TREE leftmostChild()
+% Restituisce il primo fratello sulla destra, oppure nil se è assente
+TREE rightSibling()
+% Inserisce il sottoalbero t come primo figlio di questo nodo
+insertChild(TREE t)
+% Inserisce il sottoalbero t come prossimo fratello di questo nodo
+insertSibling(TREE t)
+% Distrugge l'albero radicato identificato dal primo figlio
+deleteChild()
+% Distrugge l'albero radicato identificato dal prossimo fratello
+deleteSibling()
+% Distrugge l'albero radicato identificato dal nodo
+delete(TREE t)
+```
+
+### Grafo
+
+||
+|:--|
+|`GRAPH`                                                                  |
+```pseudo
+GRAPH GRAPH()
+% Restituisce l'insieme di tutti i vertici
+SET V()
+% Restituisce il numero di nodi
+int size()
+% Restituisce l'insieme dei nodi adiacenti ad u
+SET adj(NODE u)
+% Aggiunge un nodo u al grafo
+insertNode(NODE u)
+% Aggiunge l'arco (u, v) al grafo
+insertEdge(NODE u, NODE v)
+% Rimuove il nodo u dal grafo (in O(n) con vettori/liste adiacenza)
+removeNode(NODE u)
+% Rimuove l'arco (u, v) dal grafo
+removeEdge(NODE u, NODE v)
+```
+
+## Algoritmi ordinamento
+
+### Selection Sort
+
+|Pessimo|Medio|Ottimo|
+|:--|:--|:--|
+|O($n^2$)|O($n^2$)|O($n^2$)|
+
+||
+|:--|
+|`SelectionSort(ITEM[ ] A, int n)`                                                  |
+```pseudo
+for i = 1 to n - 1 do
+ | int min = min(A, i, n)
+ | A[i] <-> A[min]
+ -
+```
+
+||
+|:--|
+|`int min(ITEM[ ] A, int i, int n)`                                                 |
+```pseudo
+% Posizione del minimo parziale
+int min = i
+for j = i + 1 to n do
+ | if A[j] < A[min] then
+ |  | % Nuovo minimo parziale
+ |  |  min = j
+ |  -
+ -
+return min
+```
+
+### Insertion Sort
+
+|Pessimo|Medio|Ottimo|
+|:--|:--|:--|
+|O($n^2$)|O($n^2$)|O(n)|
+
+||
+|:--|
+|`insertionSort(ITEM[ ] A, int n)`                                                 |
+```pseudo
+for i = 2 to n do
+ | ITEM temp = A[i]
+ | int j = i
+ | while j > 1 and A[j - 1] > temp do
+ |  | A[j] = A[j - 1]
+ |  | j = j - 1
+ |  -
+ -
+ A[j] = temp
+```
+
+### Merge Sort
+
+|Pessimo|Medio|Ottimo|
+|:--|:--|:--|
+|O(n·log n)|O(n·log n)|O(n·log n)|
+
+||
+|:--|
+|`MergeSort(ITEM A[ ], int first, int last)`                                          |
+```pseudo
+% O(n)
+if first < last then
+ | int mid = b(first + last)/2c
+ | MergeSort(A, first, mid)
+ | MergeSort(A, mid + 1, last)
+ | Merge(A, first, last, mid)
+ -
+```
+
+||
+|:--|
+|`Merge(ITEM A[ ], int first, int last, int mid)`                                       |
+```pseudo
+int i, j, k, h
+i = first
+j = mid + 1
+k = first
+while i <= mid and j <= last do
+ | if A[i] <= A[j] then
+ |  | B[k] = A[i]
+ |  | i = i + 1
+ | else
+ |  | B[k] = A[j]
+ |  | j = j + 1
+ |  -
+ |  k = k + 1
+ -
+j = last
+for h = mid downto i do
+ | A[j] = A[h]
+ | j = j - 1
+ -
+for j = first to k - 1 do
+ | A[j] = B[j]
+ -
+```
+
+### Quick Sort
+
+|Pessimo|Medio|Ottimo|
+|:--|:--|:--|
+|O($n^2$)|O(n·log n)|O(n·log n)|
+
+### Heap Sort
+
+|Pessimo|Medio|Ottimo|
+|:--|:--|:--|
+|O(n·log n)|O(n·log n)|O(n·log n)|
+
+## Algoritmi alberi binari
+
+### dfs
+
+- O(n)
+
+||
+|:--|
+|`dfs(TREE t)`                                                                  |
+```pseudo
+if t != nil then
+ | % pre-order visit of t
+ | print t
+ | dfs(t.left())
+ | % in-order visit of t
+ | print t
+ | dfs(t.right())
+ | % post-order visit of t
+ | print t
+ -
+```
+
+### lookupNode
+
+|Pessimo|Medio|Ottimo|
+|:--|:--|:--|
+|O(n)|O(log n)|O(log n)|
+
+||
+|:--|
+|`TREE lookupNode(TREE T, ITEM k)`                                            |
+```pseudo
+if T == nil or T.key == k then
+ | return T
+else
+ | return lookupNode(iif(k < T.key, T.left, T.right), k)
+ -
+```
+
+### min
+
+|Pessimo|Medio|Ottimo|
+|:--|:--|:--|
+|O(n)|O(log n)|O(log n)|
+
+||
+|:--|
+|`TREE min(TREE T)`                                                               |
+```pseudo
+TREE u = T
+while u.left != nil do
+ | u = u.left
+ -
+return u
+```
+
+### max
+
+|Pessimo|Medio|Ottimo|
+|:--|:--|:--|
+|O(n)|O(log n)|O(log n)|
+
+||
+|:--|
+|`TREE max(TREE T)`                                                                |
+```pseudo
+TREE u = T
+while u.right != nil do
+ | u = u.right
+ -
+return u
+```
+
+### predecessorNode
+
+|Pessimo|Medio|Ottimo|
+|:--|:--|:--|
+|O(n)|O(log n)|O(log n)|
+
+||
+|:--|
+|`TREE predecessorNode(TREE t)`                                                    |
+```pseudo
+if t == nil then
+ | return t
+ -
+if t.left != nil then % Caso 1
+ | return max(t.left)
+else % Caso 2
+ | TREE p = t.parent
+ | while p != nil and t == p.left do
+ |  | t = p
+ |  | p = p.parent
+ |  -
+ | return p
+ -
+```
+
+### successorNode
+
+|Pessimo|Medio|Ottimo|
+|:--|:--|:--|
+|O(n)|O(log n)|O(log n)|
+
+||
+|:--|
+|`TREE successorNode(TREE t)`                                                     |
+```pseudo
+if t == nil then
+ | return t
+ -
+if t.right != nil then % Caso 1
+ | return min(t.right)
+else % Caso 2
+ | TREE p = t.parent
+ | while p != nil and t == p.right do
+ |  | t = p
+ |  | p = p.parent
+ |  -
+ | return p
+ -
+```
+
+### insertNode
+
+|Pessimo|Medio|Ottimo|
+|:--|:--|:--|
+|O(n)|O(log n)|O(log n)|
+
+||
+|:--|
+|`TREE insertNode(TREE T, ITEM k, ITEM v)`                                      |
+```pseudo
+TREE p = nil % Padre
+TREE u = T
+while u != nil and u.key != k do % Cerca posizione inserimento
+ | p = u
+ | u = iif(k < u.key, u.left, u.right)
+ -
+if u != nil and u.key == k then
+ | u.value = v % Chiave già presente
+else
+ | TREE new = TREE(k, v) % Crea un nodo coppia chiave-valore
+ | link(p, new, k)
+ | if p == nil then
+ |  | T = new % Primo nodo ad essere inserito
+ |  -
+ -
+return T % Restituisce albero non modificato o nuovo nodo
+```
+
+||
+|:--|
+|`link(TREE p, TREE u, ITEM k)`                                             |
+```pseudo
+if u != nil then
+ | u.parent = p % Registrazione padre
+ -
+if p != nil then
+ | if k < p.key then
+ |  | p.left = u % Attaccato come figlio sinistro
+ | else
+ |  | p.right = u % Attaccato come figlio destro
+ |  -
+ -
+```
+
+### removeNode
+
+|Pessimo|Medio|Ottimo|
+|:--|:--|:--|
+|O(n)|O(log n)|O(log n)|
+
+||
+|:--|
+|`TREE removeNode(TREE T, ITEM k)`                                      |
+
+### isRedBlack
+
+- O(n)
+- soluzione.19-08-22.A2
+
+#### Proprietà RB TREE
+
+1. La radice è nera
+2. Tutte le foglie sono nere
+3. Entrambi i figli di un nodo rosso sono neri
+4. Ogni cammino semplice da un nodo ad una delle sue foglie ha sempre lo stesso numero di nodi neri (ovvero ogni nodo nel suo sottoalbero ha i figli con la stessa altezza nera)
+
+||
+|:--|
+|`boolean isRedBlack(TREE T)`                                                  |
+```pseudo
+% Proprietà (1)
+if T.color == red then
+ | return false
+else
+ | return (blackHeight(T) > 0)
+ -
+```
+
+||
+|:--|
+|`int blackHeight(TREE T)`                                                      |
+```pseudo
+% Proprietà (2)
+if T == nil then
+ | return iif(T.color == red, -1, 1)
+ -
+% Proprietà (3)
+if t.color == red and t.parent != nil and t.parent.color == red then
+ | return -1
+ -
+% Proprietà (4)
+int bhL = blackHeight(T.left)
+int bhR = blackHeight(T.right)
+if bhL < 0 or bhR < 0 or bhL != bhR then
+ | return -1
+else
+ | return bhL + iif(t.color == black, 1, 0)
+ -
+```
+
+
+## Algoritmi alberi generici
+
+### dfs
+
+- O(n)
+
+||
+|:--|
+|`dfs(TREE t)`                                                                  |
+```pseudo
+if t != nil then
+ | % pre-order visit of node t
+ | print t
+ | TREE u = t.leftmostChild()
+ | while u != nil do
+ |  | dfs(u)
+ |  | u = u.rightSibling()
+ |  -  
+ | % post-order visit of node t
+ | print t
+ -
+```
+
+### bfs
+
+- O(n)
+
+||
+|:--|
+|`bfs(TREE t)`                                                           |
+```pseudo
+QUEUE Q = QUEUE()
+Q.enqueue(t)
+while not Q.isEmpty() do
+ | TREE u = Q.dequeue()
+ | % visita per livelli nodo u
+ | print u
+ | u = u.leftmostChild()
+ | while u != nil do
+ |  | Q.enqueue(u)
+ |  |u = u.rightSibling()
+ |  -
+ -
+```
+
+## Algoritmi grafi non orientati
+
+### cc
+
+- O(n+m)
+- handout.09-grafi.53/101
+
+||
+|:--|
+|`int[] cc(GRAPH G)`                                                            |
+```pseudo
+int[] id = new int[1...G.size()]
+foreach u in G.V() do
+ | id[u] = 0
+ -
+int counter = 0
+foreach u in G.V() do
+ | if id[u] == 0 then
+ |  | counter = counter + 1
+ |  | ccdfs(G, counter , u, id)
+ |  -
+ -
+ return id
+```
+
+||
+|:--|
+|`ccdfs(GRAPH G, int counter , NODE u, int[] id)`                                     |
+```pseudo
+id[u] = counter
+foreach v in G.adj(u) do
+if id[v] == 0 then
+ | ccdfs(G, counter , v, id)
+ -
+```
+
+### hasCycle
+
+- O(n+m)
+- handout.09-grafi.58/101
+
+||
+|:--|
+|`boolean hasCycle(GRAPH G)`                                                        |
+```pseudo
+boolean[] visited = new boolean[1...G.size()]
+foreach u in G.V() do
+ | visited[u] = false
+ -
+foreach u in G.V() do
+ | if not visited[u] then
+ |  | if hasCyclerec(G, u, null, visited) then
+ |  |  | return true
+ |  |  -
+ |  -
+ -
+return false
+```
+
+||
+|:--|
+|`boolean hasCycleRec(GRAPH G, NODE u, NODE p, boolean[] visited)`                     |
+```pseudo
+visited[u] = true
+foreach v in G.adj(u)\{p} do
+ | if visited[v] then
+ |  | return true
+ | else if hasCycleRec(G, v, u, visited) then
+ |  | return true
+ |  -
+ -
+return false
+```
+
+## Algoritmi grafi orientati
+
+
+### bfs
+
+- O(n+m)
+- handout.09-grafi.41/101
+
+||
+|:--|
+|`bfs(GRAPH G, NODE r, NODE[] parent)`                                  |
+```pseudo
+% albero bfs su vettore padri
+QUEUE Q = Queue( )
+S.enqueue(r)
+boolean[] visited = new boolean[1...G.size()]
+foreach u in G.V()\{r} do
+ | visited[u] = false
+ -
+visited[r] = true
+parent[r] = nil
+while not Q.isEmpty() do
+ | NODE u = Q.dequeue()
+ | % visita il nodo u
+ | foreach v in G.adj(u) do
+ |  | % visita l’arco (u, v)
+ |  | if not visited[v] then
+ |  |  | visited[v] = true
+ |  |  | parent[v] = u
+ |  |  | Q.enqueue(v)
+ |  |  -
+ |  -
+ -
+```
+
+### distance
+
+- O(n+m)
+- handout.09-grafi.39/101
+
+||
+|:--|
+|`distance(GRAPH G, NODE r, int[] distance)`                                        |
+```pseudo
+QUEUE Q = QUEUE()
+Q.enqueue(r)
+foreach u in G.V()\{r} do
+ | distance[u] = inf
+ -
+distance[r] = 0
+while not Q.isEmpty() do
+ | NODE u = Q.dequeue()
+ | foreach v in G.adj(u) do
+ |  | if distance[v] == inf then % Se il nodo v non è stato scoperto
+ |  |  | distance[v] = distance[u] + 1
+ |  |  | Q.enqueue(v)
+ |  |  -
+ |  -
+ -
+```
+
+### dfs
+
+- O(n+m)
+- handout.09-grafi.45/101
+
+||
+|:--|
+|`dfs(GRAPH G, NODE u, boolean[] visited)`                                          |
+```pseudo
+visited[u] = true
+% visita il nodo u (pre-order)
+foreach v in G.adj(u) do
+ | if not visited[v] then
+ |  | % visita l’arco (u, v)
+ |  | dfs(G, v, visited)
+ |  -
+ -
+% visita il nodo u (post-order)
+```
+
+### dfs-schema
+
+- O(n+m)
+- handout.09-grafi.63/101
+
+||
+|:--|
+|`dfs-schema(GRAPH G, NODE u, int &time, int[ ] dt, int[ ] ft)`                       |
+```pseudo
+% visita il nodo u (pre-order)
+time = time + 1; dt[u] = time
+foreach v in G.adj(u) do
+ | % visita l’arco (u, v) (qualsiasi)
+ | if dt[v] == 0 then
+ |  | % visita l’arco (u, v) (albero)
+ |  | dfs-schema(G, v, time, dt, ft)
+ | else if dt[u] > dt[v] and ft[v] == 0 then
+ |  | % visita l’arco (u, v) (indietro)
+ | else if dt[u] < dt[v] and ft[v] 6= 0 then
+ |  | % visita l’arco (u, v) (avanti)
+ | else
+ |  | % visita l’arco (u, v) (attraversamento)
+ |  -
+ -
+% visita il nodo u (post-order)
+time = time + 1; ft[u] = time
+```
+
+### hasCycle
+
+- O(n+m)
+- handout.09-grafi.71/101
+
+||
+|:--|
+|`boolean hasCycle(GRAPH G)`                                                     |
+```pseudo
+boolean[] visited = new boolean[1...G.size()]
+foreach u in G.V() do
+ | visited[u] = false
+ -
+foreach u in G.V() do
+ | if not visited[u] then
+ |  | if hasCyclerec(G, u, null, visited) then
+ |  |  | return true
+ |  |  -
+ |  -
+ -
+return false
+```
+
+||
+|:--|
+|`boolean hasCycleRec(GRAPH G, NODE u, int &time, int[] dt, int[] ft)`             |
+```pseudo
+time = time + 1; dt[u] = time
+foreach v in G.adj(u) do
+ | if dt[v] == 0 then
+ |  | if hasCycleRec(G, v, time, dt, ft) then
+ |  |  | return true
+ | else if dt[u] > dt[v] and ft[v] == 0 then
+ |  | return true
+ |  -
+ -
+time = time + 1; ft[u] = time
+return false
+```
+
+### topSort
+
+- O(n+m)
+- handout.09-grafi.76/101
+
+||
+|:--|
+|`STACK topSort(GRAPH G)`                                                        |
+```pseudo
+STACK S = STACK()
+boolean[] visited = boolean[1...G.size()]
+foreach u in G.V() do visited[u] = false
+foreach u in G.V() do
+ | if not visited[u] then
+ |  | ts-dfs(G, u, visited, S)
+ |  -
+ -
+return S
+```
+
+||
+|:--|
+|`ts-dfs(GRAPH G, NODE u, boolean[] visited, STACK S)`                              |
+```pseudo
+visited[u] = true
+foreach v in G.adj(u) do
+ | if not visited[v] then
+ |  | ts-dfs(G, v, visited, S)
+ |  -
+ -
+S.push(u)
+```
+
+### transpose
+
+- O(n+m)
+- handout.09-grafi.86/101
+
+||
+|:--|
+|`GRAPH transpose(GRAPH G)`                                                       |
+```pseudo
+GRAPH GT = GRAPH()
+foreach u in G.V() do
+ | GT.insertNode(u)
+ -
+foreach u in G.V() do
+ | foreach v in G.adj(u) do
+ |  | GT.insertEdge(v, u)
+ |  -
+ -
+return GT
+```
+
+### scc
+
+- O(n+m)
+- handout.09-grafi.83/101
+
+||
+|:--|
+|`int[] scc(GRAPH G)`                                                         |
+```pseudo
+STACK S = topSort(G) % First visit O(n+m)
+GT = transpose(G) % GRAPH transposal O(n+m)
+return cc(GT, S) % Second visit O(n+m)
+```
+
+||
+|:--|
+|`cc(GRAPH G, STACK S)`                                                 |
+```pseudo
+int[] id = new int[G.size()]
+foreach u in G.V() do
+ | id[u] = 0
+ -
+int counter = 0
+while not S.isEmpty() do
+ | u = S.pop()
+ | if id[u] == 0 then
+ |  | counter = counter + 1
+ |  | ccdfs(G, counter , u, id)
+ |  -
+ -
+return id
+```
+
+||
+|:--|
+|`ccdfs(GRAPH G, int counter , NODE u, int[ ] id)`                                   |
+```pseudo
+id[u] = counter
+foreach v in G.adj(u) do
+ | if id[v] == 0 then
+ |  | ccdfs(G, counter , v, id)
+ |  -
+ -
+```
+
+## Algoritmi divide-et-impera
+
+### hanoi
+
+- O($2^n$)
+- handout.12-divide.10/34
+
+||
+|:--|
+|`hanoi(int n, int src, int dest, int middle)`                                        |
+```pseudo
+if n == 1 then
+ | print src -> dest
+else
+ | hanoi(n - 1, src, middle, dest)
+ | print src -> dest
+ | hanoi(n - 1, middle, dest, src)
+ -
+```
+
+## Algoritmi misc.
+
+### maxSum
+
+- O(n)
+
+
+
+||
+|:--|
+|`maxSum(int[] A, int n)`                                                          |
+```pseudo
+maxSoFar = 0
+maxHere = 0
+for i=1 to n do
+ | maxHere = max(0, maxSoFar+A[i])
+ | maxSoFar = max(maxSoFar, maxHere)
+return maxSoFar
+```
+
+
+## Studio equazioni di ricorrenza
+
+#### Template
+
+$T(n)=a_1T(n/b_1)+a_2T(n/b_2)+f(n)$
+
+*i) $T(n)$ crescente e positiva*  
+*ii) $T(n) \geq f(n) \implies T(n) = \Omega(f(n))$*  
+*iii) $T(n) \leq (a_1+a_2)T(n/min(b_1, b_2)) \implies T(n) = O(...)$ per il MT*  
+*iv) $T(n) \geq (a_1+a_2)T(n/max(b_1, b_2)) \implies T(n) = \Omega(...)$ per il MT*  
+*v) Vogliamo dimostrare che $T(n) = O(f(n))$, ovvero che con $c>0, m\geq 0$ vale $T(n) \leq cf(n) \forall n \geq m$*  
+
+- *Base: *
+
+- *Ipotesi induttiva:*
+
+- *Passo induttivo:*
+
+
+### Metodo dell'albero di ricorsione
+
+|**Livello**|**Dim. input**|**Costo per chiamata**|**N. chiamate**|**Costo livello**|
+|---|----|-------|----|----|
+
+### Master Theorems
+
+||
+|:--|
+|**TEO.1 Ricorrenze lineari con partizione bilanciata**                              |
+*Siano $a$ e $b$ costanti intere tali che $a \geq 1$ e $b \geq 2$. Siano poi $c$ e $\beta$ costanti reali tali che $c > 0$ e $\beta \geq 0$. Sia $T(n)$ una funzione di ricorrenza della seguente forma:*
+
+\begin{equation}
+T(n) =
+  \left\{ \begin{array}{lcr}
+
+  aT(n/b)+cn^\beta & \mbox{se} & n>1 \\
+  d & \mbox{se} & n\leq 1
+
+  \end{array}\right.
+\end{equation}
+
+*Allora, posto $\alpha := \frac{\log{a}}{\log{b}} = \log_{b}{a}$ vale:*
+
+\begin{equation}
+T(n) =
+  \left\{ \begin{array}{lcr}
+
+  \Theta(n^{\alpha}) & \mbox{se} & \alpha > \beta \\
+  \Theta(n^{\alpha}\log{n}) & \mbox{se} & \alpha = \beta \\
+  \Theta(n^{\beta})& \mbox{se} & \alpha < \beta
+
+  \end{array}\right.
+\end{equation}
+
+||
+|:--|
+|**TEO.2 Ricorrenze lineari con partizione bilanciata -- Est.**                              |
+*Siano $a \geq 1$, $b > 1$ e $f(n)$ una funzione asintoticamente positiva. Sia poi $T(n)$ una funzione di ricorrenza della seguente forma:*
+
+\begin{equation}
+T(n) =
+  \left\{ \begin{array}{lcr}
+
+  aT(n/b)+f(n) & \mbox{se} & n>1 \\
+  d & \mbox{se} & n\leq 1
+
+  \end{array}\right.
+\end{equation}
+
+*Allora vale:*  
+
+1) *Se $\exists \epsilon>0 : f(n)=O(n^{\log_{b}(a)-\epsilon})$*  
+*allora $T(n)=\Theta(n^{\log_{b}{a}})$*  
+
+2) *Se $f(n)= \Theta(n\log_b{a})$*  
+*allora $T(n)=\Theta(f(n)\log{n})$*  
+
+3) *Se $\exists \epsilon > 0 : f(n)= \Omega(n^{\log_{b}{a}+\epsilon}) ∧ \exists c : 0<c<1, \exists m \geq 0 : af(n/b) \leq cf (n) \forall n \geq m$*  
+*allora $T(n) = \Theta(f(n))$*
+
+||
+|:--|
+|**TEO.3 Ricorrenze lineari di ordine costante**                              |
+*Siano $a_1, a_2,... , a_h$ costanti intere non negative con $h$ costante e positivo. Siano poi $c$ e $\beta$ costanti reali tali che $c > 0$ e $\beta \geq 0$. Sia infine $T(n)$ definita dalla seguente funzione di ricorrenza:*
+
+\begin{equation}
+T(n) =
+  \left\{ \begin{array}{lcr}
+
+  \sum_{i=1}^{h}{(a_iT(n-i))} + cn^{\beta} & \mbox{se} & n>m \\
+  \Theta(1) & \mbox{se} & n\leq m \leq h
+
+  \end{array}\right.
+\end{equation}
+
+*Allora, posto a = $\sum_{i=1}^{h}{a_i}$ vale:*  
+1) $a = 1 \implies T(n) = \Theta(n^{\beta+1})$  
+2) $a \geq 2 \implies T(n) = \Theta(a^n \cdot n^\beta)$
+
+### Proprietà dei logaritmi
+
+|||
+|:--|--:|
+|1. $\log_{a}{a} = 1$|*Proprietà fondamentale*|
+|||
+|2. $\log_{a}{1} = 0$|*Proprietà fondamentale*|
+|||
+|3. $\log_{a}{b\cdot c} = \log_{a}{b} + \log_{a}{c}$|*Teorema del prodotto*|
+|||
+|4. $\log_{a}{b\cdot c} = \log_{a}{b} - \log_{a}{c}$|*Teorema del rapporto*|
+|||
+|5. $\log_{a}{b^c} = c \cdot \log_{a}{b}$|*Teorema della potenza*|
+|||
+|6. $\log_{a^n}{bm} = \frac{m\cdot \log_{a}{b}}{n}$|*Potenza alla base e all'argomento*|
+|||
+|7. $\log_{\frac{1}{a}}{b} = - \log_{a}{b}$|*Base frazionaria*|
+|||
+|8. $\log_{a}{\frac{1}{b}} = - \log_{b}{a}$|*Argomento frazionario*|
+|||
+|9. $\log_{\frac{1}{a}}{\frac{1}{b}} = \log_{a}{b}$|*Base e argomento frazionario*|
+|||
+|10. $\log_{a}{b} = \frac{1}{\log_{b}{a}}$|*Commutazione base e argomento*|
+|||
+|11. $\log_{a}{b} = \frac{\log_{c}{b}}{\log_{c}{a}}$|*Cambio di base*|
+|||
+|12. $a^{\log_{b}{c}} = c^{\log_{b}{a}}$|*Scambio base-argomento*|
+
+### Serie matematiche convergenti
+
+|||
+|:--|--:|
+|1. $\sum_{k=0}^{+\infty}{k} = \frac{k(k+1)}{2}$|*Formula di Gauss*|
+|||
+|2. $\sum_{k=0}^{n}{q^k} = \frac{1-q^{n+1}}{1-q} = \frac{q^{n+1}-1}{q-1} \forall q : |q| \geq 1$|*Serie geometrica finita*|
+|||
+|3. $\sum_{k=0}^{n}{q^k} = \frac{1}{1-q} \forall q : |q| < 1$|*Serie geometrica finita*|
+|||
+|4. $\sum_{k=0}^{+\infty}{q^k} = \frac{1}{1-q} \forall |q| < 1$|*Serie geometrica infinita decrescente*|
+|||
+|5. $\sum_{k=0}^{+\infty}{kq^k} = \frac{q}{(1-q)^2} \forall |q| < 1$|*Serie geometrica infinita decrescente*|
+|||
+|6. $\sum_{k=1}^{+\infty}{\frac{1}{k(k+1)}} = \sum_{k=1}^{+\infty}{(\frac{1}{k} - \frac{1}{k+1})} = 1$|*Serie di Mengoli*|
