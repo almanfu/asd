@@ -18,6 +18,9 @@ syntax-definitions:
   - .pseudo.xml
 syntax-highlight: github
 ---
+\newcommand{\myor}{\vee}
+\newcommand{\myand}{\wedge}
+\newcommand{\iif}{\Leftrightarrow}
 
 \pagebreak
 ## Pseudo Linguaggio
@@ -1008,6 +1011,41 @@ foreach v in G.adj(u) do
 
 ## Algoritmi divide-et-impera
 
+### binarySearch
+
+||
+|:--|
+|`int binarySearch(int[] A, int v, int i, int j)`                                        |
+```pseudo
+if i > j then
+ | return 0
+else if i == j and A[i] == v then
+ | return i
+else
+ | int m = floor((i+j)/2)
+ | if A[m] < v then
+ |  | return binarySearch(A, v, m+1, j)
+ | else
+ |  | return binarySearch(A, v, i, m)
+ |  -
+ -
+```
+- $\forall ~ binarySearch(A,v,i,j), v \in A \iif v \in A[i...j]$
+- $\forall ~ binarySearch(A,v,i,j), \forall h \in A[1...i-1], h < v ~ \myand  ~ \forall k \in A[i...j], k \geq v$
+
+La seconda invariante ci dice qualcosa di più: con questo algoritmo non troviamo un'occorrenza qualsiasi di v; bensì troviamo la **prima** occorrenza di v. (Con `ceil()` troveremmo l'ultima -- ma andrebbero modificati gli indici delle chiamate ricorsive).
+Dimostriamo quindi la seconda invariante per induzione.
+
+***Base:** con $i=1, j=n$ vale $A[i...j]=A$, dunque $A[1...0] = \emptyset = A[n...n+1]$ ed entrambe le condizioni sono soddisfatte*
+
+***Passo induttivo:** Supponiamo che per $binarySearch(A,v,i,j)$ valga l'invariante e dimostriamo che vale anche per l'invocazione successiva, $binarySearch(A,v,i',j')$*
+
+  *1) Se $i > j$ allora $A[i...j] = \emptyset$ e la funzione termina*  
+  *2) Se $i = j$ allora $v \in A \iif v = A[i]$*  
+  *Posto $m:=\left\lfloor (i+j)/2\right\rfloor$*  
+  *3) Se $A[m] < v$ allora $i' := m+1, j' := j$ e certamente il passo induttivo è verificato*  
+  *4) Se $A[m] \geq v$ allora $i' := i, j' := m$ e certamente il passo induttivo è verificato*  
+
 ### hanoi
 
 - O($2^n$)
@@ -1031,8 +1069,6 @@ else
 ### maxSum
 
 - O(n)
-
-
 
 ||
 |:--|
