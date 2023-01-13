@@ -165,7 +165,7 @@ Sia n il numero di elementi nell'insieme e m la capacità dell'insieme.
 |Lista non ordinata|O(n)|O(n)|O(n)|O(n)|O(n)|
 |Lista ordinata|O(n)|O(n)|O(n)|O(1)|O(n)|
 |Array ordinato|O(log n)|O(n)|O(n)|O(1)|O(n)|
-|RB TREE|O(log n)|O(log n)|O(log n)|O(log n)|O(n)|
+|RB Tree|O(log n)|O(log n)|O(log n)|O(log n)|O(n)|
 |Hash Table|O(1)|O(1)|O(1)|O(m)|O(m)|
 
 ### Dizionario
@@ -188,7 +188,7 @@ remove(ITEM k)
 |Array non ordinato|O(n)|O(1),O(n)|O(1)|O(n)|
 |Array ordinato|O(log n)|O(n)|O(n)|O(n)|
 |Lista non ordinata|O(n)|O(1),O(n)|O(n)|O(n)|
-|RB TREE|O(log n)|O(log n)|O(log n)|O(n)|
+|RB Tree|O(log n)|O(log n)|O(log n)|O(n)|
 |Hash Table|O(1)|O(1)|O(1)|O(n)|
 
 ### Priority Queue
@@ -218,8 +218,8 @@ decrease(PRIORITYITEM y, int p)
 |Array/Lista non ordinato|O(n)|O(n)|O(n)|O(n)|
 |Array ordinato|O(1)|O(n)|O(n)|O(log n)|
 |Lista ordinata|O(1)|O(1)|O(n)|O(n)|
-|RB TREE|O(log n)|O(log n)|O(log n)|O(log n)|
-|Heap TREE|O(1)|O(log n)|O(log n)|O(log n)|
+|RB Tree|O(log n)|O(log n)|O(log n)|O(log n)|
+|Heap Tree|O(1)|O(log n)|O(log n)|O(log n)|
 
 ### Albero binario
 
@@ -307,7 +307,9 @@ removeEdge(NODE u, NODE v)
 
 ## Algoritmi ordinamento
 
-### Selection Sort
+### selectionSort
+
+- handout.2-analisi.49/65
 
 |Pessimo|Medio|Ottimo|
 |:--|:--|:--|
@@ -315,13 +317,17 @@ removeEdge(NODE u, NODE v)
 
 ||
 |:--|
-|`SelectionSort(ITEM[ ] A, int n)`                                                  |
+|`selectionSort(ITEM[ ] A, int n)`                                                  |
 ```pseudo
 for i = 1 to n - 1 do
  | int min = min(A, i, n)
  | A[i] <-> A[min]
  -
 ```
+
+#### min
+
+- O(n)
 
 ||
 |:--|
@@ -338,15 +344,17 @@ for j = i + 1 to n do
 return min
 ```
 
-### Insertion Sort
+### insertionSort
 
 |Pessimo|Medio|Ottimo|
 |:--|:--|:--|
 |O($n^2$)|O($n^2$)|O(n)|
 
+- handout.2-analisi.52/65
+
 ||
 |:--|
-|`insertionSort(ITEM[ ] A, int n)`                                                 |
+|`insertionSort(ITEM[] A, int n)`                                                 |
 ```pseudo
 for i = 2 to n do
  | ITEM temp = A[i]
@@ -359,28 +367,33 @@ for i = 2 to n do
  A[j] = temp
 ```
 
-### Merge Sort
+### mergeSort
 
 |Pessimo|Medio|Ottimo|
 |:--|:--|:--|
 |O(n·log n)|O(n·log n)|O(n·log n)|
 
-||
-|:--|
-|`MergeSort(ITEM A[ ], int first, int last)`                                          |
-```pseudo
-% O(n)
-if first < last then
- | int mid = b(first + last)/2c
- | MergeSort(A, first, mid)
- | MergeSort(A, mid + 1, last)
- | Merge(A, first, last, mid)
- -
-```
+- handout.2-analisi.61/65
 
 ||
 |:--|
-|`Merge(ITEM A[ ], int first, int last, int mid)`                                       |
+|`mergeSort(ITEM A[ ], int first, int last)`                                          |
+```pseudo
+if first < last then
+ | int mid = b(first + last)/2c
+ | mergeSort(A, first, mid)
+ | mergeSort(A, mid + 1, last)
+ | merge(A, first, last, mid)
+ -
+```
+
+#### merge
+
+- O(n)
+
+||
+|:--|
+|`merge(ITEM A[ ], int first, int last, int mid)`                                       |
 ```pseudo
 int i, j, k, h
 i = first
@@ -406,17 +419,68 @@ for j = first to k - 1 do
  -
 ```
 
-### Quick Sort
+### quickSort
+
+- handout.12-divide.12/34
 
 |Pessimo|Medio|Ottimo|
 |:--|:--|:--|
 |O($n^2$)|O(n·log n)|O(n·log n)|
 
-### Heap Sort
+||
+|:--|
+|`quickSort(ITEM[] A, int n)`                                                             |
+
+### heapSort
 
 |Pessimo|Medio|Ottimo|
 |:--|:--|:--|
 |O(n·log n)|O(n·log n)|O(n·log n)|
+
+- handout.10-strutture-speciali.16/64
+
+||
+|:--|
+|`heapSort(ITEM[] A, int n)`                                                             |
+```pseudo
+heapBuild(A, n)
+for i=n downto 2 do
+ | swap(A, 1, i) % L'elemento massimo viene spostato in fondo
+ | maxHeapRestore(A, 1, i-1)
+ -
+```
+
+#### maxHeapRestore
+
+- O(log n)
+
+||
+|:--|
+|`maxHeapRestore(ITEM[] A, int i, int dim)`                                             |
+```pseudo
+int max = i % Sceglie la radice
+if l(i) <= and dim A[l(i)] > A[max] then
+ | max = l(i)
+if r(i) <= and dim A[r(i)] > A[max] then
+ | max = r(i)
+if i != max then % Se i == max l'albero è apposto
+ | swap(A, i, max) % Scambia la radice e il maggiore tra i suoi figli
+ | maxHeapRestore(A, max, dim) % Controlla il sottoalbero con radice max
+ -
+```
+
+#### heapBuild
+
+- O(n)
+
+||
+|:--|
+|`heapBuild(ITEM[] A, int n)`                                                         |
+```pseudo
+for i = floor(n/2) downto 1 do
+ | maxHeapRestore(A, i, n)
+ -
+```
 
 ## Algoritmi alberi binari
 
@@ -600,7 +664,7 @@ if p != nil then
 - O(n)
 - soluzione.19-08-22.A2
 
-#### Proprietà RB TREE
+#### Proprietà RB Tree
 
 1. La radice è nera
 2. Tutte le foglie sono nere
@@ -1013,9 +1077,35 @@ foreach v in G.adj(u) do
 
 ### binarySearch
 
+- O (log n)
+- handout.01-introduzione.20/27
+
 ||
 |:--|
 |`int binarySearch(int[] A, int v, int i, int j)`                                        |
+```pseudo
+if i > j then
+ | return 0
+else
+ | int m = floor((i+j)/2)
+ | if S[m] == v then
+ |  | return m
+ | else if S[m] < v then
+ |  | return binarySearch(S, v, m+1, j)
+ | else
+ |  | return binarySearch(S, v, i, m-1)
+ |  -
+ -
+```
+- $\forall ~ binarySearch(A,v,i,j), v \in A \iif v \in A[i...j]$
+
+### searchFirst
+
+- O(log n)
+
+||
+|:--|
+|`int searchFirst(int[] A, int v, int i, int j)`                                        |
 ```pseudo
 if i > j then
  | return 0
@@ -1024,17 +1114,16 @@ else if i == j and A[i] == v then
 else
  | int m = floor((i+j)/2)
  | if A[m] < v then
- |  | return binarySearch(A, v, m+1, j)
+ |  | return searchFirst(A, v, m+1, j)
  | else
- |  | return binarySearch(A, v, i, m)
+ |  | return searchFirst(A, v, i, m)
  |  -
  -
 ```
-- $\forall ~ binarySearch(A,v,i,j), v \in A \iif v \in A[i...j]$
-- $\forall ~ binarySearch(A,v,i,j), \forall h \in A[1...i-1], h < v ~ \myand  ~ \forall k \in A[i...j], k \geq v$
+- $\forall ~ searchFirst(A,v,i,j), \forall h \in A[1...i-1], h < v ~ \myand  ~ \forall k \in A[i...j], k \geq v$
 
-La seconda invariante ci dice qualcosa di più: con questo algoritmo non troviamo un'occorrenza qualsiasi di v; bensì troviamo la **prima** occorrenza di v. (Con `ceil()` troveremmo l'ultima -- ma andrebbero modificati gli indici delle chiamate ricorsive).
-Dimostriamo quindi la seconda invariante per induzione.
+Con questo algoritmo troviamo la **prima** (più a sinistra) occorrenza di v.
+Procediamo quindi per induzione.
 
 ***Base:** con $i=1, j=n$ vale $A[i...j]=A$, dunque $A[1...0] = \emptyset = A[n...n+1]$ ed entrambe le condizioni sono soddisfatte*
 
@@ -1045,6 +1134,31 @@ Dimostriamo quindi la seconda invariante per induzione.
   *Posto $m:=\left\lfloor (i+j)/2\right\rfloor$*  
   *3) Se $A[m] < v$ allora $i' := m+1, j' := j$ e certamente il passo induttivo è verificato*  
   *4) Se $A[m] \geq v$ allora $i' := i, j' := m$ e certamente il passo induttivo è verificato*  
+
+### searchLast
+
+- O(log n)
+
+||
+|:--|
+|`int searchLast(int[] A, int v, int i, int j)`                                        |
+```pseudo
+if i > j then
+ | return 0
+else if i == j and A[i] == v then
+ | return i
+else
+ | int m = ceil((i+j)/2)
+ | if A[m] <= v then
+ |  | return searchLast(A, v, m, j)
+ | else
+ |  | return searchLast(A, v, i, m-1)
+ |  -
+ -
+```
+- $\forall ~ searchLast(A,v,i,j), \forall h \in A[j+1...n], h > v ~ \myand  ~ \forall k \in A[i...j], k \geq v$
+
+Con questo algoritmo troviamo l'**ultima** (più a destra) occorrenza di v.
 
 ### hanoi
 
@@ -1091,8 +1205,8 @@ $T(n)=a_1T(n/b_1)+a_2T(n/b_2)+f(n)$
 
 *i) $T(n)$ crescente e positiva*  
 *ii) $T(n) \geq f(n) \implies T(n) = \Omega(f(n))$*  
-*iii) $T(n) \leq (a_1+a_2)T(n/min(b_1, b_2)) \implies T(n) = O(...)$ per il MT*  
-*iv) $T(n) \geq (a_1+a_2)T(n/max(b_1, b_2)) \implies T(n) = \Omega(...)$ per il MT*  
+*iii) $T(n) \leq (a_1+a_2)T'(n/min(b_1, b_2)) \implies T(n) = O(...)$ per il MT*  
+*iv) $T(n) \geq (a_1+a_2)T'(n/max(b_1, b_2)) \implies T(n) = \Omega(...)$ per il MT*  
 *v) Vogliamo dimostrare che $T(n) = O(f(n))$, ovvero che con $c>0, m\geq 0$ vale $T(n) \leq cf(n) \forall n \geq m$*  
 
 - *Base: *
