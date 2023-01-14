@@ -1107,10 +1107,8 @@ else
 |:--|
 |`int searchFirst(int[] A, int v, int i, int j)`                                        |
 ```pseudo
-if i > j then
- | return 0
-else if i == j and A[i] == v then
- | return i
+if i == j then
+ | return iif(A[i] == v, i, 0)
 else
  | int m = floor((i+j)/2)
  | if A[m] < v then
@@ -1120,20 +1118,28 @@ else
  |  -
  -
 ```
-- $\forall ~ searchFirst(A,v,i,j), \forall h \in A[1...i-1], h < v ~ \myand  ~ \forall k \in A[i...j], k \geq v$
+- $\forall ~ searchFirst(A,v,i,j), \forall h \in A[1...i-1], h < v ~ \myand  ~ j<n \implies \forall k \in A[j...n], k \geq v$
 
-Con questo algoritmo troviamo la **prima** (più a sinistra) occorrenza di v.
+Con questo algoritmo troviamo la **prima** (più a sinistra) occorrenza di $v$, se $v \in A$.
 Procediamo quindi per induzione.
 
-***Base:** con $i=1, j=n$ vale $A[i...j]=A$, dunque $A[1...0] = \emptyset = A[n...n+1]$ ed entrambe le condizioni sono soddisfatte*
+***Base:** con $i=1, j=n$ vale $A[i...j]=A$, dunque $A[1...0] = \emptyset$ ed entrambe le condizioni sono soddisfatte*
 
-***Passo induttivo:** Supponiamo che per $binarySearch(A,v,i,j)$ valga l'invariante e dimostriamo che vale anche per l'invocazione successiva, $binarySearch(A,v,i',j')$*
+***Passo induttivo:** Supponiamo che per $searchFirst(A,v,i,j)$ valga l'invariante e dimostriamo che vale anche per l'invocazione successiva, $searchFirst(A,v,i',j')$*
 
-  *1) Se $i > j$ allora $A[i...j] = \emptyset$ e la funzione termina*  
-  *2) Se $i = j$ allora $v \in A \iif v = A[i]$*  
-  *Posto $m:=\left\lfloor (i+j)/2\right\rfloor$*  
-  *3) Se $A[m] < v$ allora $i' := m+1, j' := j$ e certamente il passo induttivo è verificato*  
-  *4) Se $A[m] \geq v$ allora $i' := i, j' := m$ e certamente il passo induttivo è verificato*  
+  ***A)** Sia $i = j$, per ip. ind. $\forall h \in A[1...i], h < v$*  
+  *1) Se $i = j = n$ allora vale anche $\forall h \in A[1...n-1], h < v$ ed $v \in A \iif A[n] = v$, e se $A[i]=v$, $i$ è la prima occorrenza*  
+  *2) Se $i = j < n$ allora vale anche $\forall k \in A[i...n], k \geq v$, dunque $v \in A \iif A[i] = v$ poiché A ordinato, e se $A[i]=v$, $i$ è la prima occorrenza*  
+
+  ***B)** Sia $i \neq j \implies i < j$. Posto $m:=\left\lfloor (i+j)/2\right\rfloor$, certamente $i \leq m < j$*  
+  *1) Se $A[m] < v$, posti $i' := m+1, j' := j$ vale*  
+  *1. A ordinato e $\forall h \in A[1...m=i'-1], h < v$*  
+  *2. Per ip. ind. $j'=j<n \implies \forall k \in A[j...n], k \geq v$*  
+  *2) Se $A[m] \geq v$, posti $i' := i, j' := m$ vale*  
+  *1. Per ip. ind. $\forall h \in A[1...i'=i], h < v$*  
+  *2. A ordinato e $j'=m<j\leq n$ ma infatti $\forall k \in A[j'=m...n], k \geq v$*  
+
+Rimane da dimostrare che la successione degli $n_l = j_l-i_l$ è monotona decrescente -- proprietà fondamentale che assicura la terminazione dell'algoritmo.
 
 ### searchLast
 
@@ -1143,10 +1149,8 @@ Procediamo quindi per induzione.
 |:--|
 |`int searchLast(int[] A, int v, int i, int j)`                                        |
 ```pseudo
-if i > j then
- | return 0
-else if i == j and A[i] == v then
- | return i
+if i == j then
+ | return iif(A[i] == v, i, 0)
 else
  | int m = ceil((i+j)/2)
  | if A[m] <= v then
@@ -1156,9 +1160,9 @@ else
  |  -
  -
 ```
-- $\forall ~ searchLast(A,v,i,j), \forall h \in A[j+1...n], h > v ~ \myand  ~ \forall k \in A[i...j], k \geq v$
+- $\forall ~ searchLast(A,v,i,j), \forall h \in A[j+1...n], h > v ~ \myand  ~ i>1 \implies \forall k \in A[1...i], k \leq v$
 
-Con questo algoritmo troviamo l'**ultima** (più a destra) occorrenza di v.
+Con questo algoritmo troviamo l'**ultima** (più a destra) occorrenza di $v$, se $v \in A$.
 
 ### hanoi
 

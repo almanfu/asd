@@ -1,0 +1,803 @@
+desc: --heap=yes --stacks=yes --detailed-freq=10 --massif-out-file=temp.massif
+cmd: ./temp.out
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=1528829451
+mem_heap_B=26673528
+mem_heap_extra_B=7493928
+mem_stacks_B=752
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=4662502312
+mem_heap_B=118379792
+mem_heap_extra_B=23511056
+mem_stacks_B=1016
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=6811596358
+mem_heap_B=115369816
+mem_heap_extra_B=33759232
+mem_stacks_B=1136
+heap_tree=detailed
+n3: 115369816 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 67518336 0x10B4EF: __gnu_cxx::new_allocator<std::__detail::_Hash_node<int, false> >::allocate(unsigned long, void const*) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 67518336 0x10B11F: std::allocator_traits<std::allocator<std::__detail::_Hash_node<int, false> > >::allocate(std::allocator<std::__detail::_Hash_node<int, false> >&, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n1: 67518336 0x10AC2B: std::__detail::_Hash_node<int, false>* std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_node<int>(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+    n1: 67518336 0x10A536: std::__detail::_Hash_node<int, false>* std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > >::operator()<int>(int&&) const (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n1: 67518336 0x109F8D: std::pair<std::__detail::_Node_iterator<int, true, false>, bool> std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<int, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > >(int&&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+      n1: 67518336 0x109B57: std::__detail::_Insert<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true>, true>::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+       n1: 67518336 0x1098E3: std::unordered_set<int, std::hash<int>, std::equal_to<int>, std::allocator<int> >::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+        n1: 67518336 0x109444: fun(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+         n0: 67518336 0x1095FA: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n1: 47738776 0x10B421: __gnu_cxx::new_allocator<std::__detail::_Hash_node_base*>::allocate(unsigned long, void const*) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 47738776 0x10AF8A: std::allocator_traits<std::allocator<std::__detail::_Hash_node_base*> >::allocate(std::allocator<std::__detail::_Hash_node_base*>&, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n1: 47738776 0x10A936: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+    n2: 47738776 0x10A226: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_allocate_buckets(unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n1: 47738776 0x10B198: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash_aux(unsigned long, std::integral_constant<bool, true>) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+      n1: 47738776 0x10ACD8: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash(unsigned long, unsigned long const&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+       n1: 47738776 0x10A5D8: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert_unique_node(unsigned long, unsigned long, std::__detail::_Hash_node<int, false>*, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+        n1: 47738776 0x109FB0: std::pair<std::__detail::_Node_iterator<int, true, false>, bool> std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<int, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > >(int&&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+         n1: 47738776 0x109B57: std::__detail::_Insert<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true>, true>::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+          n1: 47738776 0x1098E3: std::unordered_set<int, std::hash<int>, std::equal_to<int>, std::allocator<int> >::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+           n1: 47738776 0x109444: fun(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+            n0: 47738776 0x1095FA: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 112704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=4
+#-----------
+time=8221373224
+mem_heap_B=132333256
+mem_heap_extra_B=42240952
+mem_stacks_B=768
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=10280152079
+mem_heap_B=240270560
+mem_heap_extra_B=47741408
+mem_stacks_B=1096
+heap_tree=detailed
+n3: 240270560 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 144680288 0x10B421: __gnu_cxx::new_allocator<std::__detail::_Hash_node_base*>::allocate(unsigned long, void const*) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 144680288 0x10AF8A: std::allocator_traits<std::allocator<std::__detail::_Hash_node_base*> >::allocate(std::allocator<std::__detail::_Hash_node_base*>&, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n1: 144680288 0x10A936: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+    n2: 144680288 0x10A226: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_allocate_buckets(unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n1: 144680288 0x10B198: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash_aux(unsigned long, std::integral_constant<bool, true>) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+      n1: 144680288 0x10ACD8: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash(unsigned long, unsigned long const&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+       n1: 144680288 0x10A5D8: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert_unique_node(unsigned long, unsigned long, std::__detail::_Hash_node<int, false>*, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+        n1: 144680288 0x109FB0: std::pair<std::__detail::_Node_iterator<int, true, false>, bool> std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<int, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > >(int&&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+         n1: 144680288 0x109B57: std::__detail::_Insert<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true>, true>::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+          n1: 144680288 0x1098E3: std::unordered_set<int, std::hash<int>, std::equal_to<int>, std::allocator<int> >::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+           n1: 144680288 0x109444: fun(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+            n0: 144680288 0x1095FA: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 95477568 0x10B4EF: __gnu_cxx::new_allocator<std::__detail::_Hash_node<int, false> >::allocate(unsigned long, void const*) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 95477568 0x10B11F: std::allocator_traits<std::allocator<std::__detail::_Hash_node<int, false> > >::allocate(std::allocator<std::__detail::_Hash_node<int, false> >&, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n1: 95477568 0x10AC2B: std::__detail::_Hash_node<int, false>* std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_node<int>(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+    n1: 95477568 0x10A536: std::__detail::_Hash_node<int, false>* std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > >::operator()<int>(int&&) const (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n1: 95477568 0x109F8D: std::pair<std::__detail::_Node_iterator<int, true, false>, bool> std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<int, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > >(int&&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+      n1: 95477568 0x109B57: std::__detail::_Insert<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true>, true>::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+       n1: 95477568 0x1098E3: std::unordered_set<int, std::hash<int>, std::equal_to<int>, std::allocator<int> >::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+        n1: 95477568 0x109444: fun(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+         n0: 95477568 0x1095FA: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n0: 112704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=6
+#-----------
+time=12254011395
+mem_heap_B=212985064
+mem_heap_extra_B=57968000
+mem_stacks_B=960
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=13944657030
+mem_heap_B=233541576
+mem_heap_extra_B=68246256
+mem_stacks_B=1072
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=16564245361
+mem_heap_B=264075416
+mem_heap_extra_B=83513176
+mem_stacks_B=824
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=18261157013
+mem_heap_B=283040088
+mem_heap_extra_B=92995512
+mem_stacks_B=872
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=20442730597
+mem_heap_B=487795200
+mem_heap_extra_B=96948048
+mem_stacks_B=1016
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=22017594530
+mem_heap_B=391826712
+mem_heap_extra_B=97432000
+mem_stacks_B=920
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=23986174483
+mem_heap_B=415453528
+mem_heap_extra_B=109245408
+mem_stacks_B=944
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=25364180444
+mem_heap_B=431628584
+mem_heap_extra_B=117332936
+mem_stacks_B=896
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=27529618405
+mem_heap_B=456447832
+mem_heap_extra_B=129742560
+mem_stacks_B=752
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=29420021848
+mem_heap_B=477538648
+mem_heap_extra_B=140287968
+mem_stacks_B=480
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=32274839418
+mem_heap_B=508398168
+mem_heap_extra_B=155717728
+mem_stacks_B=832
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=33970078398
+mem_heap_B=526153176
+mem_heap_extra_B=164595232
+mem_stacks_B=1040
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=35775207721
+mem_heap_B=544631912
+mem_heap_extra_B=173834600
+mem_stacks_B=944
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=37700952863
+mem_heap_B=563858136
+mem_heap_extra_B=183447712
+mem_stacks_B=840
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=39760771223
+mem_heap_B=583891992
+mem_heap_extra_B=193464640
+mem_stacks_B=832
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=42406867007
+mem_heap_B=990445328
+mem_heap_extra_B=196864496
+mem_stacks_B=1016
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=44613863577
+mem_heap_B=990445328
+mem_heap_extra_B=196864496
+mem_stacks_B=1016
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=46820860134
+mem_heap_B=797294776
+mem_heap_extra_B=198714240
+mem_stacks_B=872
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=48476107542
+mem_heap_B=814656152
+mem_heap_extra_B=207394928
+mem_stacks_B=912
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=50683104121
+mem_heap_B=837261256
+mem_heap_extra_B=218697480
+mem_stacks_B=872
+heap_tree=detailed
+n3: 837261256 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 437389776 0x10B4EF: __gnu_cxx::new_allocator<std::__detail::_Hash_node<int, false> >::allocate(unsigned long, void const*) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 437389776 0x10B11F: std::allocator_traits<std::allocator<std::__detail::_Hash_node<int, false> > >::allocate(std::allocator<std::__detail::_Hash_node<int, false> >&, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n1: 437389776 0x10AC2B: std::__detail::_Hash_node<int, false>* std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_node<int>(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+    n1: 437389776 0x10A536: std::__detail::_Hash_node<int, false>* std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > >::operator()<int>(int&&) const (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n1: 437389776 0x109F8D: std::pair<std::__detail::_Node_iterator<int, true, false>, bool> std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<int, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > >(int&&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+      n1: 437389776 0x109B57: std::__detail::_Insert<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true>, true>::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+       n1: 437389776 0x1098E3: std::unordered_set<int, std::hash<int>, std::equal_to<int>, std::allocator<int> >::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+        n1: 437389776 0x109444: fun(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+         n0: 437389776 0x1095FA: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n1: 399758776 0x10B421: __gnu_cxx::new_allocator<std::__detail::_Hash_node_base*>::allocate(unsigned long, void const*) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 399758776 0x10AF8A: std::allocator_traits<std::allocator<std::__detail::_Hash_node_base*> >::allocate(std::allocator<std::__detail::_Hash_node_base*>&, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n1: 399758776 0x10A936: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+    n2: 399758776 0x10A226: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_allocate_buckets(unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n1: 399758776 0x10B198: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash_aux(unsigned long, std::integral_constant<bool, true>) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+      n1: 399758776 0x10ACD8: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash(unsigned long, unsigned long const&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+       n1: 399758776 0x10A5D8: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert_unique_node(unsigned long, unsigned long, std::__detail::_Hash_node<int, false>*, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+        n1: 399758776 0x109FB0: std::pair<std::__detail::_Node_iterator<int, true, false>, bool> std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<int, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > >(int&&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+         n1: 399758776 0x109B57: std::__detail::_Insert<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true>, true>::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+          n1: 399758776 0x1098E3: std::unordered_set<int, std::hash<int>, std::equal_to<int>, std::allocator<int> >::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+           n1: 399758776 0x109444: fun(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+            n0: 399758776 0x1095FA: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 112704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=26
+#-----------
+time=52890100668
+mem_heap_B=859236136
+mem_heap_extra_B=229684920
+mem_stacks_B=784
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=53993598961
+mem_heap_B=870000312
+mem_heap_extra_B=235067008
+mem_stacks_B=912
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=56200595500
+mem_heap_B=891033784
+mem_heap_extra_B=245583744
+mem_stacks_B=584
+heap_tree=detailed
+n3: 891033784 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 491162304 0x10B4EF: __gnu_cxx::new_allocator<std::__detail::_Hash_node<int, false> >::allocate(unsigned long, void const*) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 491162304 0x10B11F: std::allocator_traits<std::allocator<std::__detail::_Hash_node<int, false> > >::allocate(std::allocator<std::__detail::_Hash_node<int, false> >&, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n1: 491162304 0x10AC2B: std::__detail::_Hash_node<int, false>* std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_node<int>(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+    n1: 491162304 0x10A536: std::__detail::_Hash_node<int, false>* std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > >::operator()<int>(int&&) const (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n1: 491162304 0x109F8D: std::pair<std::__detail::_Node_iterator<int, true, false>, bool> std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<int, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > >(int&&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+      n1: 491162304 0x109B57: std::__detail::_Insert<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true>, true>::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+       n1: 491162304 0x1098E3: std::unordered_set<int, std::hash<int>, std::equal_to<int>, std::allocator<int> >::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+        n1: 491162304 0x109444: fun(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+         n0: 491162304 0x1095FA: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n1: 399758776 0x10B421: __gnu_cxx::new_allocator<std::__detail::_Hash_node_base*>::allocate(unsigned long, void const*) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 399758776 0x10AF8A: std::allocator_traits<std::allocator<std::__detail::_Hash_node_base*> >::allocate(std::allocator<std::__detail::_Hash_node_base*>&, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n1: 399758776 0x10A936: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+    n2: 399758776 0x10A226: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_allocate_buckets(unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n1: 399758776 0x10B198: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash_aux(unsigned long, std::integral_constant<bool, true>) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+      n1: 399758776 0x10ACD8: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash(unsigned long, unsigned long const&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+       n1: 399758776 0x10A5D8: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert_unique_node(unsigned long, unsigned long, std::__detail::_Hash_node<int, false>*, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+        n1: 399758776 0x109FB0: std::pair<std::__detail::_Node_iterator<int, true, false>, bool> std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<int, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > >(int&&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+         n1: 399758776 0x109B57: std::__detail::_Insert<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true>, true>::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+          n1: 399758776 0x1098E3: std::unordered_set<int, std::hash<int>, std::equal_to<int>, std::allocator<int> >::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+           n1: 399758776 0x109444: fun(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+            n0: 399758776 0x1095FA: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 112704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=29
+#-----------
+time=58959341187
+mem_heap_B=916479160
+mem_heap_extra_B=258306432
+mem_stacks_B=720
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=61332948738
+mem_heap_B=937576552
+mem_heap_extra_B=268855128
+mem_stacks_B=720
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=63183291766
+mem_heap_B=953547560
+mem_heap_extra_B=276840632
+mem_stacks_B=752
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=65123830034
+mem_heap_B=969774600
+mem_heap_extra_B=284954152
+mem_stacks_B=872
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=67679297000
+mem_heap_B=990413336
+mem_heap_extra_B=295273520
+mem_stacks_B=1072
+heap_tree=detailed
+n3: 990413336 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 590541856 0x10B4EF: __gnu_cxx::new_allocator<std::__detail::_Hash_node<int, false> >::allocate(unsigned long, void const*) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 590541856 0x10B11F: std::allocator_traits<std::allocator<std::__detail::_Hash_node<int, false> > >::allocate(std::allocator<std::__detail::_Hash_node<int, false> >&, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n1: 590541856 0x10AC2B: std::__detail::_Hash_node<int, false>* std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_node<int>(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+    n1: 590541856 0x10A536: std::__detail::_Hash_node<int, false>* std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > >::operator()<int>(int&&) const (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n1: 590541856 0x109F8D: std::pair<std::__detail::_Node_iterator<int, true, false>, bool> std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<int, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > >(int&&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+      n1: 590541856 0x109B57: std::__detail::_Insert<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true>, true>::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+       n1: 590541856 0x1098E3: std::unordered_set<int, std::hash<int>, std::equal_to<int>, std::allocator<int> >::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+        n1: 590541856 0x109444: fun(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+         n0: 590541856 0x1095FA: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n1: 399758776 0x10B421: __gnu_cxx::new_allocator<std::__detail::_Hash_node_base*>::allocate(unsigned long, void const*) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 399758776 0x10AF8A: std::allocator_traits<std::allocator<std::__detail::_Hash_node_base*> >::allocate(std::allocator<std::__detail::_Hash_node_base*>&, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n1: 399758776 0x10A936: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+    n2: 399758776 0x10A226: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_allocate_buckets(unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n1: 399758776 0x10B198: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash_aux(unsigned long, std::integral_constant<bool, true>) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+      n1: 399758776 0x10ACD8: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash(unsigned long, unsigned long const&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+       n1: 399758776 0x10A5D8: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert_unique_node(unsigned long, unsigned long, std::__detail::_Hash_node<int, false>*, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+        n1: 399758776 0x109FB0: std::pair<std::__detail::_Node_iterator<int, true, false>, bool> std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<int, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > >(int&&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+         n1: 399758776 0x109B57: std::__detail::_Insert<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true>, true>::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+          n1: 399758776 0x1098E3: std::unordered_set<int, std::hash<int>, std::equal_to<int>, std::allocator<int> >::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+           n1: 399758776 0x109444: fun(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+            n0: 399758776 0x1095FA: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 112704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=34
+#-----------
+time=70682973279
+mem_heap_B=1013616552
+mem_heap_extra_B=306875128
+mem_stacks_B=752
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=73038135240
+mem_heap_B=1030927336
+mem_heap_extra_B=315530520
+mem_stacks_B=992
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=75548278884
+mem_heap_B=1048582616
+mem_heap_extra_B=324358160
+mem_stacks_B=752
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=78245929988
+mem_heap_B=1066608280
+mem_heap_extra_B=333370992
+mem_stacks_B=832
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=81162709228
+mem_heap_B=1084916712
+mem_heap_extra_B=342525208
+mem_stacks_B=976
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=82719085338
+mem_heap_B=1094206872
+mem_heap_extra_B=347170288
+mem_stacks_B=768
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=84356770753
+mem_heap_B=1103560808
+mem_heap_extra_B=351847256
+mem_stacks_B=768
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=86084611879
+mem_heap_B=1113053656
+mem_heap_extra_B=356593680
+mem_stacks_B=896
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=87913619375
+mem_heap_B=1122581480
+mem_heap_extra_B=361357592
+mem_stacks_B=880
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=89865496975
+mem_heap_B=1132189192
+mem_heap_extra_B=366161448
+mem_stacks_B=584
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=91970418820
+mem_heap_B=1141873928
+mem_heap_extra_B=371003816
+mem_stacks_B=912
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=94273795335
+mem_heap_B=1151631400
+mem_heap_extra_B=375882552
+mem_stacks_B=752
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=95848659286
+mem_heap_B=1157798856
+mem_heap_extra_B=378966280
+mem_stacks_B=992
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=97624965219
+mem_heap_B=1164209640
+mem_heap_extra_B=382171672
+mem_stacks_B=592
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=98992224845
+mem_heap_B=1168789000
+mem_heap_extra_B=384461352
+mem_stacks_B=1136
+heap_tree=detailed
+n3: 1168789000 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 768917520 0x10B4EF: __gnu_cxx::new_allocator<std::__detail::_Hash_node<int, false> >::allocate(unsigned long, void const*) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 768917520 0x10B11F: std::allocator_traits<std::allocator<std::__detail::_Hash_node<int, false> > >::allocate(std::allocator<std::__detail::_Hash_node<int, false> >&, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n1: 768917520 0x10AC2B: std::__detail::_Hash_node<int, false>* std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_node<int>(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+    n1: 768917520 0x10A536: std::__detail::_Hash_node<int, false>* std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > >::operator()<int>(int&&) const (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n1: 768917520 0x109F8D: std::pair<std::__detail::_Node_iterator<int, true, false>, bool> std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<int, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > >(int&&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+      n1: 768917520 0x109B57: std::__detail::_Insert<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true>, true>::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+       n1: 768917520 0x1098E3: std::unordered_set<int, std::hash<int>, std::equal_to<int>, std::allocator<int> >::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+        n1: 768917520 0x109444: fun(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+         n0: 768917520 0x1095FA: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n1: 399758776 0x10B421: __gnu_cxx::new_allocator<std::__detail::_Hash_node_base*>::allocate(unsigned long, void const*) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 399758776 0x10AF8A: std::allocator_traits<std::allocator<std::__detail::_Hash_node_base*> >::allocate(std::allocator<std::__detail::_Hash_node_base*>&, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n1: 399758776 0x10A936: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+    n2: 399758776 0x10A226: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_allocate_buckets(unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n1: 399758776 0x10B198: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash_aux(unsigned long, std::integral_constant<bool, true>) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+      n1: 399758776 0x10ACD8: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash(unsigned long, unsigned long const&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+       n1: 399758776 0x10A5D8: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert_unique_node(unsigned long, unsigned long, std::__detail::_Hash_node<int, false>*, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+        n1: 399758776 0x109FB0: std::pair<std::__detail::_Node_iterator<int, true, false>, bool> std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<int, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > >(int&&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+         n1: 399758776 0x109B57: std::__detail::_Insert<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true>, true>::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+          n1: 399758776 0x1098E3: std::unordered_set<int, std::hash<int>, std::equal_to<int>, std::allocator<int> >::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+           n1: 399758776 0x109444: fun(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+            n0: 399758776 0x1095FA: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 112704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=49
+#-----------
+time=101354520777
+mem_heap_B=1175854888
+mem_heap_extra_B=387994296
+mem_stacks_B=720
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=102458019077
+mem_heap_B=1178800904
+mem_heap_extra_B=389467304
+mem_stacks_B=912
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=102588895425
+mem_heap_B=1179144040
+mem_heap_extra_B=389638872
+mem_stacks_B=1136
+heap_tree=detailed
+n3: 1179144040 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 779272560 0x10B4EF: __gnu_cxx::new_allocator<std::__detail::_Hash_node<int, false> >::allocate(unsigned long, void const*) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 779272560 0x10B11F: std::allocator_traits<std::allocator<std::__detail::_Hash_node<int, false> > >::allocate(std::allocator<std::__detail::_Hash_node<int, false> >&, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n1: 779272560 0x10AC2B: std::__detail::_Hash_node<int, false>* std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_node<int>(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+    n1: 779272560 0x10A536: std::__detail::_Hash_node<int, false>* std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > >::operator()<int>(int&&) const (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n1: 779272560 0x109F8D: std::pair<std::__detail::_Node_iterator<int, true, false>, bool> std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<int, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > >(int&&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+      n1: 779272560 0x109B57: std::__detail::_Insert<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true>, true>::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+       n1: 779272560 0x1098E3: std::unordered_set<int, std::hash<int>, std::equal_to<int>, std::allocator<int> >::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+        n1: 779272560 0x109444: fun(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+         n0: 779272560 0x1095FA: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n1: 399758776 0x10B421: __gnu_cxx::new_allocator<std::__detail::_Hash_node_base*>::allocate(unsigned long, void const*) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 399758776 0x10AF8A: std::allocator_traits<std::allocator<std::__detail::_Hash_node_base*> >::allocate(std::allocator<std::__detail::_Hash_node_base*>&, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n1: 399758776 0x10A936: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+    n2: 399758776 0x10A226: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_allocate_buckets(unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n1: 399758776 0x10B198: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash_aux(unsigned long, std::integral_constant<bool, true>) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+      n1: 399758776 0x10ACD8: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash(unsigned long, unsigned long const&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+       n1: 399758776 0x10A5D8: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert_unique_node(unsigned long, unsigned long, std::__detail::_Hash_node<int, false>*, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+        n1: 399758776 0x109FB0: std::pair<std::__detail::_Node_iterator<int, true, false>, bool> std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<int, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > >(int&&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+         n1: 399758776 0x109B57: std::__detail::_Insert<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true>, true>::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+          n1: 399758776 0x1098E3: std::unordered_set<int, std::hash<int>, std::equal_to<int>, std::allocator<int> >::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+           n1: 399758776 0x109444: fun(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+            n0: 399758776 0x1095FA: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 112704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=52
+#-----------
+time=103692393727
+mem_heap_B=1181812744
+mem_heap_extra_B=390973224
+mem_stacks_B=768
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=104795892024
+mem_heap_B=1184227608
+mem_heap_extra_B=392180656
+mem_stacks_B=720
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=105899390352
+mem_heap_B=1186384232
+mem_heap_extra_B=393258968
+mem_stacks_B=872
+heap_tree=empty
+#-----------
+snapshot=55
+#-----------
+time=107002888661
+mem_heap_B=1188284440
+mem_heap_extra_B=394209072
+mem_stacks_B=840
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=107877887774
+mem_heap_B=1189602616
+mem_heap_extra_B=394868160
+mem_stacks_B=1136
+heap_tree=peak
+n3: 1189602616 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 789731136 0x10B4EF: __gnu_cxx::new_allocator<std::__detail::_Hash_node<int, false> >::allocate(unsigned long, void const*) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 789731136 0x10B11F: std::allocator_traits<std::allocator<std::__detail::_Hash_node<int, false> > >::allocate(std::allocator<std::__detail::_Hash_node<int, false> >&, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n1: 789731136 0x10AC2B: std::__detail::_Hash_node<int, false>* std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_node<int>(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+    n1: 789731136 0x10A536: std::__detail::_Hash_node<int, false>* std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > >::operator()<int>(int&&) const (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n1: 789731136 0x109F8D: std::pair<std::__detail::_Node_iterator<int, true, false>, bool> std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<int, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > >(int&&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+      n1: 789731136 0x109B57: std::__detail::_Insert<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true>, true>::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+       n1: 789731136 0x1098E3: std::unordered_set<int, std::hash<int>, std::equal_to<int>, std::allocator<int> >::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+        n1: 789731136 0x109444: fun(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+         n0: 789731136 0x1095FA: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n1: 399758776 0x10B421: __gnu_cxx::new_allocator<std::__detail::_Hash_node_base*>::allocate(unsigned long, void const*) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 399758776 0x10AF8A: std::allocator_traits<std::allocator<std::__detail::_Hash_node_base*> >::allocate(std::allocator<std::__detail::_Hash_node_base*>&, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n1: 399758776 0x10A936: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+    n2: 399758776 0x10A226: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_allocate_buckets(unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n1: 399758776 0x10B198: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash_aux(unsigned long, std::integral_constant<bool, true>) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+      n1: 399758776 0x10ACD8: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash(unsigned long, unsigned long const&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+       n1: 399758776 0x10A5D8: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert_unique_node(unsigned long, unsigned long, std::__detail::_Hash_node<int, false>*, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+        n1: 399758776 0x109FB0: std::pair<std::__detail::_Node_iterator<int, true, false>, bool> std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<int, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > >(int&&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+         n1: 399758776 0x109B57: std::__detail::_Insert<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true>, true>::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+          n1: 399758776 0x1098E3: std::unordered_set<int, std::hash<int>, std::equal_to<int>, std::allocator<int> >::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+           n1: 399758776 0x109444: fun(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+            n0: 399758776 0x1095FA: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 112704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=57
+#-----------
+time=108981386079
+mem_heap_B=1191012968
+mem_heap_extra_B=395573336
+mem_stacks_B=768
+heap_tree=empty
+#-----------
+snapshot=58
+#-----------
+time=110084884373
+mem_heap_B=1192133096
+mem_heap_extra_B=396133400
+mem_stacks_B=720
+heap_tree=empty
+#-----------
+snapshot=59
+#-----------
+time=111188382672
+mem_heap_B=1192957176
+mem_heap_extra_B=396545440
+mem_stacks_B=976
+heap_tree=empty
+#-----------
+snapshot=60
+#-----------
+time=112291880984
+mem_heap_B=1193473944
+mem_heap_extra_B=396803824
+mem_stacks_B=912
+heap_tree=empty
+#-----------
+snapshot=61
+#-----------
+time=113395379291
+mem_heap_B=1193668920
+mem_heap_extra_B=396901312
+mem_stacks_B=768
+heap_tree=empty
+#-----------
+snapshot=62
+#-----------
+time=114498877584
+mem_heap_B=1126433896
+mem_heap_extra_B=363283800
+mem_stacks_B=704
+heap_tree=empty
+#-----------
+snapshot=63
+#-----------
+time=115602375882
+mem_heap_B=1052559528
+mem_heap_extra_B=326346616
+mem_stacks_B=880
+heap_tree=empty
+#-----------
+snapshot=64
+#-----------
+time=116705874176
+mem_heap_B=978685176
+mem_heap_extra_B=289409440
+mem_stacks_B=752
+heap_tree=empty
+#-----------
+snapshot=65
+#-----------
+time=117809372477
+mem_heap_B=904810808
+mem_heap_extra_B=252472256
+mem_stacks_B=704
+heap_tree=empty
+#-----------
+snapshot=66
+#-----------
+time=118912870772
+mem_heap_B=830936440
+mem_heap_extra_B=215535072
+mem_stacks_B=632
+heap_tree=detailed
+n3: 830936440 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 431064960 0x10B4EF: __gnu_cxx::new_allocator<std::__detail::_Hash_node<int, false> >::allocate(unsigned long, void const*) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 431064960 0x10B11F: std::allocator_traits<std::allocator<std::__detail::_Hash_node<int, false> > >::allocate(std::allocator<std::__detail::_Hash_node<int, false> >&, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n1: 431064960 0x10AC2B: std::__detail::_Hash_node<int, false>* std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_node<int>(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+    n1: 431064960 0x10A536: std::__detail::_Hash_node<int, false>* std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > >::operator()<int>(int&&) const (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n1: 431064960 0x109F8D: std::pair<std::__detail::_Node_iterator<int, true, false>, bool> std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<int, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > >(int&&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+      n1: 431064960 0x109B57: std::__detail::_Insert<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true>, true>::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+       n1: 431064960 0x1098E3: std::unordered_set<int, std::hash<int>, std::equal_to<int>, std::allocator<int> >::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+        n1: 431064960 0x109444: fun(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+         n0: 431064960 0x1095FA: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n1: 399758776 0x10B421: __gnu_cxx::new_allocator<std::__detail::_Hash_node_base*>::allocate(unsigned long, void const*) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 399758776 0x10AF8A: std::allocator_traits<std::allocator<std::__detail::_Hash_node_base*> >::allocate(std::allocator<std::__detail::_Hash_node_base*>&, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n1: 399758776 0x10A936: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+    n2: 399758776 0x10A226: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_allocate_buckets(unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n1: 399758776 0x10B198: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash_aux(unsigned long, std::integral_constant<bool, true>) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+      n1: 399758776 0x10ACD8: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash(unsigned long, unsigned long const&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+       n1: 399758776 0x10A5D8: std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert_unique_node(unsigned long, unsigned long, std::__detail::_Hash_node<int, false>*, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+        n1: 399758776 0x109FB0: std::pair<std::__detail::_Node_iterator<int, true, false>, bool> std::_Hashtable<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<int, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > >(int&&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<int, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+         n1: 399758776 0x109B57: std::__detail::_Insert<int, int, std::allocator<int>, std::__detail::_Identity, std::equal_to<int>, std::hash<int>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true>, true>::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+          n1: 399758776 0x1098E3: std::unordered_set<int, std::hash<int>, std::equal_to<int>, std::allocator<int> >::insert(int&&) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+           n1: 399758776 0x109444: fun(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+            n0: 399758776 0x1095FA: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+     n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 112704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=67
+#-----------
+time=120016369069
+mem_heap_B=757062088
+mem_heap_extra_B=178597896
+mem_stacks_B=752
+heap_tree=empty
+#-----------
+snapshot=68
+#-----------
+time=121119867363
+mem_heap_B=683187720
+mem_heap_extra_B=141660712
+mem_stacks_B=664
+heap_tree=empty
+#-----------
+snapshot=69
+#-----------
+time=122223365657
+mem_heap_B=609313352
+mem_heap_extra_B=104723528
+mem_stacks_B=616
+heap_tree=empty
+#-----------
+snapshot=70
+#-----------
+time=123326863953
+mem_heap_B=535439000
+mem_heap_extra_B=67786352
+mem_stacks_B=720
+heap_tree=empty
+#-----------
+snapshot=71
+#-----------
+time=124430362254
+mem_heap_B=461564632
+mem_heap_extra_B=30849168
+mem_stacks_B=704
+heap_tree=empty
+#-----------
+snapshot=72
+#-----------
+time=125751662424
+mem_heap_B=399871480
+mem_heap_extra_B=2592
+mem_stacks_B=560
+heap_tree=empty

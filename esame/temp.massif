@@ -1,0 +1,1030 @@
+desc: --heap=yes --stacks=yes --detailed-freq=10 --massif-out-file=temp.massif
+cmd: ./temp.out
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=1515768
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=1112
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=2417207
+mem_heap_B=85544
+mem_heap_extra_B=328
+mem_stacks_B=544
+heap_tree=detailed
+n4: 85544 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x4904A99: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 8248 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 8248 0x109595: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 8248 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n0: 4000 0x109307: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n0: 592 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=3
+#-----------
+time=3635910
+mem_heap_B=458112
+mem_heap_extra_B=76032
+mem_stacks_B=560
+heap_tree=detailed
+n4: 458112 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 229440 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 229440 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 229440 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 151968 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 151968 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n1: 72704 0x4904A99: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n0: 4000 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=4
+#-----------
+time=4711990
+mem_heap_B=502888
+mem_heap_extra_B=136392
+mem_stacks_B=544
+heap_tree=detailed
+n4: 502888 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 272720 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 272720 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n2: 153464 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 153464 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 153464 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 72704 0x4904A99: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n0: 4000 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=5
+#-----------
+time=6432589
+mem_heap_B=831080
+mem_heap_extra_B=221728
+mem_stacks_B=544
+heap_tree=detailed
+n4: 831080 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 443392 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 443392 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n2: 310984 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 310984 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 310984 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 72704 0x4904A99: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n0: 4000 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=6
+#-----------
+time=8195565
+mem_heap_B=1639904
+mem_heap_extra_B=311040
+mem_stacks_B=480
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=9351253
+mem_heap_B=1402024
+mem_heap_extra_B=347576
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=10161938
+mem_heap_B=1532568
+mem_heap_extra_B=412848
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=11413817
+mem_heap_B=1730152
+mem_heap_extra_B=511640
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=12949807
+mem_heap_B=3246384
+mem_heap_extra_B=630288
+mem_stacks_B=560
+heap_tree=detailed
+n4: 3246384 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 1909200 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 1909200 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 1909200 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 1260480 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 1260480 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n1: 72704 0x4904A99: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n0: 4000 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=11
+#-----------
+time=14228799
+mem_heap_B=3246384
+mem_heap_extra_B=630288
+mem_stacks_B=480
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=15659571
+mem_heap_B=3246384
+mem_heap_extra_B=630288
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=16948230
+mem_heap_B=2822632
+mem_heap_extra_B=733512
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=18629535
+mem_heap_B=3088296
+mem_heap_extra_B=866344
+mem_stacks_B=544
+heap_tree=detailed
+n4: 3088296 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1732624 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 1732624 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n2: 1278968 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 1278968 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 1278968 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 72704 0x4904A99: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n0: 4000 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=15
+#-----------
+time=19673603
+mem_heap_B=3250552
+mem_heap_extra_B=947472
+mem_stacks_B=544
+heap_tree=detailed
+n4: 3250552 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1894880 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 1894880 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n2: 1278968 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 1278968 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 1278968 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 72704 0x4904A99: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n0: 4000 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=16
+#-----------
+time=21381847
+mem_heap_B=3512584
+mem_heap_extra_B=1078488
+mem_stacks_B=544
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=23068434
+mem_heap_B=3766584
+mem_heap_extra_B=1205488
+mem_stacks_B=544
+heap_tree=detailed
+n4: 3766584 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 2410912 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 2410912 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n2: 1278968 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 1278968 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 1278968 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 72704 0x4904A99: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n0: 4000 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=18
+#-----------
+time=24057520
+mem_heap_B=6509648
+mem_heap_extra_B=1279024
+mem_stacks_B=560
+heap_tree=detailed
+n3: 6509648 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 3874992 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 3874992 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 3874992 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 2557952 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 2557952 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n0: 76704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=19
+#-----------
+time=26653568
+mem_heap_B=6509648
+mem_heap_extra_B=1279024
+mem_stacks_B=480
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=29556464
+mem_heap_B=6509648
+mem_heap_extra_B=1279024
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=31120538
+mem_heap_B=5473768
+mem_heap_extra_B=1400552
+mem_stacks_B=472
+heap_tree=detailed
+n4: 5473768 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 2801040 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 2801040 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n2: 2596024 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 2596024 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 2596024 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 72704 0x4904A99: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n0: 4000 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=22
+#-----------
+time=32897460
+mem_heap_B=5745560
+mem_heap_extra_B=1536448
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=33892264
+mem_heap_B=5895640
+mem_heap_extra_B=1611488
+mem_stacks_B=464
+heap_tree=detailed
+n3: 5895640 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 3222912 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 3222912 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n2: 2596024 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 2596024 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 2596024 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 76704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=24
+#-----------
+time=35485803
+mem_heap_B=6135288
+mem_heap_extra_B=1731312
+mem_stacks_B=544
+heap_tree=detailed
+n3: 6135288 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 3462560 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 3462560 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n2: 2596024 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 2596024 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 2596024 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 76704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=25
+#-----------
+time=37255240
+mem_heap_B=6397192
+mem_heap_extra_B=1862264
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=38773504
+mem_heap_B=6617544
+mem_heap_extra_B=1972440
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=40373890
+mem_heap_B=6848232
+mem_heap_extra_B=2087784
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=41733595
+mem_heap_B=7040552
+mem_heap_extra_B=2183944
+mem_stacks_B=544
+heap_tree=detailed
+n3: 7040552 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 4367824 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 4367824 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n2: 2596024 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 2596024 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 2596024 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 76704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=29
+#-----------
+time=43062605
+mem_heap_B=7226936
+mem_heap_extra_B=2277136
+mem_stacks_B=544
+heap_tree=detailed
+n3: 7226936 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 4554208 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 4554208 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n2: 2596024 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 2596024 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 2596024 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 76704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=30
+#-----------
+time=43971327
+mem_heap_B=7352504
+mem_heap_extra_B=2339920
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=45424866
+mem_heap_B=7550200
+mem_heap_extra_B=2438768
+mem_stacks_B=544
+heap_tree=detailed
+n3: 7550200 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 4877472 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 4877472 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n2: 2596024 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 2596024 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 2596024 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 76704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=32
+#-----------
+time=46366038
+mem_heap_B=7676808
+mem_heap_extra_B=2502072
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=47775294
+mem_heap_B=13134816
+mem_heap_extra_B=2597536
+mem_stacks_B=560
+heap_tree=detailed
+n3: 13134816 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 7866048 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 7866048 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 7866048 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 5192064 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 5192064 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n0: 76704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=34
+#-----------
+time=53045342
+mem_heap_B=13134816
+mem_heap_extra_B=2597536
+mem_stacks_B=480
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=58938518
+mem_heap_B=13134816
+mem_heap_extra_B=2597536
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=59839312
+mem_heap_B=10664488
+mem_heap_extra_B=2660368
+mem_stacks_B=544
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=60740116
+mem_heap_B=10787272
+mem_heap_extra_B=2721760
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=61640954
+mem_heap_B=10909672
+mem_heap_extra_B=2782960
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=62545953
+mem_heap_B=11031544
+mem_heap_extra_B=2843896
+mem_stacks_B=472
+heap_tree=detailed
+n3: 11031544 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 5684816 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 5684816 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n2: 5270024 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 5270024 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 5270024 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 76704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=40
+#-----------
+time=63446768
+mem_heap_B=11151240
+mem_heap_extra_B=2903744
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=64347542
+mem_heap_B=11270456
+mem_heap_extra_B=2963352
+mem_stacks_B=544
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=65701683
+mem_heap_B=11445576
+mem_heap_extra_B=3050912
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=66614121
+mem_heap_B=11561880
+mem_heap_extra_B=3109064
+mem_stacks_B=464
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=67514894
+mem_heap_B=11674824
+mem_heap_extra_B=3165536
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=68873448
+mem_heap_B=11840024
+mem_heap_extra_B=3248136
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=69779920
+mem_heap_B=11949080
+mem_heap_extra_B=3302664
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=70680705
+mem_heap_B=12055768
+mem_heap_extra_B=3356008
+mem_stacks_B=544
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=71581483
+mem_heap_B=12160232
+mem_heap_extra_B=3408240
+mem_stacks_B=464
+heap_tree=detailed
+n3: 12160232 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 6813504 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 6813504 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n2: 5270024 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 5270024 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 5270024 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 76704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=49
+#-----------
+time=72482270
+mem_heap_B=12261816
+mem_heap_extra_B=3459032
+mem_stacks_B=464
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=73292958
+mem_heap_B=12350296
+mem_heap_extra_B=3503272
+mem_stacks_B=480
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=73509412
+mem_heap_B=12374392
+mem_heap_extra_B=3515320
+mem_stacks_B=544
+heap_tree=detailed
+n3: 12374392 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7027664 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 7027664 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n2: 5270024 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 5270024 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 5270024 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 76704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=52
+#-----------
+time=74320105
+mem_heap_B=12461304
+mem_heap_extra_B=3558776
+mem_stacks_B=544
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=74490081
+mem_heap_B=12480328
+mem_heap_extra_B=3568288
+mem_stacks_B=544
+heap_tree=detailed
+n3: 12480328 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7133600 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 7133600 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n2: 5270024 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 5270024 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 5270024 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 76704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=54
+#-----------
+time=75300798
+mem_heap_B=12563112
+mem_heap_extra_B=3609680
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=55
+#-----------
+time=75521912
+mem_heap_B=12587336
+mem_heap_extra_B=3621792
+mem_stacks_B=544
+heap_tree=detailed
+n3: 12587336 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7240608 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 7240608 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n2: 5270024 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 5270024 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 5270024 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 76704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=56
+#-----------
+time=76332619
+mem_heap_B=12668376
+mem_heap_extra_B=3662312
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=76610142
+mem_heap_B=12695416
+mem_heap_extra_B=3675832
+mem_stacks_B=544
+heap_tree=detailed
+n3: 12695416 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7348688 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 7348688 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n2: 5270024 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 5270024 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 5270024 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 76704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=58
+#-----------
+time=77421004
+mem_heap_B=12772200
+mem_heap_extra_B=3714224
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=59
+#-----------
+time=77754475
+mem_heap_B=12804568
+mem_heap_extra_B=3730408
+mem_stacks_B=544
+heap_tree=detailed
+n3: 12804568 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7457840 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 7457840 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n2: 5270024 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 5270024 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 5270024 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 76704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=60
+#-----------
+time=78581354
+mem_heap_B=12878328
+mem_heap_extra_B=3767288
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=61
+#-----------
+time=78986014
+mem_heap_B=12914808
+mem_heap_extra_B=3785528
+mem_stacks_B=544
+heap_tree=detailed
+n3: 12914808 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7568080 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 7568080 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n2: 5270024 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 5270024 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 5270024 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 76704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=62
+#-----------
+time=79796708
+mem_heap_B=12983752
+mem_heap_extra_B=3820000
+mem_stacks_B=544
+heap_tree=empty
+#-----------
+snapshot=63
+#-----------
+time=80326581
+mem_heap_B=13026152
+mem_heap_extra_B=3841200
+mem_stacks_B=544
+heap_tree=detailed
+n3: 13026152 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7679424 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 7679424 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n2: 5270024 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 5270024 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 5270024 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 76704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=64
+#-----------
+time=81149926
+mem_heap_B=13087640
+mem_heap_extra_B=3871944
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=65
+#-----------
+time=81853602
+mem_heap_B=13138616
+mem_heap_extra_B=3897432
+mem_stacks_B=544
+heap_tree=detailed
+n3: 13138616 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7791888 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 7791888 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n2: 5270024 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 5270024 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 5270024 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 76704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=66
+#-----------
+time=82664301
+mem_heap_B=13191240
+mem_heap_extra_B=3923744
+mem_stacks_B=544
+heap_tree=empty
+#-----------
+snapshot=67
+#-----------
+time=83475006
+mem_heap_B=13238584
+mem_heap_extra_B=3947416
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=68
+#-----------
+time=83742094
+mem_heap_B=13252200
+mem_heap_extra_B=3954224
+mem_stacks_B=544
+heap_tree=peak
+n3: 13252200 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7905472 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 7905472 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n2: 5270024 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 5270024 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 5270024 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 76704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=69
+#-----------
+time=84562224
+mem_heap_B=13290392
+mem_heap_extra_B=3973320
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=70
+#-----------
+time=85372911
+mem_heap_B=13320712
+mem_heap_extra_B=3988480
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=71
+#-----------
+time=86207303
+mem_heap_B=13340072
+mem_heap_extra_B=3998160
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=72
+#-----------
+time=87466381
+mem_heap_B=13347032
+mem_heap_extra_B=4001640
+mem_stacks_B=472
+heap_tree=empty
+#-----------
+snapshot=73
+#-----------
+time=88277071
+mem_heap_B=12953976
+mem_heap_extra_B=3805112
+mem_stacks_B=504
+heap_tree=empty
+#-----------
+snapshot=74
+#-----------
+time=89087776
+mem_heap_B=12560904
+mem_heap_extra_B=3608576
+mem_stacks_B=576
+heap_tree=empty
+#-----------
+snapshot=75
+#-----------
+time=89898465
+mem_heap_B=12167848
+mem_heap_extra_B=3412048
+mem_stacks_B=512
+heap_tree=empty
+#-----------
+snapshot=76
+#-----------
+time=90709165
+mem_heap_B=11774776
+mem_heap_extra_B=3215512
+mem_stacks_B=576
+heap_tree=empty
+#-----------
+snapshot=77
+#-----------
+time=91519854
+mem_heap_B=11381720
+mem_heap_extra_B=3018984
+mem_stacks_B=512
+heap_tree=empty
+#-----------
+snapshot=78
+#-----------
+time=92330554
+mem_heap_B=10988648
+mem_heap_extra_B=2822448
+mem_stacks_B=576
+heap_tree=detailed
+n3: 10988648 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 5641920 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 5641920 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n2: 5270024 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 5270024 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 5270024 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 76704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=79
+#-----------
+time=93141243
+mem_heap_B=10595592
+mem_heap_extra_B=2625920
+mem_stacks_B=512
+heap_tree=empty
+#-----------
+snapshot=80
+#-----------
+time=93951943
+mem_heap_B=10202520
+mem_heap_extra_B=2429384
+mem_stacks_B=576
+heap_tree=empty
+#-----------
+snapshot=81
+#-----------
+time=94762632
+mem_heap_B=9809464
+mem_heap_extra_B=2232856
+mem_stacks_B=512
+heap_tree=empty
+#-----------
+snapshot=82
+#-----------
+time=95573332
+mem_heap_B=9416392
+mem_heap_extra_B=2036320
+mem_stacks_B=576
+heap_tree=empty
+#-----------
+snapshot=83
+#-----------
+time=96384021
+mem_heap_B=9023336
+mem_heap_extra_B=1839792
+mem_stacks_B=512
+heap_tree=empty
+#-----------
+snapshot=84
+#-----------
+time=97194721
+mem_heap_B=8630264
+mem_heap_extra_B=1643256
+mem_stacks_B=576
+heap_tree=empty
+#-----------
+snapshot=85
+#-----------
+time=98005410
+mem_heap_B=8237208
+mem_heap_extra_B=1446728
+mem_stacks_B=512
+heap_tree=empty
+#-----------
+snapshot=86
+#-----------
+time=98816110
+mem_heap_B=7844136
+mem_heap_extra_B=1250192
+mem_stacks_B=576
+heap_tree=empty
+#-----------
+snapshot=87
+#-----------
+time=99626799
+mem_heap_B=7451080
+mem_heap_extra_B=1053664
+mem_stacks_B=512
+heap_tree=empty
+#-----------
+snapshot=88
+#-----------
+time=100437499
+mem_heap_B=7058008
+mem_heap_extra_B=857128
+mem_stacks_B=576
+heap_tree=detailed
+n3: 7058008 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 5270024 0x1094D0: std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<int, false> > >::_M_allocate_buckets(unsigned long) [clone .isra.0] (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n1: 5270024 0x109797: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+   n0: 5270024 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 1711280 0x109749: four(int*, int, int) (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+  n0: 1711280 0x109340: main (in /home/manfucci/GitRepos/asd1/esame/temp.out)
+ n0: 76704 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=89
+#-----------
+time=101248188
+mem_heap_B=6664952
+mem_heap_extra_B=660600
+mem_stacks_B=512
+heap_tree=empty
+#-----------
+snapshot=90
+#-----------
+time=102058888
+mem_heap_B=6271880
+mem_heap_extra_B=464064
+mem_stacks_B=576
+heap_tree=empty
+#-----------
+snapshot=91
+#-----------
+time=102869577
+mem_heap_B=5878824
+mem_heap_extra_B=267536
+mem_stacks_B=512
+heap_tree=empty
+#-----------
+snapshot=92
+#-----------
+time=103680277
+mem_heap_B=5485752
+mem_heap_extra_B=71000
+mem_stacks_B=576
+heap_tree=empty
+#-----------
+snapshot=93
+#-----------
+time=109237067
+mem_heap_B=5346728
+mem_heap_extra_B=1488
+mem_stacks_B=496
+heap_tree=empty
