@@ -482,7 +482,7 @@ for i = floor(n/2) downto 1 do
  -
 ```
 
-## Algoritmi alberi binari
+## Algoritmi albero binario
 
 ### dfs
 
@@ -501,6 +501,30 @@ if t != nil then
  | dfs(t.right())
  | % post-order visit of t
  | print t
+ -
+```
+
+### bfs per livelli
+
+- O(n)
+
+||
+|:--|
+|`bfs(TREE t)`                                                                  |
+```pseudo
+QUEUE Q = QUEUE()
+Q.enqueue (<t, 0>) % <nodo, liv>
+int currLiv=0
+while not Q.isEmpty() do
+ | <s, liv> = Q.dequeue()
+ | if s != nil then
+ |  | if currLiv != liv then
+ |  |  | % nuovo livello
+ |  |  | currLiv = liv
+ |  |  -
+ |  | Q.enqueue(<s.left, liv+1>)
+ |  | Q.enqueue(<s.right, liv+1>)
+ |  -
  -
 ```
 
@@ -706,7 +730,7 @@ else
 ```
 
 
-## Algoritmi alberi generici
+## Algoritmi albero generico
 
 ### dfs
 
@@ -751,7 +775,7 @@ while not Q.isEmpty() do
  -
 ```
 
-## Algoritmi grafi non orientati
+## Algoritmi grafo non orientato
 
 ### cc
 
@@ -1123,7 +1147,7 @@ else
 Con questo algoritmo troviamo la **prima** (più a sinistra) occorrenza di $v$, se $v \in A$.
 Procediamo quindi per induzione.
 
-***Base:** con $i=1, j=n$ vale $A[i...j]=A$, dunque $A[1...0] = \emptyset$ ed entrambe le condizioni sono soddisfatte*
+***Base:** con $i=1, j=n$ vale $A[i...i-1]=A[1...0]=\emptyset$ ed entrambe le condizioni sono soddisfatte*
 
 ***Passo induttivo:** Supponiamo che per $searchFirst(A,v,i,j)$ valga l'invariante e dimostriamo che vale anche per l'invocazione successiva, $searchFirst(A,v,i',j')$*
 
@@ -1270,15 +1294,15 @@ T(n) =
   \end{array}\right.
 \end{equation}
 
-*Allora vale:*  
+*Allora, posto $\alpha := \frac{\log{a}}{\log{b}} = \log_{b}{a}$ vale:*  
 
-1) *Se $\exists \epsilon>0 : f(n)=O(n^{\log_{b}(a)-\epsilon})$*  
-*allora $T(n)=\Theta(n^{\log_{b}{a}})$*  
+1) *Se $\exists \epsilon>0 : f(n)=O(n^{\alpha-\epsilon})$*  
+*allora $T(n)=\Theta(n^{\alpha})$*  
 
-2) *Se $f(n)= \Theta(n\log_b{a})$*  
+2) *Se $f(n)= \Theta(n\alpha)$*  
 *allora $T(n)=\Theta(f(n)\log{n})$*  
 
-3) *Se $\exists \epsilon > 0 : f(n)= \Omega(n^{\log_{b}{a}+\epsilon}) ∧ \exists c : 0<c<1, \exists m \geq 0 : af(n/b) \leq cf (n) \forall n \geq m$*  
+3) *Se $\exists \epsilon > 0 : f(n)= \Omega(n^{\alpha+\epsilon}) ∧ \exists c : 0<c<1, \exists m \geq 0 : af(n/b) \leq cf (n) \forall n \geq m$*  
 *allora $T(n) = \Theta(f(n))$*
 
 ||
