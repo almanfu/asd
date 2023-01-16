@@ -189,7 +189,7 @@ remove(ITEM k)
 |Array ordinato|O(log n)|O(n)|O(n)|O(n)|
 |Lista non ordinata|O(n)|O(1),O(n)|O(n)|O(n)|
 |RB Tree|O(log n)|O(log n)|O(log n)|O(n)|
-|Hash Table|O(1)|O(1)|O(1)|O(n)|
+|Hash Table|O(1)|O(1)|O(1)|O(m)|
 
 ### Priority Queue
 
@@ -1294,11 +1294,40 @@ else
 |:--|
 |`maxSum(int[] A, int n)`                                                          |
 ```pseudo
-maxSoFar = 0
-maxHere = 0
+int maxSoFar = 0
+int maxHere = 0
 for i=1 to n do
  | maxHere = max(0, maxSoFar+A[i])
  | maxSoFar = max(maxSoFar, maxHere)
+return maxSoFar
+```
+
+### maxSumMatrix
+
+- O($n^3$)
+
+||
+|:--|
+|`maxSumMatrix(int[][] M, int n)`                                                          |
+```pseudo
+int maxSoFar = 0
+int[][] sums = new int[1...n][1...n] = M
+
+for i=2 to n do
+ | for j=1 to n do
+ |  | sums[i][j] = sums[i-1][j]+M[i][j]
+ |  -
+ -
+
+for i=1 to n do
+ | for j=i to n do
+ |  | int[] A = new int[1...n]
+ |  | for h=1 to n do
+ |  |  | A[h] = sums[j][h]-sums[i][h]+M[i][h]
+ |  |  -
+ |  | maxSoFar = max{maxSofar, maxSum(A, n)}
+ |  -
+ -
 return maxSoFar
 ```
 
@@ -1311,8 +1340,8 @@ $T(n)=a_1T(n/b_1)+a_2T(n/b_2)+f(n)$
 
 *i) $T(n)$ crescente e positiva*  
 *ii) $T(n) \geq f(n) \implies T(n) = \Omega(f(n))$*  
-*iii) $T(n) \leq (a_1+a_2)T'(n/min(b_1, b_2)) \implies T(n) = O(...)$ per il MT*  
-*iv) $T(n) \geq (a_1+a_2)T'(n/max(b_1, b_2)) \implies T(n) = \Omega(...)$ per il MT*  
+*iii) $T'(n)=(a_1+a_2)\cdot T'(n/min(b_1, b_2))+f(n), ~ T(n) \leq T'(n) \implies T(n) = O(...)$ per il MT*  
+*iv) $T'(n)=(a_1+a_2)\cdot T'(n/max(b_1, b_2))+f(n), ~ T(n) \geq T'(n) \implies T(n) = \Omega(...)$ per il MT*  
 *v) Vogliamo dimostrare che $T(n) = O(f(n))$, ovvero che con $c>0, m\geq 0$ vale $T(n) \leq cf(n) \forall n \geq m$*  
 
 - *Base: *
