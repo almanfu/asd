@@ -131,6 +131,21 @@ void simulate(int D=5){
   }  
 }
 
+int findPosition(int d, int i) {
+    int pos = 1;
+    for (int j = 0; j < d; j++) {
+        int left = (1 << j);
+        int right = (1 << (j + 1)) - 1;
+        if (i <= left) {
+            pos = pos * 2;
+        } else {
+            pos = pos * 2 + 1;
+            i -= left;
+        }
+    }
+    return pos;
+}
+
 int main(int argc, char *argv[]){
   //simulate();
   //return 0;
@@ -153,8 +168,10 @@ int main(int argc, char *argv[]){
     cin >> d >> i;
     v[d-1].push_front({k, i-1});
     D = max(D, d-1);
+    cout << findPosition(d-1, i) << endl;
   }
 
+  cout << endl;
 
   list<int> l = list<int>();
   l.push_front(1);
@@ -175,8 +192,10 @@ int main(int argc, char *argv[]){
 
   }
 
-  for(int s: sol)
-    cout << s << endl;
+  for(int s: sol){
+    cout << s << endl;    
+  }
+
 
   return 0;
 }
