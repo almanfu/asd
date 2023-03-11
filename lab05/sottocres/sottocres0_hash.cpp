@@ -20,7 +20,7 @@ struct pair_hash {
     }
 };
 
-int fun(vector<int> A, unordered_map<pair<int, int>, int, pair_hash>& DP, int i, int l){
+int fun(vector<int>& A, unordered_map<pair<int, int>, int, pair_hash>& DP, int i, int l){
   if(i==1){
     if(l==1)
       return A[l];

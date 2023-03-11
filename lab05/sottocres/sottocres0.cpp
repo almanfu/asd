@@ -13,7 +13,7 @@ using namespace std;
 
 */
 
-int fun(vector<int> A, vector<vector<int>> DP, int i, int l){
+int fun(vector<int>& A, vector<vector<int>>& DP, int i, int l){
   if(i==1){
     if(l==1)
       return A[l];

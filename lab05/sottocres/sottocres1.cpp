@@ -6,16 +6,19 @@
 #include <queue>
 #include <stack>
 
+#include <unordered_map>
+#include <map>
+
 using namespace std;
 
 /*
 
 */
 
-int fun(vector<int> A, vector<int>& DP, int l){
+int fun(vector<int>& A, unordered_map<int, int>& DP, int l){
   if(l==1){
     return A[l];
-  }else if(DP[l] != INT32_MIN){
+  }else if(DP.find(l) != DP.end()){
     return DP[l];
   }else{
     int res = A[l];
@@ -29,7 +32,7 @@ int fun(vector<int> A, vector<int>& DP, int l){
 }
 
 int sottocres(vector<int> A, int n){
-  vector<int> DP(n+1, INT32_MIN);
+  unordered_map<int, int> DP(n+1);
   int res = INT32_MIN;
   for(int l=1; l <= n; l++)
     res = max(res, fun(A, DP, l));
