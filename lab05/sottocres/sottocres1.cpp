@@ -12,7 +12,7 @@ using namespace std;
 
 */
 
-int fun(vector<int> A, vector<int>& DP, int l){
+int fun(vector<int>& A, vector<int>& DP, int l){
   if(l==1){
     return A[l];
   }else if(DP[l] != INT32_MIN){
