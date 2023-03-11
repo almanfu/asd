@@ -12,20 +12,19 @@ using namespace std;
 
 */
 
-int fun(vector<vector<int>> DP, int i, int m){
-  if(i==0)
-    return 1;
-  else if(DP[i][m] != INT32_MIN)
-    return DP[i][m];
-  else if(m != 0)
-    return fun(DP, i-1, m+1)+fun(DP, i, m-1);
-  else
-    return fun(DP, i-1, m+1);
-}
-
-int pillole(int n){
-  vector<vector<int>> DP(n+1, vector<int>(n+1, INT32_MIN));
-  return fun(DP, n, 0);
+long long int pillole(int n){
+  vector<vector<long long int>> DP(n+1, vector<long long int>(n+1));
+  for(int i=0; i <= n; i++){
+    for(int m=0; m <= n-i; m++){
+      if(i==0)
+        DP[i][m]=1;
+      else if(m != 0)
+        DP[i][m]=DP[i-1][m+1]+DP[i][m-1];
+      else
+        DP[i][m]=DP[i-1][m+1];      
+    }
+  }
+  return DP[n][0];
 }
 
 int main(int argc, char *argv[]){
