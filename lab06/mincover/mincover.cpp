@@ -108,7 +108,6 @@ public:
     {
       Node node;
       unordered_set<Node>::iterator iter;
-      bool haveLeaves;
       sNode(Node u, unordered_set<Node>::iterator i)
       {
         node = u;

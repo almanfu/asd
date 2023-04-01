@@ -113,7 +113,6 @@ public:
     {
       Node node;
       unordered_set<Node>::iterator iter;
-      bool haveLeaves;
       sNode(Node u, unordered_set<Node>::iterator i)
       {
         node = u;
@@ -133,31 +132,48 @@ public:
       time++;
       if (ft[u] != 0)
       { // Post-order visit
-        int leavesSum=0;
-        for(Node v: adj[u]){
-          if(adj[v].size() == 1)// is a leaf!
-            leavesSum += weight[v];
-        }
-        //GREEDY CHOICE
-        if(weight[u] <= leavesSum){ // Kill me
-          res += weight[u];
-          for(Node v: adj[u]){
-            adj[v].erase(u);
+        bool haveLeaves = false;
+        for (Node v : adj[u]){
+          if(adj[v].size() == 1){
+            haveLeaves = true;
+            break;
           }
-          adj[u].clear();
         }
-        else{ // Kill leaves
-          res += leavesSum;
-          list<Node> toErase = list<Node>();
-          for (Node v : adj[u]){
-            if(adj[v].size() == 1){
-              adj[v].clear();
-              toErase.push_front(v);
+        if(haveLeaves){
+          int leavesSum = 0;
+          for (Node v : adj[u])
+          {
+            if (adj[v].size() == 1) // is a leaf!
+              leavesSum += weight[v];
+          }
+          // GREEDY CHOICE
+          if (weight[u] < leavesSum)
+          { // Kill me
+            res += weight[u];
+            for (Node v : adj[u]){
+              adj[v].erase(u);
+            }
+            adj[u].clear();
+          }
+          else
+          { // Kill leaves
+            res += leavesSum;
+            list<Node> toErase = list<Node>();
+            for (Node v : adj[u])
+            {
+              if (adj[v].size() == 1)
+              {
+                adj[v].clear();
+                toErase.push_front(v);
+              }
+            }
+            for (Node v : toErase)
+            {
+              adj[u].erase(v);
             }
           }
-          for(Node v: toErase){
-            adj[u].erase(v);
-          }
+        }else{
+          // Do nothing
         }
         s.pop(); // Here I give the return value
       }
