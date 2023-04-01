@@ -35,6 +35,7 @@ private:
   vector<Node> V;
   vector<unordered_set<Node>> adj;
   vector<int> color;
+  vector<int> weight;
 
 public:
   Graph(int nodes, EdgeDirection eDir)
@@ -42,6 +43,7 @@ public:
     edgeDirection = eDir;
     n = nodes;
     V = vector<Node>(n);
+    weight = vector<int>(n);
     adj = vector<unordered_set<Node>>(n);
     color = vector<int>(n, -1);
     for (Node u = 0; u < n; u++)
@@ -55,6 +57,9 @@ public:
   bool undirected()
   {
     return edgeDirection == UNDIRECTED;
+  }
+  void assignWeight(Node u, int w){
+    weight[u] = w;
   }
   void insertEdge(Node u, Node v)
   {
@@ -127,21 +132,34 @@ public:
       Node &u = snode.node;
       time++;
       if (ft[u] != 0)
-      {
-        // Post-order visit
-        bool haveLeaves = false;
-        for (Node v : adj[u]){
-          if(haveLeaves |= adj[v].size() == 1)
-            break;
+      { // Post-order visit
+        int leavesSum=0;
+        for(Node v: adj[u]){
+          if(adj[v].size() == 1)// is a leaf!
+            leavesSum += weight[v];
         }
-        if(haveLeaves){
-          res += 1;
+        //GREEDY CHOICE
+        if(weight[u] <= leavesSum){ // Kill me
+          res += weight[u];
           for(Node v: adj[u]){
             adj[v].erase(u);
           }
-          adj[u].clear();            
+          adj[u].clear();
         }
-        s.pop(); // Here I give a return value
+        else{ // Kill leaves
+          res += leavesSum;
+          list<Node> toErase = list<Node>();
+          for (Node v : adj[u]){
+            if(adj[v].size() == 1){
+              adj[v].clear();
+              toErase.push_front(v);
+            }
+          }
+          for(Node v: toErase){
+            adj[u].erase(v);
+          }
+        }
+        s.pop(); // Here I give the return value
       }
       else if (ft[u] == 0)
       {
@@ -197,8 +215,13 @@ int main(int argc, char *argv[])
 
   Graph g(n, Graph::UNDIRECTED);
 
-  for (int i = 0; i < m; i++)
-  {
+  for (int u = 0; u < n; u++){
+    int w;
+    in >> w;
+    g.assignWeight(u, w);
+  }
+
+  for (int i = 0; i < m; i++){
     Graph::Node u, v;
     in >> u >> v;
     g.insertEdge(u, v);
