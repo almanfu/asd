@@ -135,26 +135,19 @@ public:
       if (ft[u] != 0)
       {
         // Post-order visit
+        bool haveLeaves = false;
+        for (Node v : adj[u]){
+          if(haveLeaves |= adj[v].size() == 1)
+            break;
+        }
         if(haveLeaves){
           res += 1;
           for(Node v: adj[u]){
             adj[v].erase(u);
           }
-          adj[u].clear();
-
-          retval=false;
+          adj[u].clear();            
         }
-        else if(adj[u].size() == 1){
-          retval=true;
-        }
-        else{
-          retval=false;
-        }
-        s.pop(); // Here I give a return value --- how can I link the two without recursion?
-        if(s.size() > 0){
-          sNode &snodeparent = s.top();
-          snodeparent.haveLeaves |= retval;          
-        }
+        s.pop(); // Here I give a return value
       }
       else if (ft[u] == 0)
       {
