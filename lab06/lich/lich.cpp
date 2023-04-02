@@ -47,8 +47,12 @@ private:
   int n;
   vector<Node> V;
   vector<list<Edge>> adj;
-  vector<Node> succ;
-  vector<int> maxLeaf;
+  vector<Node> succ0;
+  vector<Node> succ1;
+  
+  vector<int> maxLeaf0;
+  vector<int> maxLeaf1;
+
   vector<int> color;
 
 public:
@@ -60,9 +64,11 @@ public:
     V = vector<Node>(n);
     adj = vector<list<Edge>>(n);
 
-    succ = vector<Node>(n);
-    maxLeaf = vector<int>(n);
-    
+    succ0 = vector<Node>(n);
+    succ1 = vector<Node>(n);
+    maxLeaf0 = vector<int>(n);
+    maxLeaf1 = vector<int>(n);
+
     color = vector<int>(n, -1);
     for (Node u = 0; u < n; u++)
       V[u] = u;
@@ -114,13 +120,13 @@ public:
   void print_maxLeaf(){
     cout << "maxLeaf" << endl;
     for (Node u = 0; u < n; u++)
-      cout << u << ':' << maxLeaf[u] << endl;
+      cout << u << ':' << maxLeaf0[u] << ',' << maxLeaf1[u] << endl;
   }
   void print_succ()
   {
     cout << "succ" << endl;
     for (Node u = 0; u < n; u++)
-      cout << u << ':' << succ[u] << endl;
+      cout << u << ':' << succ0[u] << ',' << succ1[u] << endl;
   }
 
   void bfs(Node r){
@@ -183,16 +189,19 @@ public:
         for(Edge e: adj[u]){
           Node v = e.node;
           if(v != p){
-            if (maxLeaf[v] + e.weight > maxLeaf[u])
+            if (maxLeaf0[v] + e.weight > maxLeaf0[u])
             {
-              maxLeaf[u] = maxLeaf[v] + e.weight;
-              succ[u] = v;
+              maxLeaf1[u] = maxLeaf0[u];
+              succ1[u] = succ0[u];
+
+              maxLeaf0[u] = maxLeaf0[v] + e.weight;
+              succ0[u] = v;
             }
           }
         }
-        if(succ[u] == -1){// I am a Leaf!
-          succ[u] = u;
-          maxLeaf[u] = 0;
+        if(succ0[u] == -1){// I am a Leaf!
+          succ0[u] = succ1[u] = u;
+          maxLeaf0[u] = maxLeaf1[u] = 0;
         }
 
         s.pop();
@@ -204,8 +213,8 @@ public:
         {
           dt[u] = time;
           // Pre-order visit
-          succ[u] = -1;
-          maxLeaf[u] = -1;
+          succ0[u] = succ1[u] = - 1;
+          maxLeaf0[u] = maxLeaf1[u] = -1;
         }
         auto &iter = snode.iter;
         auto iterEnd = adj[u].end();
@@ -287,20 +296,45 @@ public:
         {
           dt[u] = time;
           // Pre-order visit
-          if(p != -1 && succ[p] != u && (pw+maxLeaf[p] < maxLeaf[u])){
-            succ[u] = p;
-            maxLeaf[u] = pw + maxLeaf[p];
+          if(p != -1){
+            if(succ0[p] != u && (pw+maxLeaf0[p] >= maxLeaf0[u])){
+              maxLeaf1[u] = maxLeaf0[u];
+              succ1[u] = succ0[u];
+              
+              maxLeaf0[u] = pw + maxLeaf0[p];
+              succ0[u] = p;
+            }
+            if(succ1[p] != u){ // parent is not a leaf, so it has 2 paths
+              if ((pw + maxLeaf1[p] >= maxLeaf0[u])){
+                // => could have given maxLeaf0[u] := pw+maxLeaf0[p]
+                // and they had the same weight
+                if(succ0[u] != p){
+                  maxLeaf1[u] = maxLeaf0[u];
+                  succ1[u] = succ0[u];
+
+                  maxLeaf0[u] = pw + maxLeaf1[p];
+                  succ0[u] = p;                  
+                }
+              }
+              if(pw+maxLeaf1[p] >= maxLeaf1[u]){
+                if(succ0[u] != p){
+                  maxLeaf1[u] = pw + maxLeaf1[p];
+                  succ1[u] = p;
+                }
+              }
+            }
           }
         }
         auto &iter = snode.iter;
         auto iterEnd = adj[u].end();
         while (iter != iterEnd)
         {
-          Node v = iter->node;
+          Edge &e = *iter;
+          Node &v = e.node;
           if (dt[v] == 0)
           { // Tree Edge
             iter++;
-            s.push(sNode(v, u, pw, adj[v].begin())); // here I expect a return value
+            s.push(sNode(v, u, e.weight, adj[v].begin())); // here I expect a return value
             break;
           }
           else if (ft[v] != 0 && dt[v] > dt[u])
@@ -329,7 +363,7 @@ public:
 
   void calcMaxLeaf(){
     fun1();
-    //fun2();
+    fun2();
   }
 
   int lich(int l){
