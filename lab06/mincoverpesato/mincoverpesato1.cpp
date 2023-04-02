@@ -33,7 +33,7 @@ public:
 private:
   int n;
   vector<Node> V;
-  vector<unordered_set<Node>> adj;
+  vector<list<Node>> adj;
   vector<int> color;
   vector<int> weight;
 
@@ -44,7 +44,7 @@ public:
     n = nodes;
     V = vector<Node>(n);
     weight = vector<int>(n);
-    adj = vector<unordered_set<Node>>(n);
+    adj = vector<list<Node>>(n);
     color = vector<int>(n, -1);
     for (Node u = 0; u < n; u++)
       V[u] = u;
@@ -65,9 +65,9 @@ public:
   {
     if (has(u) && has(v) && u != v)
     {
-      adj[u].insert(v);
+      adj[u].push_front(v);
       if (undirected())
-        adj[v].insert(u);
+        adj[v].push_front(u);
     }
   }
   // Functions
@@ -114,17 +114,20 @@ public:
     {
       Node node;
       Node parent;
-      unordered_set<Node>::iterator iter;
-      sNode(Node u, Node p, unordered_set<Node>::iterator i)
+      list<Node>::iterator iter;
+      int dp0, dp1;
+      sNode(Node u, Node p, int w, list<Node>::iterator i)
       {
         node = u;
         parent = p;
         iter = i;
+        dp0 = 0;
+        dp1 = w;
       }
       ~sNode() {}
     };
     stack<sNode> s;
-    s.push(sNode(r, -1, adj[r].begin()));
+    s.push(sNode(r, -1, weight[r], adj[r].begin()));
     vector<int> dt(n, 0);
     vector<int> ft(n, 0);
     int time = 0;
@@ -171,7 +174,7 @@ public:
           if (dt[v] == 0)
           { // Tree Edge
             iter++;
-            s.push(sNode(v, u, adj[v].begin())); // here I expect a return value
+            s.push(sNode(v, u, weight[v], adj[v].begin())); // here I expect a return value
             break;
           }
           else if (ft[v] != 0 && dt[v] > dt[u])
