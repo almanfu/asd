@@ -495,9 +495,10 @@ public:
   int lich(int l){
     //
     int res = 0;
-    for (int i = 0; i < n; i++)
+    int i = 0;
+    int j = 0;
+    while(j < n-1)
     {
-      int j = i;
       while(j < n-1 && (maxleafs[j].first-maxleafs[i].first) <= l)
         j++;
       if((maxleafs[j].first - maxleafs[i].first) > l)
@@ -517,6 +518,8 @@ public:
         }
       }
       res = max(res, ds.getMaxSize());
+
+      i++;
     }
     return res;
   }
