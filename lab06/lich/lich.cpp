@@ -13,6 +13,69 @@ using namespace std;
 /*
 
 */
+class DisjointSet
+{
+public:
+  DisjointSet(int n) : parent(n), rank(n), size(n, 1)
+  {
+    for (int i = 0; i < n; i++)
+    {
+      parent[i] = i;
+    }
+  }
+
+  int find(int x)
+  {
+    if (parent[x] != x)
+    {
+      parent[x] = find(parent[x]);
+    }
+    return parent[x];
+  }
+
+  bool merge(int x, int y)
+  {
+    int px = find(x), py = find(y);
+    if (px == py)
+    {
+      return false;
+    }
+    if (rank[px] < rank[py])
+    {
+      std::swap(px, py);
+    }
+    parent[py] = px;
+    size[px] += size[py];
+    if (rank[px] == rank[py])
+    {
+      rank[px]++;
+    }
+    return true;
+  }
+
+  int getSize(int x)
+  {
+    return size[find(x)];
+  }
+
+  int getMaxSize()
+  {
+    int res = -1;
+    for (int s : size)
+    {
+      res = max(res, s);
+    }
+    return res;
+  }
+
+  void decrSize(int x){
+    int px = find(x);
+    size[px]--;
+  }
+
+private:
+  std::vector<int> parent, rank, size;
+};
 
 class Graph
 {
@@ -62,17 +125,20 @@ private:
   vector<Node> i2u;
   vector<int> u2i;
 
+  vector<Node> parent;
+
 public:
   Graph(int nodes, EdgeDirection eDir, EdgeWeight eWeight) :
-    edgeDirection(eDir),
-    edgeWeight(eWeight),
-    n(nodes),
-    adj(vector<list<Edge>>(n)),
-    succ(vector<Node[2]>(n)),
-    maxLeaf(vector<int[2]>(n)),
-    maxleafs(vector<pair<int, Node>>(n)),
-    i2u(vector<Node>(n)),
-    u2i(vector<int>(n)){}
+  edgeDirection(eDir),
+  edgeWeight(eWeight),
+  n(nodes),
+  adj(vector<list<Edge>>(n)),
+  succ(vector<Node[2]>(n)),
+  maxLeaf(vector<int[2]>(n)),
+  maxleafs(vector<pair<int, Node>>(n)),
+  i2u(vector<Node>(n)),
+  u2i(vector<int>(n)),
+  parent(n){}
 
   ~Graph() {}
   bool has(Node u)
@@ -142,43 +208,47 @@ public:
     plt_file.close();
   }
 
-  void fun1()
-  {
-    Node r=0;
-    while (r < n - 1 && adj[r].size() == 1)
-      r++;
-    if (adj[r].size() == 1)
-      return void();
+  void fun1(Node r){
     struct sNode
     {
       Node node;
       Node parent;
-      list<Edge>::iterator iter;
-      sNode(Node u, Node p, list<Edge>::iterator i)
+      sNode(Node u, Node p)
       {
         node = u;
         parent = p;
-        iter = i;
       }
       ~sNode() {}
-      };
+    };
+    vector<bool> visited(n, false);
     stack<sNode> s;
-    s.push(sNode(r, NIL, adj[r].begin()));
-    vector<int> dt(n, 0);
-    vector<int> ft(n, 0);
-    int time = 0;
+
+    s.push(sNode(r, NIL));
+
     while (!s.empty())
     {
       sNode &snode = s.top();
-      Node &u = snode.node;
-      Node &p = snode.parent;
-      time++;
-      if (ft[u] != 0)
-      { // Post-order visit
+      Node u = snode.node;
+      Node p = snode.parent;
+      if(!visited[u])
+      { //pre order
+        succ[u][0] = succ[u][1] = NIL;
+        maxLeaf[u][0] = maxLeaf[u][1] = -1;
+        //
         for(Edge e: adj[u]){
           Node v = e.node;
-          if(v != p){
-            int path0 = e.weight+maxLeaf[v][0];
+          if (v != p)
+            s.push(sNode(v, u));
+        }
+        visited[u] = true;
+      }else{
+        //postorder
+        for (Edge e : adj[u])
+        {
+          Node v = e.node;
+          if (v != p)
+          {
+            int path0 = e.weight + maxLeaf[v][0];
             if (path0 >= maxLeaf[u][0]) // Importante! Ne devo avere almeno 2 in r
             {
               maxLeaf[u][1] = maxLeaf[u][0];
@@ -187,200 +257,132 @@ public:
               maxLeaf[u][0] = path0;
               succ[u][0] = v;
             }
-            else if (path0 > maxLeaf[u][1]){
+            else if (path0 > maxLeaf[u][1])
+            {
               maxLeaf[u][1] = path0;
               succ[u][1] = v;
             }
           }
         }
-        if (succ[u][0] == NIL){ // I am a Leaf!
-          succ[u][0] = succ[u][1] = u;
-          maxLeaf[u][0] = maxLeaf[u][1] = 0;
+        if (succ[u][0] == NIL)
+        { // I am a Leaf!
+          succ[u][0] = u;
+          maxLeaf[u][0] = 0;
         }
-
+        //
         s.pop();
-        // Here I give the return value
-      }
-      else if (ft[u] == 0)
-      {
-        if (dt[u] == 0)
-        {
-          dt[u] = time;
-          // Pre-order visit
-          succ[u][0] = succ[u][1] = NIL;
-          maxLeaf[u][0] = maxLeaf[u][1] = -1;
-        }
-        auto &iter = snode.iter;
-        auto iterEnd = adj[u].end();
-        while (iter != iterEnd)
-        {
-          Node v = iter->node;
-          if (dt[v] == 0)
-          { // Tree Edge
-            iter++;
-            s.push(sNode(v, u, adj[v].begin())); // here I expect a return value
-            break;
-          }
-          else if (ft[v] != 0 && dt[v] > dt[u])
-          {
-            iter++;
-            // Forward Edge
-          }
-          else if (ft[v] == 0 && dt[v] < dt[u])
-          {
-            iter++;
-            // Back Edge
-          }
-          else
-          {
-            iter++;
-            // Cross Edge
-          }
-        }
-        if (iter == iterEnd)
-        {
-          ft[u] = dt[u] == time ? time + 1 : time;
-        }
       }
     }
   }
 
-  void fun2()
+  void fun2(Node r)
   {
-    Node r = 0;
-    while (r<n-1 && adj[r].size() == 1)
-      r++;
-    if (adj[r].size() == 1)
-      return void();
     struct sNode
     {
       Node node;
       Node parent;
       int pweight;
-      list<Edge>::iterator iter;
-      sNode(Node u, Node p, int pw, list<Edge>::iterator i)
+      sNode(Node u, Node p, int pw)
       {
         node = u;
         parent = p;
         pweight = pw;
-        iter = i;
       }
       ~sNode() {}
     };
     stack<sNode> s;
-    s.push(sNode(r, NIL, 0, adj[r].begin()));
-    vector<int> dt(n, 0);
-    vector<int> ft(n, 0);
-    int time = 0;
+    s.push(sNode(r, NIL, 0));
+
     while (!s.empty())
     {
-      sNode &snode = s.top();
-      Node &u = snode.node;
-      Node &p = snode.parent;
-      int &pw = snode.pweight;
-      time++;
-      if (ft[u] != 0)
-      { // Post-order visit
-        s.pop();
-        // Here I give the return value
-      }
-      else if (ft[u] == 0)
+      sNode &snode = s.top();s.pop();
+      Node u = snode.node;
+      Node p = snode.parent;
+      int pw = snode.pweight;
+      // pre order
+      if (p != NIL)
       {
-        if (dt[u] == 0)
+        int path0 = pw + maxLeaf[p][0];
+        int path1 = pw + maxLeaf[p][1];
+        if (succ[p][0] != u && succ[p][1] != u)
         {
-          dt[u] = time;
-          // Pre-order visit
-          if (p != NIL)
+          if (path0 >= maxLeaf[u][0])
           {
-            int path0 = pw + maxLeaf[p][0];
-            int path1 = pw + maxLeaf[p][1];
-            if (succ[p][0] != u && succ[p][1] != u){
-              if(path0 >= maxLeaf[u][0]){
-                maxLeaf[u][1] = maxLeaf[u][0];
-                succ[u][1] = succ[u][0];
+            maxLeaf[u][1] = maxLeaf[u][0];
+            succ[u][1] = succ[u][0];
 
-                maxLeaf[u][0] = path0;
-                succ[u][0] = p;
-              }else if(path0 > maxLeaf[u][1]){
-                maxLeaf[u][1] = path0;
-                succ[u][1] = p;
-              }else if(path1 > maxLeaf[u][1]){
-                maxLeaf[u][1] = path1;
-                succ[u][1] = p;
-              }
-            }
-            else if (succ[p][0] != u && succ[p][1] == u){
-              if (path0 >= maxLeaf[u][0])
-              {
-                maxLeaf[u][1] = maxLeaf[u][0];
-                succ[u][1] = succ[u][0];
-
-                maxLeaf[u][0] = path0;
-                succ[u][0] = p;
-              }
-              else if (path0 > maxLeaf[u][1])
-              {
-                maxLeaf[u][1] = path0;
-                succ[u][1] = p;
-              }
-            }
-            else if(succ[p][0] == u && succ[p][1] != u){
-              if(path1 >= maxLeaf[u][0]){
-                maxLeaf[u][1] = maxLeaf[u][0];
-                succ[u][1] = succ[u][0];
-
-                maxLeaf[u][0] = path1;
-                succ[u][0] = p;
-              }else if(path1 > maxLeaf[u][1]){
-                maxLeaf[u][1] = path1;
-                succ[u][1] = p;
-              }
-            }
+            maxLeaf[u][0] = path0;
+            succ[u][0] = p;
+          }
+          else if (path0 > maxLeaf[u][1])
+          {
+            maxLeaf[u][1] = path0;
+            succ[u][1] = p;
+          }
+          else if (path1 > maxLeaf[u][1])
+          {
+            maxLeaf[u][1] = path1;
+            succ[u][1] = p;
           }
         }
-        auto &iter = snode.iter;
-        auto iterEnd = adj[u].end();
-        while (iter != iterEnd)
+        else if (succ[p][0] != u && succ[p][1] == u)
         {
-          Edge e = *iter;
-          Node &v = e.node;
-          if (dt[v] == 0)
-          { // Tree Edge
-            iter++;
-            s.push(sNode(v, u, e.weight, adj[v].begin())); // here I expect a return value
-            break;
-          }
-          else if (ft[v] != 0 && dt[v] > dt[u])
+          if (path0 >= maxLeaf[u][0])
           {
-            iter++;
-            // Forward Edge
+            maxLeaf[u][1] = maxLeaf[u][0];
+            succ[u][1] = succ[u][0];
+
+            maxLeaf[u][0] = path0;
+            succ[u][0] = p;
           }
-          else if (ft[v] == 0 && dt[v] < dt[u])
+          else if (path0 > maxLeaf[u][1])
           {
-            iter++;
-            // Back Edge
-          }
-          else
-          {
-            iter++;
-            // Cross Edge
+            maxLeaf[u][1] = path0;
+            succ[u][1] = p;
           }
         }
-        if (iter == iterEnd)
+        else if (succ[p][0] == u && succ[p][1] != u)
         {
-          ft[u] = dt[u] == time ? time + 1 : time;
+          if (path1 >= maxLeaf[u][0])
+          {
+            maxLeaf[u][1] = maxLeaf[u][0];
+            succ[u][1] = succ[u][0];
+
+            maxLeaf[u][0] = path1;
+            succ[u][0] = p;
+          }
+          else if (path1 > maxLeaf[u][1])
+          {
+            maxLeaf[u][1] = path1;
+            succ[u][1] = p;
+          }
         }
+      }
+      //
+      for (Edge e : adj[u])
+      {
+        Node v = e.node;
+        if (v != p)
+          s.push(sNode(v, u, e.weight));
       }
     }
   }
 
   void calcMaxLeaf(){
-    fun1();
-    fun2();
+    Node r = 0;
+    while (r < n - 1 && adj[r].size() == 1)
+      r++;
+    if (adj[r].size() == 1)
+      return void();
+
+    fun1(r);
+    fun2(r);
+
     for (Node u = 0; u < n; u++)
       maxleafs[u] = {maxLeaf[u][0], u};
 
     sort(maxleafs.begin(), maxleafs.end());
+    reverse(maxleafs.begin(), maxleafs.end());
 
     for (int i = 0; i < n; i++)
     {
@@ -467,12 +469,13 @@ public:
     }
     return res;
   }
-  */
+  
   int lich(int &l){
     int res = 1;
-    lich1(i2u[0], NIL, l, res);
+    lich1(i2u[0], -1, l, res);
     return res;
   };
+
 
   void lich1(Node u, Node p, int &l, int&res)
   {
@@ -519,8 +522,82 @@ public:
         }
       }
     }
-
     // post-order
+  }*/
+  void dfs(Node r)
+  {
+    std::stack<std::pair<int, int>> s;
+    s.push({r, NIL});
+
+    while (!s.empty())
+    {
+      Node u = s.top().first;
+      Node p = s.top().second;
+      s.pop();
+
+      parent[u] = p;
+
+      for (const Edge &e : adj[u])
+      {
+        const Node v = e.node;
+        if (v != p){
+          s.push({v, u});
+        }
+      }
+    }
+  }
+  void bfs(Node r){
+    queue<pair<Node, Node>> q;
+    q.push({r, NIL});
+    while(!q.empty()){
+      Node u = q.front().first;
+      Node p = q.front().second;
+      q.pop();
+
+      parent[u] = p;
+
+      for (const Edge &e : adj[u])
+      {
+        const Node v = e.node;
+        if (v != p)
+        {
+          q.push({v, u});
+        }
+      }
+    }
+  }
+  int lich(int l)
+  {
+    bfs(i2u[n-1]);
+    DisjointSet ds(n);
+
+    int res = 1;
+    int j = 0;
+    for (auto it : maxleafs)
+    {
+      Node &u = it.second;
+      int &maxpath = it.first;
+      
+      // merge children
+      for (Edge e : adj[u])
+      {
+        Node &v = e.node;
+        if (v != parent[u]){
+          if(maxLeaf[v][0] - maxLeaf[u][0] <= l)
+            ds.merge(u, v);
+        }
+      }
+
+      // remove
+      while ( j < n && maxLeaf[i2u[j]][0] - maxLeaf[u][0] > l)
+      {
+        ds.decrSize(i2u[j]);
+        j++;
+      }
+
+      res = max(res, ds.getSize(u));
+    }
+    return res;
   }
 };
 
@@ -546,7 +623,7 @@ public:
     // Calculate
     g.calcMaxLeaf();
 
-    g.plt();
+    // g.plt();
 
     // g.print_maxLeaf();
     // g.print_succ();
