@@ -57,7 +57,8 @@ node_color_name = ["BLUE" for _ in range(n)]
 
 # use plt_file
 for u in range(n):
-  [u2i, maxleaf] = [str(x) for x in plt_file.readline().split()]
+  [type, u2i, maxleaf] = [str(x) for x in plt_file.readline().split()]
+  node_color_name[u] = "BLUE" if type=="nlf" else ("GREEN" if type=="lf" else "RED")
   node_labels[u] = f"{u}({u2i}°:{maxleaf})"
 
 # plotting

@@ -195,8 +195,14 @@ public:
   }
   void plt(){
     ofstream plt_file("plt.txt");
-    for (Node u = 0; u < n; u++)
-      plt_file << u2i[u] << ' ' << maxleafs[u2i[u]].first << endl;
+    bool root = true;
+    for (Node u = 0; u < n; u++){
+      plt_file << (adj[u].size() == 1 ? "lf" : (root ? "root" : "nlf" )) << ' ' << u2i[u] << ' ' << maxleafs[u2i[u]].first << endl;
+      if (adj[u].size() != 1){
+        root = false;
+      }
+    }
+      
     plt_file.close();
   }
 
@@ -260,16 +266,17 @@ public:
         for(Edge e: adj[u]){
           Node v = e.node;
           if(v != p){
-            if (maxLeaf[v][0] + e.weight >= maxLeaf[u][0])// Importante! Ne devo avere almeno 2 in r
+            int path0 = e.weight+maxLeaf[v][0];
+            if (path0 >= maxLeaf[u][0]) // Importante! Ne devo avere almeno 2 in r
             {
               maxLeaf[u][1] = maxLeaf[u][0];
               succ[u][1] = succ[u][0];
 
-              maxLeaf[u][0] = maxLeaf[v][0] + e.weight;
+              maxLeaf[u][0] = path0;
               succ[u][0] = v;
             }
-            else if (maxLeaf[v][0] + e.weight > maxLeaf[u][1]){
-              maxLeaf[u][1] = maxLeaf[v][0] + e.weight;
+            else if (path0 > maxLeaf[u][1]){
+              maxLeaf[u][1] = path0;
               succ[u][1] = v;
             }
           }
@@ -371,32 +378,50 @@ public:
         {
           dt[u] = time;
           // Pre-order visit
-          if (p != NIL && adj[u].size() != 1)
+          if (p != NIL)
           {
-            if(succ[p][0] != u && (pw+maxLeaf[p][0] >= maxLeaf[u][0])){
-              maxLeaf[u][1] = maxLeaf[u][0];
-              succ[u][1] = succ[u][0];
-              
-              maxLeaf[u][0] = pw + maxLeaf[p][0];
-              succ[u][0] = p;
-            }
-            if(succ[p][1] != u){ // parent is not a leaf, so it has 2 paths
-              if ((pw + maxLeaf[p][1] >= maxLeaf[u][0])){
-                // => could have given maxLeaf[u][0] := pw+maxLeaf[p][0]
-                // and they had the same weight
-                if(succ[u][0] != p){
-                  maxLeaf[u][1] = maxLeaf[u][0];
-                  succ[u][1] = succ[u][0];
+            int path0 = pw + maxLeaf[p][0];
+            int path1 = pw + maxLeaf[p][1];
+            if (succ[p][0] != u && succ[p][1] != u){
+              if(path0 >= maxLeaf[u][0]){
+                maxLeaf[u][1] = maxLeaf[u][0];
+                succ[u][1] = succ[u][0];
 
-                  maxLeaf[u][0] = pw + maxLeaf[p][1];
-                  succ[u][0] = p;                  
-                }
+                maxLeaf[u][0] = path0;
+                succ[u][0] = p;
+              }else if(path0 > maxLeaf[u][1]){
+                maxLeaf[u][1] = path0;
+                succ[u][1] = p;
+              }else if(path1 > maxLeaf[u][1]){
+                maxLeaf[u][1] = path1;
+                succ[u][1] = p;
               }
-              if(pw+maxLeaf[p][1] >= maxLeaf[u][1]){
-                if(succ[u][0] != p){
-                  maxLeaf[u][1] = pw + maxLeaf[p][1];
-                  succ[u][1] = p;
-                }
+            }
+            else if (succ[p][0] != u && succ[p][1] == u){
+              if (path0 >= maxLeaf[u][0])
+              {
+                maxLeaf[u][1] = maxLeaf[u][0];
+                succ[u][1] = succ[u][0];
+
+                maxLeaf[u][0] = path0;
+                succ[u][0] = p;
+              }
+              else if (path0 > maxLeaf[u][1])
+              {
+                maxLeaf[u][1] = path0;
+                succ[u][1] = p;
+              }
+            }
+            else if(succ[p][0] == u && succ[p][1] != u){
+              if(path1 >= maxLeaf[u][0]){
+                maxLeaf[u][1] = maxLeaf[u][0];
+                succ[u][1] = succ[u][0];
+
+                maxLeaf[u][0] = path1;
+                succ[u][0] = p;
+              }else if(path1 > maxLeaf[u][1]){
+                maxLeaf[u][1] = path1;
+                succ[u][1] = p;
               }
             }
           }
@@ -518,10 +543,10 @@ int main(int argc, char *argv[])
   //Calculate
   g.calcMaxLeaf();
 
-  g.plt();
+  //g.plt();
 
-  g.print_maxLeaf();
-  g.print_succ();
+  //g.print_maxLeaf();
+  //g.print_succ();
 
   int k;
   in >> k;
