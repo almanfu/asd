@@ -119,7 +119,7 @@ int dist(int edge, bool has_father)
   return ma;
 }
 
-int dfs(int node, int father)
+void dfs(int node, int father)
 {
   for (int e = G[node].start_edge; e < G[node].end_edge; e++)
   {
