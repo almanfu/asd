@@ -57,8 +57,8 @@ node_color_name = ["BLUE" for _ in range(n)]
 
 # use plt_file
 for u in range(n):
-  [maxleaf, u2i] = [str(x) for x in plt_file.readline().split()]
-  node_labels[u] = f"{u}({u2i}->{maxleaf})"
+  [u2i, maxleaf] = [str(x) for x in plt_file.readline().split()]
+  node_labels[u] = f"{u}({u2i}°:{maxleaf})"
 
 # plotting
 a_pos = nx.kamada_kawai_layout(G)
