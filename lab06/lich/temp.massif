@@ -1,0 +1,889 @@
+desc: --heap=yes --stacks=yes --detailed-freq=10 --massif-out-file=temp.massif
+cmd: ./temp.out
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=36410438
+mem_heap_B=23084800
+mem_heap_extra_B=397576
+mem_stacks_B=1816
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=56466266
+mem_heap_B=23608288
+mem_heap_extra_B=746568
+mem_stacks_B=2056
+heap_tree=detailed
+n9: 23608288 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 9600000 0x10AD69: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 9600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10ADE3: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10AE55: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10AECD: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 1600000 0x10AF43: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 1600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 1600000 0x10AFC2: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 1600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 559128 0x10AB26: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 559128 0x10AB71: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 90032 in 3 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=3
+#-----------
+time=85610476
+mem_heap_B=24353872
+mem_heap_extra_B=1243624
+mem_stacks_B=2056
+heap_tree=detailed
+n9: 24353872 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 9600000 0x10AD69: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 9600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10ADE3: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10AE55: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10AECD: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 1600000 0x10AF43: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 1600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 1600000 0x10AFC2: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 1600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 931920 0x10AB26: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 931920 0x10AB71: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 90032 in 3 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=4
+#-----------
+time=121118112
+mem_heap_B=25261624
+mem_heap_extra_B=1848792
+mem_stacks_B=1680
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=147489322
+mem_heap_B=25935520
+mem_heap_extra_B=2298056
+mem_stacks_B=2032
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=172799492
+mem_heap_B=26582032
+mem_heap_extra_B=2729064
+mem_stacks_B=1816
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=215425596
+mem_heap_B=27670144
+mem_heap_extra_B=3454472
+mem_stacks_B=1816
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=244965372
+mem_heap_B=28423600
+mem_heap_extra_B=3956776
+mem_stacks_B=1816
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=270263352
+mem_heap_B=29068288
+mem_heap_extra_B=4386568
+mem_stacks_B=1816
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=294961892
+mem_heap_B=29697424
+mem_heap_extra_B=4805992
+mem_stacks_B=2056
+heap_tree=detailed
+n9: 29697424 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 9600000 0x10AD69: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 9600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 3603696 0x10AB26: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 3603696 0x10AB71: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10ADE3: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10AE55: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10AECD: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 1600000 0x10AF43: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 1600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 1600000 0x10AFC2: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 1600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 90032 in 3 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=11
+#-----------
+time=334100876
+mem_heap_B=30693472
+mem_heap_extra_B=5470024
+mem_stacks_B=1816
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=360118520
+mem_heap_B=31342000
+mem_heap_extra_B=5902376
+mem_stacks_B=1816
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=396583882
+mem_heap_B=32243392
+mem_heap_extra_B=6503304
+mem_stacks_B=1816
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=423883420
+mem_heap_B=32918032
+mem_heap_extra_B=6953064
+mem_stacks_B=1816
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=462985920
+mem_heap_B=33884416
+mem_heap_extra_B=7597320
+mem_stacks_B=2032
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=488268708
+mem_heap_B=34509280
+mem_heap_extra_B=8013896
+mem_stacks_B=2056
+heap_tree=detailed
+n9: 34509280 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 9600000 0x10AD69: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 9600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 6009624 0x10AB26: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 6009624 0x10AB71: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10ADE3: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10AE55: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10AECD: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 1600000 0x10AF43: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 1600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 1600000 0x10AFC2: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 1600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 90032 in 3 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=17
+#-----------
+time=514102698
+mem_heap_B=35147776
+mem_heap_extra_B=8439560
+mem_stacks_B=1816
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=551099660
+mem_heap_B=36062128
+mem_heap_extra_B=9049128
+mem_stacks_B=1816
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=595166404
+mem_heap_B=37151176
+mem_heap_extra_B=9775160
+mem_stacks_B=1760
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=627427670
+mem_heap_B=37948504
+mem_heap_extra_B=10306712
+mem_stacks_B=1696
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=650808926
+mem_heap_B=38526352
+mem_heap_extra_B=10691944
+mem_stacks_B=1784
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=674670570
+mem_heap_B=39116080
+mem_heap_extra_B=11085096
+mem_stacks_B=1816
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=699003602
+mem_heap_B=39717520
+mem_heap_extra_B=11486056
+mem_stacks_B=1816
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=723826382
+mem_heap_B=40331008
+mem_heap_extra_B=11895048
+mem_stacks_B=1752
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=749151947
+mem_heap_B=40956808
+mem_heap_extra_B=12312248
+mem_stacks_B=1688
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=780416641
+mem_heap_B=44890560
+mem_heap_extra_B=12801064
+mem_stacks_B=2032
+heap_tree=peak
+n11: 44890560 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 9600000 0x10AD69: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 9600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 9599976 0x10AB26: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 9599976 0x10AB71: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10ADE3: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10AE55: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10AECD: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 1600000 0x10AF43: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 1600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 1600000 0x10AFC2: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 1600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 1600000 0x10BEBC: Graph::fun1() (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n1: 1600000 0x10D065: Graph::calcMaxLeaf() (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+   n0: 1600000 0x10A63E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 1600000 0x10BF0A: Graph::fun1() (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n1: 1600000 0x10D065: Graph::calcMaxLeaf() (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+   n0: 1600000 0x10A63E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 90608 in 5 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=27
+#-----------
+time=821500016
+mem_heap_B=44890560
+mem_heap_extra_B=12801064
+mem_stacks_B=1960
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=854366160
+mem_heap_B=44890560
+mem_heap_extra_B=12801064
+mem_stacks_B=1960
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=887232187
+mem_heap_B=44891056
+mem_heap_extra_B=12801088
+mem_stacks_B=1960
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=911881685
+mem_heap_B=44891056
+mem_heap_extra_B=12801088
+mem_stacks_B=1968
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=938955723
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=1736
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=977881254
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=1864
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=999164440
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=2184
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=1029164012
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=1720
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=1071728371
+mem_heap_B=41698648
+mem_heap_extra_B=12801056
+mem_stacks_B=2504
+heap_tree=detailed
+n9: 41698648 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 9600000 0x10AD69: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 9600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 9599976 0x10AB26: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 9599976 0x10AB71: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10ADE3: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10AE55: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10AECD: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 1600000 0x10AF43: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 1600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 1600000 0x10AFC2: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 1600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 98696 in 13 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=36
+#-----------
+time=1103651701
+mem_heap_B=41698648
+mem_heap_extra_B=12801056
+mem_stacks_B=2592
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=1135575017
+mem_heap_B=41698648
+mem_heap_extra_B=12801056
+mem_stacks_B=2592
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=1156857211
+mem_heap_B=41698648
+mem_heap_extra_B=12801056
+mem_stacks_B=2376
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=1199421577
+mem_heap_B=41698648
+mem_heap_extra_B=12801056
+mem_stacks_B=2632
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=1231344847
+mem_heap_B=41698648
+mem_heap_extra_B=12801056
+mem_stacks_B=2328
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=1273909201
+mem_heap_B=41698648
+mem_heap_extra_B=12801056
+mem_stacks_B=2576
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=1316473555
+mem_heap_B=41698648
+mem_heap_extra_B=12801056
+mem_stacks_B=2488
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=1337755748
+mem_heap_B=41698648
+mem_heap_extra_B=12801056
+mem_stacks_B=2584
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=1369679037
+mem_heap_B=41698648
+mem_heap_extra_B=12801056
+mem_stacks_B=2648
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=1401602312
+mem_heap_B=41698648
+mem_heap_extra_B=12801056
+mem_stacks_B=2600
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=1422884494
+mem_heap_B=41698648
+mem_heap_extra_B=12801056
+mem_stacks_B=2456
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=1454807773
+mem_heap_B=41698648
+mem_heap_extra_B=12801056
+mem_stacks_B=2496
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=1486731044
+mem_heap_B=41698648
+mem_heap_extra_B=12801056
+mem_stacks_B=2328
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=1508013217
+mem_heap_B=41698648
+mem_heap_extra_B=12801056
+mem_stacks_B=2472
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=1528069059
+mem_heap_B=41698648
+mem_heap_extra_B=12801056
+mem_stacks_B=2648
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=1548124892
+mem_heap_B=41698648
+mem_heap_extra_B=12801056
+mem_stacks_B=2336
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=1568180730
+mem_heap_B=41698648
+mem_heap_extra_B=12801056
+mem_stacks_B=2600
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=1588236592
+mem_heap_B=41698648
+mem_heap_extra_B=12801056
+mem_stacks_B=2592
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=1608292439
+mem_heap_B=41698648
+mem_heap_extra_B=12801056
+mem_stacks_B=2576
+heap_tree=empty
+#-----------
+snapshot=55
+#-----------
+time=1628348272
+mem_heap_B=41698648
+mem_heap_extra_B=12801056
+mem_stacks_B=2328
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=1648404107
+mem_heap_B=41698648
+mem_heap_extra_B=12801056
+mem_stacks_B=2424
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=1668459940
+mem_heap_B=41698648
+mem_heap_extra_B=12801056
+mem_stacks_B=2504
+heap_tree=empty
+#-----------
+snapshot=58
+#-----------
+time=1688515772
+mem_heap_B=41698648
+mem_heap_extra_B=12801056
+mem_stacks_B=2424
+heap_tree=detailed
+n9: 41698648 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 9600000 0x10AD69: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 9600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 9599976 0x10AB26: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 9599976 0x10AB71: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10ADE3: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10AE55: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10AECD: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 1600000 0x10AF43: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 1600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 1600000 0x10AFC2: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 1600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 98696 in 13 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=59
+#-----------
+time=1708571621
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=3032
+heap_tree=empty
+#-----------
+snapshot=60
+#-----------
+time=1728627489
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=2696
+heap_tree=empty
+#-----------
+snapshot=61
+#-----------
+time=1748683325
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=3272
+heap_tree=empty
+#-----------
+snapshot=62
+#-----------
+time=1768739184
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=4040
+heap_tree=empty
+#-----------
+snapshot=63
+#-----------
+time=1788795089
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=3272
+heap_tree=empty
+#-----------
+snapshot=64
+#-----------
+time=1808850950
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=3416
+heap_tree=empty
+#-----------
+snapshot=65
+#-----------
+time=1828906794
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=3800
+heap_tree=empty
+#-----------
+snapshot=66
+#-----------
+time=1848962916
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=3272
+heap_tree=empty
+#-----------
+snapshot=67
+#-----------
+time=1869018745
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=4808
+heap_tree=empty
+#-----------
+snapshot=68
+#-----------
+time=1889075182
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=2696
+heap_tree=detailed
+n9: 41689984 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 9600000 0x10AD69: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 9600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 9599976 0x10AB26: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 9599976 0x10AB71: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10ADE3: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10AE55: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10AECD: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 1600000 0x10AF43: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 1600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 1600000 0x10AFC2: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 1600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 90032 in 13 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=69
+#-----------
+time=1909131078
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=4808
+heap_tree=empty
+#-----------
+snapshot=70
+#-----------
+time=1929186999
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=4424
+heap_tree=empty
+#-----------
+snapshot=71
+#-----------
+time=1949242873
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=5192
+heap_tree=empty
+#-----------
+snapshot=72
+#-----------
+time=1969298828
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=4040
+heap_tree=empty
+#-----------
+snapshot=73
+#-----------
+time=1989354675
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=4040
+heap_tree=empty
+#-----------
+snapshot=74
+#-----------
+time=2009410601
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=5000
+heap_tree=empty
+#-----------
+snapshot=75
+#-----------
+time=2029466450
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=3240
+heap_tree=empty
+#-----------
+snapshot=76
+#-----------
+time=2049522392
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=4040
+heap_tree=empty
+#-----------
+snapshot=77
+#-----------
+time=2069578220
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=2968
+heap_tree=empty
+#-----------
+snapshot=78
+#-----------
+time=2089634085
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=3816
+heap_tree=detailed
+n9: 41689984 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 9600000 0x10AD69: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 9600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 9599976 0x10AB26: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 9599976 0x10AB71: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10ADE3: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10AE55: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10AECD: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 1600000 0x10AF43: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 1600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 1600000 0x10AFC2: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 1600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 90032 in 13 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=79
+#-----------
+time=2109689943
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=4072
+heap_tree=empty
+#-----------
+snapshot=80
+#-----------
+time=2129745777
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=2536
+heap_tree=empty
+#-----------
+snapshot=81
+#-----------
+time=2149801617
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=2440
+heap_tree=empty
+#-----------
+snapshot=82
+#-----------
+time=2169857485
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=3416
+heap_tree=empty
+#-----------
+snapshot=83
+#-----------
+time=2189913371
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=5000
+heap_tree=empty
+#-----------
+snapshot=84
+#-----------
+time=2209969210
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=3464
+heap_tree=empty
+#-----------
+snapshot=85
+#-----------
+time=2230025052
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=3896
+heap_tree=empty
+#-----------
+snapshot=86
+#-----------
+time=2250080886
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=2728
+heap_tree=empty
+#-----------
+snapshot=87
+#-----------
+time=2270136725
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=2568
+heap_tree=empty
+#-----------
+snapshot=88
+#-----------
+time=2290192563
+mem_heap_B=41689984
+mem_heap_extra_B=12801032
+mem_stacks_B=2296
+heap_tree=detailed
+n9: 41689984 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 9600000 0x10AD69: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 9600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 9599976 0x10AB26: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 9599976 0x10AB71: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10ADE3: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10AE55: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 3200000 0x10AECD: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 3200000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 1600000 0x10AF43: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 1600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n1: 1600000 0x10AFC2: Graph::Graph(int, Graph::EdgeDirection, Graph::EdgeWeight) (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+  n0: 1600000 0x10A58E: main (in /home/manfucci/GitRepos/asd1/lab06/lich/temp.out)
+ n0: 90032 in 13 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=89
+#-----------
+time=2310248391
+mem_heap_B=21451088
+mem_heap_extra_B=7853232
+mem_stacks_B=1744
+heap_tree=empty

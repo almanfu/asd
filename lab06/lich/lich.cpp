@@ -13,62 +13,6 @@ using namespace std;
 /*
 
 */
-class DisjointSet
-{
-public:
-  DisjointSet(int n) : parent(n), rank(n), size(n, 1)
-  {
-    for (int i = 0; i < n; i++)
-    {
-      parent[i] = i;
-    }
-  }
-
-  int find(int x)
-  {
-    if (parent[x] != x)
-    {
-      parent[x] = find(parent[x]);
-    }
-    return parent[x];
-  }
-
-  bool merge(int x, int y)
-  {
-    int px = find(x), py = find(y);
-    if (px == py)
-    {
-      return false;
-    }
-    if (rank[px] < rank[py])
-    {
-      std::swap(px, py);
-    }
-    parent[py] = px;
-    size[px] += size[py];
-    if (rank[px] == rank[py])
-    {
-      rank[px]++;
-    }
-    return true;
-  }
-
-  int getSize(int x)
-  {
-    return size[find(x)];
-  }
-
-  int getMaxSize(){
-    int res = -1;
-    for(int s: size){
-      res = max(res, s);
-    }
-    return res;
-  }
-
-private:
-  std::vector<int> parent, rank, size;
-};
 
 class Graph
 {
@@ -120,15 +64,15 @@ private:
 
 public:
   Graph(int nodes, EdgeDirection eDir, EdgeWeight eWeight) :
-  edgeDirection(eDir),
-  edgeWeight(eWeight),
-  n(nodes),
-  adj(vector<list<Edge>>(n)),
-  succ(vector<Node[2]>(n)),
-  maxLeaf(vector<int[2]>(n)),
-  maxleafs(vector<pair<int, Node>>(n)),
-  i2u(vector<Node>(n)),
-  u2i(vector<int>(n)){}
+    edgeDirection(eDir),
+    edgeWeight(eWeight),
+    n(nodes),
+    adj(vector<list<Edge>>(n)),
+    succ(vector<Node[2]>(n)),
+    maxLeaf(vector<int[2]>(n)),
+    maxleafs(vector<pair<int, Node>>(n)),
+    i2u(vector<Node>(n)),
+    u2i(vector<int>(n)){}
 
   ~Graph() {}
   bool has(Node u)
@@ -446,6 +390,7 @@ public:
     }
   }
 
+  /*
   int lich(int l){
     //
     int res = 0;
@@ -468,30 +413,8 @@ public:
       }
       j = left;
 
-      /*while (j < n - 1 && (maxleafs[j].first - maxleafs[i].first) <= l)
-      {
-        j++;
-        //U.insert(i2u[j]);
-      }
-      if((maxleafs[j].first - maxleafs[i].first) > l){
-        //U.erase(i2u[j]);
-        j--;
-      }*/
-
       //Ora devo creare un mfset con j-i+1 elementi
       int k = j-i+1;
-      /* Esploro il grafo con una multi-source bfs
-      DisjointSet ds = DisjointSet(k);
-
-      for (int h1 = i; h1 <= j; h1++){
-        Node u = i2u[h1];
-        for (int h2 = i; h2 <= j; h2++)
-        {
-          Node v = i2u[h2];
-          if (adj[u].find({v, 0}) != adj[u].end())
-            ds.merge(h1-i, h2-i);
-        }
-      }*/
       vector<int> cc = vector<int>(k, -1);
       vector<int> cc_size = vector<int>(k, 0);
       int id = 0;
@@ -528,14 +451,6 @@ public:
       for (int p = 0; p < k; p++){
         res = max(res, cc_size[p]);
       }
-
-      /*U.erase(i2u[i]);
-      j++;
-      while(j < n && i < j && (maxleafs[j].first - maxleafs[i].first) > l)
-        i++;*/
-
-      
-
       // con ricerca dicotomica, porto avanti i
       j++;
       left = i;
@@ -552,51 +467,106 @@ public:
     }
     return res;
   }
+  */
+  int lich(int &l){
+    int res = 1;
+    lich1(i2u[0], NIL, l, res);
+    return res;
+  };
+
+  void lich1(Node u, Node p, int &l, int&res)
+  {
+    
+    // pre-order
+
+    for(Edge e: adj[u]){
+      Node &v = e.node;
+      if(v != p){
+        // in-order
+        lich1(v, u, l, res);
+      }
+    }
+
+    // post-order
+
+    int size = 1;
+
+    for (Edge e : adj[u])
+    {
+      Node &v = e.node;
+      if(v != p){
+        if(maxLeaf[v][0] - maxLeaf[u][0] <= l){
+          size++;
+          lich2(v, u, u, l, size);
+        }
+      }
+    }
+
+    res = max(res, size);
+  }
+
+  void lich2(Node u, Node p, Node r, int &l, int &size){
+    // pre-order
+
+    for(Edge e: adj[u]){
+      Node &v = e.node;
+      if(v != p){
+        // in-order
+        if (maxLeaf[v][0] - maxLeaf[r][0] <= l)
+        {
+          size++;
+          lich2(v, u, r, l, size);
+        }
+      }
+    }
+
+    // post-order
+  }
 };
 
+  int main(int argc, char *argv[])
+  {
+    ifstream in("input.txt");
+    ofstream out("output.txt");
 
+    int n, m;
+    in >> n;
+    m = n - 1;
 
-int main(int argc, char *argv[])
-{
-  ifstream in("input.txt");
-  ofstream out("output.txt");
+    Graph g(n, Graph::UNDIRECTED, Graph::WEIGHTED);
 
-  int n, m;
-  in >> n;
-  m = n - 1;
+    for (int i = 0; i < m; i++)
+    {
+      Graph::Node u, v;
+      int w;
+      in >> u >> v >> w;
+      g.insertEdge(u, v, w);
+    }
 
-  Graph g(n, Graph::UNDIRECTED, Graph::WEIGHTED);
+    // Calculate
+    g.calcMaxLeaf();
 
-  for (int i = 0; i < m; i++){
-    Graph::Node u, v;
-    int w;
-    in >> u >> v >> w;
-    g.insertEdge(u, v, w);
-  }
+    g.plt();
 
-  //Calculate
-  g.calcMaxLeaf();
+    // g.print_maxLeaf();
+    // g.print_succ();
 
-  //g.plt();
+    int k;
+    in >> k;
 
-  //g.print_maxLeaf();
-  //g.print_succ();
+    for (int i = 0; i < k; i++)
+    {
+      int l;
+      in >> l;
+      int res = 0;
+      if (n <= 2)
+        res = n;
+      else
+        res = g.lich(l);
+      out << res << endl;
+    }
 
-  int k;
-  in >> k;
-
-  for (int i = 0; i < k; i++){
-    int l;
-    in >> l;
-    int res=0;
-    if (n <= 2)
-      res = n;
-    else
-      res = g.lich(l);
-    out << res << endl;
-  }
-
-  in.close();
-  out.close();
-  return 0;
+    in.close();
+    out.close();
+    return 0;
 }
