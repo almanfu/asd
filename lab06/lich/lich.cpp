@@ -94,13 +94,6 @@ public:
       return e1.node == e2.node;
     }
   };
-  struct EdgeHash
-  {
-    std::size_t operator()(const Edge &edge) const
-    {
-      return std::hash<int>()(edge.node);
-    }
-  };
   enum EdgeDirection
   {
     DIRECTED,
@@ -203,30 +196,6 @@ public:
     }
       
     plt_file.close();
-  }
-
-  void bfs(Node r){
-    queue<Node> q;
-    vector<bool> visited(n, false);
-    if (has(r))
-    {
-      q.push(r);
-      visited[r] = true;
-    }
-    while (!q.empty())
-    {
-      Node u = q.front();
-      q.pop();
-      // Visit
-      for (Edge e : adj[u])
-      {
-        if (!visited[e.node])
-        {
-          q.push(e.node);
-          visited[e.node] = true;
-        }
-      }
-    }
   }
 
   void fun1()
@@ -477,38 +446,38 @@ public:
     }
   }
 
-  struct dpnode
-  {
-    int min;
-    int max;
-    int enne;
-    dpnode(int _min, int _max, int _enne)
-    {
-      min = _min;
-      max = _max;
-      enne = _enne;
-    }
-    ~dpnode() {}
-  };
-
   int lich(int l){
     //
     int res = 0;
     int i = 0;
     int j = 0;
-    //<unordered_set<Node> U = unordered_set<Node>(n);
-    //U.insert(i2u[j]);
-    while (j < n)
-    {
-      while(j < n-1 && (maxleafs[j].first-maxleafs[i].first) <= l){
+    int left = 0;
+    int right = 0;
+
+    while (j < n && i < n)
+    { 
+      // con ricerca dicotomica, porto avanti j
+      left = j;
+      right = n-1;
+      while(left != right){
+        int m = (left + right + 1) / 2;
+        if ((maxleafs[m].first - maxleafs[i].first) <= l)
+          left = m;
+        else
+          right = m - 1;
+      }
+      j = left;
+
+      /*while (j < n - 1 && (maxleafs[j].first - maxleafs[i].first) <= l)
+      {
         j++;
         //U.insert(i2u[j]);
       }
       if((maxleafs[j].first - maxleafs[i].first) > l){
         //U.erase(i2u[j]);
         j--;
-      }
-      
+      }*/
+
       //Ora devo creare un mfset con j-i+1 elementi
       int k = j-i+1;
       /* Esploro il grafo con una multi-source bfs
@@ -560,10 +529,26 @@ public:
         res = max(res, cc_size[p]);
       }
 
-      //U.erase(i2u[i]);
+      /*U.erase(i2u[i]);
       j++;
       while(j < n && i < j && (maxleafs[j].first - maxleafs[i].first) > l)
-        i++;
+        i++;*/
+
+      
+
+      // con ricerca dicotomica, porto avanti i
+      j++;
+      left = i;
+      right = j;
+      while (j < n && left != right)
+      {
+        int m = (left + right) / 2;
+        if ((maxleafs[j].first - maxleafs[m].first) > l)
+          left = m+1;
+        else
+          right = m;
+      }
+      i = left;
     }
     return res;
   }
