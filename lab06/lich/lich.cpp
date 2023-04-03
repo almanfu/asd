@@ -5,12 +5,71 @@
 #include <list>
 #include <queue>
 #include <stack>
+#include <unordered_set>
+#include <unordered_map>
+#include <algorithm>
 
 using namespace std;
 
 /*
 
 */
+class DisjointSet
+{
+public:
+  DisjointSet(int n) : parent(n), rank(n), size(n, 1)
+  {
+    for (int i = 0; i < n; i++)
+    {
+      parent[i] = i;
+    }
+  }
+
+  int find(int x)
+  {
+    if (parent[x] != x)
+    {
+      parent[x] = find(parent[x]);
+    }
+    return parent[x];
+  }
+
+  bool merge(int x, int y)
+  {
+    int px = find(x), py = find(y);
+    if (px == py)
+    {
+      return false;
+    }
+    if (rank[px] < rank[py])
+    {
+      std::swap(px, py);
+    }
+    parent[py] = px;
+    size[px] += size[py];
+    if (rank[px] == rank[py])
+    {
+      rank[px]++;
+    }
+    return true;
+  }
+
+  int getSize(int x)
+  {
+    return size[find(x)];
+  }
+
+  int getMaxSize(){
+    int res = -1;
+    for(int s: size){
+      res = max(res, s);
+    }
+    return res;
+  }
+
+private:
+  std::vector<int> parent, rank, size;
+};
 
 class Graph
 {
@@ -29,6 +88,17 @@ public:
     {
       return e1.weight < e2.weight;
     }
+    friend bool operator==(const Edge e1, const Edge e2)
+    {
+      return e1.node == e2.node;
+    }
+  };
+  struct EdgeHash
+  {
+    std::size_t operator()(const Edge &edge) const
+    {
+      return std::hash<int>()(edge.node);
+    }
   };
   enum EdgeDirection
   {
@@ -46,33 +116,39 @@ public:
 private:
   int n;
   vector<Node> V;
-  vector<list<Edge>> adj;
+  vector<unordered_set<Edge, EdgeHash>> adj;
   vector<Node> succ0;
   vector<Node> succ1;
   
   vector<int> maxLeaf0;
   vector<int> maxLeaf1;
 
+  vector<pair<int, Node>> maxleafs;
+  unordered_map<int, Node> i2u;
+  unordered_map<Node, int> u2i;
+
   vector<int> color;
 
 public:
-  Graph(int nodes, EdgeDirection eDir, EdgeWeight eWeight)
+  Graph(int nodes, EdgeDirection eDir, EdgeWeight eWeight) :
+  edgeDirection(eDir),
+  edgeWeight(eWeight),
+  n(nodes),
+  V(vector<Node>(n)),
+  adj(vector<unordered_set<Edge, EdgeHash>>(n)),
+  succ0(vector<Node>(n)),
+  succ1(vector<Node>(n)),
+  maxLeaf0(vector<int>(n)),
+  maxLeaf1(vector<int>(n)),
+  maxleafs(vector<pair<int, Node>>(n)),
+  i2u(unordered_map<int, Node>(n)),
+  u2i(unordered_map<Node, int>(n)),
+  color(vector<int>(n, -1))
   {
-    edgeDirection = eDir;
-    edgeWeight = eWeight;
-    n = nodes;
-    V = vector<Node>(n);
-    adj = vector<list<Edge>>(n);
-
-    succ0 = vector<Node>(n);
-    succ1 = vector<Node>(n);
-    maxLeaf0 = vector<int>(n);
-    maxLeaf1 = vector<int>(n);
-
-    color = vector<int>(n, -1);
     for (Node u = 0; u < n; u++)
       V[u] = u;
   }
+
   ~Graph() {}
   bool has(Node u)
   {
@@ -92,9 +168,9 @@ public:
       weight = 1;
     if (has(u) && has(v) && u != v && weight >= 1)
     {
-      adj[u].push_front(Edge(v, weight));
+      adj[u].insert(Edge(v, weight));
       if (undirected())
-        adj[v].push_front(Edge(u, weight));
+        adj[v].insert(Edge(u, weight));
     }
   }
   // Functions
@@ -128,14 +204,20 @@ public:
     for (Node u = 0; u < n; u++)
       cout << u << ':' << succ0[u] << ',' << succ1[u] << endl;
   }
+  void plt(){
+    ofstream plt_file("plt.txt");
+    for (Node u = 0; u < n; u++)
+      plt_file << maxLeaf0[u] << ' ' << u2i[u] << endl;
+    plt_file.close();
+  }
 
   void bfs(Node r){
-  queue<Node> q;
-  vector<bool> visited(n, false);
-  if (has(r))
-  {
-    q.push(r);
-    visited[r] = true;
+    queue<Node> q;
+    vector<bool> visited(n, false);
+    if (has(r))
+    {
+      q.push(r);
+      visited[r] = true;
     }
     while (!q.empty())
     {
@@ -159,13 +241,13 @@ public:
     while (adj[r].size() == 1)
       r++;
     if (adj[r].size() == 1)
-      return;
+      return void();
     struct sNode
     {
       Node node;
       Node parent;
-      list<Edge>::iterator iter;
-      sNode(Node u, Node p, list<Edge>::iterator i)
+      unordered_set<Edge>::iterator iter;
+      sNode(Node u, Node p, unordered_set<Edge>::iterator i)
       {
         node = u;
         parent = p;
@@ -257,14 +339,14 @@ public:
     while (adj[r].size() == 1)
       r++;
     if (adj[r].size() == 1)
-      return;
+      return void();
     struct sNode
     {
       Node node;
       Node parent;
       int pweight;
-      list<Edge>::iterator iter;
-      sNode(Node u, Node p, int pw, list<Edge>::iterator i)
+      unordered_set<Edge>::iterator iter;
+      sNode(Node u, Node p, int pw, unordered_set<Edge>::iterator i)
       {
         node = u;
         parent = p;
@@ -329,7 +411,7 @@ public:
         auto iterEnd = adj[u].end();
         while (iter != iterEnd)
         {
-          Edge &e = *iter;
+          Edge e = *iter;
           Node &v = e.node;
           if (dt[v] == 0)
           { // Tree Edge
@@ -364,10 +446,60 @@ public:
   void calcMaxLeaf(){
     fun1();
     fun2();
+    for (Node u = 0; u < n; u++)
+      maxleafs[u] = {maxLeaf0[u], u};
+
+    sort(maxleafs.begin(), maxleafs.end());
+
+    for (int i = 0; i < n; i++)
+    {
+      auto item = maxleafs[i];
+      i2u.insert({i, item.second});
+      u2i.insert({item.second, i});
+    }
   }
 
+  struct dpnode
+  {
+    int min;
+    int max;
+    int enne;
+    dpnode(int _min, int _max, int _enne)
+    {
+      min = _min;
+      max = _max;
+      enne = _enne;
+    }
+    ~dpnode() {}
+  };
+
   int lich(int l){
-    return 0;
+    //
+    int res = 0;
+    for (int i = 0; i < n; i++)
+    {
+      int j = i;
+      while(j < n-1 && (maxleafs[j].first-maxleafs[i].first) <= l)
+        j++;
+      if((maxleafs[j].first - maxleafs[i].first) > l)
+        j--;
+      //Ora devo creare un mfset con j-i+1 elementi
+      int k = j-i+1;
+      // Esploro il grafo con una multi-source bfs
+      DisjointSet ds = DisjointSet(k);
+
+      for (int h1 = i; h1 <= j; h1++){
+        Node u = i2u[h1];
+        for (int h2 = i; h2 <= j; h2++)
+        {
+          Node v = i2u[h2];
+          if (adj[u].find({v, 0}) != adj[u].end())
+            ds.merge(h1-i, h2-i);
+        }
+      }
+      res = max(res, ds.getMaxSize());
+    }
+    return res;
   }
 };
 
@@ -392,8 +524,10 @@ int main(int argc, char *argv[])
   //Calculate
   g.calcMaxLeaf();
 
-  g.print_maxLeaf();
-  g.print_succ();
+  //g.plt();
+
+  //g.print_maxLeaf();
+  //g.print_succ();
 
   int k;
   in >> k;
@@ -402,12 +536,10 @@ int main(int argc, char *argv[])
     int l;
     in >> l;
     int res=0;
-    if (n <= 2){
+    if (n <= 2)
       res = n;
-    }
-    else{
+    else
       res = g.lich(l);
-    }
     out << res << endl;
   }
 
