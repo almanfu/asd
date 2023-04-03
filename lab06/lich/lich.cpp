@@ -6,7 +6,6 @@
 #include <queue>
 #include <stack>
 #include <unordered_set>
-#include <unordered_map>
 #include <algorithm>
 
 using namespace std;
@@ -117,26 +116,26 @@ public:
 
 private:
   int n;
-  vector<unordered_set<Edge, EdgeHash>> adj;
+  vector<list<Edge>> adj;
 
   vector<Node[2]> succ;
   vector<int[2]> maxLeaf;
 
   vector<pair<int, Node>> maxleafs;
-  unordered_map<int, Node> i2u;
-  unordered_map<Node, int> u2i;
+  vector<Node> i2u;
+  vector<int> u2i;
 
 public:
   Graph(int nodes, EdgeDirection eDir, EdgeWeight eWeight) :
   edgeDirection(eDir),
   edgeWeight(eWeight),
   n(nodes),
-  adj(vector<unordered_set<Edge, EdgeHash>>(n)),
+  adj(vector<list<Edge>>(n)),
   succ(vector<Node[2]>(n)),
   maxLeaf(vector<int[2]>(n)),
   maxleafs(vector<pair<int, Node>>(n)),
-  i2u(unordered_map<int, Node>(n)),
-  u2i(unordered_map<Node, int>(n)){}
+  i2u(vector<Node>(n)),
+  u2i(vector<int>(n)){}
 
   ~Graph() {}
   bool has(Node u)
@@ -157,9 +156,9 @@ public:
       weight = 1;
     if (has(u) && has(v) && u != v && weight >= 1)
     {
-      adj[u].insert(Edge(v, weight));
+      adj[u].push_front(Edge(v, weight));
       if (undirected())
-        adj[v].insert(Edge(u, weight));
+        adj[v].push_front(Edge(u, weight));
     }
   }
   // Functions
@@ -241,8 +240,8 @@ public:
     {
       Node node;
       Node parent;
-      unordered_set<Edge>::iterator iter;
-      sNode(Node u, Node p, unordered_set<Edge>::iterator i)
+      list<Edge>::iterator iter;
+      sNode(Node u, Node p, list<Edge>::iterator i)
       {
         node = u;
         parent = p;
@@ -345,8 +344,8 @@ public:
       Node node;
       Node parent;
       int pweight;
-      unordered_set<Edge>::iterator iter;
-      sNode(Node u, Node p, int pw, unordered_set<Edge>::iterator i)
+      list<Edge>::iterator iter;
+      sNode(Node u, Node p, int pw, list<Edge>::iterator i)
       {
         node = u;
         parent = p;
@@ -473,8 +472,8 @@ public:
     for (int i = 0; i < n; i++)
     {
       auto item = maxleafs[i];
-      i2u.insert({i, item.second});
-      u2i.insert({item.second, i});
+      i2u[i]=item.second;
+      u2i[item.second]=i;
     }
   }
 
@@ -497,16 +496,16 @@ public:
     int res = 0;
     int i = 0;
     int j = 0;
-    unordered_set<Node> U = unordered_set<Node>(n);
-    U.insert(i2u[j]);
+    //<unordered_set<Node> U = unordered_set<Node>(n);
+    //U.insert(i2u[j]);
     while (j < n - 1)
     {
       while(j < n-1 && (maxleafs[j].first-maxleafs[i].first) <= l){
         j++;
-        U.insert(i2u[j]);
+        //U.insert(i2u[j]);
       }
       if((maxleafs[j].first - maxleafs[i].first) > l){
-        U.erase(i2u[j]);
+        //U.erase(i2u[j]);
         j--;
       }
       
@@ -544,7 +543,7 @@ public:
             {
               Node &v = e.node;
               int iv = u2i[v];
-              if (U.find(v) != U.end() && cc[iv-i] == -1)
+              if ( i <= iv && iv <= j && cc[iv-i] == -1)
               {
                 q.push(iv);
                 cc[iv-i] = id;
@@ -561,7 +560,7 @@ public:
         res = max(res, cc_size[p]);
       }
 
-      U.erase(i2u[i]);
+      //U.erase(i2u[i]);
       i++;
     }
     return res;
