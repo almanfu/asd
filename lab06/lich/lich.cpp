@@ -498,7 +498,7 @@ public:
     int j = 0;
     //<unordered_set<Node> U = unordered_set<Node>(n);
     //U.insert(i2u[j]);
-    while (j < n - 1)
+    while (j < n)
     {
       while(j < n-1 && (maxleafs[j].first-maxleafs[i].first) <= l){
         j++;
@@ -561,7 +561,9 @@ public:
       }
 
       //U.erase(i2u[i]);
-      i++;
+      j++;
+      while(j < n && i < j && (maxleafs[j].first - maxleafs[i].first) > l)
+        i++;
     }
     return res;
   }
