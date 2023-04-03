@@ -497,15 +497,22 @@ public:
     int res = 0;
     int i = 0;
     int j = 0;
-    while(j < n-1)
+    unordered_set<Node> U = unordered_set<Node>(n);
+    U.insert(i2u[j]);
+    while (j < n - 1)
     {
-      while(j < n-1 && (maxleafs[j].first-maxleafs[i].first) <= l)
+      while(j < n-1 && (maxleafs[j].first-maxleafs[i].first) <= l){
         j++;
-      if((maxleafs[j].first - maxleafs[i].first) > l)
+        U.insert(i2u[j]);
+      }
+      if((maxleafs[j].first - maxleafs[i].first) > l){
+        U.erase(i2u[j]);
         j--;
+      }
+      
       //Ora devo creare un mfset con j-i+1 elementi
       int k = j-i+1;
-      // Esploro il grafo con una multi-source bfs
+      /* Esploro il grafo con una multi-source bfs
       DisjointSet ds = DisjointSet(k);
 
       for (int h1 = i; h1 <= j; h1++){
@@ -516,14 +523,52 @@ public:
           if (adj[u].find({v, 0}) != adj[u].end())
             ds.merge(h1-i, h2-i);
         }
+      }*/
+      vector<int> cc = vector<int>(k, -1);
+      vector<int> cc_size = vector<int>(k, 0);
+      int id = 0;
+      for (int ir = i; ir <= j; ir++)
+      {
+        if (cc[ir-i] == -1)
+        {
+          // BFS
+          queue<int> q;
+          q.push(ir);
+          cc[ir-i] = id;
+          cc_size[id] = 1;
+          while (!q.empty())
+          {
+            int iu = q.front();
+            q.pop();
+            for (Edge e : adj[i2u[iu]])
+            {
+              Node &v = e.node;
+              int iv = u2i[v];
+              if (U.find(v) != U.end() && cc[iv-i] == -1)
+              {
+                q.push(iv);
+                cc[iv-i] = id;
+                cc_size[id]++;
+                
+              }
+            }
+          }
+          id++;
+        }
       }
-      res = max(res, ds.getMaxSize());
+      
+      for (int p = 0; p < k; p++){
+        res = max(res, cc_size[p]);
+      }
 
+      U.erase(i2u[i]);
       i++;
     }
     return res;
   }
 };
+
+
 
 int main(int argc, char *argv[])
 {
