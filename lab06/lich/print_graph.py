@@ -7,7 +7,7 @@ import colorsys
 h,s,l = random.random(), 0.5 + random.random()/2.0, 0.4 + random.random()/5.0
 r,g,b = [int(256*i) for i in colorsys.hls_to_rgb(h,l,s)]
 """
-spath="lab06/lich/"
+SPATH="lab06/lich/"
 
 def colors(name):
   if name == "BLUE":
@@ -30,12 +30,12 @@ def colors(name):
 def rand_col(seed=random.randint(1, 50)):
   return '#{:02x}{:02x}{:02x}'.format(seed%6*40, seed%10*20, seed%4*60)
 
-num_file = open("/home/manfucci/GitRepos/asd1/"+spath+".graphs/num", "r")
+num_file = open("/home/manfucci/GitRepos/asd/"+SPATH+".graphs/num", "r")
 num = int(num_file.readline())
 num_file.close()
 
-input_file = open("/home/manfucci/GitRepos/asd1/"+spath+"input.txt")
-plt_file = open("/home/manfucci/GitRepos/asd1/"+spath+"plt.txt")
+input_file = open("/home/manfucci/GitRepos/asd/"+SPATH+"input.txt")
+plt_file = open("/home/manfucci/GitRepos/asd/"+SPATH+"plt.txt")
 
 edge_labels = {}
 node_labels = {}

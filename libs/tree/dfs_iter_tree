@@ -1,0 +1,98 @@
+// pre-order (generalized and specific methods)
+-------------------
+dfs(TREE t)
+-------------------
+  STACK s=Stack()
+  if t != nil then
+  | s.push(t)
+  -
+  TREE prev=t
+  while !s.isEmpty() do
+  | t = s.top()
+  | print(t)
+  | u = t.child
+  | if prev == t.left then
+  | | if t.right != nil then
+  | | | s.push(t.right)
+  | | -
+  | | else
+  | | | prev = t
+  | | | s.pop()
+  | - -
+  | else if prev == t.right then
+  | | prev = t
+  | | s.pop()
+  | -
+  | else if t.left != nil then
+  | | s.push(t.left)
+  | | prev = t.left
+  | -
+  | else if t.right != nil then
+  | | s.push(t.right)
+  | | prev = t.right
+  | -
+  | else
+  | | print(t)
+  | | prev = t
+  | | s.pop()
+  - -
+-------------------
+
+
+-------------------  
+dfs(TREE t)
+-------------------
+  STACK s=Stack()
+  if t != nil then
+  | s.push(t)
+  -
+  while !s.isEmpty() do
+  | t = s.pop()
+  | print(t)
+  | TREE u = t.child
+  | while u != nil do
+  | | s.push(u)
+  | | u = u.sibling
+  - -
+-------------------
+
+
+// post-order
+-------------------
+dfs(TREE t)
+-------------------
+  STACK s=Stack()
+  if t != nil then
+  | s.push(t)
+  -
+  TREE prev=t
+  while !s.isEmpty() do
+  | t = s.top()
+  | if prev == t.left then
+  | | if(t.right != nil) then
+  | | | s.push(t.right)
+  | | -
+  | | else
+  | | | print(t)
+  | | | prev = t
+  | | | s.pop()
+  | - -
+  | else if prev == t.right then
+  | | print(t)
+  | | prev = t
+  | | s.pop()
+  | -
+  | else if t.left != nil then
+  | | s.push(t.left)
+  | | prev = t.left
+  | -
+  | else if t.right != nil then
+  | | s.push(t.right)
+  | | prev = t.right
+  | -
+  | else
+  | | print(t)
+  | | prev = t
+  | | s.pop()
+  - -
+-------------------

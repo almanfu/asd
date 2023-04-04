@@ -1,0 +1,71 @@
+#!/bin/python3
+import matplotlib.pyplot as plt
+import networkx as nx
+import random
+import os
+
+def colors(name):
+  if name == "BLUE":
+    return "#b0e0e6"
+  elif name == "GREEN":
+    return "#98fb98"
+  elif name == "RED":
+    return "#f08080"
+  elif name == "GRAY":
+    return "#CCCCCC"
+  elif name == "BLACK":
+    return "#000000"
+  elif name == "RAND":
+    return rand_col()
+  elif str.isdigit(name):
+    return rand_col(int(name))
+  elif name == "-1":
+    return rand_col(-1)
+
+def rand_col(seed=random.randint(1, 50)):
+  return '#{:02x}{:02x}{:02x}'.format(seed%6*40, seed%10*20, seed%4*60)
+
+
+######
+# main
+
+CWD=os.getcwd()
+
+num_file = open(CWD+"/.graphs/num", "w+")
+input_file = open(CWD+"/input.txt", "w+")
+
+num = int(num_file.readline())+1
+num_file.write(str(num))
+
+n = random.randint(5, 15)
+m = random.randint(int(1.4*n), 2*n)
+
+
+## visual check
+c='n'
+while c !='y':
+  G = nx.gnm_random_graph(n, m)
+  nx.draw_kamada_kawai(G, node_color=[colors("GREEN") for _ in list(G)])
+  
+  ### print and show
+  plt.savefig(".graphs/randgraph"+str(num))
+  plt.close()
+  os.system("code .graphs/randgraph"+str(num)+".png")
+  
+  ### user response
+  c = input()
+  if c == 'q':
+    raise Exception
+
+
+## write input_file
+input_file.write(str(n)+" "+str(m)+"\n")
+for (u, v, data) in G.edges(data=True):
+  input_file.write(str(u)+" "+str(v)+" "+"\n")
+
+
+num_file.close()
+input_file.close()
+
+os.system("cp input.txt .graphs/randgraph"+str(num)+".txt")
+print("===================")

@@ -3,7 +3,7 @@ import networkx as nx
 import random
 import os
 
-spath="lab03/batman/"
+SPATH="lab03/batman/"
 
 def colors(name):
   if name == "BLUE":
@@ -15,14 +15,14 @@ def colors(name):
   elif name == "GRAY":
     return "#212121"
 
-num_file = open("/mnt/50A65EC5A65EAB6C/lab/asd1/"+spath+".graphs/num", "r")
+num_file = open("/home/manfucci/GitRepos/asd"+SPATH+".graphs/num", "r")
 num = int(num_file.readline())+1
 num_file.close()
-num_file = open("/mnt/50A65EC5A65EAB6C/lab/asd1/"+spath+".graphs/num", "w+")
+num_file = open("/home/manfucci/GitRepos/asd"+SPATH+".graphs/num", "w+")
 num_file.write(str(num))
 num_file.close()
 
-input_file = open("/mnt/50A65EC5A65EAB6C/lab/asd1/"+spath+"input.txt", "w+")
+input_file = open("/home/manfucci/GitRepos/asd"+SPATH+"input.txt", "w+")
 
 n = random.randint(10, 17)
 m = random.randint(int(1.4*n), 2*n)

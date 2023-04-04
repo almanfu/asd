@@ -1,4 +1,0 @@
-#!/bin/bash
-/bin/python3 ./generate_graph.py &&\
-crun <project>.cpp &&\
-/bin/python3 ./print_graph.py

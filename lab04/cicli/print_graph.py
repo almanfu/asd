@@ -4,7 +4,7 @@ import networkx as nx
 import random
 import os
 
-spath="lab04/cicli/"
+SPATH="lab04/cicli/"
 
 def colors(name):
   if name == "BLUE":

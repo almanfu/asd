@@ -3,7 +3,7 @@ import networkx as nx
 import os
 import random
 
-spath="lab03/batman/"
+SPATH="lab03/batman/"
 
 def colors(name):
   if name == "BLUE":
@@ -24,12 +24,12 @@ def colors(name):
 def rand_col(seed=random.randint(1, 50)):
   return '#{:02x}{:02x}{:02x}'.format(seed%6*40, seed%10*20, seed%4*60)
 
-num_file = open("/mnt/50A65EC5A65EAB6C/lab/asd1/"+spath+".graphs/num", "r")
+num_file = open("/home/manfucci/GitRepos/asd"+SPATH+".graphs/num", "r")
 num = int(num_file.readline())
 num_file.close()
 
-input_file = open("/mnt/50A65EC5A65EAB6C/lab/asd1/"+spath+"input.txt")
-plt_file = open("/mnt/50A65EC5A65EAB6C/lab/asd1/"+spath+"plt.txt")
+input_file = open("/home/manfucci/GitRepos/asd"+SPATH+"input.txt")
+plt_file = open("/home/manfucci/GitRepos/asd"+SPATH+"plt.txt")
 
 n, m, s, d = [int(x) for x in input_file.readline().split()]
 

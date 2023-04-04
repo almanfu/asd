@@ -1,0 +1,34 @@
+#!/bin/bash
+declare pr=$(basename $(pwd))
+
+if [ $# -lt 1 ] || [ $1 -lt 0 ] || [ $1 -gt 19 ]; then
+  echo "Usage: testone <test-number (0~19)>"
+  exit 1
+fi
+
+if [ ! -e "dataset_$pr/$pr/input/input$1.txt" ]; then
+  echo "No such dataset. Are you in a project folder?"
+  exit 2
+fi
+
+if [ ! -e "$pr.cpp" ]; then
+  echo "No executable."
+  exit 2
+fi
+
+##
+
+cp "dataset_$pr/$pr/input/input$1.txt" "input.txt";
+crunt "$pr.cpp";
+# head -n1 "output.txt" > "output1.txt";
+if diff "output.txt" "dataset_$pr/$pr/output/output$1.txt";
+  then
+    echo "$1 good";
+  else
+    echo "$1 bad";
+    echo "$1" > ./.graphs/num
+    case $2 in
+      y | yes | image | print) ./print_graph.py;;
+    esac
+    nohup p4merge "output.txt" "dataset_$pr/$pr/output/output$1.txt" &
+fi

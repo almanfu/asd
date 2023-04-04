@@ -1,0 +1,22 @@
+#!/bin/bash
+declare pr=$(basename $(pwd))
+
+if [ $# -lt 1 ] || [ $1 -lt 0 ] || [ $1 -gt 19 ]; then
+  echo "Usage: loadtest <test-number (0~19)>"
+  exit 1
+fi
+
+if [ ! -e "dataset_$pr/$pr/input/input$1.txt" ]; then
+  echo "No such dataset. Are you in a project folder?"
+  exit 2
+fi
+
+if [ ! -e "$pr.cpp" ]; then
+  echo "No executable."
+  exit 2
+fi
+
+##
+
+cp "dataset_$pr/$pr/input/input$1.txt" "input.txt";
+code "dataset_$pr/$pr/output/output$1.txt";

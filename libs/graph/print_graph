@@ -1,0 +1,115 @@
+#!/bin/python3
+import matplotlib.pyplot as plt
+import networkx as nx
+import random
+import os
+
+def colors(name):
+  if name == "BLUE":
+    return "#b0e0e6"
+  elif name == "GREEN":
+    return "#98fb98"
+  elif name == "RED":
+    return "#f08080"
+  elif name == "GRAY":
+    return "#CCCCCC"
+  elif name == "BLACK":
+    return "#000000"
+  elif name == "RAND":
+    return rand_col()
+  elif str.isdigit(name):
+    return rand_col(int(name))
+  elif name == "-1":
+    return rand_col(-1)
+
+def rand_col(seed=random.randint(1, 50)):
+  return '#{:02x}{:02x}{:02x}'.format(seed%6*40, seed%10*20, seed%4*60)
+
+
+######
+# main
+
+CWD=os.getcwd()
+
+num_file = open(CWD+"/.graphs/num", "r")
+input_file = open(CWD+"/input.txt")
+plt_file = open(CWD+"/plt.txt")
+
+num = int(num_file.readline())
+
+class Size(enumerate):
+  SMALL = 0,
+  BIG = 1
+
+SIZE = Size.SMALL
+
+node_labels = {}
+edge_labels = {}
+
+node_color_name = []
+edge_color_name = []
+
+G = nx.DiGraph()
+
+props = {
+  "arrowsize":[1, 5],
+  "font_size":[1, 10],
+  "node_size":[20, 200]
+}
+
+
+## get size
+n, m = [int(x) for x in input_file.readline().split()]
+
+
+## add nodes
+G.add_nodes_from(range(0, n))
+
+for u in range(n):
+  [type, i] = [str(x) for x in plt_file.readline().split()]
+  node_labels[u] = f"{u}({i}°)"
+  node_color_name[u] = "BLUE" if type=="t1" else ("GREEN" if type=="t2" else "RED")
+
+## add edges
+for _ in range(0, m):
+  u, v, w = [int(x) for x in input_file.readline().split()]
+  G.add_edge(u, v)
+  edge_labels[u, v] = str(w)
+  edge_color_name[u, v] = "GRAY"
+
+
+## plotting
+plt.figure(figsize=(10, 4), dpi=700)
+
+nx.draw(G, pos=a_pos, with_labels=True,
+  node_color=[colors(x) for x in node_color_name],
+  edge_color=[colors(x) for x in edge_color_name],
+  arrows=True,
+  width=0.5,
+  arrowsize=props["arrowsize"][SIZE],
+  font_size=props["font_size"][SIZE],
+  node_size=props["node_size"][SIZE])
+
+nx.draw_networkx_labels(G, pos=a_pos,
+  labels=node_labels,
+  font_size=props["font_size"][SIZE])
+
+nx.draw_networkx_edge_labels(G, pos=a_pos, 
+  edge_labels=edge_labels,
+  font_size=props["font_size"][SIZE])
+
+### saving
+
+plt.savefig(".graphs/randgraph"+str(num))
+os.system("code .graphs/randgraph"+str(num)+".png")
+plt.close()
+
+### other utility functions
+
+#nx.strongly_connected_components(G)
+#nx.all_topological_sorts(G)
+
+num_file.close()
+input_file.close()
+plt_file.close()
+print("===================")
