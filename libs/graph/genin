@@ -30,12 +30,18 @@ def rand_col(seed=random.randint(1, 50)):
 # main
 
 CWD=os.getcwd()
+PR=os.path.basename(CWD)
 
-num_file = open(CWD+"/.graphs/num", "w+")
-input_file = open(CWD+"/input.txt", "w+")
+num_file = open(f"{CWD}/randset_{PR}/num", "a+")
+input_file = open(f"{CWD}/input.txt", "w+")
 
-num = int(num_file.readline())+1
+num_file.seek(0)
+num_line = num_file.readline().split()
+num = (int(num_line[0]) if len(num_line) > 0 else 0)+1
+num_file.seek(0)
+num_file.truncate()
 num_file.write(str(num))
+num_file.close()
 
 n = random.randint(5, 15)
 m = random.randint(int(1.4*n), 2*n)
@@ -48,9 +54,9 @@ while c !='y':
   nx.draw_kamada_kawai(G, node_color=[colors("GREEN") for _ in list(G)])
   
   ### print and show
-  plt.savefig(".graphs/randgraph"+str(num))
+  plt.savefig(f"randset_{PR}/plt/rplt{num}")
   plt.close()
-  os.system("code .graphs/randgraph"+str(num)+".png")
+  os.system(f"code randset_{PR}/plt/rplt{num}.png")
   
   ### user response
   c = input()
@@ -64,8 +70,6 @@ for (u, v, data) in G.edges(data=True):
   input_file.write(str(u)+" "+str(v)+" "+"\n")
 
 
-num_file.close()
 input_file.close()
 
-os.system("cp input.txt .graphs/randgraph"+str(num)+".txt")
-print("===================")
+os.system(f"cp input.txt randset_{PR}/input/rinput{num}.txt")

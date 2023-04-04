@@ -1,13 +1,14 @@
 #!/bin/bash
-declare pr=$(basename $(pwd))
+declare USAGE="testall [-n]"
+declare PR=$(basename $(pwd))
 
-if [ ! -e "dataset_$pr/$pr/input/input$1.txt" ]; then
-  echo "No such dataset. Are you in a project folder?"
+if [ ! -e "dataset_$PR/input/input0.txt" ]; then
+  echo "no dataset" >&2
   exit 2
 fi
 
-if [ ! -e "$pr.cpp" ]; then
-  echo "No executable."
+if [ ! -e "$PR.cpp" ]; then
+  echo "no executable" >&2
   exit 2
 fi
 
@@ -20,21 +21,28 @@ declare ngood=0;
 declare nbad=0;
 
 for i in "${index[@]}"; do
-  cp "dataset_$pr/$pr/input/input$i.txt" "input.txt";
-  crunt "$pr.cpp";
+  cp "dataset_$PR/input/input$i.txt" "input.txt";
+  crunt "$PR.cpp";
+
   # head -n1 "output.txt" > "output1.txt";
-  if diff "output.txt" "dataset_$pr/$pr/output/output$i.txt";
+
+  if diff "output.txt" "dataset_$PR/output/output$i.txt";
     then
-      echo "$i good";
+      echo "----------------"
+      echo "$i +";
+      echo "----------------"
       ngood=$((ngood+1));
     else
-      echo "$i bad";
+      echo "$i x";
       nbad=$((nbad+1));
       case $1 in
-        n | no | fast ) ;;
-        *) p4merge "output.txt" "dataset_$pr/$pr/output/output$i.txt";
+        -n | n)
+          ;;
+        *) p4merge "output.txt" "dataset_$PR/output/output$i.txt"
+          ;;
       esac
   fi
 done
-  echo "=======";
+  echo "================"
   echo "$ngood/$((ngood+nbad))"
+  echo "================"

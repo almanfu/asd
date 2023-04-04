@@ -8,9 +8,21 @@
 
 using namespace std;
 
+bool INFO = false;
+
 /*
 
 */
+
+void info()
+{
+  if (!INFO)
+    return void();
+
+  ofstream info("info.txt");
+
+  info.close();
+}
 
 class Graph{
   public:
@@ -159,7 +171,8 @@ int main(int argc, char *argv[]){
   ifstream in("input.txt");
   ofstream out("output.txt");
 
-  
+  if (argv[1] == "INFO")
+    INFO = true;
 
   int n, m;
   in >> n >> m;
@@ -172,6 +185,7 @@ int main(int argc, char *argv[]){
     g.insertEdge(u, v);
   }
 
+  info();
   in.close();
   out.close();
   return 0;

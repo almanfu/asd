@@ -1,0 +1,40 @@
+#!/bin/bash
+declare USAGE="viewin <-d <number> | -r <number>>"
+declare PR=$(basename $(pwd))
+
+
+inpath=""
+
+## parsing
+
+case $# in
+  2 )
+  ;;
+  *)
+    echo $USAGE 
+    exit 1
+  ;;
+esac
+
+case $1 in
+  -d | -dataset | d | dataset)
+  inpath="dataset_$PR/input/input$2.txt"
+  ;;
+  -r | -randset | r | randset)
+  inpath="randset_$PR/input/rinput$2.txt"
+  ;;
+  *)
+  echo $USAGE
+  exit 3
+  ;;
+esac
+
+if [ ! -e $inpath ]; then
+  echo "$inpath is non-existing" >&2
+  exit 4
+fi
+
+## 
+
+cp $inpath input.txt;
+code input.txt

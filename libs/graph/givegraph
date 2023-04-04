@@ -1,4 +1,0 @@
-#!/bin/bash
-generate_graph &&\
-crun *.cpp &&\
-print_graph.py

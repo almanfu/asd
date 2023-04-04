@@ -1,0 +1,11 @@
+#!/bin/bash
+declare PR=$(basename $(pwd))
+
+mkdir randset_$PR;
+mkdir randset_$PR/input;
+mkdir randset_$PR/plt;
+touch randset_$PR/num;
+touch input.txt;
+touch output.txt;
+touch plt.txt;
+nt "$PR.cpp"; 

@@ -1,0 +1,93 @@
+#!/bin/bash
+declare USAGE="pcrun [-d <number> | -r [number]] [-p]"
+declare PR=$(basename $(pwd))
+
+
+flag_d=false
+flag_r=false
+
+path_args=""
+inpath="input.txt"
+i=0
+print=false
+
+## parsing
+
+while getopts "d:rp" opt; do
+  case $opt in
+    d)
+      if [ $flag_r = true ]; then
+        echo $USAGE
+        exit 1
+      fi
+      flag_d=true
+      path_args="-d $OPTARG"
+      i=$OPTARG
+      inpath="dataset_$PR/input/input$i.txt"
+      if ! viewin $path_args; then
+        exit 1
+      fi
+      ;;
+    r)
+      if [ $flag_d = true ]; then
+        echo $USAGE
+        exit 1
+      fi
+      flag_r=true
+      if [$OPTARG = ""] && ! genin $path_args; then
+        exit 1
+        else
+        OPTARG=$(cat randset_$PR/input/num)
+      fi
+      path_args="-r $OPTARG"
+      i=$OPTARG
+      inpath="randset_$PR/input/rinput$i.txt"
+      if ! viewin $path_args; then
+        exit 1
+      fi
+      ;;
+    p)
+      print=true
+      ;;
+    *)
+      echo $USAGE
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+    :)
+      echo $USAGE
+      echo "Option -$OPTARG requires an argument." >&2
+      exit 1
+      ;;
+  esac
+done
+
+if [ ! -e "$PR.cpp" ]; then
+  echo "no executable" >&2
+  exit 2
+fi
+
+##
+
+crunt "$PR.cpp" "INFO";
+
+# head -n1 "output.txt" > "output.txt";
+if $flag_d; then
+  if diff "output.txt" "dataset_$PR/output/output$i.txt";
+    then
+      echo "================"
+      echo "correct output :)";
+      echo "================"
+    else
+      echo "================"
+      echo "wrong output :(";
+      echo "================"
+      nohup p4merge "output.txt" "dataset_$PR/output/output$i.txt" &
+  fi
+fi
+
+## optional print
+
+if [ $print = true ]; then
+  genplt $path_args "-I"
+fi
