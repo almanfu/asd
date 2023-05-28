@@ -53,4 +53,4 @@ Merges all utilities in one cli script!
 
 - `checktest [-n]`
 
-- `loadtest`
+- `loadtest <number>`

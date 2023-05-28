@@ -22,7 +22,8 @@ fi
 ##
 
 cp $inpath "input.txt";
-crunt "$PR.cpp";
+# crunt "$PR.cpp";
+crunj
 
 # head -n1 "output.txt" > "output1.txt";
 

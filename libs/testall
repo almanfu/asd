@@ -22,7 +22,8 @@ declare nbad=0;
 
 for i in "${index[@]}"; do
   cp "dataset_$PR/input/input$i.txt" "input.txt";
-  crunt "$PR.cpp";
+  # crunt "$PR.cpp";
+  crunj
 
   # head -n1 "output.txt" > "output1.txt";
 

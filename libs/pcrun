@@ -69,7 +69,8 @@ fi
 
 ##
 
-crunt "$PR.cpp" "INFO";
+# crunt "$PR.cpp" "INFO";
+crunj
 
 # head -n1 "output.txt" > "output.txt";
 if $flag_d; then
