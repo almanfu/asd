@@ -1,0 +1,49 @@
+
+Heuristic Upper Bound: 36
+Time Elapsed in obtaining Heuristic Upper Bound: 0.00000 seconds
+
+Set parameter Username
+Academic license - for non-commercial use only - expires 2024-05-28
+Set parameter TimeLimit to value 1800
+Set parameter Threads to value 4
+Set parameter NodeMethod to value 2
+Gurobi Optimizer version 9.5.2 build v9.5.2rc0 (linux64)
+Thread count: 6 physical cores, 12 logical processors, using up to 4 threads
+Optimize a model with 222 rows, 1225 columns and 666 nonzeros
+Model fingerprint: 0x948358bb
+Variable types: 0 continuous, 1225 integer (1225 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+
+Loaded user MIP start with objective 36
+
+Presolve removed 121 rows and 1160 columns
+Presolve time: 0.01s
+Presolved: 101 rows, 65 columns, 302 nonzeros
+Found heuristic solution: objective 35.0000000
+Variable types: 0 continuous, 65 integer (65 binary)
+
+Root relaxation: cutoff, 36 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0     cutoff    0        35.00000   35.00000  0.00%     -    0s
+
+Explored 1 nodes (36 simplex iterations) in 0.01 seconds (0.00 work units)
+Thread count was 4 (of 12 available processors)
+
+Solution count 2: 35 36 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 3.500000000000e+01, best bound 3.500000000000e+01, gap 0.0000%
+
+Verifying Solution....
+
+Unable to find an OPTIMAL SOLUTION
+
+Total Time Taken: 0.00000 seconds
+
