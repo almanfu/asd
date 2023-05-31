@@ -63,7 +63,7 @@ for arg in vars(args):
     INFO = True
 
 input_file = open(inpath)
-info_file = open(f"{CWD}/info.txt", "a+")
+# info_file = open(f"{CWD}/info.txt", "a+")
 
 class Size(IntEnum):
   SMALL = 0,
@@ -84,8 +84,7 @@ props = {
 
 
 ## get size
-[n] = [int(x) for x in input_file.readline().split()]
-m = n-1
+[n, m] = [int(x) for x in input_file.readline().split()]
 
 if n > 40:
   SIZE = Size.SMALL.value
@@ -102,10 +101,11 @@ if INFO:
 ## add edges
 edge_color_name = {}
 for _ in range(0, m):
-  u, v, w = [int(x) for x in input_file.readline().split()]
+  u, v = [int(x) for x in input_file.readline().split()]
   G.add_edge(u, v)
-  edge_labels[u, v] = str(w)
+  # edge_labels[u, v] = str(w)
   edge_color_name[u, v] = "GRAY"
+  edge_color_name[v, u] = "GRAY"
 edge_color_name = [edge_color_name[u, v] for u, v in G.edges()]
 
 
@@ -145,4 +145,4 @@ plt.close()
 #nx.all_topological_sorts(G)
 
 input_file.close()
-info_file.close()
+# info_file.close()

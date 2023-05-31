@@ -1,3 +1,4 @@
+
 Heuristic Upper Bound: 7
 Time Elapsed in obtaining Heuristic Upper Bound: 0.00000 seconds
 
@@ -8,8 +9,8 @@ Set parameter Threads to value 4
 Set parameter NodeMethod to value 2
 Gurobi Optimizer version 9.5.2 build v9.5.2rc0 (linux64)
 Thread count: 6 physical cores, 12 logical processors, using up to 4 threads
-Optimize a model with 157 rows, 4950 columns and 471 nonzeros
-Model fingerprint: 0x5d09830b
+Optimize a model with 158 rows, 4950 columns and 474 nonzeros
+Model fingerprint: 0xef054e66
 Variable types: 0 continuous, 4950 integer (4950 binary)
 Coefficient statistics:
   Matrix range     [1e+00, 1e+00]
@@ -19,7 +20,7 @@ Coefficient statistics:
 
 Loaded user MIP start with objective 7
 
-Presolve removed 157 rows and 4950 columns
+Presolve removed 158 rows and 4950 columns
 Presolve time: 0.00s
 Presolve: All rows and columns removed
 
@@ -34,14 +35,15 @@ Best objective 7.000000000000e+00, best bound 7.000000000000e+00, gap 0.0000%
 Verifying Solution....
 
 Edge Modifications: 
-6 21
-28 34
-35 46
-42 51
-65 75
-68 80
-77 98
+7 22
+29 35
+36 47
+43 52
+66 76
+69 81
+78 99
 
 Total Number of Modifications: 7
 
 Total Time Taken: 0.00000 seconds
+

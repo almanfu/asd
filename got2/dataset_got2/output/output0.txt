@@ -1,5 +1,5 @@
 
-Heuristic Upper Bound: 5
+Heuristic Upper Bound: 3
 Time Elapsed in obtaining Heuristic Upper Bound: 0.00000 seconds
 
 Set parameter Username
@@ -9,8 +9,8 @@ Set parameter Threads to value 4
 Set parameter NodeMethod to value 2
 Gurobi Optimizer version 9.5.2 build v9.5.2rc0 (linux64)
 Thread count: 6 physical cores, 12 logical processors, using up to 4 threads
-Optimize a model with 4 rows, 15 columns and 12 nonzeros
-Model fingerprint: 0xc24abb73
+Optimize a model with 6 rows, 15 columns and 18 nonzeros
+Model fingerprint: 0x6771924e
 Variable types: 0 continuous, 15 integer (15 binary)
 Coefficient statistics:
   Matrix range     [1e+00, 1e+00]
@@ -18,22 +18,31 @@ Coefficient statistics:
   Bounds range     [1e+00, 1e+00]
   RHS range        [1e+00, 1e+00]
 
-Loaded user MIP start with objective 5
+Loaded user MIP start with objective 3
 
-Presolve removed 4 rows and 15 columns
+Presolve removed 2 rows and 11 columns
 Presolve time: 0.00s
-Presolve: All rows and columns removed
+Presolved: 4 rows, 4 columns, 8 nonzeros
+Variable types: 0 continuous, 4 integer (4 binary)
 
-Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
-Thread count was 1 (of 12 available processors)
+Root relaxation: cutoff, 0 iterations, 0.00 seconds (0.00 work units)
 
-Solution count 2: 2 5 
+Explored 1 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+Thread count was 4 (of 12 available processors)
+
+Solution count 1: 3 
 
 Optimal solution found (tolerance 1.00e-04)
-Best objective 2.000000000000e+00, best bound 2.000000000000e+00, gap 0.0000%
+Best objective 3.000000000000e+00, best bound 3.000000000000e+00, gap 0.0000%
 
 Verifying Solution....
 
-Unable to find an OPTIMAL SOLUTION
+Edge Modifications: 
+3 4
+3 5
+4 6
+
+Total Number of Modifications: 3
 
 Total Time Taken: 0.00000 seconds
+
