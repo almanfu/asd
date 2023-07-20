@@ -1,0 +1,27 @@
+---
+title: Lib 1
+code:
+  global:
+    - language: pseudo
+author: alessandro.manfucci@studenti.unitn.it
+date: "20/07/2023"
+lang: it
+format:
+  pdf:
+    documentclass: article
+    toc: false
+    papersize: a4
+    number-sections: true
+    geometry:
+    - top=1in
+    - bottom=1in
+    - right=1in
+    - left=1in
+syntax-definitions: 
+  - .pseudo.xml
+syntax-highlight: github
+---
+
+### Lezioni
+### Esercitazioni e Lab
+### Esami

@@ -1,0 +1,173 @@
+---
+title: Proofs 1
+author: alessandro.manfucci@studenti.unitn.it
+date: "20/07/2023"
+lang: it
+format:
+  pdf:
+    documentclass: article
+    toc: true
+    papersize: a4
+    number-sections: true
+    geometry:
+    - top=1in
+    - bottom=1in
+    - right=1in
+    - left=1in
+syntax-definitions: 
+  - .pseudo.xml
+syntax-highlight: github
+---
+\pagebreak
+
+## Equazioni di ricorrenza
+
+#### Template
+
+$T(n)=a_1T(n/b_1)+a_2T(n/b_2)+f(n)$
+
+*i)* $T(n)$ crescente e positiva\
+*ii)* $T(n) \geq f(n) \implies T(n) = \Omega(f(n))$\
+*iii)* $T'(n)=(a_1+a_2)\cdot T'(n/min(b_1, b_2))+f(n), ~ T(n) \leq T'(n) \implies T(n) = O(...)$ per il MT\
+*iv)* $T'(n)=(a_1+a_2)\cdot T'(n/max(b_1, b_2))+f(n), ~ T(n) \geq T'(n) \implies T(n) = \Omega(...)$ per il MT\
+*v) Vogliamo dimostrare che* $T(n) = O(f(n))$, ovvero che con $c>0, m\geq 0$ vale $T(n) \leq cf(n) \forall n \geq m$
+
+-   *Base:*
+
+-   *Ipotesi induttiva:*
+
+-   *Passo induttivo:*
+
+### Metodo dell'albero di ricorsione
+
+| **Livello** | **Dim. input** | **Costo per chiamata** | **N. chiamate** | **Costo livello** |
+|---------------|---------------|---------------|---------------|---------------|
+
+### Master Theorems
+
+#### TEO.1 Ricorrenze lineari con partizione bilanciata {-}
+
+*Siano* $a$ e $b$ costanti intere tali che $a \geq 1$ e $b \geq 2$. Siano poi $c$ e $\beta$ costanti reali tali che $c > 0$ e $\beta \geq 0$. Sia $T(n)$ una funzione di ricorrenza della seguente forma:
+
+```{=tex}
+\begin{equation}
+T(n) =
+  \left\{ \begin{array}{lcr}
+
+  aT(n/b)+cn^\beta & \mbox{se} & n>1 \\
+  d & \mbox{se} & n\leq 1
+
+  \end{array}\right.
+\end{equation}
+```
+*Allora, posto* $\alpha := \frac{\log{a}}{\log{b}} = \log_{b}{a}$ vale:
+
+```{=tex}
+\begin{equation}
+T(n) =
+  \left\{ \begin{array}{lcr}
+
+  \Theta(n^{\alpha}) & \mbox{se} & \alpha > \beta \\
+  \Theta(n^{\alpha}\log{n}) & \mbox{se} & \alpha = \beta \\
+  \Theta(n^{\beta})& \mbox{se} & \alpha < \beta
+
+  \end{array}\right.
+\end{equation}
+```
+
+- **Proof**:
+
+#### TEO.2 Ricorrenze lineari con partizione bilanciata -- Est. {-}
+
+*Siano* $a \geq 1$, $b > 1$ e $f(n)$ una funzione asintoticamente positiva. Sia poi $T(n)$ una funzione di ricorrenza della seguente forma:
+
+```{=tex}
+\begin{equation}
+T(n) =
+  \left\{ \begin{array}{lcr}
+
+  aT(n/b)+f(n) & \mbox{se} & n>1 \\
+  d & \mbox{se} & n\leq 1
+
+  \end{array}\right.
+\end{equation}
+```
+*Allora, posto* $\alpha := \frac{\log{a}}{\log{b}} = \log_{b}{a}$ vale:
+
+1)  *Se* $\exists \epsilon>0 : f(n)=O(n^{\alpha-\epsilon})$\
+    *allora* $T(n)=\Theta(n^{\alpha})$
+
+2)  *Se* $f(n)= \Theta(n\alpha)$\
+    *allora* $T(n)=\Theta(f(n)\log{n})$
+
+3)  *Se* $\exists \epsilon > 0 : f(n)= \Omega(n^{\alpha+\epsilon}) ∧ \exists c : 0<c<1, \exists m \geq 0 : af(n/b) \leq cf (n) \forall n \geq m$\
+    *allora* $T(n) = \Theta(f(n))$
+
+- **Proof**:
+
+#### TEO.3 Ricorrenze lineari di ordine costante {-}
+
+*Siano* $a_1, a_2,... , a_h$ costanti intere non negative con $h$ costante e positivo. Siano poi $c$ e $\beta$ costanti reali tali che $c > 0$ e $\beta \geq 0$. Sia infine $T(n)$ definita dalla seguente funzione di ricorrenza:
+
+```{=tex}
+\begin{equation}
+T(n) =
+  \left\{ \begin{array}{lcr}
+
+  \sum_{i=1}^{h}{(a_iT(n-i))} + cn^{\beta} & \mbox{se} & n>m \\
+  \Theta(1) & \mbox{se} & n\leq m \leq h
+
+  \end{array}\right.
+\end{equation}
+```
+*Allora, posto a =* $\sum_{i=1}^{h}{a_i}$ vale:\
+1) $a = 1 \implies T(n) = \Theta(n^{\beta+1})$\
+2) $a \geq 2 \implies T(n) = \Theta(a^n \cdot n^\beta)$
+
+- **Proof**:
+
+
+\pagebreak
+### Proprietà dei logaritmi
+
+|                                                      |                                     |
+|:-----------------------------------|-----------------------------------:|
+| 1\. $\log_{a}{a} = 1$                                |            *Proprietà fondamentale* |
+|                                                      |                                     |
+| 2\. $\log_{a}{1} = 0$                                |            *Proprietà fondamentale* |
+|                                                      |                                     |
+| 3\. $\log_{a}{b\cdot c} = \log_{a}{b} + \log_{a}{c}$ |              *Teorema del prodotto* |
+|                                                      |                                     |
+| 4\. $\log_{a}{b\cdot c} = \log_{a}{b} - \log_{a}{c}$ |              *Teorema del rapporto* |
+|                                                      |                                     |
+| 5\. $\log_{a}{b^c} = c \cdot \log_{a}{b}$            |             *Teorema della potenza* |
+|                                                      |                                     |
+| 6\. $\log_{a^n}{bm} = \frac{m\cdot \log_{a}{b}}{n}$  | *Potenza alla base e all'argomento* |
+|                                                      |                                     |
+| 7\. $\log_{\frac{1}{a}}{b} = - \log_{a}{b}$          |                  *Base frazionaria* |
+|                                                      |                                     |
+| 8\. $\log_{a}{\frac{1}{b}} = - \log_{b}{a}$          |             *Argomento frazionario* |
+|                                                      |                                     |
+| 9\. $\log_{\frac{1}{a}}{\frac{1}{b}} = \log_{a}{b}$  |      *Base e argomento frazionario* |
+|                                                      |                                     |
+| 10\. $\log_{a}{b} = \frac{1}{\log_{b}{a}}$           |     *Commutazione base e argomento* |
+|                                                      |                                     |
+| 11\. $\log_{a}{b} = \frac{\log_{c}{b}}{\log_{c}{a}}$ |                    *Cambio di base* |
+|                                                      |                                     |
+| 12\. $a^{\log_{b}{c}} = c^{\log_{b}{a}}$             |            *Scambio base-argomento* |
+
+### Serie matematiche convergenti
+
+|                                                                                                        |                                         |
+|:-----------------------------------|-----------------------------------:|
+| 1\. $\sum_{k=0}^{+\infty}{k} = \frac{k(k+1)}{2}$                                                       |                      *Formula di Gauss* |
+|                                                                                                        |                                         |
+| 2\. $\sum_{k=0}^{n}{q^k} = \frac{1-q^{n+1}}{1-q} = \frac{q^{n+1}-1}{q-1} \forall q : |q| \geq 1$       |               *Serie geometrica finita* |
+|                                                                                                        |                                         |
+| 3\. $\sum_{k=0}^{n}{q^k} = \frac{1}{1-q} \forall q : |q| < 1$                                          |               *Serie geometrica finita* |
+|                                                                                                        |                                         |
+| 4\. $\sum_{k=0}^{+\infty}{q^k} = \frac{1}{1-q} \forall |q| < 1$                                        | *Serie geometrica infinita decrescente* |
+|                                                                                                        |                                         |
+| 5\. $\sum_{k=0}^{+\infty}{kq^k} = \frac{q}{(1-q)^2} \forall |q| < 1$                                   | *Serie geometrica infinita decrescente* |
+|                                                                                                        |                                         |
+| 6\. $\sum_{k=1}^{+\infty}{\frac{1}{k(k+1)}} = \sum_{k=1}^{+\infty}{(\frac{1}{k} - \frac{1}{k+1})} = 1$ |                      *Serie di Mengoli* |

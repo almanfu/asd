@@ -1,0 +1,21 @@
+---
+title: Proofs 2
+author: alessandro.manfucci@studenti.unitn.it
+date: "20/07/2023"
+lang: it
+format:
+  pdf:
+    documentclass: article
+    toc: true
+    papersize: a4
+    number-sections: true
+    geometry:
+    - top=1in
+    - bottom=1in
+    - right=1in
+    - left=1in
+syntax-definitions: 
+  - .pseudo.xml
+syntax-highlight: github
+---
+\pagebreak

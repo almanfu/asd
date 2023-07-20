@@ -1,0 +1,1333 @@
+---
+title: ASD 1
+author: alessandro.manfucci@studenti.unitn.it
+date: "20/07/2023"
+lang: it
+format:
+  pdf:
+    documentclass: article
+    toc: true
+    papersize: a4
+    number-sections: true
+    geometry:
+    - top=1in
+    - bottom=1in
+    - right=1in
+    - left=1in
+syntax-definitions: 
+  - .pseudo.xml
+syntax-highlight: github
+---
+
+```{=tex}
+\newcommand{\myor}{\vee}
+\newcommand{\myand}{\wedge}
+\newcommand{\iif}{\Leftrightarrow}
+```
+\pagebreak
+
+## Pseudo Linguaggio
+
+-   `a = b`
+-   `a <-> b` $\equiv$ `tmp = a; a = b; b = tmp`
+-   `T[] A = new T[1...n]`
+-   `T[][] B = new T[1...n][1...m]`
+-   `int, float, boolean, bool`
+-   `and, or, not`
+-   `==, !=, <=, >=`
+-   `+, -, ·, /, flr(x), ceil(x)$, log, x^2, mod`
+-   `iif(condizione, then, else)`
+-   `if condizione then istruzione`
+-   `if condizione then istruzione1 else istruzione2`
+-   `while condizione do istruzione`
+-   `foreach elemento in insieme do istruzione`
+-   `return`
+-   `% commento`
+-   `for indice = estremoInf to estremoSup do istruzione`\
+
+``` pseudo
+int indice = estremoInf  
+while indice <= estremoSup do  
+| istruzione  
+| indice = indice + 1  
+-
+```
+
+-   `for indice = estremoSup downto estremoInf do istruzione`
+
+``` pseudo
+int indice = estremoSup  
+while indice >= estremoInf do  
+ | istruzione  
+ | indice = indice - 1  
+ -
+```
+
+::: {layout-ncol="2"}
+```         
+RETTANGOLO
+---
+int lunghezza
+int altezza
+```
+
+```         
+rettangolo r = new rettangolo
+r.altezza = 10
+delete r
+r = nil
+```
+:::
+
+## Introduzione
+
+### `maxSum`
+
+-   $O(n)$
+
+``` pseudo
+maxSum(int[] A, int n)
+---
+int maxSoFar = 0
+int maxHere = 0
+for i=1 to n do
+ | maxHere = max(0, maxSoFar+A[i])
+ | maxSoFar = max(maxSoFar, maxHere)
+return maxSoFar
+```
+
+### `maxSumMatrix`
+
+-   $O(n^3)$
+
+``` pseudo
+maxSumMatrix(int[][] M, int n)
+---
+int maxSoFar = 0
+int[][] sums = new int[1...n][1...n] = M
+
+for i=2 to n do
+ | for j=1 to n do
+ |  | sums[i][j] = sums[i-1][j]+M[i][j]
+ |  -
+ -
+
+for i=1 to n do
+ | for j=i to n do
+ |  | int[] A = new int[1...n]
+ |  | for h=1 to n do
+ |  |  | A[h] = sums[j][h]-sums[i][h]+M[i][h]
+ |  |  -
+ |  | maxSoFar = max{maxSofar, maxSum(A, n)}
+ |  -
+ -
+return maxSoFar
+```
+
+### Esercizi
+
+#### `sottoseq`
+#### `sottomat`
+#### `flatland`
+
+## Strutture dati elementari
+
+### Stack
+
+``` pseudo
+STACK
+---
+STACK STACK()
+% Restituisce true se la pila è vuota
+boolean isEmpty()
+% Inserisce v in cima alla pila
+push(ITEM v)
+% Rimuove l'elemento in cima alla pila e lo restituisce
+ITEM pop()
+% Legge l'elemento in cima alla pila
+ITEM top()
+```
+
+### Queue
+
+``` pseudo
+QUEUE
+---
+QUEUE QUEUE()
+% Restituisce true se la coda è vuota
+boolean isEmpty()
+% Inserisce v in fondo alla coda
+enqueue(ITEM v)
+% Estrae l'elemento in testa alla coda e lo restituisce al chiamante
+ITEM dequeue()
+% Legge l'elemento in testa alla coda
+ITEM top()
+```
+
+## Strutture dati astratte
+
+### Sequence
+
+``` pseudo
+SEQUENCE
+---
+SEQUENCE SEQUENCE()
+% Restituisce true se la sequenza è vuota
+boolean isEmpty()
+% Restituisce true se p = pos0 o se p = posn+1
+boolean finished(POS p)
+% Restituisce la posizione del primo elemento
+POS head()
+% Restituisce la posizione dell'ultimo elemento
+POS tail()
+% Restituisce la posizione dell'elemento che segue p
+POS next(POS p)
+% Restituisce la posizione dell'elemento che precede p
+POS prev(POS p)
+% Inserisce l'elemento v di tipo ITEM nella posizione p e restituisce
+% la posizione del nuovo elemento, che diviene il predecessore di p
+POS insert(POS p, ITEM v)
+% Rimuove l'elemento contenuto nella posizione p e restituisce la posizione
+% del successore di p, che diviene il successore del predecessore di p
+POS remove(POS p)
+% Legge l'elemento di tipo ITEM contenuto nella posizione p
+ITEM read(POS p)
+% Scrive l'elemento v di tipo ITEM nella posizione p
+write(POS p, ITEM v)
+```
+
+### Set
+
+``` pseudo
+SET
+---
+SET SET()
+% Restituisce la cardinalità dell'insieme
+int size()
+% Restituisce true se x è contenuto nell'insieme
+boolean contains(ITEM x)
+% Inserisce x nell'insieme, se non è giù presente
+insert(ITEM x)
+% Rimuove x dall'insieme, se è presente
+remove(ITEM x)
+% Restituisce un nuovo insieme che è l'unione di A e B
+Set union(Set A, Set B)
+% Restituisce un nuovo insieme che è l'intersezione di A e B
+Set intersection(Set A, Set B)
+% Restituisce un nuovo insieme che è la differenza di A e B
+Set difference(Set A, Set B)
+```
+
+n elementi, m capacità
+
+| Implementazione    | contains() | insert() | remove() | min()    | foreach() |
+|--------------------|------------|----------|----------|----------|-----------|
+| Array booleano     | O(1)       | O(1)     | O(1)     | O(m)     | O(m)      |
+| Lista non ordinata | O(n)       | O(n)     | O(n)     | O(n)     | O(n)      |
+| Lista ordinata     | O(n)       | O(n)     | O(n)     | O(1)     | O(n)      |
+| Array ordinato     | O(log n)   | O(n)     | O(n)     | O(1)     | O(n)      |
+| RB Tree            | O(log n)   | O(log n) | O(log n) | O(log n) | O(n)      |
+| Hash Table         | O(1)       | O(1)     | O(1)     | O(m)     | O(m)      |
+
+### Dictionary
+
+``` pseudo
+DICTIONARY
+---
+DICTIONARY DICTIONARY()
+% Restituisce il valore associato alla chiave k se presente, nil altrimenti
+ITEM lookup(ITEM k)
+% Associa il valore v alla chiave k
+insert(ITEM k, ITEM v)
+% Rimuove l'associazione della chiave k
+remove(ITEM k)
+```
+
+| Implementazione    | lookup() | insert()  | remove() | foreach() |
+|--------------------|----------|-----------|----------|-----------|
+| Array non ordinato | O(n)     | O(1),O(n) | O(1)     | O(n)      |
+| Array ordinato     | O(log n) | O(n)      | O(n)     | O(n)      |
+| Lista non ordinata | O(n)     | O(1),O(n) | O(n)     | O(n)      |
+| RB Tree            | O(log n) | O(log n)  | O(log n) | O(n)      |
+| Hash Table         | O(1)     | O(1)      | O(1)     | O(m)      |
+
+### Priority Queue
+
+``` pseudo
+MIN-PRIORITYQUEUE
+---
+MIN-PRIORITYQUEUE MIN-PRIORITYQUEUE()
+% Crea una coda a priorità con capacità n
+PRIORITYQUEUE PriorityQueue(int n)
+% Restituisce true se la coda a priorità è vuota
+boolean isEmpty()
+% Restituisce l'elemento minimo di una coda a priorità non vuota
+ITEM min()
+% Rimuove e restituisce l'elemento minimo di una coda a priorità non vuota
+deleteMin()
+% Inserisce l'elemento x con priorità p nella coda a priorità e restituisce
+% un oggetto PRIORITYITEM che identifica x all'interno della coda
+PRIORITYITEM insert(ITEM x, int p)
+% Diminuisce la priorità dell'oggetto identificato da y portandola a p
+decrease(PRIORITYITEM y, int p)
+```
+
+| Implementazione          | min()    | deleteMin() | insert() | decrease() |
+|--------------------------|----------|-------------|----------|------------|
+| Array/Lista non ordinato | O(n)     | O(n)        | O(n)     | O(n)       |
+| Array ordinato           | O(1)     | O(n)        | O(n)     | O(log n)   |
+| Lista ordinata           | O(1)     | O(1)        | O(n)     | O(n)       |
+| RB Tree                  | O(log n) | O(log n)    | O(log n) | O(log n)   |
+| Heap Tree                | O(1)     | O(log n)    | O(log n) | O(log n)   |
+
+### BST
+
+``` pseudo
+TREE
+---
+TREE TREE()
+% Costituisce un nuovo nodo, contenente v, senza figli o genitori
+TREE(ITEM v)
+% Legge il valore memorizzato nel nodo
+ITEM read()
+% Modifica il valore memorizzato nel nodo
+write(ITEM v)
+% Restituisce il padre, oppure nil se questo è il nodo radice
+TREE parent()
+% Restituisce il figlio sinistro di questo nodo, oppure nil se è assente
+TREE left()
+% Restituisce il figlio destro di questo nodo, oppure nil se è assente
+TREE right()
+% Inserisce il sottoalbero radicato t come figlio sinistro di questo nodo
+insertLeft(TREE t)
+% Inserisce il sottoalbero radicato t come figlio destro di questo nodo
+insertRight(TREE t)
+% Distrugge ricorsivamente il figlio sinistro di questo nodo (in O(n) con punt.)
+deleteLeft()
+% Distrugge ricorsivamente il figlio destro di questo nodo (in O(n) con punt.)
+deleteRight()
+```
+
+### Tree
+
+``` pseudo
+TREE
+---
+TREE TREE()
+% Costituisce un nuovo nodo, contenente v, senza figli o genitori
+TREE(ITEM v)
+% Legge il valore memorizzato nel nodo
+ITEM read()
+% Modifica il valore memorizzato nel nodo
+write(ITEM v)
+% Restituisce il padre, oppure nil se questo è il nodo radice
+TREE parent()
+% Restituisce il primo figlio da sinistra, oppure nil se questo nodo
+% è una foglia
+TREE leftmostChild()
+% Restituisce il primo fratello sulla destra, oppure nil se è assente
+TREE rightSibling()
+% Inserisce il sottoalbero t come primo figlio di questo nodo
+insertChild(TREE t)
+% Inserisce il sottoalbero t come prossimo fratello di questo nodo
+insertSibling(TREE t)
+% Distrugge l'albero radicato identificato dal primo figlio
+deleteChild()
+% Distrugge l'albero radicato identificato dal prossimo fratello
+deleteSibling()
+% Distrugge l'albero radicato identificato dal nodo
+delete(TREE t)
+```
+
+### Graph
+
+``` pseudo
+GRAPH
+---
+GRAPH GRAPH()
+% Restituisce l'insieme di tutti i vertici
+SET V()
+% Restituisce il numero di nodi
+int size()
+% Restituisce l'insieme dei nodi adiacenti ad u
+SET adj(NODE u)
+% Aggiunge un nodo u al grafo
+insertNode(NODE u)
+% Aggiunge l'arco (u, v) al grafo
+insertEdge(NODE u, NODE v)
+% Rimuove il nodo u dal grafo (in O(n) con vettori/liste adiacenza)
+removeNode(NODE u)
+% Rimuove l'arco (u, v) dal grafo
+removeEdge(NODE u, NODE v)
+```
+
+## Sort
+
+### selectionSort
+
+| Pessimo  | Medio    | Ottimo   |
+|:---------|:---------|:---------|
+| O($n^2$) | O($n^2$) | O($n^2$) |
+
+``` pseudo
+selectionSort(ITEM[] A, int n)
+---
+for i = 1 to n - 1 do
+ | int min = min(A, i, n)
+ | A[i] <-> A[min]
+ -
+```
+
+#### min
+
+-   O(n)
+
+``` pseudo
+int min(ITEM[ ] A, int i, int n)
+---
+% Posizione del minimo parziale
+int min = i
+for j = i + 1 to n do
+ | if A[j] < A[min] then
+ |  | % Nuovo minimo parziale
+ |  |  min = j
+ |  -
+ -
+return min
+```
+
+### insertionSort
+
+| Pessimo  | Medio    | Ottimo |
+|:---------|:---------|:-------|
+| $O(n^2)$ | $O(n^2)$ | $O(n)$ |
+
+``` pseudo
+insertionSort(ITEM[] A, int n)
+---
+for i = 2 to n do
+ | ITEM temp = A[i]
+ | int j = i
+ | while j > 1 and A[j - 1] > temp do
+ |  | A[j] = A[j - 1]
+ |  | j = j - 1
+ |  -
+ -
+ A[j] = temp
+```
+
+### mergeSort
+
+| Pessimo       | Medio         | Ottimo        |
+|:--------------|:--------------|:--------------|
+| $O(n·\log n)$ | $O(n·\log n)$ | $O(n·\log n)$ |
+
+``` pseudo
+mergeSort(ITEM A[], int first, int last)
+---
+if first < last then
+ | int mid = b(first + last)/2c
+ | mergeSort(A, first, mid)
+ | mergeSort(A, mid + 1, last)
+ | merge(A, first, last, mid)
+ -
+```
+
+#### merge
+
+-   $O(n)$
+
+``` pseudo
+merge(ITEM A[], int first, int last, int mid)
+---
+int i, j, k, h
+i = first
+j = mid + 1
+k = first
+while i <= mid and j <= last do
+ | if A[i] <= A[j] then
+ |  | B[k] = A[i]
+ |  | i = i + 1
+ | else
+ |  | B[k] = A[j]
+ |  | j = j + 1
+ |  -
+ |  k = k + 1
+ -
+j = last
+for h = mid downto i do
+ | A[j] = A[h]
+ | j = j - 1
+ -
+for j = first to k - 1 do
+ | A[j] = B[j]
+ -
+```
+
+### quickSort
+
+-   handout.12-divide.12/34
+
+| Pessimo  | Medio      | Ottimo     |
+|:---------|:-----------|:-----------|
+| O($n^2$) | O(n·log n) | O(n·log n) |
+
+``` pseudo
+quickSort(ITEM[] A, int n)
+```
+
+### heapSort
+
+| Pessimo       | Medio        | Ottimo        |
+|:--------------|:-------------|:--------------|
+| $O(n \log n)$ | $O(n\log n)$ | $O(n \log n)$ |
+
+``` pseudo
+heapSort(ITEM[] A, int n)
+---
+heapBuild(A, n)
+for i=n downto 2 do
+ | swap(A, 1, i) % L'elemento massimo viene spostato in fondo
+ | maxHeapRestore(A, 1, i-1)
+ -
+```
+
+#### maxHeapRestore
+
+-   $O(\log n)$
+
+``` pseudo
+maxHeapRestore(ITEM[] A, int i, int dim)
+---
+int max = i % Sceglie la radice
+if l(i) <= and dim A[l(i)] > A[max] then
+ | max = l(i)
+if r(i) <= and dim A[r(i)] > A[max] then
+ | max = r(i)
+if i != max then % Se i == max l'albero è apposto
+ | swap(A, i, max) % Scambia la radice e il maggiore tra i suoi figli
+ | maxHeapRestore(A, max, dim) % Controlla il sottoalbero con radice max
+ -
+```
+
+#### heapBuild
+
+-   $O(n)$
+
+``` pseudo
+heapBuild(ITEM[] A, int n)
+---
+for i = floor(n/2) downto 1 do
+ | maxHeapRestore(A, i, n)
+ -
+```
+
+### Esercizi
+
+#### `mergeSortK`
+
+#### `intervalli`
+
+#### `sortpesato`
+
+## BST
+
+### dfs
+
+-   $O(n)$
+
+``` pseudo
+dfs(TREE t)
+---
+if t != nil then
+ | % pre-order visit of t
+ | print t
+ | dfs(t.left())
+ | % in-order visit of t
+ | print t
+ | dfs(t.right())
+ | % post-order visit of t
+ | print t
+ -
+```
+
+### bfs per livelli
+
+-   O(n)
+
+``` pseudo
+bfs(TREE t)
+---
+QUEUE Q = QUEUE()
+Q.enqueue (<t, 0>) % <nodo, liv>
+int currLiv=0
+while not Q.isEmpty() do
+ | <s, liv> = Q.dequeue()
+ | if s != nil then
+ |  | if currLiv != liv then
+ |  |  | % nuovo livello
+ |  |  | currLiv = liv
+ |  |  -
+ |  | Q.enqueue(<s.left, liv+1>)
+ |  | Q.enqueue(<s.right, liv+1>)
+ |  -
+ -
+```
+
+### lookupNode
+
+| Pessimo | Medio       | Ottimo      |
+|:--------|:------------|:------------|
+| $O(n)$  | $O(\log n)$ | $O(\log n)$ |
+
+``` pseudo
+TREE lookupNode(TREE T, ITEM k)
+---
+if T == nil or T.key == k then
+ | return T
+else
+ | return lookupNode(iif(k < T.key, T.left, T.right), k)
+ -
+```
+
+### min
+
+| Pessimo | Medio       | Ottimo      |
+|:--------|:------------|:------------|
+| $O(n)$  | $O(\log n)$ | $O(\log n)$ |
+
+``` pseudo
+TREE min(TREE T)
+---
+TREE u = T
+while u.left != nil do
+ | u = u.left
+ -
+return u
+```
+
+### max
+
+| Pessimo | Medio       | Ottimo      |
+|:--------|:------------|:------------|
+| $O(n)$  | $O(\log n)$ | $O(\log n)$ |
+
+``` pseudo
+TREE max(TREE T)
+---
+TREE u = T
+while u.right != nil do
+ | u = u.right
+ -
+return u
+```
+
+### predecessorNode
+
+| Pessimo | Medio       | Ottimo      |
+|:--------|:------------|:------------|
+| $O(n)$  | $O(\log n)$ | $O(\log n)$ |
+
+``` pseudo
+TREE predecessorNode(TREE t)
+---
+if t == nil then
+ | return t
+ -
+if t.left != nil then % Caso 1
+ | return max(t.left)
+else % Caso 2
+ | TREE p = t.parent
+ | while p != nil and t == p.left do
+ |  | t = p
+ |  | p = p.parent
+ |  -
+ | return p
+ -
+```
+
+### successorNode
+
+| Pessimo | Medio    | Ottimo   |
+|:--------|:---------|:---------|
+| O(n)    | O(log n) | O(log n) |
+
+``` pseudo
+TREE successorNode(TREE t)
+---
+if t == nil then
+ | return t
+ -
+if t.right != nil then % Caso 1
+ | return min(t.right)
+else % Caso 2
+ | TREE p = t.parent
+ | while p != nil and t == p.right do
+ |  | t = p
+ |  | p = p.parent
+ |  -
+ | return p
+ -
+```
+
+### insertNode
+
+| Pessimo | Medio    | Ottimo   |
+|:--------|:---------|:---------|
+| O(n)    | O(log n) | O(log n) |
+
+``` pseudo
+TREE insertNode(TREE T, ITEM k, ITEM v)
+---
+TREE p = nil % Padre
+TREE u = T
+while u != nil and u.key != k do % Cerca posizione inserimento
+ | p = u
+ | u = iif(k < u.key, u.left, u.right)
+ -
+if u != nil and u.key == k then
+ | u.value = v % Chiave già presente
+else
+ | TREE new = TREE(k, v) % Crea un nodo coppia chiave-valore
+ | link(p, new, k)
+ | if p == nil then
+ |  | T = new % Primo nodo ad essere inserito
+ |  -
+ -
+return T % Restituisce albero non modificato o nuovo nodo
+```
+
+``` pseudo
+link(TREE p, TREE u, ITEM k)
+---
+if u != nil then
+ | u.parent = p % Registrazione padre
+ -
+if p != nil then
+ | if k < p.key then
+ |  | p.left = u % Attaccato come figlio sinistro
+ | else
+ |  | p.right = u % Attaccato come figlio destro
+ |  -
+ -
+```
+
+### removeNode
+
+| Pessimo | Medio    | Ottimo   |
+|:--------|:---------|:---------|
+| O(n)    | O(log n) | O(log n) |
+
+```         
+TREE removeNode(TREE T, ITEM k)
+```
+
+### Esercizi
+
+#### `sameLevel`
+
+#### `monotone`
+
+#### `unbalance`
+
+#### `isRedBlack`
+
+-   O(n)
+
+#### RB Properties
+
+1.  Black root
+2.  Black leaves
+3.  If Red then Black children
+4.  Ogni cammino semplice da un nodo ad una delle sue foglie ha sempre lo stesso numero di nodi neri (ovvero ogni nodo nel suo sottoalbero ha i figli con la stessa altezza nera)
+
+``` pseudo
+boolean isRedBlack(TREE T)
+---
+% Proprietà (1)
+if T.color == red then
+ | return false
+else
+ | return (blackHeight(T) > 0)
+ -
+```
+
+``` pseudo
+int blackHeight(TREE T)
+---
+% Proprietà (2)
+if T == nil then
+ | return iif(T.color == red, -1, 1)
+ -
+% Proprietà (3)
+if t.color == red and t.parent != nil and t.parent.color == red then
+ | return -1
+ -
+% Proprietà (4)
+int bhL = blackHeight(T.left)
+int bhR = blackHeight(T.right)
+if bhL < 0 or bhR < 0 or bhL != bhR then
+ | return -1
+else
+ | return bhL + iif(t.color == black, 1, 0)
+ -
+```
+
+## Tree
+
+### dfs
+
+-   O(n)
+
+``` pseudo
+dfs(TREE t)
+---
+if t != nil then
+ | % pre-order visit of node t
+ | print t
+ | TREE u = t.leftmostChild()
+ | while u != nil do
+ |  | dfs(u)
+ |  | u = u.rightSibling()
+ |  -  
+ | % post-order visit of node t
+ | print t
+ -
+```
+
+### bfs
+
+-   O(n)
+
+``` pseudo
+bfs(TREE t)
+---
+QUEUE Q = QUEUE()
+Q.enqueue(t)
+while not Q.isEmpty() do
+ | TREE u = Q.dequeue()
+ | % visita per livelli nodo u
+ | print u
+ | u = u.leftmostChild()
+ | while u != nil do
+ |  | Q.enqueue(u)
+ |  |u = u.rightSibling()
+ |  -
+ -
+```
+
+## Graph
+
+### cc
+
+-   O(n+m)
+
+``` pseudo
+int[] cc(GRAPH G)
+---
+int[] id = new int[1...G.size()]
+foreach u in G.V() do
+ | id[u] = 0
+ -
+int counter = 0
+foreach u in G.V() do
+ | if id[u] == 0 then
+ |  | counter = counter + 1
+ |  | ccdfs(G, counter , u, id)
+ |  -
+ -
+ return id
+```
+
+``` pseudo
+ccdfs(GRAPH G, int counter , NODE u, int[] id)
+---
+id[u] = counter
+foreach v in G.adj(u) do
+if id[v] == 0 then
+ | ccdfs(G, counter , v, id)
+ -
+```
+
+### hasCycle
+
+-   O(n+m)
+
+``` pseudo
+boolean hasCycle(GRAPH G)
+---
+boolean[] visited = new boolean[1...G.size()]
+foreach u in G.V() do
+ | visited[u] = false
+ -
+foreach u in G.V() do
+ | if not visited[u] then
+ |  | if hasCyclerec(G, u, null, visited) then
+ |  |  | return true
+ |  |  -
+ |  -
+ -
+return false
+```
+
+``` pseudo
+boolean hasCycleRec(GRAPH G, NODE u, NODE p, boolean[] visited)
+---
+visited[u] = true
+foreach v in G.adj(u)\{p} do
+ | if visited[v] then
+ |  | return true
+ | else if hasCycleRec(G, v, u, visited) then
+ |  | return true
+ |  -
+ -
+return false
+```
+
+### Esercizi
+
+#### `sameDistance`
+
+#### `color`
+
+#### `mindist`
+
+#### `visita`
+
+#### `diametro`
+
+#### `numcammini`
+
+#### `powarts`
+
+#### bfs su matrice
+
+-   O($n^2$)
+-   manfu
+
+``` pseudo
+bfs-all(int[][] G, int n)
+---
+boolean[][] visited = new boolean[1...n][1...n] = {false} % costo O(n^2)
+
+for r=1 to n do
+ | for c=1 to n do
+ |  | if not visited[r][c] then % new cc
+ |  |  | QUEUE Q = QUEUE()
+ |  |  | Q.enqueue(<i, j>)
+ |  |  | visited[i][j] = true
+ |  |  | while not Q.isEmpty() do
+ |  |  |  | <i,j> = Q.dequeue()
+ |  |  |  | % visita nodo
+ |  |  |  | 
+ |  |  |  | foreach <i',j'> in {<i+1,j>,<i-1,j>,<i,j+1>,<i,j-1>} do
+ |  |  |  |  | if 1<=i'<=n and 1<=j'<=n then
+ |  |  |  |  |  | % visita arco
+ |  |  |  |  |  |
+ |  |  |  |  |  | % aggiungi nodo alla coda
+ |  |  |  |  |  | if not visited[i'][j'] then
+ |  |  |  |  |  |  | visited[i'][j'] = true
+ |  |  |  |  |  |  | Q.enqueue(<i',j'>)
+ |  |  |  |  |  |  -
+ |  |  |  |  |  -
+ |  |  |  |  -
+ |  |  |  -
+ |  |  -
+ |  -
+ -
+```
+
+#### dfs su matrice
+
+-   O($n^2$)
+-   manfu
+
+``` pseudo
+dfs-all(int[][] G, int n)
+---
+boolean[][] visited = new boolean[1...n][1...n] = {false} % costo O(n^2)
+
+for r=1 to n do
+ | for c=1 to n do
+ |  | if not visited[r][c] then % new cc
+ |  |  | dfsrec(G, n, <r, c>, visited)
+ |  |  -
+ |  -
+ -
+```
+
+``` pseudo
+dfs(int[][] G, int n, <int i, int j>, boolean[][] visited)
+---
+% visita nodo
+
+visited[i][j] = true
+foreach <i',j'> in {<i+1,j>,<i-1,j>,<i,j+1>,<i,j-1>} do
+ | if 1<=i'<=n and 1<=j'<=n and not visited[i'][j'] then
+ |  | % visita arco
+ |  |
+ |  | if not visited[i'][j'] then
+ |  |  | dfs(G, n, <i',j'>, visited)
+ |  |  -
+ |  -
+ -
+```
+
+## Directed Graph
+
+### bfs
+
+-   O(n+m)
+
+``` pseudo
+bfs(GRAPH G, NODE r, NODE[] parent)
+---
+% albero bfs su vettore padri
+QUEUE Q = Queue( )
+S.enqueue(r)
+boolean[] visited = new boolean[1...G.size()]
+foreach u in G.V()\{r} do
+ | visited[u] = false
+ -
+visited[r] = true
+parent[r] = nil
+while not Q.isEmpty() do
+ | NODE u = Q.dequeue()
+ | % visita il nodo u
+ | foreach v in G.adj(u) do
+ |  | % visita l’arco (u, v)
+ |  | if not visited[v] then
+ |  |  | visited[v] = true
+ |  |  | parent[v] = u
+ |  |  | Q.enqueue(v)
+ |  |  -
+ |  -
+ -
+```
+
+### distance
+
+-   O(n+m)
+
+``` pseudo
+distance(GRAPH G, NODE r, int[] distance)
+---
+QUEUE Q = QUEUE()
+Q.enqueue(r)
+foreach u in G.V()\{r} do
+ | distance[u] = inf
+ -
+distance[r] = 0
+while not Q.isEmpty() do
+ | NODE u = Q.dequeue()
+ | foreach v in G.adj(u) do
+ |  | if distance[v] == inf then % Se il nodo v non è stato scoperto
+ |  |  | distance[v] = distance[u] + 1
+ |  |  | Q.enqueue(v)
+ |  |  -
+ |  -
+ -
+```
+
+### dfs
+
+-   O(n+m)
+
+``` pseudo
+dfs(GRAPH G, NODE u, boolean[] visited)
+---
+visited[u] = true
+% visita il nodo u (pre-order)
+foreach v in G.adj(u) do
+ | if not visited[v] then
+ |  | % visita l’arco (u, v)
+ |  | dfs(G, v, visited)
+ |  -
+ -
+% visita il nodo u (post-order)
+```
+
+### dfs-schema
+
+-   O(n+m)
+
+``` pseudo
+dfs-schema(GRAPH G, NODE u, int &time, int[ ] dt, int[ ] ft)
+---
+% visita il nodo u (pre-order)
+time = time + 1; dt[u] = time
+foreach v in G.adj(u) do
+ | % visita l’arco (u, v) (qualsiasi)
+ | if dt[v] == 0 then
+ |  | % visita l’arco (u, v) (albero)
+ |  | dfs-schema(G, v, time, dt, ft)
+ | else if dt[u] > dt[v] and ft[v] == 0 then
+ |  | % visita l’arco (u, v) (indietro)
+ | else if dt[u] < dt[v] and ft[v] 6= 0 then
+ |  | % visita l’arco (u, v) (avanti)
+ | else
+ |  | % visita l’arco (u, v) (attraversamento)
+ |  -
+ -
+% visita il nodo u (post-order)
+time = time + 1; ft[u] = time
+```
+
+### hasCycle
+
+-   O(n+m)
+
+``` pseudo
+boolean hasCycle(GRAPH G)
+---
+boolean[] visited = new boolean[1...G.size()]
+foreach u in G.V() do
+ | visited[u] = false
+ -
+foreach u in G.V() do
+ | if not visited[u] then
+ |  | if hasCyclerec(G, u, null, visited) then
+ |  |  | return true
+ |  |  -
+ |  -
+ -
+return false
+```
+
+``` pseudo
+boolean hasCycleRec(GRAPH G, NODE u, int &time, int[] dt, int[] ft)
+---
+time = time + 1; dt[u] = time
+foreach v in G.adj(u) do
+ | if dt[v] == 0 then
+ |  | if hasCycleRec(G, v, time, dt, ft) then
+ |  |  | return true
+ | else if dt[u] > dt[v] and ft[v] == 0 then
+ |  | return true
+ |  -
+ -
+time = time + 1; ft[u] = time
+return false
+```
+
+### topSort
+
+#### khan
+
+#### dfs
+
+-   O(n+m)
+
+``` pseudo
+STACK topSort(GRAPH G)
+---
+STACK S = STACK()
+boolean[] visited = boolean[1...G.size()]
+foreach u in G.V() do visited[u] = false
+foreach u in G.V() do
+ | if not visited[u] then
+ |  | ts-dfs(G, u, visited, S)
+ |  -
+ -
+return S
+```
+
+``` pseudo
+ts-dfs(GRAPH G, NODE u, boolean[] visited, STACK S)
+---
+visited[u] = true
+foreach v in G.adj(u) do
+ | if not visited[v] then
+ |  | ts-dfs(G, v, visited, S)
+ |  -
+ -
+S.push(u)
+```
+
+#### tarjan
+
+### transpose
+
+-   O(n+m)
+
+``` pseudo
+GRAPH transpose(GRAPH G)
+---
+GRAPH GT = GRAPH()
+foreach u in G.V() do
+ | GT.insertNode(u)
+ -
+foreach u in G.V() do
+ | foreach v in G.adj(u) do
+ |  | GT.insertEdge(v, u)
+ |  -
+ -
+return GT
+```
+
+### scc
+
+#### kosaraju
+-   O(n+m)
+
+``` pseudo
+int[] scc(GRAPH G)
+---
+STACK S = topSort(G) % First visit O(n+m)
+GT = transpose(G) % GRAPH transposal O(n+m)
+return cc(GT, S) % Second visit O(n+m)
+```
+
+``` pseudo
+cc(GRAPH G, STACK S)
+---
+int[] id = new int[G.size()]
+foreach u in G.V() do
+ | id[u] = 0
+ -
+int counter = 0
+while not S.isEmpty() do
+ | u = S.pop()
+ | if id[u] == 0 then
+ |  | counter = counter + 1
+ |  | ccdfs(G, counter , u, id)
+ |  -
+ -
+return id
+```
+
+``` pseudo
+ccdfs(GRAPH G, int counter , NODE u, int[ ] id)
+---
+id[u] = counter
+foreach v in G.adj(u) do
+ | if id[v] == 0 then
+ |  | ccdfs(G, counter , v, id)
+ |  -
+ -
+```
+
+#### Tarjan
+
+### Esercizi
+
+#### `batman`
+
+#### `componente`
+
+#### `camminolungo`
+
+#### `cicli`
+
+#### `laser`
+
+#### `isRoma`
+
+## D&I
+
+### binarySearch
+
+-   O (log n)
+
+``` pseudo
+int binarySearch(int[] A, int v, int i, int j)
+---
+if i > j then
+ | return 0
+else
+ | int m = floor((i+j)/2)
+ | if S[m] == v then
+ |  | return m
+ | else if S[m] < v then
+ |  | return binarySearch(S, v, m+1, j)
+ | else
+ |  | return binarySearch(S, v, i, m-1)
+ |  -
+ -
+```
+
+-   $\forall ~ binarySearch(A,v,i,j), v \in A \Leftrightarrow v \in A[i...j]$
+
+### hanoi
+
+-   $O(2^n)$
+
+``` pseudo
+hanoi(int n, int src, int dest, int middle)
+---
+if n == 1 then
+ | print src -> dest
+else
+ | hanoi(n - 1, src, middle, dest)
+ | print src -> dest
+ | hanoi(n - 1, middle, dest, src)
+ -
+```
+
+### Esercizi
+
+#### searchFirst
+
+-   O(log n)
+-   manfu
+
+``` pseudo
+int searchFirst(int[] A, int v, int i, int j)
+---
+if i == j then
+ | return iif(A[i] == v, i, 0)
+else
+ | int m = floor((i+j)/2)
+ | if A[m] < v then
+ |  | return searchFirst(A, v, m+1, j)
+ | else
+ |  | return searchFirst(A, v, i, m)
+ |  -
+ -
+```
+
+-   $\forall ~ searchFirst(A,v,i,j), \forall h \in A[1...i-1], h < v ~ \wedge~ j<n \implies \forall k \in A[j...n], k \geq v$
+
+Occorrenza più a sinitra di $v$, se $v \in A$. Procediamo quindi per induzione.
+
+***Base:** con* $i=1, j=n$ vale $A[i...i-1]=A[1...0]=\emptyset$ ed entrambe le condizioni sono soddisfatte
+
+***Passo induttivo:** Supponiamo che per* $searchFirst(A,v,i,j)$ valga l'invariante e dimostriamo che vale anche per l'invocazione successiva, $searchFirst(A,v,i',j')$
+
+***A)** Sia* $i = j$, per ip. ind. $\forall h \in A[1...i], h < v$\
+*1) Se* $i = j = n$ allora vale anche $\forall h \in A[1...n-1], h < v$ ed $v \in A \Leftrightarrow A[n] = v$, e se $A[i]=v$, $i$ è la prima occorrenza\
+*2) Se* $i = j < n$ allora vale anche $\forall k \in A[i...n], k \geq v$, dunque $v \in A \Leftrightarrow A[i] = v$ poiché A ordinato, e se $A[i]=v$, $i$ è la prima occorrenza
+
+***B)** Sia* $i \neq j \implies i < j$. Posto $m:=\left\lfloor (i+j)/2\right\rfloor$, certamente $i \leq m < j$\
+*1) Se* $A[m] < v$, posti $i' := m+1, j' := j$ vale\
+*1. A ordinato e* $\forall h \in A[1...m=i'-1], h < v$\
+*2. Per ip. ind.* $j'=j<n \implies \forall k \in A[j...n], k \geq v$\
+*2) Se* $A[m] \geq v$, posti $i' := i, j' := m$ vale\
+*1. Per ip. ind.* $\forall h \in A[1...i'=i], h < v$\
+*2. A ordinato e* $j'=m<j\leq n$ ma infatti $\forall k \in A[j'=m...n], k \geq v$
+
+Con $n_l = j_l-i_l$ monotona decrescente si ha la terminazione.
+
+#### searchLast
+
+-   O(log n)
+-   manfu
+
+``` pseudo
+int searchLast(int[] A, int v, int i, int j)
+---
+if i == j then
+ | return iif(A[i] == v, i, 0)
+else
+ | int m = ceil((i+j)/2)
+ | if A[m] <= v then
+ |  | return searchLast(A, v, m, j)
+ | else
+ |  | return searchLast(A, v, i, m-1)
+ |  -
+ -
+```
+
+-   $\forall ~ searchLast(A,v,i,j), \forall h \in A[j+1...n], h > v ~ \wedge~ i>1 \implies \forall k \in A[1...i], k \leq v$
+
+Occorenza più a destra di $v$, se $v \in A$.

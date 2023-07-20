@@ -1,0 +1,69 @@
+---
+title: Lib 2
+code:
+  global:
+    - language: pseudo
+author: alessandro.manfucci@studenti.unitn.it
+date: "20/07/2023"
+lang: it
+format:
+  pdf:
+    documentclass: article
+    toc: false
+    papersize: a4
+    number-sections: true
+    geometry:
+    - top=1in
+    - bottom=1in
+    - right=1in
+    - left=1in
+syntax-definitions: 
+  - .pseudo.xml
+syntax-highlight: github
+---
+
+### Lezioni
+```pseudo
+int hateville(int[] D, int n)
+int knapsack(int[] w, int[] p, int n, int C)
+int lcs(int[] X, int[] Y, int n, int m)
+int stringMatching(Item[] P, Item[] T, int m, int n)
+int recPar(int[] C, int i, int j, int[][] DP)
+Set maxinterval(int[] a, int[] b, int[] w, int n)
+
+(int[] p, int[]d) shortestPath(Graph G, Node s)
+(int[][] d, int[][] p) floydWarshall(Graph G)
+
+Set independentSet(int[] a, int[] b)
+int[] moneyChange(int[] t, int n, int R)
+Tree huffman(int[] c, int[] f , int n)
+
+SET kruskal(EDGE[] A, int n, int m)
+int[] p prim(Graph G, Node r)
+```
+
+### Esercitazioni e Lab
+```pseudo
+int dice(int[] F , int n, int X)
+int lucia(Item[] T , Item[] P , int n, int m)
+int maxSquare(boolean[][] A, int n)
+int sprinkles(int[] D, int[] R, int n)
+int partition(int[] V , int n, int k)
+
+int squareSum(int n)
+int minCostStops(int[] D, int[] C, int n, int r)
+int scs(Item[] P , Item[] T , int n, int m)
+
+boolean checkPairs(int[] A, int n)
+int count(int[] X, int n, Set S, int[] DP , int i)
+anagrams(Item [][] S, int n)
+```
+
+### Esami
+```pseudo
+int LCSubstring(Item[] P , Item[] T , int n, int m)
+maxPalindromeSubstring(ITEM[] s, integer n, integer i, integer j, integer[][] M )
+boolean k-palindrome(Item[ ] S, int n, int k)
+int lrs(Item[] T, int n)
+int largestSquare(int[][] A, int n)
+```
