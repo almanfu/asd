@@ -301,7 +301,6 @@ for (Graph::Node h = 0; h < n; h++){
       cost += minChoice;
       i++;
     }
-    path.push_back(r);
     cost += W[u][r];
     return {path, cost};
   }
@@ -329,17 +328,62 @@ int main()
       g.insertEdge(u, v, w);
     }
   }
+  int minCost = INF;
+  // explore starting from one point
   for (Graph::Node r = 0; r < n; r++){
-    pair<vector<Graph::Node>, int> res = g.init(r);
-    //local search with 2-opt
-    //for(Graph::Node)
-    
+    auto res = g.init(r);// O(n)
+    vector<Graph::Node> path = res.first;
+    int cost = res.second;
 
+    // local search with 2-opt
+    const int ITER = 10000;
+    for (int _ = 0; _ < ITER;_++){
+      int minDelta = INF;
+      int mia, mib, mic, mid;
 
-    // output
-    for(Graph::Node u: res.first)
-      out << u << ' ';
-    out << '#' << endl;
+      // 2-opt neighbours, O(n^2)
+      for (int x = 0; x < n; x++)
+      {
+        for (int y = x + 2; y <= n - 2; y++)
+        { // can avoid all y<=x+n-2
+          // 2-opt with (x,x+1) <-> (y,y+1)
+          // (a,b),(c,d) to (a,c),(b,d)
+          int ia = x, ib = (x + 1) % n, ic = y % n, id = (y + 1) % n;
+          Graph::Node a = path[ia];
+          Graph::Node b = path[ib];
+          Graph::Node c = path[ic];
+          Graph::Node d = path[id];
+          int delta = - g.W[a][b] - g.W[c][d] + g.W[a][c] + g.W[b][d];
+          if(delta < minDelta){
+            minDelta = delta;
+            mia = ia;
+            mib = ib;
+            mic = ic;
+            mid = id;
+          }
+        }
+      }
+      // go to better neighbour (hill-climbing)
+      // O(n)
+      if(minDelta < 0){
+        cost += minDelta;
+        vector<int> newPath;
+        for (int i = 0; i <= mia; i++)
+          newPath.push_back(path[i]);
+        for (int i = mic; i >= mib; i--)
+          newPath.push_back(path[i]);
+        for (int i = mid; i < n; i++)
+          newPath.push_back(path[i]);
+        path = newPath;
+      }
+    }
+    if(cost < minCost){
+      minCost = cost;
+      // output
+      for (Graph::Node u : path)
+          out << u << ' ';
+      out << path[0] << '#' << endl;
+    }
   }
 
   in.close();
