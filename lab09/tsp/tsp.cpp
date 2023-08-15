@@ -49,6 +49,7 @@ public:
 
   int n;
   vector<list<Edge>> adj;
+  vector<vector<int>> W;
   vector<Node> color;
   vector<int> transfer;
   vector<int> minEdge;
@@ -60,7 +61,8 @@ public:
                                                              adj(n),
                                                              color(n),
                                                              transfer(n, INF),
-                                                             minEdge(n, INF){}
+                                                             minEdge(n, INF),
+                                                             W(n, vector<int>(n,INF)){}
 
   ~Graph() {}
 
@@ -85,6 +87,7 @@ public:
       weight = 1;
     if (has(u) && has(v) && u != v)
     {
+      W[u][v] = weight;
       adj[u].push_front(Edge(v, weight));
       if(weight < minEdge[u]){
         transfer[u] = minEdge[u] + weight;
@@ -92,6 +95,7 @@ public:
       }
       if (undirected())
       {
+        W[v][u] = weight;
         adj[v].push_front(Edge(u, weight));
         if (weight < minEdge[v]){
           transfer[v] = minEdge[v] + weight;
@@ -262,39 +266,44 @@ public:
     }
     return G;
   }
-  pair<stack<Node>, int> hamiltonrec(Node r, Node u, int i, int cost, stack<Node> &path, vector<bool> &in_path)
-  {
-    /*int lb = minEdge[u] + minEdge[r];
-    for (Graph::Node h = 0; h < n; h++){
-      if(!inPath[h])
-        lb += transfer[h] / 2.0;
-    }*/
-    if(i==n){
-      return {path, cost};
-    }
-    for (Graph::Edge &e : adj[u])
-    {
-      Graph::Node v = e.node;
-      if (!in_path[v] || (i == n - 1 && v == r))
-      {
-        path.push(v);
-        in_path[v] = true;
-        auto res = hamiltonrec(r, v, i + 1, cost + e.weight, path, in_path);
-        if(res.second != INF)
-          return res;
-        path.pop();
-        in_path[v] = false;
-      }
-    }
-    return {path, INF};
-  }
-  pair<stack<Node>, int> hamilton(Node r)
-  {
-    stack<Node> path;
-    path.push(r);
+  /*int lb = minEdge[u] + minEdge[r];
+for (Graph::Node h = 0; h < n; h++){
+  if(!inPath[h])
+    lb += transfer[h] / 2.0;
+}*/
+  pair<vector<Node>, int> init(Node r)
+  {//complete graph => GREEDY choice always yields a candidate solution
+    
+    int i=0;
+    int cost=0;
+    vector<Node> path;
     vector<bool> in_path(n, false);
+    path.push_back(r);
     in_path[r] = true;
-    return hamiltonrec(r, r, 0, 0, path, in_path);
+
+    Node u = r;
+    while(i != n-1){
+      Graph::Node v; // chosen node
+      int minChoice = INF;
+      for (Graph::Edge &e : adj[u])
+      {
+        if (!in_path[e.node])
+        {
+          if(e.weight < minChoice){
+            minChoice = e.weight;
+            v = e.node;
+          }
+        }
+      }
+      path.push_back(v);
+      in_path[v] = true;
+      u = v;
+      cost += minChoice;
+      i++;
+    }
+    path.push_back(r);
+    cost += W[u][r];
+    return {path, cost};
   }
 };
 
@@ -320,14 +329,18 @@ int main()
       g.insertEdge(u, v, w);
     }
   }
+  for (Graph::Node r = 0; r < n; r++){
+    pair<vector<Graph::Node>, int> res = g.init(r);
+    //local search with 2-opt
+    //for(Graph::Node)
+    
 
-  pair<stack<Graph::Node>, int> res = g.hamilton(0);
-  while(!res.first.empty()){
-    Graph::Node u = res.first.top();
-    res.first.pop();
-    out << u << ' ';
+
+    // output
+    for(Graph::Node u: res.first)
+      out << u << ' ';
+    out << '#' << endl;
   }
-  out << '#';
 
   in.close();
   out.close();
