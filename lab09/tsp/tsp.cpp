@@ -5,6 +5,7 @@
 #include <list>
 #include <queue>
 #include <stack>
+#include <cmath>
 #include "tsp.h"
 using namespace std;
 
@@ -312,6 +313,7 @@ for (Graph::Node h = 0; h < n; h++){
 
 int main()
 {
+  srand(time(NULL));
   ifstream in("input.txt");
   ofstream out("output.txt");
 
@@ -335,9 +337,12 @@ int main()
     vector<Graph::Node> path = res.first;
     int cost = res.second;
 
-    // local search with 2-opt
-    const int ITER = 10000;
-    for (int _ = 0; _ < ITER;_++){
+    // local search with 2-opt, SA
+    const int ITER = 5000;
+    const float alpha = 0.8;
+    float t = 1000;
+    for (int _ = 0; _ < ITER; _++)
+    {
       int minDelta = INF;
       int mia, mib, mic, mid;
 
@@ -363,9 +368,9 @@ int main()
           }
         }
       }
-      // go to better neighbour (hill-climbing)
+      // go to neighbour with SA
       // O(n)
-      if(minDelta < 0){
+      if(minDelta != INF && (minDelta < 0 || (float)rand()/(float)RAND_MAX < exp(minDelta/t))){
         cost += minDelta;
         vector<int> newPath;
         for (int i = 0; i <= mia; i++)
@@ -376,6 +381,7 @@ int main()
           newPath.push_back(path[i]);
         path = newPath;
       }
+      t *= alpha;
     }
     if(cost < minCost){
       minCost = cost;
