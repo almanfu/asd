@@ -8,6 +8,7 @@
 #include <unordered_set>
 #include <algorithm>
 #include <memory>
+//#include "got.h"
 
 using namespace std;
 
@@ -40,33 +41,47 @@ class Paint : public std::enable_shared_from_this<Paint>
 public:
   int size;
   int currSize;
-  int a;
-  int alpha;
+  unsigned int a;
+  unsigned int alpha;
   bool dead;
-  unordered_set<Cell *> newAdj;
+  Cell *root;
+  unordered_set<Cell *> addAdj;
+  unordered_set<Cell *> delAdj;
   unordered_set<Cell *> adj; // inv: all cells in adj are not painted
-  Paint(int size, Cell* cell) : size(size), currSize(0), a(0), alpha(1), dead(false){
+  Paint(int size, Cell* cell) : size(size), currSize(0), a(0), alpha(1), dead(false), root(cell){
     adj.insert(cell);
   }
   void pour(int r){
-    a += r;
+    a += r*alpha;
   }
-  void addToNewAdj(Cell *c){
-    newAdj.insert(c);
+  void addToAdj(Cell *c){
+    addAdj.insert(c);
   }
-  void removeFromAdj(Cell* c){
-    adj.erase(c);
+  void delFromAdj(Cell *c)
+  {
+    delAdj.insert(c);
+  }
+  void updateAdj(bool clearAdj){
+    if (clearAdj)
+      adj.clear();
+    else{
+      for (Cell *c : delAdj)
+        adj.erase(adj.find(c));      
+    }    for (Cell *c : addAdj)
+      adj.insert(c);
+
+    addAdj.clear();
+    delAdj.clear();
   }
   // uniform expansion
   void expand(){
-    for(Cell* c: newAdj)
-      adj.insert(c);
-    newAdj.erase(newAdj.begin(), newAdj.end());
-    while (adj.size() <= a && !isDead())
+    updateAdj(false);
+    while (adj.size() != 0 && a != 0 && adj.size() <= a && !isDead())
     {
       // fillPaint adj (can fillPaint them all)
       for(Cell* c: adj){
         a--;
+        // calls a removeFromAdj on me too!
         c->fillPaint(shared_from_this());
         currSize++;
         // add neighbours of c to newAdj(if they are not filled)
@@ -75,8 +90,8 @@ public:
         {
           shared_ptr<Paint> peer = n->paint;
           if (!n->isPainted())
-            addToNewAdj(n);
-          else if (peer->size == size)
+            addToAdj(n);
+          else if (peer->size == size && peer.get() != this)
           { // merge
             if (peer->currSize + currSize <= size)
             { // valid, expander feeds and merges
@@ -87,7 +102,7 @@ public:
               for (Cell *c : peer->adj)
               {
                 if (c->paint.get() != this)
-                  addToNewAdj(c);
+                  addToAdj(c);
               }
               // update internal cells with bfs
               queue<Cell *> Q;
@@ -107,9 +122,9 @@ public:
             else
             { // conflict, biggest feeds and cleans smallest
               if (this->currSize > peer->currSize)
-                this->feedandclean(peer, n);
+                this->feedandclean(peer);
               else{
-                peer->feedandclean(shared_from_this(), n);
+                peer->feedandclean(shared_from_this());
                 break;
               }
             }
@@ -121,39 +136,44 @@ public:
           break;
         }
       }
-      adj = newAdj;
-      newAdj.erase(newAdj.begin(), newAdj.end());
+      updateAdj(true);
     }
   }
   void die(){
     dead = true;
   }
-  bool isDead(){
-    return dead == true;
+  bool isLocked(){
+    return adj.empty();
   }
-  void feedandclean(shared_ptr<Paint> smaller, Cell *n)
+  bool isDead(){
+    return dead;
+  }
+  void feedandclean(shared_ptr<Paint> smaller)
   {
     //feed
     alpha += smaller->alpha;
     a += smaller->a;
-    //  update internal cells with bfs
+    smaller->dieandclean();
+  }
+  void dieandclean(){
+    die();
+    // update internal cells with bfs
     queue<Cell *> Q;
-    Q.push(n);
+    Q.push(root);
     while (!Q.empty())
     {
       Cell *u = Q.front();
       Q.pop();
-      if (u->isPainted() && u->paint.get() == smaller.get())
+      if (u->isPainted() && u->paint.get() == this)
       {
+        u->paint = nullptr;
         for (Cell *v : Cell::neighbors(u))
           Q.push(v);
       }
     }
-    //update adjs
-    for (Cell *c : smaller->adj)
+    // update adjs
+    for (Cell *c : adj)
       c->unpaint();
-    // smaller dies
-    smaller->die();
   }
 };
 
@@ -163,11 +183,11 @@ public:
     int i = c->i;
     int j = c->j;
     vector<Cell *> res;
-    if (i + 1 <= N)
+    if (i + 1 < N)
       res.push_back(&G[i + 1][j]);
     if (0 <= i - 1)
       res.push_back(&G[i - 1][j]);
-    if (j + 1 <= M)
+    if (j + 1 < M)
       res.push_back(&G[i][j + 1]);
     if (0 <= j - 1)
       res.push_back(&G[i][j - 1]);
@@ -183,21 +203,21 @@ public:
   {
     paint = p;
     // remove me from neighbors paint adjs
-    for (Cell *n : Cell::neighbors(this))
+    for (Cell *n : Cell::neighbors(&G[i][j]))
     {
       if (n->isPainted())
       {
-        n->paint->removeFromAdj(this);
+        n->paint->delFromAdj(&G[i][j]);
       }
     }
   }
   void Cell::unpaint(){
     paint = nullptr;
-    for (Cell *n : neighbors(this))
+    for (Cell *n : neighbors(&G[i][j]))
     {
-      //update newAdj of painted neighbors
+      //update adj of painted neighbors
       if (n->isPainted())
-        n->paint->newAdj.insert(this);
+        n->paint->addToAdj(&G[i][j]);
     }
   }
 //
@@ -228,12 +248,15 @@ int main()
   }
 
   //pouring
-  int delta=1;
-  int r = 1;
+  unsigned int delta=1;
+  unsigned int r = 1;
   vector<shared_ptr<Paint>> L;
   while(!(Q.empty() && L.empty())){
-    while(!Q.empty()){
+    while (!Q.empty())
+    {
       //sort Q by decreasing size
+      sort(Q.begin(), Q.end(), [](const shared_ptr<Paint> &a, const shared_ptr<Paint> &b)
+                { return a->size > b->size; });
       for(shared_ptr<Paint> p: Q){
         if(!p->isDead()){
           p->pour(r);
@@ -243,13 +266,27 @@ int main()
       // remove dead paints
       Q.erase(remove_if(Q.begin(), Q.end(), [](shared_ptr<Paint>& p)
                       { return p->isDead(); }), Q.end());
+      // update adjs
+      for (shared_ptr<Paint> p : Q){
+        p->updateAdj(false);
+        if(p->isLocked())
+          L.push_back(p);
+      }
+      // remove locked paints
+      Q.erase(remove_if(Q.begin(), Q.end(), [](shared_ptr<Paint> &p)
+                        { return p->isLocked(); }),Q.end());
       r += delta;
     }
     if(!L.empty()){
       // sort L by decreasing currSize
-      shared_ptr<Paint> p = *L.begin();
-
+      sort(L.begin(), L.end(), [](const shared_ptr<Paint> &a, const shared_ptr<Paint> &b)
+                { return a->currSize > b->currSize; });
+      // clean largest paint
+      (*L.begin())->dieandclean();
       L.erase(L.begin());
+      for(shared_ptr<Paint> p : L)
+        Q.push_back(p);
+      L.clear();
     }
   }
 

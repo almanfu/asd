@@ -1,0 +1,62 @@
+==244751== Memcheck, a memory error detector
+==244751== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==244751== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==244751== Command: ./temp.out
+==244751== Parent PID: 244744
+==244751== 
+==244751== Invalid read of size 8
+==244751==    at 0x10F0DA: _M_bucket_index (hashtable_policy.h:1304)
+==244751==    by 0x10F0DA: _M_bucket_index (hashtable.h:672)
+==244751==    by 0x10F0DA: std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::erase(std::__detail::_Node_const_iterator<Cell*, true, false>) (hashtable.h:1890)
+==244751==    by 0x10FB8D: erase (hashtable.h:800)
+==244751==    by 0x10FB8D: erase (unordered_set.h:529)
+==244751==    by 0x10FB8D: updateAdj (got.cpp:69)
+==244751==    by 0x10FB8D: Paint::expand() (got.cpp:78)
+==244751==    by 0x10D4C0: main (got.cpp:263)
+==244751==  Address 0x8 is not stack'd, malloc'd or (recently) free'd
+==244751== 
+==244751== 
+==244751== Process terminating with default action of signal 11 (SIGSEGV)
+==244751==  Access not within mapped region at address 0x8
+==244751==    at 0x10F0DA: _M_bucket_index (hashtable_policy.h:1304)
+==244751==    by 0x10F0DA: _M_bucket_index (hashtable.h:672)
+==244751==    by 0x10F0DA: std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::erase(std::__detail::_Node_const_iterator<Cell*, true, false>) (hashtable.h:1890)
+==244751==    by 0x10FB8D: erase (hashtable.h:800)
+==244751==    by 0x10FB8D: erase (unordered_set.h:529)
+==244751==    by 0x10FB8D: updateAdj (got.cpp:69)
+==244751==    by 0x10FB8D: Paint::expand() (got.cpp:78)
+==244751==    by 0x10D4C0: main (got.cpp:263)
+==244751==  If you believe this happened as a result of a stack
+==244751==  overflow in your program's main thread (unlikely but
+==244751==  possible), you can try to increase the size of the
+==244751==  main thread stack using the --main-stacksize= flag.
+==244751==  The main thread stack size used in this run was 8388608.
+==244751== 
+==244751== HEAP SUMMARY:
+==244751==     in use at exit: 440,136 bytes in 4,748 blocks
+==244751==   total heap usage: 25,035 allocs, 20,287 frees, 1,120,664 bytes allocated
+==244751== 
+==244751== LEAK SUMMARY:
+==244751==    definitely lost: 0 bytes in 0 blocks
+==244751==    indirectly lost: 0 bytes in 0 blocks
+==244751==      possibly lost: 0 bytes in 0 blocks
+==244751==    still reachable: 440,136 bytes in 4,748 blocks
+==244751==         suppressed: 0 bytes in 0 blocks
+==244751== Reachable blocks (those to which a pointer was found) are not shown.
+==244751== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==244751== 
+==244751== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==244751== 
+==244751== 1 errors in context 1 of 1:
+==244751== Invalid read of size 8
+==244751==    at 0x10F0DA: _M_bucket_index (hashtable_policy.h:1304)
+==244751==    by 0x10F0DA: _M_bucket_index (hashtable.h:672)
+==244751==    by 0x10F0DA: std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::erase(std::__detail::_Node_const_iterator<Cell*, true, false>) (hashtable.h:1890)
+==244751==    by 0x10FB8D: erase (hashtable.h:800)
+==244751==    by 0x10FB8D: erase (unordered_set.h:529)
+==244751==    by 0x10FB8D: updateAdj (got.cpp:69)
+==244751==    by 0x10FB8D: Paint::expand() (got.cpp:78)
+==244751==    by 0x10D4C0: main (got.cpp:263)
+==244751==  Address 0x8 is not stack'd, malloc'd or (recently) free'd
+==244751== 
+==244751== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
