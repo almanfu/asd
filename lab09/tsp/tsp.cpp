@@ -272,7 +272,7 @@ for (Graph::Node h = 0; h < n; h++){
   if(!inPath[h])
     lb += transfer[h] / 2.0;
 }*/
-  pair<vector<Node>, int> init(Node r)
+  pair<vector<Node>, int> init(Node r, float t)
   {//complete graph => GREEDY choice always yields a candidate solution
     
     int i=0;
@@ -290,7 +290,9 @@ for (Graph::Node h = 0; h < n; h++){
       {
         if (!in_path[e.node])
         {
-          if(e.weight < minChoice){
+          int delta = e.weight - minChoice;
+          if (e.weight < minChoice || (float)rand() / (float)RAND_MAX < exp(-delta/t))
+          {
             minChoice = e.weight;
             v = e.node;
           }
@@ -331,22 +333,32 @@ int main()
     }
   }
   int minCost = INF;
-  // explore starting from one point
-  for (Graph::Node r = 0; r < n; r++){
-    auto res = g.init(r);// O(n)
+
+  // multi-level SA
+  // SA increasing geometric T
+  float T = 100;
+  const float beta = 1.1;
+
+  // iterated local search (multi-start)
+  for (Graph::Node r = 0; r < n; (++r)%=n){
+
+    // starting point (greedy+randomized with T)
+    auto res = g.init(r, T); // O(n)
     vector<Graph::Node> path = res.first;
     int cost = res.second;
 
-    // local search with 2-opt, SA
-    const int ITER = 5000;
-    const float alpha = 0.8;
-    float t = 1000;
+    // local search with 2-opt
+    // SA decreasing geometric t
+    float t = 2000;
+    const int ITER = 10000;
+    const float alpha = 0.99;
+
     for (int _ = 0; _ < ITER; _++)
     {
       int minDelta = INF;
       int mia, mib, mic, mid;
 
-      // 2-opt neighbours, O(n^2)
+      // 2-opt neighbors, O(n^2)
       for (int x = 0; x < n; x++)
       {
         for (int y = x + 2; y <= n - 2; y++)
@@ -359,7 +371,8 @@ int main()
           Graph::Node c = path[ic];
           Graph::Node d = path[id];
           int delta = - g.W[a][b] - g.W[c][d] + g.W[a][c] + g.W[b][d];
-          if(delta < minDelta){
+          if (delta < minDelta)
+          {
             minDelta = delta;
             mia = ia;
             mib = ib;
@@ -370,7 +383,7 @@ int main()
       }
       // go to neighbour with SA
       // O(n)
-      if(minDelta != INF && (minDelta < 0 || (float)rand()/(float)RAND_MAX < exp(minDelta/t))){
+      if(minDelta != INF && (minDelta < 0 || (float)rand()/(float)RAND_MAX < exp(-minDelta/t))){
         cost += minDelta;
         vector<int> newPath;
         for (int i = 0; i <= mia; i++)
@@ -390,6 +403,7 @@ int main()
           out << u << ' ';
       out << path[0] << '#' << endl;
     }
+    T *= beta;
   }
 
   in.close();
