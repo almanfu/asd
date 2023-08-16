@@ -35,10 +35,10 @@ public:
   bool isClean();
   void fillPaint(shared_ptr<Paint> p);
   void cleanPaint();
-  friend ostream &operator<<(ostream &os, const Cell &cell)
+  /*friend ostream &operator<<(ostream &os, const Cell &cell)
   {
     return os << cell.i << ' ' << cell.j;
-  }
+  }*/
 };
 
 class Paint : public std::enable_shared_from_this<Paint>
@@ -49,13 +49,13 @@ public:
   unsigned int a;
   unsigned int alpha;
   bool dead;
-  bool someOldFull;
+  //bool someOldFull;
   int kills;
   Cell *root;
   unordered_set<Cell *> newClean;
   unordered_set<Cell *> oldFull;
   unordered_set<Cell *> cleanAdj; // inv: all cells in cleanAdj are not painted
-  Paint(int size, Cell *cell) : size(size), currSize(0), a(0), alpha(1), dead(false), root(cell), someOldFull(false) {
+  Paint(int size, Cell *cell) : size(size), currSize(0), a(0), alpha(1), dead(false), root(cell){
     cleanAdj.insert(cell);
     kills = 0;
   }
@@ -67,7 +67,7 @@ public:
   }
   void foundOldFull(Cell *c)
   {
-    someOldFull = true;
+    //someOldFull = true;
     oldFull.insert(c);
   }
   void updateCleanAdj(bool clearAdj){
@@ -80,7 +80,7 @@ public:
         if(c->isFull() && cleanAdj.find(c) != cleanAdj.end())
           cleanAdj.erase(cleanAdj.find(c));
       }
-      someOldFull = false;
+      //someOldFull = false;
     }
 
     // add new clean adjacent cells
@@ -101,9 +101,11 @@ public:
     {
       // fillPaint cleanAdj (can fillPaint them all)
       unordered_set<Cell*>::iterator it;
-      for (it = cleanAdj.begin(); it != cleanAdj.end() && !(isDead() || isComplete() || someOldFull); it++)
+      for (it = cleanAdj.begin(); it != cleanAdj.end() && !(isDead() || isComplete()); it++)
       {
         Cell *fillCell = *it;
+        if(fillCell->isFull())
+          continue;
         a--;
         fillCell->fillPaint(shared_from_this());
         currSize++;

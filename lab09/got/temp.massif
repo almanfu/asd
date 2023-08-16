@@ -1,0 +1,731 @@
+desc: --heap=yes --stacks=yes --detailed-freq=10 --massif-out-file=temp.massif
+cmd: ./temp.out
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=317782
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=1112
+heap_tree=detailed
+n0: 0 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+#-----------
+snapshot=2
+#-----------
+time=783248
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=1336
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=1177953
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=1336
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=1625927
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=1336
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=2360489
+mem_heap_B=72704
+mem_heap_extra_B=8
+mem_stacks_B=3368
+heap_tree=detailed
+n1: 72704 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+#-----------
+snapshot=6
+#-----------
+time=2963897
+mem_heap_B=184592
+mem_heap_extra_B=22416
+mem_stacks_B=1968
+heap_tree=detailed
+n9: 184592 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n0: 37352 0x10A959: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n0: 23472 0x10A728: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 16848 0x10F4C3: std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash(unsigned long, unsigned long const&) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n1: 16848 0x10F6CB: std::pair<std::__detail::_Node_iterator<Cell*, true, false>, bool> std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > >(Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n0: 16848 0x10A944: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x49718EF: std::basic_ifstream<char, std::char_traits<char> >::basic_ifstream(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 8192 0x10A5F8: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n1: 8192 0x4971DC7: std::basic_ofstream<char, std::char_traits<char> >::basic_ofstream(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 8192 0x10A619: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 8400 0x10E9D9: std::vector<std::unique_ptr<Cell, std::default_delete<Cell> >, std::allocator<std::unique_ptr<Cell, std::default_delete<Cell> > > >::_M_default_append(unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n0: 8400 0x10BF36: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n0: 4096 0x10BC23: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n0: 2744 in 2 places, all below massif's threshold (1.00%)
+ n1: 2592 0x10F686: std::pair<std::__detail::_Node_iterator<Cell*, true, false>, bool> std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > >(Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n0: 2592 0x10A944: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+#-----------
+snapshot=7
+#-----------
+time=3336201
+mem_heap_B=244672
+mem_heap_extra_B=36672
+mem_stacks_B=2072
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=3922664
+mem_heap_B=333800
+mem_heap_extra_B=59368
+mem_stacks_B=2120
+heap_tree=detailed
+n9: 333800 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n0: 99064 0x10A959: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n0: 62472 0x10A728: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 44408 0x10F4C3: std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash(unsigned long, unsigned long const&) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n1: 44408 0x10F6CB: std::pair<std::__detail::_Node_iterator<Cell*, true, false>, bool> std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > >(Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n0: 44408 0x10A944: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 21000 0x10E9D9: std::vector<std::unique_ptr<Cell, std::default_delete<Cell> >, std::allocator<std::unique_ptr<Cell, std::default_delete<Cell> > > >::_M_default_append(unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n0: 21000 0x10BF36: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x49718EF: std::basic_ifstream<char, std::char_traits<char> >::basic_ifstream(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 8192 0x10A5F8: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n1: 8192 0x4971DC7: std::basic_ofstream<char, std::char_traits<char> >::basic_ofstream(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 8192 0x10A619: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n0: 8192 0x10BC23: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 6832 0x10F686: std::pair<std::__detail::_Node_iterator<Cell*, true, false>, bool> std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > >(Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n0: 6832 0x10A944: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n0: 2744 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=9
+#-----------
+time=4628689
+mem_heap_B=441792
+mem_heap_extra_B=86080
+mem_stacks_B=2120
+heap_tree=detailed
+n9: 441792 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n0: 139200 0x10A959: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n0: 91776 0x10A728: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 62400 0x10F4C3: std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash(unsigned long, unsigned long const&) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n1: 62400 0x10F6CB: std::pair<std::__detail::_Node_iterator<Cell*, true, false>, bool> std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > >(Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n0: 62400 0x10A944: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 30600 0x10E9D9: std::vector<std::unique_ptr<Cell, std::default_delete<Cell> >, std::allocator<std::unique_ptr<Cell, std::default_delete<Cell> > > >::_M_default_append(unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n0: 30600 0x10BF36: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n0: 16384 0x10BC23: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x49718EF: std::basic_ifstream<char, std::char_traits<char> >::basic_ifstream(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 8192 0x10A5F8: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n1: 8192 0x4971DC7: std::basic_ofstream<char, std::char_traits<char> >::basic_ofstream(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 8192 0x10A619: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 9600 0x10F686: std::pair<std::__detail::_Node_iterator<Cell*, true, false>, bool> std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > >(Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n0: 9600 0x10A944: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n0: 2744 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=10
+#-----------
+time=5201363
+mem_heap_B=531256
+mem_heap_extra_B=108360
+mem_stacks_B=1968
+heap_tree=detailed
+n9: 531256 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n0: 177712 0x10A959: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n0: 114888 0x10A728: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 79768 0x10F4C3: std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash(unsigned long, unsigned long const&) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n1: 79768 0x10F6CB: std::pair<std::__detail::_Node_iterator<Cell*, true, false>, bool> std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > >(Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n0: 79768 0x10A944: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 38400 0x10E9D9: std::vector<std::unique_ptr<Cell, std::default_delete<Cell> >, std::allocator<std::unique_ptr<Cell, std::default_delete<Cell> > > >::_M_default_append(unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n0: 38400 0x10BF36: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n0: 16384 0x10BC23: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x49718EF: std::basic_ifstream<char, std::char_traits<char> >::basic_ifstream(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 8192 0x10A5F8: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n1: 8192 0x4971DC7: std::basic_ofstream<char, std::char_traits<char> >::basic_ofstream(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    n0: 8192 0x10A619: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 12272 0x10F686: std::pair<std::__detail::_Node_iterator<Cell*, true, false>, bool> std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > >(Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n0: 12272 0x10A944: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n0: 2744 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=11
+#-----------
+time=5725593
+mem_heap_B=605368
+mem_heap_extra_B=127320
+mem_stacks_B=2088
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=6319124
+mem_heap_B=633560
+mem_heap_extra_B=136344
+mem_stacks_B=2144
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=7008070
+mem_heap_B=671928
+mem_heap_extra_B=149416
+mem_stacks_B=2352
+heap_tree=detailed
+n9: 671928 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n0: 209032 0x10A959: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 140608 0x10F4C3: std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash(unsigned long, unsigned long const&) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n3: 140608 0x10F6CB: std::pair<std::__detail::_Node_iterator<Cell*, true, false>, bool> std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > >(Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n0: 93704 0x10A944: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n1: 41600 0x10FAE2: Paint::expand() (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+    n0: 41600 0x10AC98: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n0: 5304 in 2 places, all below massif's threshold (1.00%)
+ n0: 135000 0x10A728: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 45000 0x10E9D9: std::vector<std::unique_ptr<Cell, std::default_delete<Cell> >, std::allocator<std::unique_ptr<Cell, std::default_delete<Cell> > > >::_M_default_append(unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n0: 45000 0x10BF36: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n2: 34064 0x10F686: std::pair<std::__detail::_Node_iterator<Cell*, true, false>, bool> std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > >(Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n1: 25760 0x110624: Paint::expand() (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n0: 25760 0x10AC98: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n0: 8304 in 4 places, all below massif's threshold (1.00%)
+ n0: 16384 0x10BC23: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n0: 16384 in 2 places, all below massif's threshold (1.00%)
+ n0: 2752 in 5 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=14
+#-----------
+time=7644696
+mem_heap_B=708944
+mem_heap_extra_B=160928
+mem_stacks_B=2224
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=8199080
+mem_heap_B=743728
+mem_heap_extra_B=171408
+mem_stacks_B=2280
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=8935726
+mem_heap_B=739072
+mem_heap_extra_B=170840
+mem_stacks_B=1976
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=9353065
+mem_heap_B=754752
+mem_heap_extra_B=175624
+mem_stacks_B=2184
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=9869651
+mem_heap_B=775576
+mem_heap_extra_B=182360
+mem_stacks_B=2160
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=10437777
+mem_heap_B=794944
+mem_heap_extra_B=188480
+mem_stacks_B=2104
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=11017733
+mem_heap_B=813208
+mem_heap_extra_B=194784
+mem_stacks_B=2280
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=11622362
+mem_heap_B=789616
+mem_heap_extra_B=189000
+mem_stacks_B=2104
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=12081269
+mem_heap_B=795312
+mem_heap_extra_B=192184
+mem_stacks_B=2288
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=12654922
+mem_heap_B=802016
+mem_heap_extra_B=196024
+mem_stacks_B=2280
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=13228538
+mem_heap_B=808344
+mem_heap_extra_B=199536
+mem_stacks_B=2056
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=13802147
+mem_heap_B=813752
+mem_heap_extra_B=202368
+mem_stacks_B=2152
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=14503921
+mem_heap_B=819136
+mem_heap_extra_B=205064
+mem_stacks_B=2320
+heap_tree=peak
+n9: 819136 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 252352 0x10F4C3: std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash(unsigned long, unsigned long const&) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n4: 252352 0x10F6CB: std::pair<std::__detail::_Node_iterator<Cell*, true, false>, bool> std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > >(Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n0: 85592 0x10A944: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n1: 84864 0x10FAE2: Paint::expand() (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+    n0: 84864 0x10AC98: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n1: 80496 0x10E0CA: Cell::fillPaint(std::shared_ptr<Paint>) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+    n1: 80496 0x10F9E1: Paint::expand() (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+     n0: 80496 0x10AC98: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n0: 1400 in 2 places, all below massif's threshold (1.00%)
+ n0: 191400 0x10A959: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n0: 135000 0x10A728: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n3: 87120 0x10F686: std::pair<std::__detail::_Node_iterator<Cell*, true, false>, bool> std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > >(Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n1: 71936 0x110624: Paint::expand() (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n0: 71936 0x10AC98: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n1: 15040 0x10E0CA: Cell::fillPaint(std::shared_ptr<Paint>) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n1: 15040 0x10F9E1: Paint::expand() (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+    n0: 15040 0x10AC98: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n0: 144 in 4 places, all below massif's threshold (1.00%)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 45000 0x10E9D9: std::vector<std::unique_ptr<Cell, std::default_delete<Cell> >, std::allocator<std::unique_ptr<Cell, std::default_delete<Cell> > > >::_M_default_append(unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n0: 45000 0x10BF36: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n0: 16384 0x10BC23: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n0: 16384 in 2 places, all below massif's threshold (1.00%)
+ n0: 2792 in 6 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=27
+#-----------
+time=15077527
+mem_heap_B=821448
+mem_heap_extra_B=206136
+mem_stacks_B=2320
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=15536574
+mem_heap_B=775448
+mem_heap_extra_B=189104
+mem_stacks_B=1976
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=16117313
+mem_heap_B=780416
+mem_heap_extra_B=191320
+mem_stacks_B=2272
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=16504473
+mem_heap_B=784664
+mem_heap_extra_B=192760
+mem_stacks_B=2280
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=17085240
+mem_heap_B=790312
+mem_heap_extra_B=196976
+mem_stacks_B=2152
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=17665992
+mem_heap_B=794336
+mem_heap_extra_B=199328
+mem_stacks_B=2112
+heap_tree=detailed
+n9: 794336 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 241728 0x10F4C3: std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash(unsigned long, unsigned long const&) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n4: 241728 0x10F6CB: std::pair<std::__detail::_Node_iterator<Cell*, true, false>, bool> std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > >(Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n1: 79768 0x10FAE2: Paint::expand() (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+    n0: 79768 0x10AC98: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n0: 79664 0x10A944: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n1: 79040 0x10E0CA: Cell::fillPaint(std::shared_ptr<Paint>) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+    n1: 79040 0x10F9E1: Paint::expand() (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+     n0: 79040 0x10AC98: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n0: 3256 in 2 places, all below massif's threshold (1.00%)
+ n0: 180032 0x10A959: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n0: 135000 0x10A728: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n3: 83232 0x10F686: std::pair<std::__detail::_Node_iterator<Cell*, true, false>, bool> std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > >(Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n1: 60656 0x110624: Paint::expand() (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n0: 60656 0x10AC98: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n1: 21840 0x10E0CA: Cell::fillPaint(std::shared_ptr<Paint>) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n1: 21840 0x10F9E1: Paint::expand() (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+    n0: 21840 0x10AC98: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n0: 736 in 6 places, all below massif's threshold (1.00%)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 45000 0x10E9D9: std::vector<std::unique_ptr<Cell, std::default_delete<Cell> >, std::allocator<std::unique_ptr<Cell, std::default_delete<Cell> > > >::_M_default_append(unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n0: 45000 0x10BF36: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n0: 16384 0x10BC23: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n0: 16384 in 2 places, all below massif's threshold (1.00%)
+ n0: 3872 in 6 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=33
+#-----------
+time=18053164
+mem_heap_B=795152
+mem_heap_extra_B=200080
+mem_stacks_B=2104
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=18440331
+mem_heap_B=795560
+mem_heap_extra_B=200152
+mem_stacks_B=2256
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=19021070
+mem_heap_B=794184
+mem_heap_extra_B=199000
+mem_stacks_B=2080
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=19601818
+mem_heap_B=751688
+mem_heap_extra_B=184376
+mem_stacks_B=2200
+heap_tree=detailed
+n9: 751688 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 225296 0x10F4C3: std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash(unsigned long, unsigned long const&) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n4: 225296 0x10F6CB: std::pair<std::__detail::_Node_iterator<Cell*, true, false>, bool> std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > >(Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n1: 74256 0x10E0CA: Cell::fillPaint(std::shared_ptr<Paint>) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+    n1: 74256 0x10F9E1: Paint::expand() (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+     n0: 74256 0x10AC98: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n1: 74152 0x10FAE2: Paint::expand() (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+    n0: 74152 0x10AC98: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n0: 73840 0x10A944: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n0: 3048 in 2 places, all below massif's threshold (1.00%)
+ n0: 167040 0x10A959: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n0: 135000 0x10A728: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n3: 69088 0x10F686: std::pair<std::__detail::_Node_iterator<Cell*, true, false>, bool> std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > >(Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n1: 45536 0x110624: Paint::expand() (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n0: 45536 0x10AC98: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n1: 22048 0x10E0CA: Cell::fillPaint(std::shared_ptr<Paint>) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n1: 22048 0x10F9E1: Paint::expand() (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+    n0: 22048 0x10AC98: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n0: 1504 in 6 places, all below massif's threshold (1.00%)
+ n1: 45000 0x10E9D9: std::vector<std::unique_ptr<Cell, std::default_delete<Cell> >, std::allocator<std::unique_ptr<Cell, std::default_delete<Cell> > > >::_M_default_append(unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n0: 45000 0x10BF36: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n0: 16384 0x10BC23: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n0: 16384 in 2 places, all below massif's threshold (1.00%)
+ n0: 4792 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=37
+#-----------
+time=19988995
+mem_heap_B=754176
+mem_heap_extra_B=185216
+mem_stacks_B=2224
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=20376144
+mem_heap_B=754680
+mem_heap_extra_B=185016
+mem_stacks_B=2152
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=20763567
+mem_heap_B=747648
+mem_heap_extra_B=183488
+mem_stacks_B=1800
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=21348275
+mem_heap_B=743296
+mem_heap_extra_B=182976
+mem_stacks_B=2088
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=21736444
+mem_heap_B=740032
+mem_heap_extra_B=182592
+mem_stacks_B=1976
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=22123688
+mem_heap_B=736224
+mem_heap_extra_B=182144
+mem_stacks_B=1976
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=22515131
+mem_heap_B=732416
+mem_heap_extra_B=181696
+mem_stacks_B=1752
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=22902294
+mem_heap_B=728608
+mem_heap_extra_B=181232
+mem_stacks_B=1784
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=23289484
+mem_heap_B=724848
+mem_heap_extra_B=180744
+mem_stacks_B=1800
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=23676711
+mem_heap_B=718816
+mem_heap_extra_B=180064
+mem_stacks_B=1752
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=24258183
+mem_heap_B=709632
+mem_heap_extra_B=178936
+mem_stacks_B=1800
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=24645947
+mem_heap_B=698144
+mem_heap_extra_B=177632
+mem_stacks_B=1752
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=25226875
+mem_heap_B=688352
+mem_heap_extra_B=176464
+mem_stacks_B=1912
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=25544667
+mem_heap_B=688352
+mem_heap_extra_B=176464
+mem_stacks_B=1928
+heap_tree=detailed
+n9: 688352 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 188376 0x10F4C3: std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_rehash(unsigned long, unsigned long const&) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n4: 188376 0x10F6CB: std::pair<std::__detail::_Node_iterator<Cell*, true, false>, bool> std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > >(Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n1: 62296 0x10E0CA: Cell::fillPaint(std::shared_ptr<Paint>) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+    n1: 62296 0x10F9E1: Paint::expand() (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+     n0: 62296 0x10AC98: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n1: 61672 0x10FAE2: Paint::expand() (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+    n0: 61672 0x10AC98: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n0: 61360 0x10A944: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n0: 3048 in 2 places, all below massif's threshold (1.00%)
+ n0: 139200 0x10A959: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n0: 135000 0x10A728: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n3: 70512 0x10F686: std::pair<std::__detail::_Node_iterator<Cell*, true, false>, bool> std::_Hashtable<Cell*, Cell*, std::allocator<Cell*>, std::__detail::_Identity, std::equal_to<Cell*>, std::hash<Cell*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > >(Cell* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<Cell*, false> > > const&, std::integral_constant<bool, true>, unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n1: 41808 0x110624: Paint::expand() (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n0: 41808 0x10AC98: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n1: 26864 0x10E0CA: Cell::fillPaint(std::shared_ptr<Paint>) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+   n1: 26864 0x10F9E1: Paint::expand() (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+    n0: 26864 0x10AC98: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n0: 1840 in 6 places, all below massif's threshold (1.00%)
+ n1: 45000 0x10E9D9: std::vector<std::unique_ptr<Cell, std::default_delete<Cell> >, std::allocator<std::unique_ptr<Cell, std::default_delete<Cell> > > >::_M_default_append(unsigned long) (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+  n0: 45000 0x10BF36: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n0: 16384 0x10BC23: main (in /home/manfucci/GitRepos/asd/lab09/got/temp.out)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n0: 16384 in 2 places, all below massif's threshold (1.00%)
+ n0: 4792 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=51
+#-----------
+time=25862462
+mem_heap_B=688352
+mem_heap_extra_B=176464
+mem_stacks_B=1896
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=26180255
+mem_heap_B=688352
+mem_heap_extra_B=176464
+mem_stacks_B=1752
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=26498039
+mem_heap_B=688352
+mem_heap_extra_B=176464
+mem_stacks_B=1896
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=26815828
+mem_heap_B=688352
+mem_heap_extra_B=176464
+mem_stacks_B=1888
+heap_tree=empty
+#-----------
+snapshot=55
+#-----------
+time=27133621
+mem_heap_B=688352
+mem_heap_extra_B=176464
+mem_stacks_B=1864
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=27451422
+mem_heap_B=688352
+mem_heap_extra_B=176464
+mem_stacks_B=1920
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=27769207
+mem_heap_B=688352
+mem_heap_extra_B=176464
+mem_stacks_B=1760
+heap_tree=empty
+#-----------
+snapshot=58
+#-----------
+time=28086990
+mem_heap_B=567000
+mem_heap_extra_B=149904
+mem_stacks_B=408
+heap_tree=empty
+#-----------
+snapshot=59
+#-----------
+time=28404785
+mem_heap_B=248048
+mem_heap_extra_B=52216
+mem_stacks_B=472
+heap_tree=empty
