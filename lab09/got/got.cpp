@@ -2,9 +2,7 @@
 #include <fstream>
 
 #include <vector>
-#include <list>
 #include <queue>
-#include <stack>
 #include <unordered_set>
 #include <algorithm>
 #include <memory>
@@ -20,32 +18,34 @@ class Cell;
 class Paint;
 
 int N, M;
-vector<vector<unique_ptr<Cell>>> G;
+vector<vector<Cell>> G;
 
 
 class Cell
 {
 public:
   int i, j;
+  unsigned int root;
   shared_ptr<Paint> paint;
   static vector<Cell *> adj(Cell *);
   Cell();
-  Cell(int, int);
+  Cell(int, int, unsigned int);
+  bool isRoot();
   bool isFull();
   bool isClean();
   void fillPaint(shared_ptr<Paint> p);
   void cleanPaint();
-  /*friend ostream &operator<<(ostream &os, const Cell &cell)
+  friend ostream &operator<<(ostream &os, const Cell &cell)
   {
     return os << cell.i << ' ' << cell.j;
-  }*/
+  }
 };
 
 class Paint : public std::enable_shared_from_this<Paint>
 {
 public:
-  int size;
-  int currSize;
+  unsigned int size;
+  unsigned int currSize;
   unsigned int a;
   unsigned int alpha;
   bool dead;
@@ -55,14 +55,15 @@ public:
   unordered_set<Cell *> newClean;
   unordered_set<Cell *> oldFull;
   unordered_set<Cell *> cleanAdj; // inv: all cells in cleanAdj are not painted
-  Paint(int size, Cell *cell) : size(size), currSize(0), a(0), alpha(1), dead(false), root(cell){
+  Paint(unsigned int size, Cell *cell) : size(size), currSize(0), a(0), alpha(1), dead(false), root(cell){
     cleanAdj.insert(cell);
     kills = 0;
   }
-  void pourMore(int r){
+  void pourMore(unsigned int r){
     a += r*alpha;
   }
   void foundNewClean(Cell *c){
+    if(!c->isRoot() || c->root == size)
     newClean.insert(c);
   }
   void foundOldFull(Cell *c)
@@ -80,7 +81,10 @@ public:
         if(c->isFull() && cleanAdj.find(c) != cleanAdj.end())
           cleanAdj.erase(cleanAdj.find(c));
       }
-      //someOldFull = false;
+      /*cleanAdj.erase(remove_if(cleanAdj.begin(), cleanAdj.end(), [&](Cell* &c)
+                               { return c->isFull(); }),
+                     cleanAdj.end());*/
+      // someOldFull = false;
     }
 
     // add new clean adjacent cells
@@ -104,8 +108,10 @@ public:
       for (it = cleanAdj.begin(); it != cleanAdj.end() && !(isDead() || isComplete()); it++)
       {
         Cell *fillCell = *it;
-        if(fillCell->isFull())
+        if(fillCell->isFull()){
+          foundOldFull(fillCell);
           continue;
+        }
         a--;
         fillCell->fillPaint(shared_from_this());
         currSize++;
@@ -116,7 +122,7 @@ public:
           shared_ptr<Paint> newAdjPaint = newAdjCell->paint;
           if (newAdjCell->isClean())
             foundNewClean(newAdjCell);
-          else if (newAdjPaint->size == size && newAdjPaint.get() != this)
+          else if (newAdjPaint->size == size && newAdjPaint != shared_from_this())
           { // merge with new adjacent paint
             // but first update it so that the INV holds
             newAdjPaint->updateCleanAdj(false);
@@ -134,7 +140,7 @@ public:
               Q.push(newAdjPaint->root);
               while(!Q.empty()){
                 Cell *u = Q.front();Q.pop();
-                if (u->isFull() && u->paint.get() == newAdjPaint.get())
+                if (u->isFull() && u->paint == newAdjPaint)
                 {
                   u->paint = this->shared_from_this();
                   /*
@@ -150,7 +156,7 @@ public:
               // explore newAdjPaint->cleanAdj
               for (Cell *c : newAdjPaint->cleanAdj)
               {
-                if (c->paint.get() != this) // this always holds? should, since we updated the adjPaint
+                if (c->paint != shared_from_this()) // this always holds? should, since we updated the adjPaint
                   foundNewClean(c);
                 /*else
                   cout << "near you" << endl;*/
@@ -203,7 +209,7 @@ public:
     {
       Cell *u = Q.front();
       Q.pop();
-      if (u->isFull() && u->paint.get() == this)
+      if (u->isFull() && u->paint == shared_from_this())
       {
         u->paint = nullptr;
         for (Cell *v : Cell::adj(u))
@@ -223,17 +229,17 @@ public:
     int j = c->j;
     vector<Cell *> res;
     if (i + 1 < N)
-      res.push_back(G[i + 1][j].get());
+      res.push_back(&G[i + 1][j]);
     if (0 <= i - 1)
-      res.push_back(G[i - 1][j].get());
+      res.push_back(&G[i - 1][j]);
     if (j + 1 < M)
-      res.push_back(G[i][j + 1].get());
+      res.push_back(&G[i][j + 1]);
     if (0 <= j - 1)
-      res.push_back(G[i][j - 1].get());
+      res.push_back(&G[i][j - 1]);
     return res;
   }
-  Cell::Cell() {}
-  Cell::Cell(int i, int j) : i(i), j(j), paint(nullptr) {}
+  Cell::Cell() : root(0) {}
+  Cell::Cell(int i, int j, unsigned int root) : i(i), j(j), root(root), paint(nullptr) {}
   bool Cell::isFull()
   {
     return paint != nullptr;
@@ -241,25 +247,28 @@ public:
   bool Cell::isClean(){
     return paint == nullptr;
   }
+  bool Cell::isRoot(){
+    return root != 0;
+  }
   void Cell::fillPaint(shared_ptr<Paint> p)
   {
     paint = p;
     // remove me from adj paint adjs
-    for (Cell *n : Cell::adj(G[i][j].get()))
+    for (Cell *n : Cell::adj(&G[i][j]))
     {
       if (n->isFull())
       {
-        n->paint->foundOldFull(G[i][j].get());
+        n->paint->foundOldFull(&G[i][j]);
       }
     }
   }
   void Cell::cleanPaint(){
     paint = nullptr;
-    for (Cell *ac : adj(G[i][j].get()))
+    for (Cell *ac : adj(&G[i][j]))
     {
       //update cleanAdj of painted adj
       if (ac->isFull())
-        ac->paint->foundNewClean(G[i][j].get());
+        ac->paint->foundNewClean(&G[i][j]);
     }
   }
 //
@@ -278,19 +287,18 @@ int main()
       G[i].resize(M);
       for (int j = 0; j < M; j++)
       {
-        int size;
+        unsigned int size;
         in >> size;
-        G[i][j] = move(unique_ptr<Cell>(new Cell(i, j)));
+        G[i][j] = Cell(i, j, size);
         if (size != 0)
         {
-        shared_ptr<Paint> p = make_shared<Paint>(Paint(size, G[i][j].get()));
-        Q.push_back(shared_ptr<Paint>(p));
-      }
-     
+          shared_ptr<Paint> p = make_shared<Paint>(Paint(size, &G[i][j]));
+          Q.push_back(shared_ptr<Paint>(p));
+        }
     }
   }
 
-  //pouring
+  // pouring
   unsigned int delta=1;
   unsigned int r = 1;
   //p in Q => not complete, not dead
@@ -298,12 +306,12 @@ int main()
   while(!(Q.empty() && L.empty())){
     while (!Q.empty())
     {
-      // sort Q by decreasing size
+      // sort Q by increasing size
       sort(Q.begin(), Q.end(), [](const shared_ptr<Paint> &a, const shared_ptr<Paint> &b)
-                { return a->size > b->size; });
+                { return a->size < b->size; });
       for(shared_ptr<Paint> p: Q){
         // keep pouring on locked paints
-        if(! (p->isDead())){
+        if(! (p->isDead() || p->isComplete())){
           p->pourMore(r);
           p->expand();
         }
@@ -313,7 +321,7 @@ int main()
                         { return p->isDead() || p->isComplete(); }),
               Q.end());
       // update adjs
-      unsigned int countLocked = 0;
+      ///unsigned int countLocked = 0;
       for (shared_ptr<Paint> p : Q)
       {
         p->updateCleanAdj(false);
@@ -345,29 +353,68 @@ int main()
       L.clear();
     }
   }
-
-  //output
-  for (int i = 0; i < N; i++){
+  /*cleanup(remove paints that left their roots)
+  vector<vector<bool>> visited(N, vector<bool>(M, false));
+  for (int i = 0; i < N; i++)
+  {
     for (int j = 0; j < M; j++)
-      out << (G[i][j]->isFull() ? G[i][j]->paint->size : 0) << ' ';
+    {
+      if (G[i][j].paint != nullptr && !G[i][j].paint->isDead())
+      {
+        // start bfs only from roots (not dead)
+        shared_ptr<Paint> p = G[i][j].paint;
+        queue<Cell *> Q;
+        Q.push(G[i][j].paint->root);
+        while (!Q.empty())
+        {
+          Cell *u = Q.front();
+          Q.pop();
+          if (u->isFull() && u->paint == p && !visited[i][j])
+          {
+            visited[i][j] = true;
+            for (Cell *v : Cell::adj(u))
+              Q.push(v);
+          }
+        }
+      }
+    }
+  }
+
+  for (int i = 0; i < N; i++)
+  {
+    for (int j = 0; j < M; j++)
+    {
+      if (G[i][j].paint != nullptr && !visited[i][j]){
+        G[i][j].paint->size = -1;
+      }
+    }
+  }*/
+
+  // output
+  for (int i = 0; i < N; i++)
+  {
+    for (int j = 0; j < M; j++)
+      out << (G[i][j].isFull() ? G[i][j].paint->size : 0) << ' ';
     out << endl;
   }
-  out << "***";
+  out << "***" << endl;
 
   /*do a bfs on the graph to find errors
   for (int i = 0; i < N; i++)
   {
     for (int j = 0; j < M; j++){
-      if(G[i][j]->paint != nullptr){
-        //start bfs
-        shared_ptr<Paint> p = G[i][j]->paint;
+      if (G[i][j].paint != nullptr)
+      {
+        paints++;
+        // start bfs only from roots
+        shared_ptr<Paint> p = G[i][j].paint;
         queue<Cell*> Q;
-        Q.push(G[i][j].get());
+        Q.push(G[i][j].paint->root);
         int effSize = 0;
         while (!Q.empty())
         {
           Cell *u = Q.front();Q.pop();
-          if (u->isFull() && u->paint.get() == p.get())
+          if (u->isFull() && u->paint == p)
           {
             effSize++;
             //cout << (u->paint->size) << (u->paint->root == p->root ? 'y' : 'n');
@@ -376,7 +423,7 @@ int main()
               Q.push(v);
           }
         }
-        cout << endl;
+        //
         if ((effSize - (p->size) != 0) || ((p->currSize) - (p->size) != 0))
         {
           cout << "== " << (p->dead ? 'd' : 'a') << " a=" << p->alpha << " k=" << p->kills << " r=" << *(p->root) << endl;
@@ -392,12 +439,21 @@ int main()
         else
         {
           cout << "## " << (p->dead ? 'd' : 'a') << " a=" << p->alpha << " k=" << p->kills << " r=" << *(p->root) << endl;
-        }
+        }//
       }
     }
-  }*/
+  }
+  for (int i = 0; i < N; i++)
+  {
+    for (int j = 0; j < M; j++)
+    {
+      if (G[i][j].isRoot() && G[i][j].isFull() && G[i][j].root != G[i][j].paint->size)
+        cout << "someone repainted a root..." << endl;
+    }
+  }
+  */
 
   in.close();
   out.close();
   return 0;
-  }
+}
