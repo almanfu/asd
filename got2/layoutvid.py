@@ -42,10 +42,10 @@ def update(num):
 
 
     # add labels to each point
-    for i in range(data.shape[0]):
-      ax.text(data[i, 0], data[i, 1], str(i), color="red", fontsize=8)
+    # for i in range(data.shape[0]):
+    #   ax.text(data[i, 0], data[i, 1], str(i), color="red", fontsize=8)
     return scatter,ax
 
-ani = FuncAnimation(fig, update, frames=len(files), init_func=init, blit=True, repeat=True)
+ani = FuncAnimation(fig, update, frames=len(files), init_func=init, blit=True, repeat=True, interval=50)
 
 plt.show()
