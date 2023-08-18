@@ -1,0 +1,91 @@
+==516348== Memcheck, a memory error detector
+==516348== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==516348== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==516348== Command: ./temp.out
+==516348== Parent PID: 516341
+==516348== 
+==516348== Invalid read of size 8
+==516348==    at 0x10AF84: operator[] (stl_bvector.h:895)
+==516348==    by 0x10AF84: ccsdfs(int, std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > > const&, int, std::vector<int, std::allocator<int> >&, std::vector<bool, std::allocator<bool> >&) (got2.cpp:125)
+==516348==    by 0x10B976: get_ccs(std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > > const&, int) (got2.cpp:143)
+==516348==    by 0x10C1D4: transitive_closure(std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > > const&, int) (got2.cpp:156)
+==516348==    by 0x10D2FA: clustering(std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > > const&, int, std::vector<Point, std::allocator<Point> > const&, double, double, double, double, std::basic_ofstream<char, std::char_traits<char> >&) (got2.cpp:211)
+==516348==    by 0x10DCB5: main (got2.cpp:288)
+==516348==  Address 0x4dd33e0 is 0 bytes after a block of size 240 alloc'd
+==516348==    at 0x483BE63: operator new(unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==516348==    by 0x10D5E6: allocate (new_allocator.h:114)
+==516348==    by 0x10D5E6: allocate (alloc_traits.h:443)
+==516348==    by 0x10D5E6: _M_allocate (stl_vector.h:343)
+==516348==    by 0x10D5E6: _M_create_storage (stl_vector.h:358)
+==516348==    by 0x10D5E6: _Vector_base (stl_vector.h:302)
+==516348==    by 0x10D5E6: vector (stl_vector.h:521)
+==516348==    by 0x10D5E6: clustering(std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > > const&, int, std::vector<Point, std::allocator<Point> > const&, double, double, double, double, std::basic_ofstream<char, std::char_traits<char> >&) (got2.cpp:197)
+==516348==    by 0x10DCB5: main (got2.cpp:288)
+==516348== 
+==516348== Invalid read of size 1
+==516348==    at 0x10AF87: ccsdfs(int, std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > > const&, int, std::vector<int, std::allocator<int> >&, std::vector<bool, std::allocator<bool> >&) (got2.cpp:125)
+==516348==    by 0x10B976: get_ccs(std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > > const&, int) (got2.cpp:143)
+==516348==    by 0x10C1D4: transitive_closure(std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > > const&, int) (got2.cpp:156)
+==516348==    by 0x10D2FA: clustering(std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > > const&, int, std::vector<Point, std::allocator<Point> > const&, double, double, double, double, std::basic_ofstream<char, std::char_traits<char> >&) (got2.cpp:211)
+==516348==    by 0x10DCB5: main (got2.cpp:288)
+==516348==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
+==516348== 
+==516348== 
+==516348== Process terminating with default action of signal 11 (SIGSEGV)
+==516348==  Access not within mapped region at address 0x0
+==516348==    at 0x10AF87: ccsdfs(int, std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > > const&, int, std::vector<int, std::allocator<int> >&, std::vector<bool, std::allocator<bool> >&) (got2.cpp:125)
+==516348==    by 0x10B976: get_ccs(std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > > const&, int) (got2.cpp:143)
+==516348==    by 0x10C1D4: transitive_closure(std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > > const&, int) (got2.cpp:156)
+==516348==    by 0x10D2FA: clustering(std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > > const&, int, std::vector<Point, std::allocator<Point> > const&, double, double, double, double, std::basic_ofstream<char, std::char_traits<char> >&) (got2.cpp:211)
+==516348==    by 0x10DCB5: main (got2.cpp:288)
+==516348==  If you believe this happened as a result of a stack
+==516348==  overflow in your program's main thread (unlikely but
+==516348==  possible), you can try to increase the size of the
+==516348==  main thread stack using the --main-stacksize= flag.
+==516348==  The main thread stack size used in this run was 8388608.
+==516348== 
+==516348== HEAP SUMMARY:
+==516348==     in use at exit: 18,588 bytes in 35 blocks
+==516348==   total heap usage: 440 allocs, 405 frees, 129,724 bytes allocated
+==516348== 
+==516348== LEAK SUMMARY:
+==516348==    definitely lost: 0 bytes in 0 blocks
+==516348==    indirectly lost: 0 bytes in 0 blocks
+==516348==      possibly lost: 0 bytes in 0 blocks
+==516348==    still reachable: 18,588 bytes in 35 blocks
+==516348==         suppressed: 0 bytes in 0 blocks
+==516348== Reachable blocks (those to which a pointer was found) are not shown.
+==516348== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==516348== 
+==516348== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+==516348== 
+==516348== 1 errors in context 1 of 2:
+==516348== Invalid read of size 1
+==516348==    at 0x10AF87: ccsdfs(int, std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > > const&, int, std::vector<int, std::allocator<int> >&, std::vector<bool, std::allocator<bool> >&) (got2.cpp:125)
+==516348==    by 0x10B976: get_ccs(std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > > const&, int) (got2.cpp:143)
+==516348==    by 0x10C1D4: transitive_closure(std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > > const&, int) (got2.cpp:156)
+==516348==    by 0x10D2FA: clustering(std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > > const&, int, std::vector<Point, std::allocator<Point> > const&, double, double, double, double, std::basic_ofstream<char, std::char_traits<char> >&) (got2.cpp:211)
+==516348==    by 0x10DCB5: main (got2.cpp:288)
+==516348==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
+==516348== 
+==516348== 
+==516348== 1 errors in context 2 of 2:
+==516348== Invalid read of size 8
+==516348==    at 0x10AF84: operator[] (stl_bvector.h:895)
+==516348==    by 0x10AF84: ccsdfs(int, std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > > const&, int, std::vector<int, std::allocator<int> >&, std::vector<bool, std::allocator<bool> >&) (got2.cpp:125)
+==516348==    by 0x10B976: get_ccs(std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > > const&, int) (got2.cpp:143)
+==516348==    by 0x10C1D4: transitive_closure(std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > > const&, int) (got2.cpp:156)
+==516348==    by 0x10D2FA: clustering(std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > > const&, int, std::vector<Point, std::allocator<Point> > const&, double, double, double, double, std::basic_ofstream<char, std::char_traits<char> >&) (got2.cpp:211)
+==516348==    by 0x10DCB5: main (got2.cpp:288)
+==516348==  Address 0x4dd33e0 is 0 bytes after a block of size 240 alloc'd
+==516348==    at 0x483BE63: operator new(unsigned long) (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==516348==    by 0x10D5E6: allocate (new_allocator.h:114)
+==516348==    by 0x10D5E6: allocate (alloc_traits.h:443)
+==516348==    by 0x10D5E6: _M_allocate (stl_vector.h:343)
+==516348==    by 0x10D5E6: _M_create_storage (stl_vector.h:358)
+==516348==    by 0x10D5E6: _Vector_base (stl_vector.h:302)
+==516348==    by 0x10D5E6: vector (stl_vector.h:521)
+==516348==    by 0x10D5E6: clustering(std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > > const&, int, std::vector<Point, std::allocator<Point> > const&, double, double, double, double, std::basic_ofstream<char, std::char_traits<char> >&) (got2.cpp:197)
+==516348==    by 0x10DCB5: main (got2.cpp:288)
+==516348== 
+==516348== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)

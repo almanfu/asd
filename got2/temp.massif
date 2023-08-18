@@ -1,0 +1,1691 @@
+desc: --heap=yes --stacks=yes --detailed-freq=10 --massif-out-file=temp.massif
+cmd: ./temp.out
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=226792239
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1712
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=589089615
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1712
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=843730192
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=1021975111
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=1251144935
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=1493046299
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=1657969731
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=1863163780
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1712
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=2136755972
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1712
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=2341950093
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1712
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=2547144159
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1712
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=2722135210
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=2951305235
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=3142280292
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=3486035253
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=3791595227
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1712
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=4020765183
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=4288130194
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1712
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=4479105247
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1712
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=4708278684
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=4994749907
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=5223926834
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1712
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=5510398071
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=5739575007
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=5968752007
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1712
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=6197928977
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1712
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=6541694435
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1712
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=6828165697
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=7114636998
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=7343814085
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=7572399419
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=7800392995
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=detailed
+n7: 290032 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x10DBDE: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+   n1: 8192 0x10DCEF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BDFA: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 944 in 3 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=33
+#-----------
+time=8028386632
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1712
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=8256380243
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1712
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=8484373875
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1712
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=8826364323
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1712
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=9168354755
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1712
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=9396348368
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1712
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=9624341992
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=9852335665
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1712
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=10080329295
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=detailed
+n7: 290032 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x10DBDE: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+   n1: 8192 0x10DCEF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BDFA: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 944 in 3 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=42
+#-----------
+time=10308322944
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1712
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=10536316534
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1712
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=10878306968
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=11220297420
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=detailed
+n7: 290032 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x10DBDE: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+   n1: 8192 0x10DCEF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BDFA: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 944 in 3 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=46
+#-----------
+time=11448291066
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=11676284691
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=12018275137
+mem_heap_B=290032
+mem_heap_extra_B=8080
+mem_stacks_B=1720
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=12230656317
+mem_heap_B=604784
+mem_heap_extra_B=23760
+mem_stacks_B=1936
+heap_tree=detailed
+n10: 604784 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10D91E: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 122624 0x10D506: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 122624 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 122624 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 40000 0x10D2CF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D7DC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x10DBDE: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+   n1: 8192 0x10DCEF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 1072 in 6 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=50
+#-----------
+time=12242196671
+mem_heap_B=650160
+mem_heap_extra_B=24104
+mem_stacks_B=2096
+heap_tree=detailed
+n11: 650160 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10D506: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D91E: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 40000 0x10CA3C: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D2CF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D7DC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x10DBDE: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+   n1: 8192 0x10DCEF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 1072 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=51
+#-----------
+time=12242233823
+mem_heap_B=656560
+mem_heap_extra_B=24504
+mem_stacks_B=2096
+heap_tree=detailed
+n11: 656560 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10D506: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D91E: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 40000 0x10CA3C: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D2CF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D7DC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x10DBDE: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+   n1: 8192 0x10DCEF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 7472 in 8 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=52
+#-----------
+time=12242272430
+mem_heap_B=663088
+mem_heap_extra_B=24912
+mem_stacks_B=2096
+heap_tree=detailed
+n12: 663088 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10D506: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D91E: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 40000 0x10CA3C: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D2CF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D7DC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x10DBDE: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+   n1: 8192 0x10DCEF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 12928 0x10CB66: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 12928 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 12928 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 12928 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 1072 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=53
+#-----------
+time=12242311037
+mem_heap_B=669616
+mem_heap_extra_B=25320
+mem_stacks_B=2096
+heap_tree=detailed
+n12: 669616 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10D506: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D91E: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 40000 0x10CA3C: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D2CF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D7DC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 19456 0x10CB66: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 19456 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 19456 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 19456 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x10DBDE: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+   n1: 8192 0x10DCEF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 1072 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=54
+#-----------
+time=12242350401
+mem_heap_B=676272
+mem_heap_extra_B=25736
+mem_stacks_B=2096
+heap_tree=detailed
+n12: 676272 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10D506: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D91E: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 40000 0x10CA3C: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D2CF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D7DC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 26112 0x10CB66: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 26112 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 26112 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 26112 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x10DBDE: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+   n1: 8192 0x10DCEF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 1072 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=55
+#-----------
+time=12242389765
+mem_heap_B=682928
+mem_heap_extra_B=26152
+mem_stacks_B=2096
+heap_tree=detailed
+n12: 682928 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10D506: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D91E: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 40000 0x10CA3C: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D2CF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D7DC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 32768 0x10CB66: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 32768 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 32768 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 32768 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x10DBDE: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+   n1: 8192 0x10DCEF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 1072 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=56
+#-----------
+time=12242429886
+mem_heap_B=689712
+mem_heap_extra_B=26576
+mem_stacks_B=2096
+heap_tree=detailed
+n12: 689712 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10D506: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D91E: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 40000 0x10CA3C: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D2CF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D7DC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 39552 0x10CB66: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 39552 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 39552 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 39552 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x10DBDE: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+   n1: 8192 0x10DCEF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 1072 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=57
+#-----------
+time=12242470007
+mem_heap_B=696496
+mem_heap_extra_B=27000
+mem_stacks_B=2096
+heap_tree=detailed
+n12: 696496 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10D506: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D91E: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 46336 0x10CB66: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 46336 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 46336 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 46336 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10CA3C: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D2CF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D7DC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x10DBDE: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+   n1: 8192 0x10DCEF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 1072 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=58
+#-----------
+time=12242510885
+mem_heap_B=703408
+mem_heap_extra_B=27432
+mem_stacks_B=2096
+heap_tree=detailed
+n12: 703408 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10D506: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D91E: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 53248 0x10CB66: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 53248 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 53248 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 53248 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10CA3C: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D2CF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D7DC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x10DBDE: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+   n1: 8192 0x10DCEF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 1072 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=59
+#-----------
+time=12242551763
+mem_heap_B=710320
+mem_heap_extra_B=27864
+mem_stacks_B=2096
+heap_tree=detailed
+n12: 710320 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10D506: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D91E: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 60160 0x10CB66: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 60160 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 60160 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 60160 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10CA3C: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D2CF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D7DC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x10DBDE: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+   n1: 8192 0x10DCEF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 1072 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=60
+#-----------
+time=12242593398
+mem_heap_B=717360
+mem_heap_extra_B=28304
+mem_stacks_B=2096
+heap_tree=detailed
+n12: 717360 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10D506: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D91E: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 67200 0x10CB66: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 67200 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 67200 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 67200 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10CA3C: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D2CF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D7DC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x10DBDE: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+   n1: 8192 0x10DCEF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 1072 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=61
+#-----------
+time=12242635033
+mem_heap_B=724400
+mem_heap_extra_B=28744
+mem_stacks_B=2096
+heap_tree=detailed
+n12: 724400 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10D506: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D91E: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 74240 0x10CB66: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 74240 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 74240 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 74240 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 40000 0x10CA3C: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D2CF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D7DC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x10DBDE: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+   n1: 8192 0x10DCEF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 1072 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=62
+#-----------
+time=12242677425
+mem_heap_B=731568
+mem_heap_extra_B=29192
+mem_stacks_B=2096
+heap_tree=detailed
+n12: 731568 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10D506: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D91E: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 81408 0x10CB66: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 81408 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 81408 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 81408 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 40000 0x10CA3C: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D2CF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D7DC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x10DBDE: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+   n1: 8192 0x10DCEF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 1072 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=63
+#-----------
+time=12242720574
+mem_heap_B=738864
+mem_heap_extra_B=29648
+mem_stacks_B=2096
+heap_tree=detailed
+n12: 738864 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10D506: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D91E: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 88704 0x10CB66: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 88704 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 88704 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 88704 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 40000 0x10CA3C: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D2CF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D7DC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x10DBDE: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+   n1: 8192 0x10DCEF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 1072 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=64
+#-----------
+time=12242763723
+mem_heap_B=746160
+mem_heap_extra_B=30104
+mem_stacks_B=2096
+heap_tree=detailed
+n12: 746160 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10D506: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D91E: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 96000 0x10CB66: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 96000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 96000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 96000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 40000 0x10CA3C: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D2CF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D7DC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x10DBDE: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+   n1: 8192 0x10DCEF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 1072 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=65
+#-----------
+time=12242807629
+mem_heap_B=753584
+mem_heap_extra_B=30568
+mem_stacks_B=2096
+heap_tree=detailed
+n12: 753584 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10D506: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D91E: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 103424 0x10CB66: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 103424 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 103424 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 103424 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 40000 0x10CA3C: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D2CF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D7DC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x10DBDE: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+   n1: 8192 0x10DCEF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 1072 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=66
+#-----------
+time=12242851535
+mem_heap_B=761008
+mem_heap_extra_B=31032
+mem_stacks_B=2096
+heap_tree=detailed
+n12: 761008 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10D506: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D91E: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 110848 0x10CB66: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 110848 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 110848 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 110848 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 40000 0x10CA3C: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D2CF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D7DC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x10DBDE: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+   n1: 8192 0x10DCEF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 1072 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=67
+#-----------
+time=12242896198
+mem_heap_B=768560
+mem_heap_extra_B=31504
+mem_stacks_B=2096
+heap_tree=detailed
+n12: 768560 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10D506: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D91E: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 118400 0x10CB66: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 118400 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 118400 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 118400 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 40000 0x10CA3C: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D2CF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D7DC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x10DBDE: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+   n1: 8192 0x10DCEF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 1072 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=68
+#-----------
+time=12242940861
+mem_heap_B=776112
+mem_heap_extra_B=31976
+mem_stacks_B=2096
+heap_tree=detailed
+n12: 776112 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10D506: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D91E: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 125952 0x10CB66: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 125952 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 125952 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 125952 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 40000 0x10CA3C: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D2CF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D7DC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x10DBDE: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+   n1: 8192 0x10DCEF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 1072 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=69
+#-----------
+time=12244215953
+mem_heap_B=783044
+mem_heap_extra_B=33420
+mem_stacks_B=2368
+heap_tree=detailed
+n12: 783044 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10CB66: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D506: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D91E: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 40000 0x10CA3C: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D2CF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D7DC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n2: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n1: 8192 0x10DBDE: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+   n1: 8192 0x10DCEF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 8192 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 5956 in 12 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=70
+#-----------
+time=12247817820
+mem_heap_B=797656
+mem_heap_extra_B=37240
+mem_stacks_B=2368
+heap_tree=detailed
+n13: 797656 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10CB66: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D506: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D91E: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 40000 0x10CA3C: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D2CF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D7DC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 18432 0x10E7F3: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 18432 0x10C4CD: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 18432 0x10C8BC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n1: 18432 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+     n1: 18432 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+      n0: 18432 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n0: 16384 in 2 places, all below massif's threshold (1.00%)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 2136 in 11 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=71
+#-----------
+time=12252607939
+mem_heap_B=817136
+mem_heap_extra_B=42336
+mem_stacks_B=2368
+heap_tree=detailed
+n13: 817136 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10CB66: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D506: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D91E: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 40000 0x10CA3C: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D2CF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D7DC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 36864 0x10E7F3: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 36864 0x10C4CD: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 36864 0x10C8BC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n1: 36864 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+     n1: 36864 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+      n0: 36864 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n0: 16384 in 2 places, all below massif's threshold (1.00%)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 3184 in 11 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=72
+#-----------
+time=12417543675
+mem_heap_B=806704
+mem_heap_extra_B=51080
+mem_stacks_B=2248
+heap_tree=empty
+#-----------
+snapshot=73
+#-----------
+time=12593339348
+mem_heap_B=610032
+mem_heap_extra_B=24088
+mem_stacks_B=1864
+heap_tree=empty
+#-----------
+snapshot=74
+#-----------
+time=12758272189
+mem_heap_B=792292
+mem_heap_extra_B=40508
+mem_stacks_B=2248
+heap_tree=empty
+#-----------
+snapshot=75
+#-----------
+time=12923205987
+mem_heap_B=806592
+mem_heap_extra_B=49080
+mem_stacks_B=2248
+heap_tree=empty
+#-----------
+snapshot=76
+#-----------
+time=13088129900
+mem_heap_B=778032
+mem_heap_extra_B=32096
+mem_stacks_B=1992
+heap_tree=empty
+#-----------
+snapshot=77
+#-----------
+time=13259245656
+mem_heap_B=610032
+mem_heap_extra_B=24088
+mem_stacks_B=1864
+heap_tree=empty
+#-----------
+snapshot=78
+#-----------
+time=13424169120
+mem_heap_B=779184
+mem_heap_extra_B=32112
+mem_stacks_B=8968
+heap_tree=empty
+#-----------
+snapshot=79
+#-----------
+time=13478003585
+mem_heap_B=782256
+mem_heap_extra_B=32112
+mem_stacks_B=82112
+heap_tree=peak
+n12: 782256 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 128000 0x10CB66: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D506: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10D91E: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 128000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 128000 0x10E2D6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 128000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 72704 0x4907A69: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x4011B89: call_init.part.0 (dl-init.c:72)
+   n1: 72704 0x4011C90: call_init (dl-init.c:30)
+    n1: 72704 0x4011C90: _dl_init (dl-init.c:119)
+     n0: 72704 0x4001139: ??? (in /usr/lib/x86_64-linux-gnu/ld-2.31.so)
+ n1: 40000 0x10CA3C: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10CE20: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+    n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D2CF: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10D7DC: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 40000 0x10E0E6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 40000 0x10DDA9: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n0: 40000 0x4BD10B2: (below main) (libc-start.c:308)
+ n1: 16384 0x496CD33: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 16384 0x4970F96: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+   n0: 16384 in 2 places, all below massif's threshold (1.00%)
+ n1: 16000 0x10BC42: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+  n1: 16000 0x10E0B6: ??? (in /home/manfucci/GitRepos/asd/got2/temp.out)
+   n0: 16000 0x4BD10B2: (below main) (libc-start.c:308)
+ n0: 5168 in 12 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=80
+#-----------
+time=13646593070
+mem_heap_B=778032
+mem_heap_extra_B=32096
+mem_stacks_B=1888
+heap_tree=empty
+#-----------
+snapshot=81
+#-----------
+time=13811530803
+mem_heap_B=782256
+mem_heap_extra_B=32112
+mem_stacks_B=80280
+heap_tree=empty
+#-----------
+snapshot=82
+#-----------
+time=13980727921
+mem_heap_B=778032
+mem_heap_extra_B=32096
+mem_stacks_B=1888
+heap_tree=empty
+#-----------
+snapshot=83
+#-----------
+time=14145660343
+mem_heap_B=442032
+mem_heap_extra_B=16080
+mem_stacks_B=1864
+heap_tree=empty

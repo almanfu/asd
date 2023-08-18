@@ -104,7 +104,7 @@ vector<Point> layout(Graph &G, int n, double rho, double fatt, double frep, int 
 }
 
 // Floyd-Warshall
-Graph transitive_closure(const Graph &G, int n)
+Graph warshall(const Graph &G, int n)
 {
   Graph Gc = G;  
   for (int u = 0; u < n; u++){
@@ -113,6 +113,57 @@ Graph transitive_closure(const Graph &G, int n)
       Gc[u][v] = Gc[u][v] || (Gc[u][k] && Gc[k][v]);
     }
   }
+  return Gc;
+}
+
+void ccsdfs(Node u, const Graph &G, int n, vector<int> &cc, vector<bool> &visited)
+{
+  visited[u] = true;
+  cc.push_back(u);
+  for (Node v = 0; v < n; v++)
+  {
+    if (G[u][v] && !visited[v])
+    {
+      ccsdfs(v, G, n, cc, visited);
+    }
+  }
+}
+
+// ccs[j][i] = i-th element of the j-th cc
+vector<vector<int>> get_ccs(const Graph &G, int n)
+{
+  vector<bool> visited(n, false);
+  vector<vector<int>> ccs;
+
+  for (Node u = 0; u < n; u++)
+  {
+    if (!visited[u])
+    {
+      vector<int> cc;
+      ccsdfs(u, G, n, cc, visited);
+      ccs.push_back(cc);
+    }
+  }
+
+  return ccs;
+}
+
+Graph transitive_closure(const Graph &G, int n)
+{
+  Graph Gc(n, vector<bool>(n, false));
+
+  // Get connected components
+  auto ccs = get_ccs(G, n);
+
+  for (const auto &cc : ccs)
+  {
+    for (int i = 0; i < cc.size(); i++)
+    {
+      for (int j = 0; j < cc.size(); j++)
+        Gc[cc[i]][cc[j]] = true;
+    }
+  }
+
   return Gc;
 }
 
@@ -170,6 +221,8 @@ void clustering(const Graph &G, int n, const vector<Point> &pos,
     sigma *= alpha;
     delta += sigma;
   }
+
+  // O(n^2)
   // Count Additions/Removals
   int adds = 0, rems = 0;
   for (Node u = 0; u < n; u++)
@@ -215,7 +268,7 @@ int main()
   }
 
   //
-  const int R=200;
+  const int R=20;
   const double rho=n*10/(6.28);
   const double fatt=10*n;
   const double frep=7*n;
@@ -223,7 +276,7 @@ int main()
   const double delta_init=1;
   const double delta_max=100;
   const double sigma_init=delta_init/10;
-  const double sigma_factor=1.01+0.0001*n;
+  const double alpha=1.01+0.0001*n;
 
   out << "0 0" << endl;
   out << "***" << endl;
@@ -232,7 +285,7 @@ int main()
   vector<Point> pos = layout(G, n, rho, fatt, frep, R);
 
   // Clustering
-  clustering(G, n, pos, delta_init, delta_max, sigma_init, sigma_factor, out);
+  clustering(G, n, pos, delta_init, delta_max, sigma_init, alpha, out);
 
   in.close();
   out.close();
