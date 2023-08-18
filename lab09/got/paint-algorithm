@@ -1,0 +1,94 @@
+Pouring paint heuristic algorithm:
+
+# Rules
+- roots can be cleaned but not painted with different size
+- adjacent paints with same size must be considered as merged
+- paint must have currSize=size
+
+# Current policies
+- smallest first
+- uniform expansion
+- expand when ready
+- on expansion: use all paint
+- delta pouring rate
+- do not pour on locked paints
+- on valid merge: expander feeds and merges peer; peer dies
+- on conflict merge: biggest feeds and cleans smallest; smallest dies
+- clean locked at each iteration
+- on locked paint: remove largest one
+
+# Improvements:
+- pouring rate proportional to currSize
+- on conflict merge: smaller one retreats
+- on locked paint: remove largest and redistribute finished paints into free cells if necessary
+- vectorized expansion
+  - put all paints on a map; give them weights based on their size
+  - distribute their weights uniformly on a circle
+  - find a vector( as long as my weight) that minimizes the sum of these weights (takes 4*k*k per paint)
+  - expand on that direction
+
+
+Paint
+===
+newAdj
+size
+currSize
+a % accumulated paint
+adj : hashset<Cell> %hashset => no repetitions %inv: all cells in adj are not painted
+m
+
+new Paint()
+---
+a = 0
+adj = starting point
+
+pour()
+---
+a += r
+
+expand()
+---
+
+eatandclean()
+---
+do dfs and remove paint from eated paint cells
+call unpaint on adjs cells
+
+while adj.size <= a do
+ | a -= adj.size
+ | foreach C in adj do
+ | | C.fill(this)
+ | | add neighbours of C to newAdj (if they are not filled)
+...
+ | adj = newAdj
+ -
+
+Cell
+===
+i, j
+paint : Paint
+fillPaint(newPaint : Paint)
+ | paint = newPaint
+ | for each neighbour, remove (i,j) from neighbour.paint.adj
+ - 
+
+unpaint()
+---
+update neighbors, put me in their paint newAdjs
+
+Main
+===
+G : 
+Q : Paint[]
+L : Paint[]
+r : int
+delta : int
+while Q not empty do
+ | sort(Q) % first update smaller paints -- based on 
+ | foreach p in Q do
+ |  | P.pour()
+ |  | P.expand()
+ ...
+ | r += delta;
+ 
+% the input is a 

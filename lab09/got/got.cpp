@@ -301,17 +301,19 @@ int main()
   // pouring
   unsigned int delta=1;
   unsigned int r = 1;
-  //p in Q => not complete, not dead
+  //INV p in Q => not complete, not dead
   vector<shared_ptr<Paint>> L;
-  while(!(Q.empty() && L.empty())){
+  while (!(Q.empty() && L.empty()))
+  {
+    // INV L is empty
+    // sort Q by increasing size
+    sort(Q.begin(), Q.end(), [](const shared_ptr<Paint> &a, const shared_ptr<Paint> &b)
+         { return a->size < b->size; });
     while (!Q.empty())
     {
-      // sort Q by increasing size
-      sort(Q.begin(), Q.end(), [](const shared_ptr<Paint> &a, const shared_ptr<Paint> &b)
-                { return a->size < b->size; });
       for(shared_ptr<Paint> p: Q){
-        // keep pouring on locked paints
-        if(! (p->isDead() || p->isComplete())){
+        // do not pour on locked paints
+        if(! (p->isDead() || p->isComplete() || p->isLocked())){
           p->pourMore(r);
           p->expand();
         }
@@ -321,24 +323,26 @@ int main()
                         { return p->isDead() || p->isComplete(); }),
               Q.end());
       // update adjs
-      ///unsigned int countLocked = 0;
+      unsigned int countLocked = 0;
       for (shared_ptr<Paint> p : Q)
       {
         p->updateCleanAdj(false);
-        if(p->isLocked())
+        if(p->isLocked()){
+          countLocked++;
           L.push_back(p);
+        }
       }
-      // remove locked paints at the end of the iteration
+      /*remove locked paints at the end of the iteration
       Q.erase(remove_if(Q.begin(), Q.end(), [](shared_ptr<Paint> &p)
                         { return p->isLocked(); }),
-              Q.end());
-      /* before removing largest locked, wait all to be locked
+              Q.end());*/
+      // before removing largest locked, wait all to be locked
       if (countLocked == Q.size())
       {
-        L = Q;
         Q.clear();
-      }*/
-      r += delta;
+      }
+      //
+      //r += delta;
     }
     // if some are locked, remove largest locked
     if(!L.empty()){
@@ -353,42 +357,6 @@ int main()
       L.clear();
     }
   }
-  /*cleanup(remove paints that left their roots)
-  vector<vector<bool>> visited(N, vector<bool>(M, false));
-  for (int i = 0; i < N; i++)
-  {
-    for (int j = 0; j < M; j++)
-    {
-      if (G[i][j].paint != nullptr && !G[i][j].paint->isDead())
-      {
-        // start bfs only from roots (not dead)
-        shared_ptr<Paint> p = G[i][j].paint;
-        queue<Cell *> Q;
-        Q.push(G[i][j].paint->root);
-        while (!Q.empty())
-        {
-          Cell *u = Q.front();
-          Q.pop();
-          if (u->isFull() && u->paint == p && !visited[i][j])
-          {
-            visited[i][j] = true;
-            for (Cell *v : Cell::adj(u))
-              Q.push(v);
-          }
-        }
-      }
-    }
-  }
-
-  for (int i = 0; i < N; i++)
-  {
-    for (int j = 0; j < M; j++)
-    {
-      if (G[i][j].paint != nullptr && !visited[i][j]){
-        G[i][j].paint->size = -1;
-      }
-    }
-  }*/
 
   // output
   for (int i = 0; i < N; i++)
