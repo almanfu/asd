@@ -18,7 +18,9 @@ typedef vector<vector<bool>> Graph;
 typedef int Node;
 
 /*
-FORCE Heuristic
+  FORCE Heuristic
+  O(Rn^2+kn^2)
+  k ~ 300
 */
 
 struct Point{
@@ -90,7 +92,7 @@ vector<Point> layout(Graph &G, int n, double rho, double fatt, double frep, int 
     for (Node u = 0; u < n; u++)
     {
       double d = distance({0, 0}, delta[u]);
-      if (d > 1)
+      if (d > (1+n/200))
       {
         delta[u].x /= d;
         delta[u].y /= d;
@@ -129,6 +131,32 @@ void ccsdfs(Node u, const Graph &G, int n, vector<int> &cc, vector<bool> &visite
   }
 }
 
+void ccsdfs_iterative(Node r, const Graph &G, int n, vector<int> &cc, vector<bool> &visited)
+{
+  stack<Node> dfsStack;
+  dfsStack.push(r);
+
+  while (!dfsStack.empty())
+  {
+    Node u = dfsStack.top();
+    dfsStack.pop();
+
+    if (!visited[u])
+    {
+      visited[u] = true;
+      cc.push_back(u);
+
+      for (Node v = 0; v < n; v++)
+      {
+      if (G[u][v] && !visited[v])
+      {
+          dfsStack.push(v);
+      }
+      }
+    }
+  }
+}
+
 // ccs[j][i] = i-th element of the j-th cc
 vector<vector<int>> get_ccs(const Graph &G, int n)
 {
@@ -140,7 +168,7 @@ vector<vector<int>> get_ccs(const Graph &G, int n)
     if (!visited[u])
     {
       vector<int> cc;
-      ccsdfs(u, G, n, cc, visited);
+      ccsdfs_iterative(u, G, n, cc, visited);
       ccs.push_back(cc);
     }
   }
@@ -191,7 +219,8 @@ void clustering(const Graph &G, int n, const vector<Point> &pos,
   int costMin = INFINITY;
   Graph G_min (n, vector<bool>(n, false));
 
-  // O(k n^3)
+  // O(k n^2)
+
   while (delta <= delta_max)
   {
     Graph G_delta(n, vector<bool>(n, false));
@@ -268,15 +297,15 @@ int main()
   }
 
   //
-  const int R=20;
+  const int R=100;
   const double rho=n*10/(6.28);
-  const double fatt=10*n;
-  const double frep=7*n;
+  const double fatt=10;
+  const double frep=7;
   //
   const double delta_init=1;
-  const double delta_max=100;
+  const double delta_max=200;
   const double sigma_init=delta_init/10;
-  const double alpha=1.01+0.0001*n;
+  const double alpha=1.01+0.0000001*n;
 
   out << "0 0" << endl;
   out << "***" << endl;
