@@ -11,18 +11,18 @@
 
 using namespace std;
 /*
-nassau_1 dynamic programming
+nassau_2 probability on possible end states
 */
 
 // la probabilità di colpire vascello, vascellino o fregata NON è uniforme ma dipende da quanti ci sono
 
 struct Key
 {
-  int V1, v1, F1, M1;
+  int V, v, F;
 
   bool operator==(const Key &other) const
   {
-    return V1 == other.V1 && v1 == other.v1 && F1 == other.F1 && M1 == other.M1;
+    return V == other.V && v == other.v && F == other.F;
   }
 };
 
@@ -34,47 +34,42 @@ namespace std
   {
     std::size_t operator()(const Key &k) const
     {
-      return ((hash<int>()(k.V1) ^ (hash<int>()(k.v1) << 1)) >> 1) ^ (hash<int>()(k.F1) << 1) ^ (hash<int>()(k.M1) << 2);
+      return ((hash<int>()(k.V) ^ (hash<int>()(k.v) << 1)) >> 1) ^ (hash<int>()(k.F) << 1);
     }
   };
 }
 
 unordered_map<Key, long double> DP;
+int V, F, M;
 
-long double mDP (int V1, int v1, int F1, int M1, long double f){
-  // out of bounds
-  if (V1 < 0 || v1 <0 || F1 < 0)
+// INV: V1, v1, F1, M1 >= 0
+// M1:= remaining shots != used shots
+// mDP := probability of getting to the defined end state
+long double mDP (int V1, int v1, int F1, int M1){
+  // Out of bounds
+  if (V1 > V || (V1+v1) > V || F1 > F || M1 > M || v1 < 0 )
   {
     return 0;
   }
-  // Base cases
-  else if (M1 == 0)
-  {
-    return (long double)((V1 + v1) * F1);
-  }
-  else if ((V1 + v1) == 0 || F1 == 0)
-  {
-    return 0;
+  // base case
+  else if(V1==V && v1==0 && F1 == F && M1 == M){
+    //cout << V1 << ' ' << v1 << ' ' << F1 << endl;
+    return 1;
   }
   // memoized
-  else if (DP.find({V1, v1, F1, M1}) != DP.end())
+  else if (DP.find({V1, v1, F1}) != DP.end())
   {
-    return DP.at({V1, v1, F1, M1});
+    return DP.at({V1, v1, F1});
   }
   // not memoized
-  else//INV: V,v,F >= 0
+  else //INV: V1,v1,F1 >= 0
   {
-    long double res=0;
-    // negligible (will get here after 27 rounds at most)
-    if (f*(long double)((V1 + v1) * F1) == 0.)
-    {
-      res = (long double)((V1 + v1) * F1);
-    }
-    else{
-      long double d = V1 + v1 + F1;
-      res = (V1 / d) * mDP(V1 - 1, v1 + 1, F1, M1 - 1, f * (V1 / d)) + (v1 / d) * mDP(V1, v1 - 1, F1, M1 - 1, f * (v1 / d)) + (F1 / d) *mDP(V1, v1, F1 - 1, M1 - 1, f * (F1 / d));
-    }
-    DP.insert({{V1, v1, F1, M1}, res});
+
+    long double res =
+        ((long double)(V1 + 1) / (long double)(V1 + v1 + F1)) * mDP(V1 + 1, v1 - 1, F1, M1 + 1) +
+        ((long double)(v1 + 1) / (long double)(V1 + v1 + 1 + F1)) * mDP(V1, v1 + 1, F1, M1 + 1) +
+        ((long double)(F1 + 1) / (long double)(V1 + v1 + F1 + 1)) * mDP(V1, v1, F1 + 1, M1 + 1);
+    DP.insert({{V1, v1, F1}, res});
     return res;
   }
 }
@@ -83,11 +78,23 @@ int main(int argc, char *argv[]){
   ifstream in("input.txt");
   ofstream out("output.txt");
 
-  int V, F, M;
-
   in >> V >> F >> M;
 
-  long double res = mDP(V, 0, F, M, 1);
+  long double res = 0.;
+  // O(5000^2)
+
+  for (int d1 = 0; d1 <= V; d1++)
+  {
+    for (int v1 = max(M - F - 2 * d1, 0); v1 <= min(M - 2 * d1, V - d1); v1++)
+    {
+      int f1 = M - 2 * d1 - v1;
+      //cout << V - v1 - d1 << ' ' << v1 << ' ' << F - f1 << ' ';
+      if (((V - d1) * (F - f1)) != 0){
+        //cout << mDP(V - v1 - d1, v1, F - f1, 0) << endl;
+        res += mDP(V - v1 - d1, v1, F - f1, 0) * (long double)((V - d1) * (F - f1));
+      }
+    }
+  }
 
   out << scientific << setprecision(10)
       << res << endl;
