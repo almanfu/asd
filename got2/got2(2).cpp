@@ -4,12 +4,13 @@
 
 #include <vector>
 #include <list>
+#include <queue>
 #include <stack>
 #include <cmath>
 #include <algorithm>
+#include <unordered_set>
 #include <unordered_map>
 #include <random>
-#include <chrono>
 
 #include "got2.h"
 
@@ -332,7 +333,6 @@ main()
   ifstream in("input.txt");
   ofstream out("output.txt");
 
-
   int n, m;
   in >> n >> m;
   Graph G(n, vector<bool>(n, false));
@@ -340,12 +340,8 @@ main()
   if(n > 1001)
   { // O (CLIMBS*I*(n*maxdeg+nlg n))
   LOCALSEARCH:
-    // auto end_time = chrono::high_resolution_clock::now() + std::chrono::milliseconds(5000);
-    // std::chrono::high_resolution_clock::duration rem_time = std::chrono::milliseconds(5000);
-    // std::chrono::high_resolution_clock::duration safe_print_time;
-    // bool firstPrint = true; // chrono first print
-    // int merges = 0;
-    // int moves = 0;
+    int merges = 0;
+    int moves = 0;
     const double e = std::exp(1.0);
     vector<vector<Node>> adj(n);
     for (int i = 0; i < m; i++)
@@ -357,7 +353,6 @@ main()
       adj[v].push_back(u);
     }
     //
-    int prints = 0;
     const int CLIMBS = 20;
     const int I = 500;
     int tabuPauseNodes = 50;
@@ -399,12 +394,11 @@ main()
     Cost minCost(0, m);
     int emptyTries = 0;
     bool nowMerge = true;
-    for (int j = 0; true; j++) // CLIMB
+    for (int j = 0; j < CLIMBS; j++)
     {
       // O(n*maxdeg+nlg n)
       for (int i = 0; i < I; i++)
       {
-        
         // Toggle between moving nodes and merging clusters
         if (emptyTries > maxEmptyTries)
         {
@@ -428,7 +422,7 @@ main()
 
         /// Merging a cluster
         if(nowMerge){
-          //merges++;
+          merges++;
           // cout << i << "-nowMerge" << endl;
           //  O(nlg n)
           //  INV ni is "ordered", ci is "sorted"
@@ -574,7 +568,7 @@ main()
         }
         else
         { /// Moving a node
-          //moves++;
+          moves++;
           // cout << i << "-movingNode" << endl;
           int minDelta = INFINITY;
           // O(nlg n)
@@ -724,37 +718,22 @@ main()
           // consider using a different data structure for ci
           // here you should remove old_ci if it is empty
         }
-        //rem_time = end_time - chrono::high_resolution_clock::now();
-        //if (rem_time <= safe_print_time){
-        //  // cout << safe_print_time.count() << endl;
-        //  // cout << "print now!" << endl;
-        //  break;
-        //}
       }
-      //if(firstPrint || rem_time <= safe_print_time){
-      //  prints++;
-      //  firstPrint = false;
-      //  auto before = std::chrono::high_resolution_clock::now();
-        // print solution
-        out << minCost.adds << ' ' << minCost.rems << endl;
-        for (Node u = 0; u < n; u++)
+      // print solution
+      out << minCost.adds << ' ' << minCost.rems << endl;
+      for (Node u = 0; u < n; u++)
+      {
+        for (Node v = 0; v < u; v++)
         {
-          for (Node v = 0; v < u; v++)
-          {
-            if (ncid[u] == ncid[v] && !G[u][v])
-              out << "+ " << u << ' ' << v << endl;
-            else if (ncid[u] != ncid[v] && G[u][v])
-              out << "- " << u << ' ' << v << endl;
-          }
+          if (ncid[u] == ncid[v] && !G[u][v])
+            out << "+ " << u << ' ' << v << endl;
+          else if (ncid[u] != ncid[v] && G[u][v])
+            out << "- " << u << ' ' << v << endl;
         }
-        out << "***" << endl;
-        //cout << prints << endl;
-        //auto after = std::chrono::high_resolution_clock::now();
-        //safe_print_time = std::chrono::duration_cast<std::chrono::high_resolution_clock::duration>(5./4. * (after - before));
-        //if(!firstPrint)
-        //  end_time += std::chrono::milliseconds(10);
-      //}
+      }
+      out << "***" << endl;
       //cout << "merges=" << merges << " moves=" << moves << endl;
+
       // force a toggle for every climb
       emptyTries = maxEmptyTries + 1;
     }

@@ -46,7 +46,7 @@ using namespace std;
 namespace helpers {
     long long start_time = -1;
     volatile sig_atomic_t timeout_flag = false;
-    unsigned const timelimit = 500;   // soft limit on CPU time (in seconds)
+    unsigned const timelimit = 5;   // soft limit on CPU time (in seconds)
 
     void setup_signal(void);
     void setup_time_limit(void);
