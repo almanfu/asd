@@ -4,7 +4,7 @@
 
 int main()
 {
-  std::ifstream inFile("input.txt");
+  std::ifstream inFile("../input.txt");
   std::ofstream outFile("inputcor.txt");
 
   if (!inFile.is_open() || !outFile.is_open())
