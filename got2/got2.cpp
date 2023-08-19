@@ -9,6 +9,7 @@
 #include <cmath>
 #include <algorithm>
 #include <unordered_set>
+#include <unordered_map>
 
 #include "got2.h"
 
@@ -23,7 +24,9 @@ typedef int Cluster;
 /*
   FORCE Heuristic
   O(Rn^2+kn^2)
-  k ~ 300
+  k ~ 60
+  LOCAL SEARCH
+  O(I2*I2*(n*maxdeg+nlg n))
 */
 
 struct Point{
@@ -325,9 +328,10 @@ main()
   int n, m;
   in >> n >> m;
 
-  if(n >= 0){// O(I(n+m))
-    LOCALSEARCH:
-
+  if(n >= 1001)
+  { // O (I1*I2*(n*maxdeg+nlg n))
+  LOCALSEARCH:
+    const double e = std::exp(1.0);
     vector<unordered_set<Node>> adj(n);
     for (int i = 0; i < m; i++)
     {
@@ -337,9 +341,11 @@ main()
       adj[v].insert(u);
     }
     //
-    const int ITER = 1000;
+    const int ITER1 = 10;
+    const int ITER2 = 100;
+    const int tabuPause = 50;
     //
-    out << "1 1" << endl;
+    out << "1 1" << endl; // output malformato
     out << "***" << endl;
 
     vector<Cluster> ncid(n); // Node -> Cluster
@@ -347,7 +353,7 @@ main()
     vector<cInfo> ci(n); // Cluster -> ClusterInfo
     vector<list<Node>> c(n); // Cluster -> List of Nodes
 
-    unordered_set<Node> tabu; // tabu list
+    unordered_map<Node, int> tabu; // tabu list
 
     std::sort(ni.begin(), ni.end(), [](const nInfo &a, const nInfo &b)
               { return a
@@ -363,133 +369,158 @@ main()
 
     // hill climbing
     Cost minCost(0, m);
-    for (int i = 0; i < ITER; i++)
-    {
-      int minDelta = 0;
-
-      // pick maximum cost node not in tabu
-      Node u = find_if(ni.begin(), ni.end(), [&](nInfo& x)
-                          {return tabu.find(x.u) == tabu.end(); })->u;
-      Cluster old_cid = ncid[u];
-      Cluster new_cid = old_cid;
-      int so = ci[old_cid].s; // size old, before removing node
-
-      // explore neighborhood O(n*m)
-      // (moving selected node to another cluster)
-      for (Cluster cid = 0; cid < n; cid++)
+    for (int j = 0; j < ITER1; j++){
+      // O(n*maxdeg+nlg n)
+      for (int i = 0; i < ITER2; i++)
       {
-        int delta = 0;
-        // compute delta
-        int sn = ci[cid].s; // size new
+        int minDelta = 0;
+
+        // pick maximum cost node not in tabu
+        Node u = find_if(ni.begin(), ni.end(), [&](nInfo &x)
+                         { return tabu.find(x.u) == tabu.end(); })
+                     ->u;
+        Cluster old_cid = ncid[u];
+        Cluster new_cid = old_cid;
+        int so = ci[old_cid].s; // size old, before removing node
+
+        // explore neighborhood O(n*maxdeg)
+        // (moving selected node to another cluster)
+        for (Cluster cid = 0; cid < n; cid++)
+        {
+          int delta = 0;
+          // compute delta
+          int sn = ci[cid].s; // size new
+          int oldrems = 0;
+          int newrems = 0;
+          for (Node v : adj[u]) // uv exists
+          {
+            if (ncid[v] == cid)
+            {
+              // add back edge
+              oldrems++; // that was removed before
+            }
+            if (ncid[v] == old_cid)
+            {
+              // remove edge
+              newrems++; // that was not removed before
+            }
+            // OBS:  cid == old_cid => delta == 0
+          }
+          int newadds = sn - oldrems;
+          int oldadds = so - newrems;
+          delta = +newrems - oldadds + newadds - oldrems;
+          if (delta < minDelta)
+          {
+            new_cid = cid;
+            minDelta = delta;
+          }
+        }
+        if (minDelta >= 0)
+        {
+          tabu.insert({u, tabuPause});
+          continue; // skips and does not increment
+        }else{
+          tabu.insert({u, tabuPause / log(e-minDelta)});
+        }
+        // update data structures
+        // - ni
+        // - ci
+        // - c
+        // - ncid
+
+        // - c
+        c[old_cid].remove(u);
+        // - ni without moved node in either component
+        for (Node v : c[new_cid])
+          ni[v].c += 1;
+        for (Node v : c[old_cid])
+          ni[v].c -= 1;
+        // - c - ncid
+        c[new_cid].push_front(u);
+        ncid[u] = new_cid;
+
+        // - ci
+        auto &new_ci = ci[new_cid];
+        auto &old_ci = ci[old_cid];
+        int sn = new_ci.s; // before adding node
+        new_ci.s++;
+        old_ci.s--;
+
+        // recalculate oldrems, newrems (consider doing this before later)
         int oldrems = 0;
         int newrems = 0;
+        // O(n)
         for (Node v : adj[u]) // uv exists
         {
-          if(ncid[v] == cid){
+          if (ncid[v] == new_cid)
+          {
             // add back edge
-            oldrems++; // that was removed before
+            oldrems++;    // that was removed before
+            ni[v].c -= 2; // will add 1 to all in c[new_cid] after
           }
           if (ncid[v] == old_cid)
           {
             // remove edge
-            newrems++; // that was not removed before
+            newrems++;    // that was not removed before
+            ni[v].c += 2; // will add -1 to all in c[old_cid] after
           }
           // OBS:  cid == old_cid => delta == 0
         }
         int newadds = sn - oldrems;
-        int oldadds = so - newrems;
-        delta = +newrems-oldadds+newadds-oldrems;
-        if (delta < minDelta)
+        int oldadds = so - 1 - newrems;
+
+        // - ci
+        new_ci.c.adds += newadds;
+        new_ci.c.rems += newrems - oldrems;
+        old_ci.c.adds -= oldadds;
+        old_ci.c.rems -= oldrems;
+
+        new_ci.updateSC();
+        old_ci.updateSC();
+
+        // - ni (moved node)
+        // OBS delta == delta cost of node
+        ni[u].c += newadds - oldrems + newrems - oldrems;
+
+        // O(nlg n)
+        std::sort(ni.begin(), ni.end(), [](const nInfo &a, const nInfo &b)
+                  { return a.c > b.c; });
+
+        // sum of sum of nodes cost != sum of cluster costs != cost
+        // minCost
+        minCost.adds += newadds - oldadds;
+        minCost.rems += newrems - oldrems;
+
+        // update tabu
+        // O(n)
+        for (auto& pair: tabu)
+          pair.second--;
+        for (auto it = tabu.begin(); it != tabu.end();)
         {
-          new_cid = cid;
-          minDelta = delta;
+          if (it->second < 0)
+            it = tabu.erase(it);
+          else
+            it++;
         }
       }
-      if(minDelta >= 0){
-        tabu.insert(u);
-        continue;
-      }
-      // update data structures
-      // - ni
-      // - ci
-      // - c
-      // - ncid
-
-      // - c
-      c[old_cid].remove(u);
-      // - ni without moved node in either component
-      for (Node v : c[new_cid])
-        ni[v].c += 1;
-      for (Node v : c[old_cid])
-        ni[v].c -= 1;
-      // - c - ncid
-      c[new_cid].push_front(u);
-      ncid[u] = new_cid;
-
-      // - ci
-      auto &new_ci = ci[new_cid];
-      auto &old_ci = ci[old_cid];
-      int sn = new_ci.s; // before adding node
-      new_ci.s++;
-      old_ci.s--;
-
-      // recalculate oldrems, newrems (consider doing this before later)
-      int oldrems = 0;
-      int newrems = 0;
-      for (Node v : adj[u]) // uv exists
+      // print solution
+      out << minCost.adds << ' ' << minCost.rems << endl;
+      for (Node u = 0; u < n; u++)
       {
-        if (ncid[v] == new_cid)
+        for (Node v = 0; v < u; v++)
         {
-          // add back edge
-          oldrems++; // that was removed before
-          ni[v].c-=2; // will add 1 to all in c[new_cid] after
+          if (ncid[u] == ncid[v] && adj[u].find(v) == adj[u].end())
+            out << "+ " << u << ' ' << v << endl;
+          else if (ncid[u] != ncid[v] && adj[u].find(v) != adj[u].end())
+            out << "- " << u << ' ' << v << endl;
         }
-        if (ncid[v] == old_cid)
-        {
-          // remove edge
-          newrems++; // that was not removed before
-          ni[v].c += 2; // will add -1 to all in c[old_cid] after
-        }
-        // OBS:  cid == old_cid => delta == 0
       }
-      int newadds = sn - oldrems;
-      int oldadds = so - 1 - newrems;
-
-      // - ci
-      new_ci.c.adds += newadds;
-      new_ci.c.rems += newrems - oldrems;
-      old_ci.c.adds -= oldadds;
-      old_ci.c.rems -= oldrems;
-
-      new_ci.updateSC();
-      old_ci.updateSC();
-
-      // - ni (moved node)
-      // OBS delta == delta cost of node
-      ni[u].c += newadds - oldrems + newrems - oldrems;
-
-      std::sort(ni.begin(), ni.end(), [](const nInfo &a, const nInfo &b)
-                { return a.c > b.c; });
-
-      // sum of sum of nodes cost != sum of cluster costs != cost
-      // minCost
-      minCost.adds += newadds - oldadds;
-      minCost.rems += newrems - oldrems;
+      out << "***" << endl;
     }
-
-    // print solution
-    out << minCost.adds << ' ' << minCost.rems << endl;
-    for (Node u = 0; u < n; u++){
-      for (Node v = 0; v < u; v++){
-        if( ncid[u] == ncid[v] && adj[u].find(v) == adj[u].end())
-          out << "+ " << u << ' ' << v << endl;
-        if (ncid[u] != ncid[v] && adj[u].find(v) != adj[u].end())
-          out << "- " << u << ' ' << v << endl;
-      }
-    }
-    out << "***" << endl;
-  }else{// O(Rn^2+kn^2)
-    FORCE:
+  }
+  else
+  { // O(Rn^2+kn^2)
+  FORCE:
     Graph G(n, vector<bool>(n, false));
     for (int i = 0; i < m; i++)
     {
@@ -512,7 +543,7 @@ main()
     const double sigma_init=0.01;
     const double alpha=1.1+0.0000001*n;
 
-    out << "0 0" << endl;
+    out << "0 0" << endl; // componente non cricca
     out << "***" << endl;
 
     // Layout
