@@ -8,6 +8,7 @@
 #include <stack>
 #include <cmath>
 #include <algorithm>
+#include <unordered_set>
 
 #include "got2.h"
 
@@ -17,6 +18,7 @@ bool INFO = false;
 
 typedef vector<vector<bool>> Graph;
 typedef int Node;
+typedef int Cluster;
 
 /*
   FORCE Heuristic
@@ -210,6 +212,7 @@ struct Cost{
   int rems;
   Cost() : adds(0), rems(0) {}
   Cost(int adds, int rems) : adds(adds), rems(rems) {}
+  int tot() { return adds + rems; }
 };
 
 bool operator<(Cost& a, Cost& b){
@@ -294,8 +297,27 @@ void clustering(const Graph &G, int n, const vector<Point> &pos,
   // cout << costMin;
 }
 
+struct nInfo
+{
+  Node u;
+  int c;
+  nInfo() : u(-1), c(0) {}
+  nInfo(Node u, int c) : u(u), c(c) {}
+};
 
-int main()
+struct cInfo{
+  int s; // size -- number of nodes
+  Cost c;    // cost
+  double sc; // specific cost
+  cInfo() : s(0), c(), sc(0.) {}
+  cInfo(int s, Cost c) : s(s), c(c){
+    updateSC();
+  }
+  void updateSC() { sc = (s > 0 ? (double)c.tot() / s : 0); }
+};
+
+int
+main()
 {
   ifstream in("input.txt");
   ofstream out("output.txt");
@@ -303,37 +325,202 @@ int main()
   int n, m;
   in >> n >> m;
 
-  Graph G(n, vector<bool>(n, false));
+  if(n >= 0){// O(I(n+m))
+    LOCALSEARCH:
 
-  for (int i = 0; i < m; i++)
-  {
-    int u, v;
-    in >> u >> v;
-    G[u][v] = true;
-    G[v][u] = true;
+    vector<unordered_set<Node>> adj(n);
+    for (int i = 0; i < m; i++)
+    {
+      int u, v;
+      in >> u >> v;
+      adj[u].insert(v);
+      adj[v].insert(u);
+    }
+    //
+    const int ITER = 1000;
+    //
+    out << "1 1" << endl;
+    out << "***" << endl;
+
+    vector<Cluster> ncid(n); // Node -> Cluster
+    vector<nInfo> ni(n);    // Node -> NodeInfo
+    vector<cInfo> ci(n); // Cluster -> ClusterInfo
+    vector<list<Node>> c(n); // Cluster -> List of Nodes
+
+    unordered_set<Node> tabu; // tabu list
+
+    std::sort(ni.begin(), ni.end(), [](const nInfo &a, const nInfo &b)
+              { return a
+              .c > b.c; });
+    
+    // starting point
+    for (Node u = 0; u < n; u++){
+      ncid[u] = u;
+      ni[u] = {u, adj[u].size()};
+      ci[u] = {1, {0, adj[u].size()}};
+      c[u].push_front(u);
+    }
+
+    // hill climbing
+    Cost minCost(0, m);
+    for (int i = 0; i < ITER; i++)
+    {
+      int minDelta = 0;
+
+      // pick maximum cost node not in tabu
+      Node u = find_if(ni.begin(), ni.end(), [&](nInfo& x)
+                          {return tabu.find(x.u) == tabu.end(); })->u;
+      Cluster old_cid = ncid[u];
+      Cluster new_cid = old_cid;
+      int so = ci[old_cid].s; // size old, before removing node
+
+      // explore neighborhood O(n*m)
+      // (moving selected node to another cluster)
+      for (Cluster cid = 0; cid < n; cid++)
+      {
+        int delta = 0;
+        // compute delta
+        int sn = ci[cid].s; // size new
+        int oldrems = 0;
+        int newrems = 0;
+        for (Node v : adj[u]) // uv exists
+        {
+          if(ncid[v] == cid){
+            // add back edge
+            oldrems++; // that was removed before
+          }
+          if (ncid[v] == old_cid)
+          {
+            // remove edge
+            newrems++; // that was not removed before
+          }
+          // OBS:  cid == old_cid => delta == 0
+        }
+        int newadds = sn - oldrems;
+        int oldadds = so - newrems;
+        delta = +newrems-oldadds+newadds-oldrems;
+        if (delta < minDelta)
+        {
+          new_cid = cid;
+          minDelta = delta;
+        }
+      }
+      if(minDelta >= 0){
+        tabu.insert(u);
+        continue;
+      }
+      // update data structures
+      // - ni
+      // - ci
+      // - c
+      // - ncid
+
+      // - c
+      c[old_cid].remove(u);
+      // - ni without moved node in either component
+      for (Node v : c[new_cid])
+        ni[v].c += 1;
+      for (Node v : c[old_cid])
+        ni[v].c -= 1;
+      // - c - ncid
+      c[new_cid].push_front(u);
+      ncid[u] = new_cid;
+
+      // - ci
+      auto &new_ci = ci[new_cid];
+      auto &old_ci = ci[old_cid];
+      int sn = new_ci.s; // before adding node
+      new_ci.s++;
+      old_ci.s--;
+
+      // recalculate oldrems, newrems (consider doing this before later)
+      int oldrems = 0;
+      int newrems = 0;
+      for (Node v : adj[u]) // uv exists
+      {
+        if (ncid[v] == new_cid)
+        {
+          // add back edge
+          oldrems++; // that was removed before
+          ni[v].c-=2; // will add 1 to all in c[new_cid] after
+        }
+        if (ncid[v] == old_cid)
+        {
+          // remove edge
+          newrems++; // that was not removed before
+          ni[v].c += 2; // will add -1 to all in c[old_cid] after
+        }
+        // OBS:  cid == old_cid => delta == 0
+      }
+      int newadds = sn - oldrems;
+      int oldadds = so - 1 - newrems;
+
+      // - ci
+      new_ci.c.adds += newadds;
+      new_ci.c.rems += newrems - oldrems;
+      old_ci.c.adds -= oldadds;
+      old_ci.c.rems -= oldrems;
+
+      new_ci.updateSC();
+      old_ci.updateSC();
+
+      // - ni (moved node)
+      // OBS delta == delta cost of node
+      ni[u].c += newadds - oldrems + newrems - oldrems;
+
+      std::sort(ni.begin(), ni.end(), [](const nInfo &a, const nInfo &b)
+                { return a.c > b.c; });
+
+      // sum of sum of nodes cost != sum of cluster costs != cost
+      // minCost
+      minCost.adds += newadds - oldadds;
+      minCost.rems += newrems - oldrems;
+    }
+
+    // print solution
+    out << minCost.adds << ' ' << minCost.rems << endl;
+    for (Node u = 0; u < n; u++){
+      for (Node v = 0; v < u; v++){
+        if( ncid[u] == ncid[v] && adj[u].find(v) == adj[u].end())
+          out << "+ " << u << ' ' << v << endl;
+        if (ncid[u] != ncid[v] && adj[u].find(v) != adj[u].end())
+          out << "- " << u << ' ' << v << endl;
+      }
+    }
+    out << "***" << endl;
+  }else{// O(Rn^2+kn^2)
+    FORCE:
+    Graph G(n, vector<bool>(n, false));
+    for (int i = 0; i < m; i++)
+    {
+      int u, v;
+      in >> u >> v;
+      G[u][v] = true;
+      G[v][u] = true;
+    }
+
+    //
+    const int R=50;
+    const double rho = n*10/(6.28);
+    const double fatt=1.245;
+    const double frep=1.687;
+    const double M0 = 633;
+    const double r = 0.99;
+    //
+    const double delta_init=0;
+    const double delta_max=200;
+    const double sigma_init=0.01;
+    const double alpha=1.1+0.0000001*n;
+
+    out << "0 0" << endl;
+    out << "***" << endl;
+
+    // Layout
+    vector<Point> pos = layout(G, n, rho, fatt, frep, M0, r, R);
+
+    // Clustering
+    clustering(G, n, pos, delta_init, delta_max, sigma_init, alpha, out);
   }
-
-  //
-  const int R=50;
-  const double rho = n*10/(6.28);
-  const double fatt=1.245;
-  const double frep=1.687;
-  const double M0 = 633;
-  const double r = 0.99;
-  //
-  const double delta_init=0;
-  const double delta_max=200;
-  const double sigma_init=0.01;
-  const double alpha=1.1+0.0000001*n;
-
-  out << "0 0" << endl;
-  out << "***" << endl;
-
-  // Layout
-  vector<Point> pos = layout(G, n, rho, fatt, frep, M0, r, R);
-
-  // Clustering
-  clustering(G, n, pos, delta_init, delta_max, sigma_init, alpha, out);
 
   in.close();
   out.close();
