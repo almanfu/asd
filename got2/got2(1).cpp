@@ -433,8 +433,17 @@ int main()
     auto decrSpecificCost = [](const cInfo &a, const cInfo &b){ return a.sc > b.sc; };
     auto indexIsCluster = [](const cInfo &a, const cInfo &b) { return a.cid < b.cid; };
     Cost minCost;
-    
-    if(m >= 15000){
+
+    // starting point
+    if(m < 15000){
+      // all isolated
+      for (Node u = 0; u < n; u++){
+        ncid[u] = u;
+        ni[u] = {u, adj[u].size()};
+        ci[u] = {u, 1, {0, adj[u].size()}};
+        c[u].push_back(u);
+      }
+    }else{
       // starting point from FORCE D&C on n0xn0 diagonal
       for (Cluster i = 0; i < n; i++)
         ci[i] = {i, 0, {0, 0}};
@@ -470,7 +479,7 @@ int main()
           h++;
         }
       }
-      // cout << h << endl;
+      cout << h << endl;
       // Assign costs
       for (Node u = 0; u < n; u++)
       {
@@ -495,30 +504,16 @@ int main()
           }
         }
       }
-      // cout << minCost.adds << ' ' << minCost.rems << endl;
+      cout << minCost.adds << ' ' << minCost.rems << endl;
       // compute SC after all subproblems
       for (Cluster i = 0; i < h; i++)
         ci[i].updateSC();
-    }
-    // trying all nodes isolated
-    if (m < minCost.tot())
-    {
-      // all isolated
-      for (Node u = 0; u < n; u++)
-      {
-      ncid[u] = u;
-      ni[u] = {u, adj[u].size()};
-      ci[u] = {u, 1, {0, adj[u].size()}};
-      c[u].clear();
-      c[u].push_back(u);
-      }
-      minCost = {0, m};
     }
 
     // hill climbing
     int emptyTries = 0;
     bool nowMerge = true;
-    for (int j = 0; true; j++) // CLIMB
+    for (int j = 0; j < CLIMBS; j++) // CLIMB
     {
       // O(n*maxdeg+nlg n)
       for (int i = 0; i < 100; i++)
