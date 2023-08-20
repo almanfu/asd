@@ -368,7 +368,7 @@ int main()
   in >> n >> m;
   Graph G(n, vector<bool>(n, false));
 
-  if(n > 1001)
+  if(n >= 1001)
   { // O (CLIMBS*I*(n*maxdeg+nlg n))
   LOCALSEARCH:
     // auto end_time = chrono::high_resolution_clock::now() + std::chrono::milliseconds(5000);
@@ -432,9 +432,10 @@ int main()
     auto indexIsNode = [](const nInfo &a, const nInfo &b) { return a.u < b.u; };
     auto decrSpecificCost = [](const cInfo &a, const cInfo &b){ return a.sc > b.sc; };
     auto indexIsCluster = [](const cInfo &a, const cInfo &b) { return a.cid < b.cid; };
-    Cost minCost;
+    Cost minCost = INF;
     
-    if(m >= 15000){
+    if(20000<= m <= n*n-20000){
+      minCost = {0, 0};
       // starting point from FORCE D&C on n0xn0 diagonal
       for (Cluster i = 0; i < n; i++)
         ci[i] = {i, 0, {0, 0}};
