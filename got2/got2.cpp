@@ -360,6 +360,7 @@ struct cInfo{
 
 int main()
 {
+  //auto end_time = chrono::high_resolution_clock::now() + std::chrono::milliseconds(5000);
   ifstream in("input.txt");
   ofstream out("output.txt");
 
@@ -371,7 +372,6 @@ int main()
   if(n >= 1001)
   { // O (CLIMBS*I*(n*maxdeg+nlg n))
   LOCALSEARCH:
-    // auto end_time = chrono::high_resolution_clock::now() + std::chrono::milliseconds(5000);
     // std::chrono::high_resolution_clock::duration rem_time = std::chrono::milliseconds(5000);
     // std::chrono::high_resolution_clock::duration safe_print_time;
     // bool firstPrint = true; // chrono first print
@@ -404,6 +404,7 @@ int main()
 
     const double e = std::exp(1.0);
     vector<vector<Node>> adj(n);
+    // auto layout_start = chrono::high_resolution_clock::now();
     for (int i = 0; i < m; i++)
     {
       Node u, v;
@@ -515,6 +516,9 @@ int main()
       }
       minCost = {0, m};
     }
+
+    //std::chrono::duration<double> elapsed = mid_point- layout_start;
+    //cout << (elapsed.count()) << endl;
 
     // hill climbing
     int emptyTries = 0;
@@ -844,18 +848,7 @@ int main()
           // consider using a different data structure for ci
           // here you should remove old_ci if it is empty
         }
-        //rem_time = end_time - chrono::high_resolution_clock::now();
-        //if (rem_time <= safe_print_time){
-        //  // cout << safe_print_time.count() << endl;
-        //  // cout << "print now!" << endl;
-        //  break;
-        //}
       }
-      //if(firstPrint || rem_time <= safe_print_time){
-      //  prints++;
-      //  firstPrint = false;
-      //  auto before = std::chrono::high_resolution_clock::now();
-        // print solution
         out << minCost.adds << ' ' << minCost.rems << endl;
         for (Node u = 0; u < n; u++)
         {
@@ -868,12 +861,6 @@ int main()
           }
         }
         out << "***" << endl;
-        //cout << prints << endl;
-        //auto after = std::chrono::high_resolution_clock::now();
-        //safe_print_time = std::chrono::duration_cast<std::chrono::high_resolution_clock::duration>(5./4. * (after - before));
-        //if(!firstPrint)
-        //  end_time += std::chrono::milliseconds(10);
-      //}
       //cout << "merges=" << merges << " moves=" << moves << endl;
       // force a toggle for every climb
       emptyTries = maxEmptyTries + 1;
@@ -883,7 +870,7 @@ int main()
   { // O(Rn^2+kn^2)
   FORCE:
     // FORCE Layout
-    const int R = 50;
+    const int R = 100;
     const double rho = n * 10 / (6.28);
     const double fatt = 1.245;
     const double frep = 1.687;

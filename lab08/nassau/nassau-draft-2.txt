@@ -1,0 +1,70 @@
+Different approach
+V-d-v, v, F-f
+for v,d,f such that v+d+f=M, f <= F, (v+d) <= V (da cui v,d <= V)
+Tutti i risultati possibili
+- per ogni risultato calcoliamo: (V-d-v+v)*(F-f)=(V-d)*(F-f)
+- ora voglio contare come posso arrivare alla combinazione (V,v,F)
+- oss: le probabilità di affondare un vascellino cambiano quando si spara a un vascello
+
+
+
+Sottoproblema diverso
+
+S DP[V1,v1,F1,M1] = in quanti modi arrivo qua?
+R DP[V1,v1,F1,M1] = (V1+1)*DP[V1+1, v1-1, F1, M1+1] + (v1+1)*DP[V1, v1+1, F1, M1+1] + (F1+1)*DP[V1, v1, F1+1, M1+1]
+-- affondando Vascello, Vascellino, Fregata
+B DP[V,0,F,M]=0
+O per ogni risultato computo con quante sparatorie si arriva a quel risultato
+T O(5000^4) sottoproblemi?
+
+DP[V1>V,v1>V,F1>F,M1>M] = 0
+
+Quante sparatorie in totale? (senza ordine)
+La somma di tutte le DP per le sparatorie finali...
+
+1 0 = 1 (ma invece è 3)
+1 1 = 2 (ma invece è 5)
+0 2 = 2 (ma invece è 1)
+
+
+
+1 0 2 2
+---
+1 0 1 1
+0 1 1 0
+
+0 1 2 1
+0 1 1 0
+
+...4/10, come prima. Sto considerando le combinazioni raggruppando tutti i vascelli in un gruppo
+Dove contare tutte le combinazinoni con vascelli singoli
+
+Cioè...posso sparare a qualsiasi Vascello, Vascellino, Fregata.
+Domanda: devo dividere per la somma o posso fare tutto nel risultato?
+OSS: Questo vale anche per quanto fatto prima...
+
+
+So che sono stati affondati d vascelli. Non mi interessa l'ordine ma so che sono stati affondati QUEI i1, ..., id vascelli. E non solo che d tra tutti i vascelli sono stati affondati
+
+Io conto i dei, ma devo considerare tutti i quei.
+
+Allo step 1 sparo a un vascello. Al 2 sparo a (V1-1)
+
+
+Ora ho
+1 0 = 2 (ma invece è 3)
+1 1 = 4 (ma invece è 5)
+0 2 = 1 (ma invece è 1)
+
+per affondare un vascello, la combinazione è solo una!
+
+Come prima?
+Prima guardavo i tre gruppi come equiprobabili, ma non lo sono. Ovvero le probabilità dipendono da quante barche ci sono.
+Ma le probabilità le possiamo vedere come combinazioni:
+
+Favorevoli/Totali
+
+Per arrivare ad un certo case finale, quante combinazioni ci sono?
+
+Calcoliamo le probabilità ma sulle combinazioni finali
+

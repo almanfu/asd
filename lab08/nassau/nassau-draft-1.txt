@@ -1,0 +1,55 @@
+Assedio A NASSAU
+V vascelli F fregate
+M munizioni
+2 per V
+1 per F
+
+V,F,M <= 5000
+
+estimated P=V'F' (vascello, fregata non affondata) dipende da come si ditribuiscono i colpi
+Ovvero:
+- ogni colpo si può distribuire uniformemente su ogni urna
+1-urna: si piena con 1 biglia
+2-urna: si piena con 2 biglie
+
+Idea: branch and bound
+- calcolo le combinazioni più probabili
+- fino a che non arrivo a estimated P che non si discosta per 1 su 10^5 dalla soluzioni
+
+Altra Idea: DP
+S DP[V1][v1][F1][M1] := potenza attesa
+R DP[V1][v1][F1][M1] = V1/(V1+v1+F1)*DP[V1-1][v1+1][F1][M1-1] + v1/(V1+v1+F1)*DP[V1][v1-1][F1][M1-1] + F1/(V1+v1+F1)*DP[V1][v1][F1-1][M1-1]
+-- guess: dove va il colpo (a seconda se V1,v1,F1>0)
+T è DAG
+B DP[V1][v1][F1][0] = (V1+v1)*F1
+  DP[0][0][0][M1] = 0
+O è in DP[V][0][F][M]
+T V^2*F*M sottoproblemi di costo O(1)
+
+=> 10^6*10^3*10^3=10^12=10^3Giga (not reasonable!!)
+Also, a lot of memory. 
+
+facciamo tutto con memoization
+- ad un certo punto i sottoproblemi valgono molto poco...
+- passo il fattore moltiplicativo in ricorsione
+- quando diventa tale che la potenza corrente * fattore moltiplicativo <= 10^-6 mi fermo
+caso pessimo: nessuna barca affondata:
+(1/3)^k*(V*F) = 10^-6 se k = (1/3)^{10^-6/(V*F)}; k = 26.16 con V=F=5000; k = 20 con V=F=500
+
+Quindi, al massimo vado deep down di 30 munizioni (sovrastimiamo)
+
+Quando finisco i vascelli o le fregate, la potenza è 0 e mi fermo
+
+La precisione non è sufficiente;
+IDEA: memorizzo tutto in offset di 10^5, faccio mult/div con questo offset; poi riporto tutto in normale
+-- forse meglio
+
+OSS:
+in input1.txt
+12
+4
+5
+non si va mai in "negligible"
+eppure il risultato non è corretto
+Il montecarlo ci da il risultato corretto
+Potrebbe essere che perdiamo precisione gradualmente
