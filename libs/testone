@@ -27,19 +27,27 @@ crunj
 
 # head -n1 "output.txt" > "output1.txt";
 
-if diff "output.txt" "dataset_$PR/output/output$1.txt";
-  then
-    echo "================"
-    echo "correct output :)";
-    echo "================"
-  else
-    echo "================"
-    echo "wrong output :(";
-    echo "================"
-    case $2 in
-      -n | n)
-        ;;
-      *) p4merge "output.txt" "dataset_$PR/output/output$1.txt"
-        ;;
-    esac
-fi
+  awk 	'BEGIN { RS="\\*\\*\\*\\n"; ORS="***\n" }
+	{ last = $0 }
+	END { print last }
+	' "output.txt" > "dataset_$PR/my_output/myoutput$1.txt"
+	
+  gradeone $1;	
+
+
+# if diff "output.txt" "dataset_$PR/output/output$1.txt";
+#  then
+#    echo "================"
+#    echo "correct output :)";
+#    echo "================"
+#  else
+#    echo "================"
+#    echo "wrong output :(";
+#    echo "================"
+#    case $2 in
+#      -n | n)
+#        ;;
+#      *) p4merge "output.txt" "dataset_$PR/output/output$1.txt"
+#        ;;
+#    esac
+# fi

@@ -9,7 +9,6 @@
 #include <algorithm>
 #include <unordered_map>
 #include <random>
-#include <chrono>
 
 #include "got2.h"
 
@@ -430,8 +429,10 @@ int main()
     unordered_map<Cluster, int> tabuClusters; // tabu list for clusters
 
     auto decrCost = [](const nInfo &a, const nInfo &b) {return a.c > b.c; };
+    // auto decrDegree = [&](const nInfo &a, const nInfo &b) { return adj[a.u].size() > adj[b.u].size(); };
     auto indexIsNode = [](const nInfo &a, const nInfo &b) { return a.u < b.u; };
     auto decrSpecificCost = [](const cInfo &a, const cInfo &b){ return a.sc > b.sc; };
+    // auto decrSize = [](const cInfo &a, const cInfo &b){ return a.s > b.s; };
     auto indexIsCluster = [](const cInfo &a, const cInfo &b) { return a.cid < b.cid; };
     Cost minCost = INF;
     int maxCost = min(m, n * (n - 1) / 2 - m);
@@ -585,6 +586,7 @@ int main()
           // apply stronger heuristic only after a while
           if(j*I >= n/5)
             std::sort(ci.begin(), ci.end(), decrSpecificCost);
+          // std::sort(ci.begin(), ci.end(), decrSize);
 
           // pick maximum specific cost cluster not in tabu nor empty
           auto a_ci = find_if(ci.begin(), ci.end(), [&](cInfo& x)
@@ -730,7 +732,7 @@ int main()
           // O(nlg n)
           // INV: ni is "sorted", ci is "ordered"
           std::sort(ni.begin(), ni.end(), decrCost);
-          
+          // std::sort(ni.begin(), ni.end(), decrDegree);
           // pick maximum cost node not in tabu
           auto u_ni = find_if(ni.begin(), ni.end(), [&](nInfo &x)
                            { return tabuNodes.find(x.u) == tabuNodes.end(); });
@@ -875,19 +877,19 @@ int main()
           // here you should remove old_ci if it is empty
         }
       }
-        out << minCost.adds << ' ' << minCost.rems << endl;
-        for (Node u = 0; u < n; u++)
+      out << minCost.adds << ' ' << minCost.rems << endl;
+      for (Node u = 0; u < n; u++)
+      {
+        for (Node v = 0; v < u; v++)
         {
-          for (Node v = 0; v < u; v++)
-          {
-            if (ncid[u] == ncid[v] && !G[u][v])
-              out << "+ " << u << ' ' << v << endl;
-            else if (ncid[u] != ncid[v] && G[u][v])
-              out << "- " << u << ' ' << v << endl;
-          }
+          if (ncid[u] == ncid[v] && !G[u][v])
+            out << "+ " << u << ' ' << v << endl;
+          else if (ncid[u] != ncid[v] && G[u][v])
+            out << "- " << u << ' ' << v << endl;
         }
-        out << "***" << endl;
-      //cout << "merges=" << merges << " moves=" << moves << endl;
+      }
+      out << "***" << endl;
+      // cout << "merges=" << merges << " moves=" << moves << endl;
       // force a toggle for every climb
       emptyTries = maxEmptyTries + 1;
     }

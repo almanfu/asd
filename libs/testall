@@ -19,6 +19,7 @@ declare -a index=(
 );
 declare ngood=0;
 declare nbad=0;
+declare gradesum=0;
 
 for i in "${index[@]}"; do
   cp "dataset_$PR/input/input$i.txt" "input.txt";
@@ -26,24 +27,33 @@ for i in "${index[@]}"; do
   crunj
 
   # head -n1 "output.txt" > "output1.txt";
+  awk 	'BEGIN { RS="\\*\\*\\*\\n"; ORS="***\n" }
+	{ last = $0 }
+	END { print last }
+	' "output.txt" > "dataset_$PR/my_output/myoutput$i.txt"
+	grade=$(gradeone $i -c);
+	echo $i  $grade;
+	gradesum=$(echo "scale=2; $gradesum+$grade" | bc)
 
-  if diff "output.txt" "dataset_$PR/output/output$i.txt";
-    then
-      echo "----------------"
-      echo "$i +";
-      echo "----------------"
-      ngood=$((ngood+1));
-    else
-      echo "$i x";
-      nbad=$((nbad+1));
-      case $1 in
-        -n | n)
-          ;;
-        *) p4merge "output.txt" "dataset_$PR/output/output$i.txt"
-          ;;
-      esac
-  fi
+#  if diff "output.txt" "dataset_$PR/output/output$i.txt";
+#    then
+#      echo "----------------"
+#      echo "$i +";
+#      echo "----------------"
+#      ngood=$((ngood+1));
+#    else
+#      echo "$i x";
+#      nbad=$((nbad+1));
+#      case $1 in
+#        -n | n)
+#          ;;
+#        *) : #p4merge "output.txt" "dataset_$PR/output/output$i.txt"
+#          ;;
+#      esac
+#  fi
 done
-  echo "================"
-  echo "$ngood/$((ngood+nbad))"
-  echo "================"
+echo "================"
+res=$(echo "scale=2; 10*$gradesum/${#index[@]}" | bc)
+echo $res
+#  echo "$ngood/$((ngood+nbad))"
+#  echo "================"
