@@ -1,0 +1,23 @@
+
+Heuristic Upper Bound: 69312
+Time Elapsed in obtaining Heuristic Upper Bound: 91.00000 seconds
+
+Set parameter Username
+Academic license - for non-commercial use only - expires 2024-05-28
+Set parameter TimeLimit to value 1709
+Set parameter Threads to value 4
+Set parameter NodeMethod to value 2
+Gurobi Optimizer version 9.5.2 build v9.5.2rc0 (linux64)
+Thread count: 6 physical cores, 12 logical processors, using up to 4 threads
+Optimize a model with 10362379 rows, 147153 columns and 31087137 nonzeros
+Model fingerprint: 0x2e373d1a
+Variable types: 0 continuous, 147153 integer (147153 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+
+Loaded user MIP start with objective 69312
+
+Presolve removed 0 rows and 0 columns (presolve time = 5s) ...

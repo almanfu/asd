@@ -1,0 +1,6 @@
+
+Heuristic Upper Bound: 10547
+Time Elapsed in obtaining Heuristic Upper Bound: 9.00000 seconds
+
+Set parameter Username
+Academic license - for non-commercial use only - expires 2024-05-28

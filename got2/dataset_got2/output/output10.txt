@@ -1,0 +1,91 @@
+
+Heuristic Upper Bound: 49
+Time Elapsed in obtaining Heuristic Upper Bound: 0.00000 seconds
+
+Set parameter Username
+Academic license - for non-commercial use only - expires 2024-05-28
+Set parameter TimeLimit to value 1800
+Set parameter Threads to value 4
+Set parameter NodeMethod to value 2
+Gurobi Optimizer version 9.5.2 build v9.5.2rc0 (linux64)
+Thread count: 6 physical cores, 12 logical processors, using up to 4 threads
+Optimize a model with 1866 rows, 499500 columns and 5598 nonzeros
+Model fingerprint: 0x43cf495a
+Variable types: 0 continuous, 499500 integer (499500 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+
+Loaded user MIP start with objective 49
+
+Presolve removed 1866 rows and 499500 columns
+Presolve time: 0.07s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.10 seconds (0.06 work units)
+Thread count was 1 (of 12 available processors)
+
+Solution count 1: 49 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 4.900000000000e+01, best bound 4.900000000000e+01, gap 0.0000%
+
+Verifying Solution....
+
+Edge Modifications: 
+4 52
+7 66
+18 36
+33 321
+37 954
+38 890
+44 151
+45 106
+46 98
+56 370
+62 176
+63 431
+64 255
+69 598
+97 134
+105 418
+113 211
+129 197
+129 389
+142 236
+153 278
+154 607
+156 552
+176 578
+188 285
+191 968
+209 539
+213 352
+214 479
+240 789
+243 779
+252 445
+269 505
+274 820
+279 319
+373 822
+380 644
+386 870
+390 492
+390 688
+466 759
+504 717
+531 909
+552 622
+606 675
+677 935
+705 844
+709 740
+891 994
+
+Total Number of Modifications: 49
+
+Total Time Taken: 10.00000 seconds
+

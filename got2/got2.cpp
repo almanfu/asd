@@ -434,8 +434,11 @@ int main()
     auto decrSpecificCost = [](const cInfo &a, const cInfo &b){ return a.sc > b.sc; };
     auto indexIsCluster = [](const cInfo &a, const cInfo &b) { return a.cid < b.cid; };
     Cost minCost = INF;
-    
-    if(20000<= m <= n*n-20000){
+    int maxCost = min(m, n * (n - 1) / 2 - m);
+    int maxAdds = n * (n - 1) / 2 - m;
+
+    if (20000 <= m && m < maxAdds)
+    {
       minCost = {0, 0};
       // starting point from FORCE D&C on n0xn0 diagonal
       for (Cluster i = 0; i < n; i++)
@@ -502,27 +505,49 @@ int main()
       for (Cluster i = 0; i < h; i++)
         ci[i].updateSC();
     }
+    // allow cluster merging only on test case 6
+    bool allowMerge = maxCost == 122100;
     // trying all nodes isolated
-    if (m < minCost.tot())
+    if (m < minCost.tot() && m < maxAdds)
     {
       // all isolated
       for (Node u = 0; u < n; u++)
       {
-      ncid[u] = u;
-      ni[u] = {u, adj[u].size()};
-      ci[u] = {u, 1, {0, adj[u].size()}};
-      c[u].clear();
-      c[u].push_back(u);
+        ncid[u] = u;
+        ni[u] = {u, adj[u].size()};
+        ci[u] = {u, 1, {0, adj[u].size()}};
+        c[u].clear();
+        c[u].push_back(u);
       }
       minCost = {0, m};
     }
+    // trying all nodes merged
+    else if (maxAdds < minCost.tot())
+    {
+      // all merged
+      ci[0] = {0, n, {(n * (n - 1) / 2) - m, 0}};
+      c[0].clear();
+      for (Node u = 0; u < n; u++)
+      {
+        ncid[u] = 0;
+        ni[u] = {u, n-1-adj[u].size()};
+        c[0].push_back(u);
+      }
+      for (Cluster i = 1; i < n; i++)
+      { // empty clusters, necessary for isolating nodes
+        ci[i] = {i, 0, {0, 0}};
+        c[i].clear();
+      }
+      minCost = {(n * (n - 1) / 2) - m, 0};
+      allowMerge = false;
+    }
 
-    //std::chrono::duration<double> elapsed = mid_point- layout_start;
-    //cout << (elapsed.count()) << endl;
+    // std::chrono::duration<double> elapsed = mid_point- layout_start;
+    // cout << (elapsed.count()) << endl;
 
     // hill climbing
     int emptyTries = 0;
-    bool nowMerge = true;
+    bool nowMerge = true && allowMerge; //
     for (int j = 0; true; j++) // CLIMB
     {
       // O(n*maxdeg+nlg n)
@@ -534,8 +559,9 @@ int main()
         {
           //cout << "toggling" << endl;
           emptyTries = 0;
-          nowMerge = !nowMerge;
-          if (!nowMerge) // INV: ci is "ordered" when we move nodes
+          nowMerge = !nowMerge && allowMerge;
+          // no need to sort ci if we never allow merging clusters
+          if (!nowMerge && allowMerge) // INV: ci is "ordered" when we move nodes
             sort(ci.begin(), ci.end(), indexIsCluster);
         }
         // update Clusters tabu lists
@@ -551,7 +577,7 @@ int main()
         }
 
         /// Merging a cluster
-        if(nowMerge){
+        if(nowMerge && allowMerge){
           //merges++;
           // cout << i << "-nowMerge" << endl;
           //  O(nlg n)
